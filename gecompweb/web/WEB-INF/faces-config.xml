@@ -108,6 +108,10 @@
        		<from-outcome>inserisciPrestazioni</from-outcome>
        		<to-view-id>/main/prestazioni/InserisciPrestazioni.xhtml</to-view-id>
     	</navigation-case>
+    	<navigation-case>
+       		<from-outcome>modificaPrestazione</from-outcome>
+       		<to-view-id>/main/prestazioni/ModificaPrestazioni.xhtml</to-view-id>
+    	</navigation-case>
    		<navigation-case>
       		<from-outcome>listaPrestazioni</from-outcome>
       		<to-view-id>/main/prestazioni/ListaPrestazioni.xhtml</to-view-id>

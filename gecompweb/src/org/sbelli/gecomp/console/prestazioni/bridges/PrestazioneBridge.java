@@ -12,13 +12,11 @@ import org.sbelli.gecomp.orm.model.Prestazione;
 public class PrestazioneBridge extends GenericBridge {
 
 	public void delete(final GecompModelObject element) throws GeCompOrmException {
-		// TODO Auto-generated method stub
-
+		throw new GeCompOrmException("NON IMPLEMENTATO!!!!");
 	}
 
 	public GecompModelObject get(final Long id) throws GeCompOrmException {
-		// TODO Auto-generated method stub
-		return null;
+		return DbManagerFactory.getInstance().getPrestazioneDao().get(id);
 	}
 
 	public GecompModelObject insert(final GecompModelObject element) throws GeCompOrmException {
@@ -26,8 +24,7 @@ public class PrestazioneBridge extends GenericBridge {
 	}
 
 	public void update(final GecompModelObject element) throws GeCompOrmException {
-		// TODO Auto-generated method stub
-
+		throw new GeCompOrmException("NON IMPLEMENTATO!!!!");
 	}
 
 	public List<Prestazione> list(Gara gara) throws GeCompOrmException {

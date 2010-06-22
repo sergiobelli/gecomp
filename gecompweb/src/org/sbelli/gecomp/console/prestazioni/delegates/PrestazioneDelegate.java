@@ -39,13 +39,11 @@ public class PrestazioneDelegate extends GenericDelegate {
 	}
 
 	public void delete(GecompModelObject element) throws GeCompException {
-		// TODO Auto-generated method stub
-		
+		throw new GeCompException("NON IMPLEMENTATO!!!!");
 	}
 
 	public Prestazione get(Long id) throws GeCompException {
-		// TODO Auto-generated method stub
-		return null;
+		return (Prestazione) bridge.get(id);
 	}
 
 	public List<Prestazione> list(Gara gara) throws GeCompException {

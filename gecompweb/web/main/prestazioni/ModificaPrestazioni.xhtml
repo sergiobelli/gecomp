@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+		<ui:define name="title"><h:outputText value="Modifica Prestazioni" /></ui:define>
+		<ui:define name="body">
+        	<h:form>
+        		
+				<h:panelGrid columns="2" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+
+                    <h:outputText 	value="Iscritto"/>
+					<h:selectOneMenu  	value="#{ModificaPrestazioneExecuter.prestazione.iscrizione.idIscrizione}"
+					  					required="true" 
+										class="FacetInput">
+		                <f:convertNumber 	type="number" />
+						<f:selectItems 		value="#{ModificaPrestazioneExecuter.listaIscrittiItem}" />
+	                </h:selectOneMenu>
+	                
+                    <h:outputText 	value="Tipo prestazione"/>
+					<h:selectOneMenu  	value="#{ModificaPrestazioneExecuter.prestazione.tipoPrestazione.idTipoPrestazione}"
+					  					required="true" 
+										class="FacetInput">
+		                <f:convertNumber 	type="number" />
+						<f:selectItems 		value="#{ModificaPrestazioneExecuter.helper.listaTipiPrestazioneItem}" />
+	                </h:selectOneMenu>             
+
+					<h:outputText 	value="Tipo misura"/>
+					<h:outputText 	value="#{ModificaPrestazioneExecuter.prestazione.iscrizione.gara.tipoMisura.descrizione}" class="FacetInput"/>
+					
+					<h:outputText 	value="Valore misura"/>
+					<h:panelGroup layout="block">
+						<h:inputText value="#{ModificaPrestazioneExecuter.prestazione.valoreMisura}" class="FacetInput">
+							<f:converter converterId="ValoreMisuraConverter" />
+						</h:inputText>
+						<h:outputText 	value="(hh:mm:ss.xxx)*"/>
+					</h:panelGroup>
+					
+	            	<h:outputText 		value="&nbsp;"/>
+	            	<h:commandButton 	value="Inserisci" 
+	            						action="#{ModificaPrestazioneExecuter.salva}" 
+	            						class="FacetButton" />
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>
