@@ -236,6 +236,11 @@
 		<managed-bean-class>org.sbelli.gecomp.console.prestazioni.executers.InserisciPrestazioneExecuter</managed-bean-class> 
 		<managed-bean-scope>request</managed-bean-scope> 
 	</managed-bean>
+	<managed-bean> 
+		<managed-bean-name>ModificaPrestazioneExecuter</managed-bean-name>
+		<managed-bean-class>org.sbelli.gecomp.console.prestazioni.executers.ModificaPrestazioneExecuter</managed-bean-class> 
+		<managed-bean-scope>request</managed-bean-scope> 
+	</managed-bean>
 	
    <managed-bean> 
       <managed-bean-name>InserisciCategoriaExecuter</managed-bean-name>
