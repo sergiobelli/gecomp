@@ -29,7 +29,7 @@
 	where	p.iscrizione = i.id_iscrizione
 			and i.gara = g.id_gara
 			and g.id_gara = #idGara#
-	order by P.VALORE_MISURA
+	order by p.VALORE_MISURA
   </select>
     
   <select id="selectPrestazione" resultMap="PrestazioneResult" parameterClass="long">
