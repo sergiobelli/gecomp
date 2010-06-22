@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Atleta">
+
+  <typeAlias alias="Atleta" type="org.sbelli.gecomp.orm.model.Atleta"/>
+
+  <resultMap id="AtletaResult" class="org.sbelli.gecomp.orm.model.Atleta">
+    <result property="idAtleta" column="ID_ATLETA"/>
+    <result property="cognome" column="COGNOME"/>
+    <result property="nome" column="NOME"/>
+    <result property="sesso" column="SESSO"/>
+    <result property="annoNascita" column="ANNO_NASCITA"/>
+    <result property="societaAppartenenza" column="SOCIETA_APPARTENENZA" select="Societa.selectSocieta" />
+  </resultMap>
+
+  <cacheModel id="AtletaCache" type="LRU" >
+    <flushInterval minutes="5"/>
+    <flushOnExecute  statement="Atleta.insertAtleta"/>
+    <flushOnExecute  statement="Atleta.updateAtleta"/>
+    <flushOnExecute  statement="Atleta.deleteAtleta"/>
+    <property name="CacheSize" value="500"/>
+  </cacheModel>
+  
+  <select id="listAtleta" resultMap="AtletaResult" cacheModel="AtletaCache">  
+    select * from atleta order by COGNOME, NOME, SESSO, ANNO_NASCITA
+  </select>
+
+  <select id="selectAtleta" parameterClass="long" resultMap="AtletaResult" cacheModel="AtletaCache">
+    select * from atleta where ID_ATLETA = #idAtleta# order by COGNOME, NOME, SESSO, ANNO_NASCITA
+  </select>
+   
+  <insert id="insertAtleta" parameterClass="org.sbelli.gecomp.orm.model.Atleta">
+    insert into atleta (
+      ID_ATLETA,
+      COGNOME,
+      NOME,
+      SESSO,
+      ANNO_NASCITA,
+      SOCIETA_APPARTENENZA )     
+    values (
+      #idAtleta#, #cognome#, #nome#, #sesso#, #annoNascita#, #societaAppartenenza.id#
+    )
+  </insert>
+
+  <update id="updateAtleta" parameterClass="org.sbelli.gecomp.orm.model.Atleta">
+    update atleta set
+      ID_ATLETA = #idAtleta#,
+      COGNOME = #cognome#,
+      NOME = #nome#,
+      SESSO = #sesso#,
+      ANNO_NASCITA = #annoNascita#,
+      SOCIETA_APPARTENENZA = #societaAppartenenza.id#
+    where
+      ID_ATLETA = #idAtleta#
+  </update>
+
+  <delete id="deleteAtleta" parameterClass="long">
+    delete from atleta where ID_ATLETA = #idAtleta#
+  </delete>
+
+</sqlMap>

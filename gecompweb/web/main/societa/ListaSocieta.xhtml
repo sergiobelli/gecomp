@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			
+		</ui:define>
+		
+		<ui:define name="body">
+    
+    		<h:form>
+    		
+    			<h:dataTable 
+	            		id="listaSocieta" 
+	            		value="#{ListaSocietaExecuter.helper.listaSocieta}" 
+	            		var="societa"
+	            		binding="#{ListaSocietaExecuter.myDataTable}"
+        				rows="20" 
+	            		headerClass="tabella_intestazione"
+	            		rowClasses="tabella_dispari,tabella_pari"
+	            		styleClass="tabella">
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Codice Fidal"/>
+                        </f:facet>
+                        <h:outputText value="#{societa.codiceFidal}"/>
+                    </h:column>
+                    	            
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Societa"/>
+	                    </f:facet>
+	                    <h:outputText value="#{societa.denominazione}"/>
+	                </h:column>
+	            
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Telefono"/>
+	                    </f:facet>
+	                    <h:outputText value="#{societa.telefonoSede}"/>
+	                </h:column>
+
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Localita Sede"/>
+	                    </f:facet>
+	                    <h:outputText value="#{societa.localitaSede}"/>
+	                </h:column>
+	                	                
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Fax"/>
+	                    </f:facet>
+	                    <h:outputText value="#{societa.fax}"/>
+	                </h:column>
+
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Email"/>
+	                    </f:facet>
+	                    <h:outputText value="#{societa.email}"/>
+	                </h:column>	                
+	                
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Sito"/>
+	                    </f:facet>
+	                    <h:outputText value="#{societa.sito}"/>
+	                </h:column>	                
+	                
+	                <h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Operazioni"/>
+	                    </f:facet>
+	                    
+                        <h:commandLink actionListener="#{ModificaSocietaExecuter.load}" action="#{ModificaSocietaExecuter.modifica}" styleClass="FacetSorterLink">	                    	
+	                    	<h:graphicImage value="/styles/images/edit.png" alt="Modifica" />
+	                        <f:attribute name="idSocieta" value="#{societa.id}" />
+	                    </h:commandLink>
+                        
+                        <h:outputText value=" "/>
+	                    <h:commandLink actionListener="#{ModificaSocietaExecuter.load}" action="#{ModificaSocietaExecuter.elimina}" styleClass="FacetSorterLink">
+	                    	<h:graphicImage value="/styles/images/delete.png" alt="Elimina" />
+	                        <f:attribute name="idSocieta" value="#{societa.id}" />
+	                    </h:commandLink>
+                        
+                    </h:column> 
+	                
+	                
+		<f:facet name="footer" class="FacetFormTABLE">
+            <h:panelGroup>
+                <h:commandButton
+                    value="&#60;&#60;"
+                    action="#{ListaSocietaExecuter.pageFirst}"
+                    disabled="#{ListaSocietaExecuter.myDataTable.first == 0}"
+                    class="FacetButton"
+                />
+                <h:commandButton
+                    value="&#60;"
+                    action="#{ListaSocietaExecuter.pagePrevious}"
+                    disabled="#{ListaSocietaExecuter.myDataTable.first == 0}"
+                    class="FacetButton"
+                />
+                
+                <h:outputText value=" " />
+                <h:outputText value=" Pagina " />
+                <h:outputText value="#{ListaSocietaExecuter.pagina}" />
+                <h:outputText value=" di " />
+                <h:outputText value="#{ListaSocietaExecuter.pagine}" />
+                <h:outputText value=" " />
+                
+                <h:commandButton
+                    value="&#62;"
+                    action="#{ListaSocietaExecuter.pageNext}"
+                    disabled="#{ListaSocietaExecuter.myDataTable.first + ListaSocietaExecuter.myDataTable.rows
+                        >= ListaSocietaExecuter.myDataTable.rowCount}"
+                    class="FacetButton"
+                />
+                <h:commandButton
+                    value="&#62;&#62;"
+                    action="#{ListaSocietaExecuter.pageLast}"
+                    disabled="#{ListaSocietaExecuter.myDataTable.first + ListaSocietaExecuter.myDataTable.rows
+                        >= ListaSocietaExecuter.myDataTable.rowCount}"
+                    class="FacetButton"
+                />
+            </h:panelGroup>            
+        </f:facet>
+        	                
+	            </h:dataTable>
+			</h:form>		
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

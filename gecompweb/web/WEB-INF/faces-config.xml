@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+
+  <application>
+    <!-- tell JSF to use Facelets -->
+    <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+    <locale-config>
+		<default-locale>it</default-locale>
+	</locale-config>
+	<message-bundle>org.sbelli.gecomp.console.bundle.messages</message-bundle>
+    
+  </application>
+
+<!-- 
+<validator>
+	<validator-id>ValoreMisuraValidator</validator-id>	
+	<validator-class>org.sbelli.gecomp.console.prestazioni.controllers.ValoreMisuraValidator</validator-class>
+</validator>
+-->
+<converter>
+	<converter-id>ValoreMisuraConverter</converter-id>
+	<converter-class>org.sbelli.gecomp.console.prestazioni.converters.ValoreMisuraConverter</converter-class>
+</converter>
+
+
+
+<!-- GeComp Menu -->
+	<navigation-rule>
+
+ 		<navigation-case>
+       		<from-outcome>home</from-outcome>
+       		<to-view-id>/main/home/home.xhtml</to-view-id>
+    	</navigation-case>
+
+		<!-- Atleti -->
+ 		<navigation-case>
+       		<from-outcome>inserisciAtleta</from-outcome>
+       		<to-view-id>/main/atleti/InserisciAtleta.xhtml</to-view-id>
+    	</navigation-case>
+    	 <navigation-case>
+       		<from-outcome>modificaAtleta</from-outcome>
+       		<to-view-id>/main/atleti/ModificaAtleta.xhtml</to-view-id>
+    	</navigation-case>
+    	<navigation-case>
+       		<from-outcome>listaAtleti</from-outcome>
+       		<to-view-id>/main/atleti/ListaAtleti.xhtml</to-view-id>
+    	</navigation-case>
+
+		<!-- Competizioni -->
+		<navigation-case>
+        	<from-outcome>inserisciCompetizione</from-outcome>
+      		<to-view-id>/main/competizioni/InserisciCompetizione.xhtml</to-view-id>
+   		</navigation-case>
+		<navigation-case>
+        	<from-outcome>modificaCompetizione</from-outcome>
+      		<to-view-id>/main/competizioni/ModificaCompetizione.xhtml</to-view-id>
+   		</navigation-case>
+   		<navigation-case>
+      		<from-outcome>listaCompetizioni</from-outcome>
+      		<to-view-id>/main/competizioni/ListaCompetizioni.xhtml</to-view-id>
+   		</navigation-case>
+
+		<!-- Gare -->
+ 		<navigation-case>
+       		<from-outcome>inserisciGara</from-outcome>
+       		<to-view-id>/main/gare/InserisciGara.xhtml</to-view-id>
+    	</navigation-case>
+ 		<navigation-case>
+       		<from-outcome>modificaGara</from-outcome>
+       		<to-view-id>/main/gare/ModificaGara.xhtml</to-view-id>
+    	</navigation-case>
+   		<navigation-case>
+      		<from-outcome>listaGare</from-outcome>
+      		<to-view-id>/main/gare/ListaGare.xhtml</to-view-id>
+   		</navigation-case>
+
+		<!-- Categorie -->
+ 		<navigation-case>
+       		<from-outcome>inserisciCategoria</from-outcome>
+       		<to-view-id>/main/categorie/InserisciCategoria.xhtml</to-view-id>
+    	</navigation-case>
+   		<navigation-case>
+      		<from-outcome>listaCategorie</from-outcome>
+      		<to-view-id>/main/categorie/ListaCategorie.xhtml</to-view-id>
+   		</navigation-case>
+
+		<!-- Iscrizioni -->
+ 		<navigation-case>
+       		<from-outcome>inserisciIscrizioni</from-outcome>
+       		<to-view-id>/main/iscrizioni/ModificaIscrizioni.xhtml</to-view-id>
+    	</navigation-case>
+		<navigation-case>
+       		<from-outcome>modificaIscrizione</from-outcome>
+       		<to-view-id>/main/iscrizioni/ModificaIscrizioni.xhtml</to-view-id>
+    	</navigation-case>
+    	<navigation-case>
+      		<from-outcome>listaIscrizioni</from-outcome>
+      		<to-view-id>/main/iscrizioni/ListaIscrizioni.xhtml</to-view-id>
+   		</navigation-case>
+		
+		<!-- Prestazioni -->
+ 		<navigation-case>
+       		<from-outcome>inserisciPrestazioni</from-outcome>
+       		<to-view-id>/main/prestazioni/InserisciPrestazioni.xhtml</to-view-id>
+    	</navigation-case>
+   		<navigation-case>
+      		<from-outcome>listaPrestazioni</from-outcome>
+      		<to-view-id>/main/prestazioni/ListaPrestazioni.xhtml</to-view-id>
+   		</navigation-case>
+		
+		<!-- Classifiche -->
+ 		<navigation-case>
+       		<from-outcome>visualizzaClassificaGara</from-outcome>
+       		<to-view-id>/main/classifica/ClassificaGara.xhtml</to-view-id>
+    	</navigation-case>
+ 		<navigation-case>
+       		<from-outcome>visualizzaClassificaCompetizione</from-outcome>
+       		<to-view-id>/main/classifica/ClassificaCompetizione.xhtml</to-view-id>
+    	</navigation-case>
+    	    	
+    	<!-- Societa -->
+        <navigation-case>
+            <from-outcome>inserisciSocieta</from-outcome>
+            <to-view-id>/main/societa/InserisciSocieta.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modificaSocieta</from-outcome>
+            <to-view-id>/main/societa/ModificaSocieta.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listaSocieta</from-outcome>
+            <to-view-id>/main/societa/ListaSocieta.xhtml</to-view-id>
+        </navigation-case>        
+ 	</navigation-rule>
+<!-- GeComp Menu -->
+
+   <navigation-rule>
+      <from-view-id>/main/login/login.xhtml</from-view-id>
+      <navigation-case>
+         <from-outcome>loginDone</from-outcome>
+         <to-view-id>/main/competizioni/ListaCompetizioni.xhtml</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>loginFailed</from-outcome>
+         <to-view-id>/main/login/login.xhtml</to-view-id>
+      </navigation-case>
+   </navigation-rule>
+   
+   <managed-bean> 
+      <managed-bean-name>GeCompUserSession</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.user.GeCompUserSession</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>GeCompMenu</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.menu.GeCompMenu</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+
+   <managed-bean> 
+      <managed-bean-name>InserisciAtletaExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.atleti.executers.InserisciAtletaExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ModificaAtletaExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.atleti.executers.ModificaAtletaExecuter</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ElencoAtletiExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.atleti.executers.ElencoAtletiExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+
+   <managed-bean> 
+      <managed-bean-name>InserisciCompetizioneExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.competizione.executers.InserisciCompetizioneExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ModificaCompetizioneExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.competizione.executers.ModificaCompetizioneExecuter</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ListaCompetizioniExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.competizione.executers.ListaCompetizioniExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+      
+   <managed-bean> 
+      <managed-bean-name>InserisciGaraExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.gare.executers.InserisciGaraExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ModificaGaraExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.gare.executers.ModificaGaraExecuter</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ListaGareExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.gare.executers.ListaGareExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+
+   <managed-bean> 
+      <managed-bean-name>InserisciIscrizioneExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.iscrizioni.executers.InserisciIscrizioneExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ModificaIscrizioneExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.iscrizioni.executers.ModificaIscrizioneExecuter</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ListaIscrizioniExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.iscrizioni.executers.ListaIscrizioniExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+	  
+	<managed-bean> 
+		<managed-bean-name>ListaPrestazioniExecuter</managed-bean-name>
+		<managed-bean-class>org.sbelli.gecomp.console.prestazioni.executers.ListaPrestazioniExecuter</managed-bean-class> 
+		<managed-bean-scope>request</managed-bean-scope> 
+	</managed-bean>
+    <managed-bean> 
+		<managed-bean-name>InserisciPrestazioneExecuter</managed-bean-name>
+		<managed-bean-class>org.sbelli.gecomp.console.prestazioni.executers.InserisciPrestazioneExecuter</managed-bean-class> 
+		<managed-bean-scope>request</managed-bean-scope> 
+	</managed-bean>
+	
+   <managed-bean> 
+      <managed-bean-name>InserisciCategoriaExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.categorie.executers.InserisciCategoriaExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ModificaCategoriaExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.categorie.executers.ModificaCategoriaExecuter</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ElencoCategorieExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.categorie.executers.ElencoCategorieExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+     
+   <managed-bean> 
+      <managed-bean-name>ClassificaCompetizioneExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.classifiche.ClassificaCompetizioneExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ClassificaGaraExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.classifiche.ClassificaGaraExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   
+   <managed-bean> 
+      <managed-bean-name>InserisciSocietaExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.societa.executers.InserisciSocietaExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ModificaSocietaExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.societa.executers.ModificaSocietaExecuter</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ListaSocietaExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.societa.executers.ListaSocietaExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   
+   <managed-bean> 
+   	  <managed-bean-name>DoLoginExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.login.executers.DoLoginExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+
+</faces-config>

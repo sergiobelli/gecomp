@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Competizione">
+
+  <typeAlias alias="Competizione" type="org.sbelli.gecomp.orm.model.Competizione"/>
+
+  <resultMap id="CompetizioneResult" class="Competizione">
+    <result property="idCompetizione"        column="ID_COMPETIZIONE"/>
+    <result property="dataInizio"            column="DATA_INIZIO"/>
+    <result property="dataFine"              column="DATA_FINE"/>
+    <result property="nome"                  column="NOME"/>
+    <result property="descrizione"           column="DESCRIZIONE"/>
+    <result property="societaOrganizzatrice" column="SOCIETA_ORGANIZZATRICE" select="Societa.selectSocieta" />
+  </resultMap>
+
+  <cacheModel id="CompetizioneCache" type="LRU" >
+    <flushInterval minutes="5"/>
+    <flushOnExecute  statement="Competizione.insertCompetizione"/>
+    <flushOnExecute  statement="Competizione.updateCompetizione"/>
+    <flushOnExecute  statement="Competizione.deleteCompetizione"/>
+    <property name="CacheSize" value="10"/>
+  </cacheModel>
+    
+  <select id="listCompetizione" resultMap="CompetizioneResult" cacheModel="CompetizioneCache">
+  	select * from competizione order by NOME, DATA_INIZIO
+  </select>
+  <select id="selectCompetizione" resultMap="CompetizioneResult" parameterClass="long" cacheModel="CompetizioneCache">
+  	select * from competizione C where 	C.ID_COMPETIZIONE = #idCompetizione#  order by NOME, DATA_INIZIO
+  </select>
+   
+  <insert id="insertCompetizione" parameterClass="Competizione">
+    insert into competizione (
+      ID_COMPETIZIONE,
+      DATA_INIZIO,
+      DATA_FINE,
+      NOME,
+      DESCRIZIONE,
+      SOCIETA_ORGANIZZATRICE )     
+    values (
+      #idCompetizione#, #dataInizio#, #dataFine#, #nome#, #descrizione#, #societaOrganizzatrice.id#
+    )
+  </insert>
+
+  <update id="updateCompetizione" parameterClass="Competizione">
+    update competizione set
+      ID_COMPETIZIONE = #idCompetizione#,
+      DATA_INIZIO = #dataInizio#,
+      DATA_FINE = #dataFine#,
+      NOME = #nome#,
+      DESCRIZIONE = #descrizione#,
+      SOCIETA_ORGANIZZATRICE = #societaOrganizzatrice.id#
+    where
+      ID_COMPETIZIONE = #idCompetizione#
+  </update>
+
+  <delete id="deleteCompetizione" parameterClass="long">
+    delete from competizione where ID_COMPETIZIONE = #idCompetizione#
+  </delete>
+  
+</sqlMap>

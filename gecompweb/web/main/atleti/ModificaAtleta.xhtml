@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+            		
+            	<h:panelGrid columns="2" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+            		
+            		<h:outputText value="Cognome"/>
+            		<h:inputText value="#{ModificaAtletaExecuter.atleta.cognome}" class="FacetInput"/>
+				
+	            	<h:outputText value="Nome"/>
+	            	<h:inputText value="#{ModificaAtletaExecuter.atleta.nome}" class="FacetInput"/>
+					
+	            	<h:outputText value="Sesso"/>
+	            	<h:inputText value="#{ModificaAtletaExecuter.atleta.sesso}" class="FacetInput"/>
+					
+	            	<h:outputText value="Anno di Nascita"/>
+	            	<h:inputText value="#{ModificaAtletaExecuter.atleta.annoNascita}" class="FacetInput"/>
+					
+	            	<h:outputText value="Societa di Appartenenza"/>
+	            	<h:selectOneMenu  value="#{ModificaAtletaExecuter.atleta.societaAppartenenza.id}" class="FacetInput">
+		                <f:convertNumber type="number" />
+						<f:selectItems  				value="#{ModificaAtletaExecuter.helper.listaSocietaItem}" />
+	                </h:selectOneMenu>
+	                        
+	            	<h:outputText value="&nbsp;"/>
+	            	<h:commandButton action="#{ModificaAtletaExecuter.salva}" value="Modifica" class="FacetButton" />
+					
+				</h:panelGrid>
+			
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

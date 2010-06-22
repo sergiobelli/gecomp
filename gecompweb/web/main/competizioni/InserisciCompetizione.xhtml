@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+				
+            	<h:panelGrid columns="2" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+            		
+            		<h:outputText value="Nome"/>
+            		<h:inputText value="#{InserisciCompetizioneExecuter.competizione.nome}" class="FacetInput" />
+				
+	            	<h:outputText value="Descrizione"/>
+	            	<h:inputText value="#{InserisciCompetizioneExecuter.competizione.descrizione}" class="FacetInput" />
+					
+	            	<h:outputText value="Data Inizio"/>
+					<h:inputText value="#{InserisciCompetizioneExecuter.competizione.dataInizio}" size="12" maxlength="10" class="FacetInput" >
+                    	<f:convertDateTime pattern="dd/MM/yyyy" timeZone="CET" />
+                    </h:inputText>
+					
+	            	<h:outputText value="Data Fine"/>
+					<h:inputText value="#{InserisciCompetizioneExecuter.competizione.dataFine}" size="12" maxlength="10" class="FacetInput" >
+                    	<f:convertDateTime pattern="dd/MM/yyyy" timeZone="CET" />
+                    </h:inputText>
+					
+					<h:outputText value="Societa Organizzatrice"/>
+	            	<h:selectOneMenu  id="societaOrganizzatrice" 	value="#{InserisciCompetizioneExecuter.societa}"  class="FacetInput" >
+		                <f:convertNumber type="number" />
+						<f:selectItems value="#{InserisciCompetizioneExecuter.listaSocieta}" />
+	                </h:selectOneMenu>
+	                        
+	            	<h:commandButton action="#{InserisciCompetizioneExecuter.inserisci}" 			value="Inserisci"   class="FacetButton" />
+	            	<h:commandButton action="#{InserisciCompetizioneExecuter.inserisciESeleziona}" 	value="Inserisci e Seleziona"   class="FacetButton" />
+					
+				</h:panelGrid>
+			
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			
+		</ui:define>
+		
+		<ui:define name="body">
+    
+    		<h:form>
+    		
+    			<h:dataTable 
+	            		id="listaGare" 
+	            		value="#{ListaGareExecuter.gare}" 
+	            		var="gara" 
+	            		headerClass="tabella_intestazione"
+	            		rowClasses="tabella_dispari,tabella_pari"
+	            		styleClass="tabella">
+	            
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Competizione"/>
+	                    </f:facet>
+	                    <h:outputText value="#{gara.competizione.nome}"/>
+	                </h:column>
+	            
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Nome"/>
+	                    </f:facet>
+	                    <h:outputText value="#{gara.nome}"/>
+	                </h:column>
+	
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Descrizione"/>
+	                    </f:facet>
+	                    <h:outputText value="#{gara.descrizione}"/>
+	                </h:column>
+	                
+	                <h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Data"/>
+	                    </f:facet>
+	                    <h:outputText value="#{gara.data}">
+	                    	<f:convertDateTime type="date" dateStyle="short"/>
+	                    </h:outputText>
+	                </h:column>
+	                
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Distanza"/>
+	                    </f:facet>
+	                    <h:outputText value="#{gara.distanza}"/>
+	                </h:column>                
+				
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Operazioni"/>
+	                    </f:facet>
+	                    
+                        <h:commandLink actionListener="#{ModificaGaraExecuter.load}" action="#{ModificaGaraExecuter.modificaGara}" styleClass="FacetSorterLink">
+	                    	<h:graphicImage value="/styles/images/edit.png" alt="Modifica" />
+	                        <f:attribute name="idGara" value="#{gara.idGara}" />
+	                    </h:commandLink>
+                        
+                        <h:outputText value=" "/>
+	                    <h:commandLink actionListener="#{ModificaGaraExecuter.load}" action="#{ModificaGaraExecuter.elimina}" styleClass="FacetSorterLink">
+	                    	<h:graphicImage value="/styles/images/delete.png"/>
+	                        <f:attribute name="idGara" value="#{gara.idGara}" />
+	                    </h:commandLink>
+                        
+                        <h:outputText value=" "/>
+	   					<h:commandLink actionListener="#{ModificaGaraExecuter.load}" action="#{ModificaGaraExecuter.selezionaGara}" styleClass="FacetSorterLink">
+	   						<h:outputText value="Seleziona"/>
+	       					<f:attribute name="idGara" value="#{gara.idGara}" />
+	   					</h:commandLink>
+	   					
+                    </h:column> 
+	                
+	            </h:dataTable>
+			</h:form>		
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

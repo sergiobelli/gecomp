@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Gara">
+
+  <typeAlias alias="Gara" 			type="org.sbelli.gecomp.orm.model.Gara"/>
+  <typeAlias alias="Competizione" 	type="org.sbelli.gecomp.orm.model.Competizione"/>
+
+  <resultMap id="GaraResult" class="Gara">
+    <result property="idGara"       column="ID_GARA"/>
+    <result property="competizione" column="COMPETIZIONE" select="Competizione.selectCompetizione"/>
+    <result property="nome"         column="NOME"/>
+    <result property="descrizione"  column="DESCRIZIONE"/>
+    <result property="data"         column="DATA"/>
+    <result property="distanza"     column="DISTANZA"/>
+    <result property="tipoMisura"   column="TIPO_MISURA"  select="TipoMisura.select"/>
+  </resultMap>
+
+  <cacheModel id="GaraCache" type="LRU" >
+    <flushInterval minutes="5"/>
+    <flushOnExecute  statement="Gara.insertGara"/>
+    <flushOnExecute  statement="Gara.updateGara"/>
+    <flushOnExecute  statement="Gara.deleteGara"/>
+    <property name="CacheSize" value="50"/>
+  </cacheModel>
+  
+  <select 	id="listGara" 
+  			resultMap="GaraResult" 
+  			cacheModel="GaraCache">
+  	select * from gara  order by NOME, DATA
+  </select>
+  <select 	id="listGaraCompetizione" 
+  			resultMap="GaraResult" 
+  			parameterClass="Competizione" 
+  			cacheModel="GaraCache">
+  	select 	* 
+  	from 	gara
+  	where	COMPETIZIONE = #idCompetizione#
+  	order by NOME, DATA
+  </select>
+  <select 	id="selectGara" 
+  			resultMap="GaraResult" 
+  			parameterClass="long" 
+  			cacheModel="GaraCache">
+  	select * from gara where ID_GARA = #idGara# order by NOME, DATA
+  </select>
+   
+  <insert id="insertGara" parameterClass="Gara">
+    insert into gara (
+      ID_GARA,
+      COMPETIZIONE,
+      NOME,
+      DESCRIZIONE,
+      DATA,
+      DISTANZA,
+      TIPO_MISURA )   
+    values (
+      #idGara#, #competizione.idCompetizione#, #nome#, #descrizione#, #data#, #distanza#, #tipoMisura.idTipoMisura#
+    )
+    <selectKey resultClass="long" keyProperty="idGara"> SELECT LAST_INSERT_ID() AS id </selectKey>
+  </insert>
+
+  <update id="updateGara" parameterClass="Gara">
+    update gara set
+      ID_GARA = #idGara#,
+      COMPETIZIONE = #competizione.idCompetizione#,
+      NOME = #nome#,
+      DESCRIZIONE = #descrizione#,
+      DATA = #data#,
+      DISTANZA = #distanza#,
+      TIPO_MISURA = #tipoMisura#
+    where
+      ID_GARA = #idGara#
+  </update>
+
+  <delete id="deleteGara" parameterClass="long">
+    delete from gara where ID_GARA = #idGara#
+  </delete>
+
+</sqlMap>

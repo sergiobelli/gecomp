@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+			
+			<h:panelGrid columns="2" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+
+            		<h:outputText value="Nome"/>
+            		<h:panelGroup layout="block">
+            			<h:inputText id="NomeGara" value="#{InserisciGaraExecuter.gara.nome}" required="true" requiredMessage="#{labels.error.requiredField}" class="FacetInput"/>
+				<h:outputText value="*"/>
+				<h:message style="color: red" for="NomeGara"/>
+			</h:panelGroup>
+					
+	            	<h:outputText value="Descrizione"/>
+	            	<h:panelGroup>
+	            		<h:inputText id="DescrizioneGara" value="#{InserisciGaraExecuter.gara.descrizione}" required="true" class="FacetInput"/>
+						<h:outputText value="*"/>
+						<h:message style="color: red" for="DescrizioneGara"/>
+					</h:panelGroup>
+					
+	            	<h:outputText value="Data"/>
+	            	<h:panelGroup>
+	            		<h:inputText value="#{InserisciGaraExecuter.gara.data}" class="FacetInput" size="12" maxlength="10" >
+	            			<f:convertDateTime pattern="dd/MM/yyyy" timeZone="CET" />
+	            		</h:inputText>
+						<h:outputText value="*"/>
+					</h:panelGroup>
+					
+	            	<h:outputText value="Distanza"/>
+	            	<h:panelGroup>
+	            		<h:inputText id="DistanzaGara" value="#{InserisciGaraExecuter.gara.distanza}" class="FacetInput">
+					<f:validateLongRange minimum="0" />
+				</h:inputText>
+	                	<h:outputText value="*"/>
+				<h:message style="color: red" for="DistanzaGara"/>
+	                </h:panelGroup>
+	                
+	                <h:outputText value="Categorie"/>
+	                <h:panelGroup>
+		                <h:selectManyListbox value="#{InserisciGaraExecuter.categorie}" class="FacetInput">
+		                	<f:convertNumber type="number" />
+		                	<f:selectItems value="#{InserisciGaraExecuter.helper.listaCategorieItem}" />
+		                </h:selectManyListbox>         
+		                <h:outputText value="*"/>
+	                </h:panelGroup>
+	                
+	                <h:outputText value="Tipo Misura"/>
+	                <h:panelGroup>
+		                <h:selectOneMenu value="#{InserisciGaraExecuter.gara.tipoMisura.idTipoMisura}" class="FacetInput">
+		                	<f:convertNumber type="number" />
+		                	<f:selectItems value="#{InserisciGaraExecuter.helper.listaTipiMisureItem}" />
+		                </h:selectOneMenu>
+		                <h:outputText value="*"/>
+	                </h:panelGroup>
+	                
+	                <h:outputText value="&nbsp;"/>
+	            	<h:commandButton action="#{InserisciGaraExecuter.salva}" value="Inserisci" class="FacetButton" />
+					
+				</h:panelGrid>
+			
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Iscrizione">
+
+  <typeAlias alias="Iscrizione" 	type="org.sbelli.gecomp.orm.model.Iscrizione"	/>
+  <typeAlias alias="Gara" 			type="org.sbelli.gecomp.orm.model.Gara"			/>
+  <typeAlias alias="Atleta" 		type="org.sbelli.gecomp.orm.model.Atleta"		/>
+  <typeAlias alias="Competizione" 	type="org.sbelli.gecomp.orm.model.Competizione"		/>
+
+  <resultMap id="IscrizioneResult" class="Iscrizione">
+    <result property="idIscrizione" 	column="ID_ISCRIZIONE"										/>
+    <result property="gara" 			column="GARA" 				select="Gara.selectGara" 	    />
+    <result property="atleta" 			column="ATLETA" 			select="Atleta.selectAtleta" 	/>
+    <result property="numeroPettorale" 	column="NUMERO_PETTORALE" 									/>
+  </resultMap>
+    
+  <select id="listIscrizione"   resultMap="IscrizioneResult"                     >select * from iscrizione</select>
+  <select id="listIscrizioneGara" resultMap="IscrizioneResult" parameterClass="long">
+  	select 	* 
+  	from 	iscrizione i, atleta a
+  	where	GARA = #idGara#
+  			and i.ATLETA = a.ID_ATLETA
+	order by a.COGNOME  			
+  </select>
+  
+  <select id="selectIscrizione" resultMap="IscrizioneResult" parameterClass="long">select * from iscrizione where ID_ISCRIZIONE = #idIscrizione#</select>
+   
+  <insert id="insertIscrizione" parameterClass="Iscrizione">
+    insert into iscrizione ( ID_ISCRIZIONE, GARA, ATLETA, NUMERO_PETTORALE )  
+    values ( #idIscrizione#, #gara.idGara#, #atleta.idAtleta#, #numeroPettorale#  )
+  </insert>
+
+  <update id="updateIscrizione" parameterClass="Iscrizione">
+    update iscrizione set
+      ID_ISCRIZIONE = #idIscrizione#,
+      GARA = #gara.idGara#,
+      ATLETA = #atleta.idAtleta#,
+      NUMERO_PETTORALE = #numeroPettorale#
+    where
+      ID_ISCRIZIONE = #idIscrizione#
+  </update>
+
+  <delete id="deleteIscrizione" parameterClass="long">
+    delete from iscrizione where ID_ISCRIZIONE = #idIscrizione#
+  </delete>
+
+</sqlMap>

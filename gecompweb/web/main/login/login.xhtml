@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+   <f:view>
+      
+      <head>
+         <title>.: GeComp :.</title>
+         <link rel="stylesheet" type="text/css" href="../../styles/default.css" />
+         <f:loadBundle basename="org.sbelli.gecomp.console.bundle.labels" var="labels" />
+      </head>
+      
+      <body>
+         <h:form>
+         
+         	<h:panelGrid 	columns="2" 
+         					headerClass="tabella_intestazione"
+	            			rowClasses="tabella_dispari,tabella_pari"
+	            			styleClass="tabella"
+	            			width="50%">
+                
+                <h:outputLabel 	value="#{labels.username}"/>
+         		<h:inputText 	value="#{DoLoginExecuter.username}" 	
+         						required="true" 
+         						class="FacetInput" />
+         		
+         		<h:outputLabel 	value="#{labels.password}"/>
+         		<h:inputSecret 	value="#{DoLoginExecuter.password}" 
+         						required="true"
+         						class="FacetInput" />
+         		
+         		<h:outputLabel 		value="&nbsp;"/>
+         		<h:commandButton 	value="#{labels.login}" 
+         							action="#{DoLoginExecuter.doLogin}" 
+         							class="FacetButton" />
+         		
+         		<h:outputLabel 	value="&nbsp;"/>
+         		<h:messages showDetail="true" showSummary="true" layout="table" />
+         		
+         	</h:panelGrid>
+         </h:form>
+      </body>
+   </f:view>
+</html>

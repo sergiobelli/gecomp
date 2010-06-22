@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <head>                  
+		<link rel="stylesheet" type="text/css" href="../../styles/default.css" />
+		<f:loadBundle basename="org.sbelli.gecomp.console.bundle.labels" var="labels" />
+		<title><h:outputText value="#{labels.title}"/></title>     
+    </head>
+	
+	<body>
+	
+		<ui:insert name="javascript">
+		
+		</ui:insert>
+		
+		<div id="header">
+			<div id="header_inner">
+				<h1><span>Ge.</span>Comp</h1>
+				<div id="slogan"><h:outputText value="#{labels.slogan}"/></div>
+			</div>
+		</div>
+		
+		<div id="main">
+			<div id="lcol">
+				<div id="lcontent">
+					<ui:insert name="menu">
+						<h:form id="menuForm">
+
+							<h:outputText>
+								<h3 class="first"><h:outputText value="#{labels.competizioni}"/></h3>
+								<ul class="divided">
+									<li>
+										<h:commandLink value="#{labels.inserisci}" 
+											action="#{GeCompMenu.inserisciCompetizione}" /></li>
+									<li>
+										<h:commandLink value="#{labels.lista}" 
+											action="#{GeCompMenu.listaCompetizioni}" /></li>
+									<li>
+										<h:commandLink value="#{labels.classifiche_visualizza_competizione}" 
+											action="#{GeCompMenu.visualizzaClassificaCompetizione}" /></li>
+								</ul>    
+							</h:outputText>
+		
+							<h:outputText>
+								<h3 class="first"><h:outputText value="#{labels.gare}"/></h3>
+								<ul class="divided">
+									<li>
+										<h:commandLink value="#{labels.inserisci}" 
+											action="#{GeCompMenu.inserisciGara}" /></li>
+									<li>
+										<h:commandLink value="#{labels.lista}" 
+											action="#{GeCompMenu.listaGare}" /></li>
+									<li>
+										<h:commandLink value="#{labels.classifiche_visualizza_gara}" 
+											action="#{GeCompMenu.visualizzaClassificaGara}" /></li>
+								</ul>    
+							</h:outputText>
+		
+							<h:outputText>
+								<h3 class="first"><h:outputText value="#{labels.iscrizioni}"/></h3>
+								<ul class="divided">
+									<li>
+										<h:commandLink value="#{labels.inserisci}" 
+											action="#{GeCompMenu.inserisciIscrizioni}" /></li>
+									<li>
+										<h:commandLink value="#{labels.lista}" 
+											action="#{GeCompMenu.listaIscrizioni}" /></li>
+								</ul>    
+							</h:outputText>
+		
+							<h:outputText>
+								<h3 class="first"><h:outputText value="#{labels.prestazioni}"/></h3>
+								<ul class="divided">
+									<li>
+										<h:commandLink value="#{labels.inserisci}" 
+											action="#{GeCompMenu.inserisciPrestazioni}" /></li>
+									<li>
+										<h:commandLink value="#{labels.lista}" 
+											action="#{GeCompMenu.listaPrestazioni}" /></li>
+								</ul>  
+							</h:outputText>
+					
+					        <h:outputText>
+                                <h3 class="first"><h:outputText value="#{labels.societa}"/></h3>
+                                <ul class="divided">
+                                    <li>
+                                    	<h:commandLink value="#{labels.inserisci}" 
+                                    		action="#{GeCompMenu.inserisciSocieta}" /></li>
+                                    <li>
+                                    	<h:commandLink value="#{labels.lista}" 
+                                    		action="#{GeCompMenu.listaSocieta}" /></li>
+                                </ul>  
+                            </h:outputText>
+
+							<h:outputText>
+								<h3 class="first"><h:outputText value="#{labels.atleti}"/></h3>
+								<ul class="divided">
+									<li>
+										<h:commandLink value="#{labels.inserisci}" 
+											action="#{GeCompMenu.inserisciAtleta}" /></li>
+									<li>	
+										<h:commandLink value="#{labels.lista}"
+											action="#{GeCompMenu.listaAtleti}" /></li>
+								</ul>    
+							</h:outputText>
+                            
+                            <h:outputText>
+								<h3 class="first"><h:outputText value="#{labels.categorie}"/></h3>
+								<ul class="divided">
+									<li>
+										<h:commandLink value="#{labels.inserisci}" 	
+											action="#{GeCompMenu.inserisciCategoria}" /></li>
+									<li>
+										<h:commandLink value="#{labels.lista}" 
+											action="#{GeCompMenu.listaCategorie}" /></li>
+								</ul>    
+							</h:outputText>
+							
+						</h:form>
+					</ui:insert>
+				</div>
+		</div>
+			
+		<div id="rcol">
+			<div id="rcontent">
+				<div class="box_inner">					
+					<h:outputText value="#{labels.competizioni_selezionata}"/>
+						<b><h:outputText value="#{GeCompUserSession.competizione.nome}"/></b>
+					<br/>
+					<h:outputText value="#{labels.gare_selezionata}"/>
+						<b><h:outputText value="#{GeCompUserSession.gara.nome}"/></b>
+					<h:messages 
+						showDetail="true" 
+						showSummary="true"
+						tooltip="true" 
+						infoStyle="color: green"
+						warnStyle="color: green"
+						errorStyle="color: red" />		
+				</div>
+				<ui:insert name="body" />
+			</div>
+		</div>
+
+</div>
+	
+	</body>
+	
+</html>

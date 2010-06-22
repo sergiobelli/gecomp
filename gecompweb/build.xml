@@ -1,0 +1,138 @@
+<project name="GeComp-Web" basedir="." default="dist">
+  <property file="build.properties"/>
+  <target name="init" depends="clean">
+      <mkdir dir="${build.dir}"/>
+      <mkdir dir="${classes.dir}"/>
+  	  <mkdir dir="${dist.dir}"/>
+  </target>
+
+  <path id="classpath.id">
+    <fileset dir="${lib.dir}" includes="**/*.jar" />
+    <fileset dir="${common.lib.dir}" includes="**/*.jar"/>
+ </path>
+
+  <!--clean -->
+  <target name="clean" description="Clean the project">
+    <echo message="cleaning project..."/>
+    <delete quiet="true" dir="${build.dir}"/>
+    <delete quiet="true" dir="${classes.dir}"/>
+  	<delete quiet="true" dir="${dist.dir}"/>
+  	
+  	<delete quiet="true" file="${deploy.dir}/${application.name}"/>
+  	<delete quiet="true" dir="${deploy.dir}/gecomp"/>
+  </target>
+
+  <target name="build" description="compile console java sources" depends="init">
+    <javac classpathref="classpath.id"
+           srcdir="${src.dir}"
+           destdir="${classes.dir}"
+           debug="yes"/>
+  	<copy todir="${classes.dir}">
+  		<fileset dir="${src.dir}">
+    		<include name="**/*.xml"/>
+  			<include name="**/*.properties"/>
+		</fileset>
+  	</copy>
+  </target>
+
+  <target name="dist" description="creates the  console a web application" depends="clean,init,build">
+    <tstamp>
+      <format property="init.timestamp" pattern="dd.MM.yyyy"/>
+    </tstamp>
+  	
+  	<copy todir="${conf.dir}">
+  		<fileset dir="${ormconf.dir}/"/>
+  	</copy>
+  	
+    <war destfile="${dist.dir}/${application.name}"
+         webxml="web/WEB-INF/web.xml">
+      <!-- web app resource files -->
+      <fileset dir="web">
+        <exclude name="WEB-INF/web.xml"/>
+      </fileset>
+      
+    	
+      <!--  configurations -->
+      <classes dir="${conf.dir}" />
+      <!--  web application classes -->
+      <classes dir="${classes.dir}" />
+      <!-- third party libs -->
+      <!-- hibernate + other hibernate dependencies are already available on jboss -->
+        <lib dir="${lib.dir}/">
+          <exclude name="*/*.*"/>
+        </lib>
+    	<!--
+    	<lib dir="${lib.dir}/ibatis" />
+        <lib dir="${lib.dir}/jdbc" />
+        <lib dir="${lib.dir}/jodaTime" />
+        <lib dir="${lib.dir}/jsf" />
+        <lib dir="${lib.dir}/junit" />
+        <lib dir="${lib.dir}/log4j" />
+        <lib dir="${lib.dir}/poi" />
+    	<lib dir="${lib.dir}/facelets" />
+		<lib dir="${lib.dir}/spring" />
+		-->
+    	<!--<lib dir="${common.lib.dir}/" />-->
+        <manifest>
+          <attribute name="WebLogic-Application-Version" value="${version.num}_${init.timestamp}"/>
+        </manifest>
+    </war>
+  </target>
+
+  <target name="deploy" depends="dist">
+    <copy todir="${deploy.dir}">
+      <fileset dir="${dist.dir}/">
+        <include name="${application.name}" />
+      </fileset>
+    </copy>
+  </target>
+	
+<!--	
+  <target name="uploadsbelli" depends="deploy">
+	<ftp server="${sbelli.remote.host}" port="${sbelli.remote.port}"
+	  remotedir="${sbelli.remote.deploy.dir}" binary="yes"
+	  userid="${sbelli.remote.user}" password="${sbelli.remote.password}">
+	  <fileset dir="${dist.dir}">
+	    <include name="${application.name}"/>
+	  </fileset>
+	</ftp>
+	<telnet userid="${sbelli.remote.user}" password="${sbelli.remote.password}" server="${sbelli.remote.host}">
+	  <read timeout="3"> </read>
+	  <write string="mv ${sbelli.remote.deploy.dir}/${application.name} ${sbelli.remote.deploy.dir}/autodeploy/"/>
+	  <read timeout="3"> </read>
+	</telnet>
+  </target>
+
+  <target name="uploadwom1" depends="deploy">
+	<ftp server="${wom1.remote.host}" port="${wom1.remote.port}"
+	  remotedir="${wom1.remote.deploy.dir}" binary="yes"
+	  userid="${wom1.remote.user}" password="${wom1.remote.password}">
+	  <fileset dir="${dist.dir}">
+	    <include name="${application.name}"/>
+	  </fileset>
+	</ftp>
+	<telnet userid="${wom1.remote.user}" password="${wom1.remote.password}" server="${wom1.remote.host}">
+	  <read timeout="3"> </read>
+	  <write string="mv ${wom1.remote.deploy.dir}/${application.name} ${wom1.remote.deploy.dir}/autodeploy/"/>
+	  <read timeout="3"> </read>
+	</telnet>
+  </target>
+
+  <target name="uploadwomtest" depends="deploy">
+	<ftp server="${womtest.remote.host}" port="${womtest.remote.port}"
+	  remotedir="${womtest.remote.deploy.dir}" binary="yes"
+	  userid="${womtest.remote.user}" password="${womtest.remote.password}">
+	  <fileset dir="${dist.dir}">
+	    <include name="${application.name}"/>
+	  </fileset>
+	</ftp>
+	<telnet userid="${womtest.remote.user}" password="${womtest.remote.password}" server="${womtest.remote.host}">
+	  <read timeout="3"> </read>
+	  <write string="mv ${womtest.remote.deploy.dir}/${application.name} ${womtest.remote.deploy.dir}/autodeploy/"/>
+	  <read timeout="3"> </read>
+	</telnet>
+  </target>
+-->	
+
+	
+</project>

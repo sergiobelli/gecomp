@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			<h:outputText value="Classifica" />
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+			
+				<h:outputText value="Categoria"/>
+	            <h:selectOneMenu value="#{ClassificaGaraExecuter.idCategoria}"  class="FacetInput">
+		        	<f:convertNumber type="number" />
+					<f:selectItems value="#{ClassificaGaraExecuter.categorieItem}" />
+	            </h:selectOneMenu>
+	            <h:commandLink 
+	            		actionListener="#{ClassificaGaraExecuter.loadCategoria}" 
+	            		action="#{ClassificaGaraExecuter.ricaricaClassifica}" 
+	            		styleClass="FacetSorterLink">
+	            	<h:outputText value="Seleziona"/>
+	                <f:attribute name="idCategoria" value="#{ClassificaGaraExecuter.idCategoria}" />
+				</h:commandLink>
+	                    
+	                        
+				<h:dataTable 
+	            		id="listaPrestazioni" 
+	            		value="#{ClassificaGaraExecuter.prestazioni}" 
+	            		var="prestazione" 
+	            		headerClass="tabella_intestazione"
+	            		rowClasses="tabella_dispari,tabella_pari"
+	            		styleClass="tabella">
+
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Posizione"/>
+	                    </f:facet>
+	                    <h:outputText value="#{prestazione.posizione}"/>
+	                </h:column>
+	                	            
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Atleta"/>
+	                    </f:facet>
+	                    <h:outputText value="#{prestazione.iscrizione.atleta.nominativo}"/>
+	                </h:column>
+
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Sesso"/>
+	                    </f:facet>
+	                    <h:outputText value="#{prestazione.iscrizione.atleta.sesso}"/>
+	                </h:column>
+
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Anno Nascita"/>
+	                    </f:facet>
+	                    <h:outputText value="#{prestazione.iscrizione.atleta.annoNascita}"/>
+	                </h:column>
+	                
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Societa"/>
+	                    </f:facet>
+	                    <h:outputText value="#{prestazione.iscrizione.atleta.societaAppartenenza.denominazione}"/>
+	                </h:column>
+	                	                	                
+	                <h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Tipo Prestazione"/>
+	                    </f:facet>
+	                    <h:outputText value="#{prestazione.tipoPrestazione.descrizione}"/>
+	                </h:column>
+
+	                <h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Tempo"/>
+	                    </f:facet>
+	                    <h:outputText value="#{prestazione.valoreMisuraFormatted}"/>
+	                </h:column>
+	                
+	            </h:dataTable>
+	            
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

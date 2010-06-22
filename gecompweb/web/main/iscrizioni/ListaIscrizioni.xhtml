@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			<h:outputText value="Lista Iscrizioni" />
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+			
+				<h:dataTable 
+	            		id="listaIscrizioni" 
+	            		value="#{ListaIscrizioniExecuter.iscrizioni}" 
+	            		var="iscrizione"
+	            		binding="#{ListaIscrizioniExecuter.myDataTable}"
+        				rows="50"  
+	            		headerClass="tabella_intestazione"
+	            		rowClasses="tabella_dispari,tabella_pari"
+	            		styleClass="tabella">
+	            
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Nome"/>
+	                    </f:facet>
+	                    <h:outputText value="#{iscrizione.atleta.nome}"/>
+	                </h:column>
+
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Cognome"/>
+	                    </f:facet>
+	                    <h:outputText value="#{iscrizione.atleta.cognome}"/>
+	                </h:column>
+
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Sesso"/>
+	                    </f:facet>
+	                    <h:outputText value="#{iscrizione.atleta.sesso}"/>
+	                </h:column>
+
+					<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Anno Nascita"/>
+	                    </f:facet>
+	                    <h:outputText value="#{iscrizione.atleta.annoNascita}"/>
+	                </h:column>
+	                
+	                <h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Societa"/>
+	                    </f:facet>
+	                    <h:outputText value="#{iscrizione.atleta.societaAppartenenza.denominazione}"/>
+	                </h:column>
+	                
+	                <h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Numero Pettorale"/>
+	                    </f:facet>
+	                    <h:outputText value="#{iscrizione.numeroPettorale}"/>
+	                </h:column>
+	                
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Operazioni"/>
+	                    </f:facet>
+	                    
+                        <h:commandLink actionListener="#{ModificaIscrizioneExecuter.load}" action="#{ModificaIscrizioneExecuter.modificaIscrizione}" styleClass="FacetSorterLink">
+	                    	<h:graphicImage value="/styles/images/edit.png" alt="Modifica" />
+	                        <f:attribute name="idIscrizione" value="#{iscrizione.idIscrizione}" />
+	                    </h:commandLink>
+                        
+                        <h:outputText value=" "/>
+	                    <h:commandLink actionListener="#{ModificaIscrizioneExecuter.load}" action="#{ModificaIscrizioneExecuter.eliminaIscrizione}" styleClass="FacetSorterLink">
+	                    	<h:graphicImage value="/styles/images/delete.png" alt="Elimina" />
+	                        <f:attribute name="idIscrizione" value="#{iscrizione.idIscrizione}" />
+	                    </h:commandLink>
+                        
+                    </h:column> 
+
+		<f:facet name="footer" class="FacetFormTABLE">
+            <h:panelGroup>
+                <h:commandButton
+                    value="&#60;&#60;"
+                    action="#{ListaIscrizioniExecuter.pageFirst}"
+                    disabled="#{ListaIscrizioniExecuter.myDataTable.first == 0}"
+                    class="FacetButton"
+                />
+                <h:commandButton
+                    value="&#60;"
+                    action="#{ListaIscrizioniExecuter.pagePrevious}"
+                    disabled="#{ListaIscrizioniExecuter.myDataTable.first == 0}"
+                    class="FacetButton"
+                />
+                
+                <h:outputText value=" " />
+                <h:outputText value=" Pagina " />
+                <h:outputText value="#{ListaIscrizioniExecuter.pagina}" />
+                <h:outputText value=" di " />
+                <h:outputText value="#{ListaIscrizioniExecuter.pagine}" />
+                <h:outputText value=" " />
+                
+                <h:commandButton
+                    value="&#62;"
+                    action="#{ListaIscrizioniExecuter.pageNext}"
+                    disabled="#{ListaIscrizioniExecuter.myDataTable.first + ListaIscrizioniExecuter.myDataTable.rows
+                        >= ListaIscrizioniExecuter.myDataTable.rowCount}"
+                    class="FacetButton"
+                />
+                <h:commandButton
+                    value="&#62;&#62;"
+                    action="#{ListaIscrizioniExecuter.pageLast}"
+                    disabled="#{ListaIscrizioniExecuter.myDataTable.first + ListaIscrizioniExecuter.myDataTable.rows
+                        >= ListaIscrizioniExecuter.myDataTable.rowCount}"
+                    class="FacetButton"
+                />
+            </h:panelGroup>            
+        </f:facet>
+        	                
+	            </h:dataTable>
+				
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

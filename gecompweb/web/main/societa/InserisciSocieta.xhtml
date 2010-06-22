@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+			
+				<h:panelGrid columns="2" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+
+                    <h:outputText value="Codice Fidal"/>
+                    <h:inputText value="#{InserisciSocietaExecuter.societa.codiceFidal}" required="true" class="FacetInput"/>
+
+            		<h:outputText value="Nome"/>
+            		<h:inputText value="#{InserisciSocietaExecuter.societa.denominazione}" required="true" class="FacetInput"/>
+
+            		<h:outputText value="Telefono Sede"/>
+            		<h:inputText value="#{InserisciSocietaExecuter.societa.telefonoSede}" class="FacetInput"/>
+            		
+            		<h:outputText value="Localita Sede"/>
+            		<h:inputText value="#{InserisciSocietaExecuter.societa.localitaSede}" class="FacetInput"/>
+
+            		<h:outputText value="Fax"/>
+            		<h:inputText value="#{InserisciSocietaExecuter.societa.fax}" class="FacetInput"/>
+            		
+            		<h:outputText value="Email"/>
+            		<h:inputText value="#{InserisciSocietaExecuter.societa.email}" class="FacetInput"/>
+            		
+            		<h:outputText value="Sito"/>
+            		<h:inputText value="#{InserisciSocietaExecuter.societa.sito}" class="FacetInput"/>
+            		
+            		<h:outputText value="&nbsp;"/>
+	            	<h:commandButton action="#{InserisciSocietaExecuter.salva}" value="Inserisci" class="FacetButton" />
+					
+				</h:panelGrid>
+			
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

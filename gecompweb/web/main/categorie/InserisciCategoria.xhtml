@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			<h:outputText value="Inserisci Categoria" />
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+			
+				<h:panelGrid columns="2" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+
+                    <h:outputText value="Nome categoria"/>
+                    <h:inputText value="#{InserisciCategoriaExecuter.categoria.nomeCategoria}" required="true" class="FacetInput"/>
+
+            		<h:outputText value="Sesso"/>
+            		<h:inputText value="#{InserisciCategoriaExecuter.categoria.sesso}" required="true" class="FacetInput"/>
+
+            		<h:outputText value="Anno di partenza"/>
+            		<h:inputText value="#{InserisciCategoriaExecuter.categoria.annoPartenza}" class="FacetInput"/>
+            		
+            		<h:outputText value="Anno di fine"/>
+            		<h:inputText value="#{InserisciCategoriaExecuter.categoria.annoFine}" class="FacetInput"/>
+
+            		<h:outputText value="&nbsp;"/>
+	            	<h:commandButton action="#{InserisciCategoriaExecuter.salva}" value="Inserisci" class="FacetButton" />
+					
+				</h:panelGrid>
+			
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

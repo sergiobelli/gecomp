@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Prestazione">
+
+  <typeAlias alias="Prestazione" 		type="org.sbelli.gecomp.orm.model.Prestazione"		/>
+  <typeAlias alias="Iscrizione"  		type="org.sbelli.gecomp.orm.model.Iscrizione"		/>
+  <typeAlias alias="TipoPrestazione"	type="org.sbelli.gecomp.orm.model.TipoPrestazione"	/>
+  <typeAlias alias="TipoMisura" 		type="org.sbelli.gecomp.orm.model.TipoMisura"		/>
+  <typeAlias alias="Gara" 				type="org.sbelli.gecomp.orm.model.Gara"				/>
+
+  <resultMap id="PrestazioneResult" class="Prestazione">
+    <result property="idPrestazione" 	column="ID_PRESTAZIONE"		/>
+    <result property="iscrizione" 		column="ISCRIZIONE" 		select="Iscrizione.selectIscrizione" 	/>
+    <result property="tipoPrestazione" 	column="TIPO_PRESTAZIONE"	select="TipoPrestazione.select" 		/>
+    <result property="tipoMisura" 		column="TIPO_MISURA"		select="TipoMisura.select" 				/>
+    <result property="valoreMisura" 	column="VALORE_MISURA"		/>
+  </resultMap> 
+     
+  <select id="listPrestazione"   resultMap="PrestazioneResult">
+  	select * from prestazione P order by P.VALORE_MISURA
+  </select>
+  <select id="listPrestazioneGara" resultMap="PrestazioneResult" parameterClass="Gara">
+	select 	p.*
+	from	prestazione p, iscrizione i, gara g
+	where	p.iscrizione = i.id_iscrizione
+			and i.gara = g.id_gara
+			and g.id_gara = #idGara#
+	order by P.VALORE_MISURA
+  </select>
+    
+  <select id="selectPrestazione" resultMap="PrestazioneResult" parameterClass="long">
+  	select * from prestazione P where P.ID_PRESTAZIONE = #idPrestazione# order by P.VALORE_MISURA
+  </select>
+   
+   
+  <insert id="insertPrestazione" parameterClass="Prestazione">
+    insert into prestazione 
+    (
+      ID_PRESTAZIONE,
+      ISCRIZIONE,
+      TIPO_PRESTAZIONE,
+      TIPO_MISURA,
+      VALORE_MISURA 
+    )  
+    values 
+    (
+      #idPrestazione#, 
+      #iscrizione.idIscrizione#, 
+      #tipoPrestazione.idTipoPrestazione#, 
+      #tipoMisura.idTipoMisura#,
+      #valoreMisura#
+    )
+  </insert>
+
+</sqlMap>

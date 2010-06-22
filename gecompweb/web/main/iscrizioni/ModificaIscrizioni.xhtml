@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			<h:outputText value="Modifica Iscrizioni" />
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+				
+				<h:panelGrid columns="2" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+
+                    <h:outputText 	value="Atleta"/>
+					<h:selectOneMenu  	value="#{ModificaIscrizioneExecuter.iscrizione.atleta.idAtleta}"
+					  					required="true" 
+										class="FacetInput">
+		                <f:convertNumber 	type="number" />
+						<f:selectItems 		value="#{ModificaIscrizioneExecuter.helper.listaAtletiItem}" />
+	                </h:selectOneMenu>
+	                
+                    <h:outputText 	value="Gara"/>
+					<h:selectOneMenu  	value="#{ModificaIscrizioneExecuter.iscrizione.gara.idGara}"
+					  					required="true" 
+										class="FacetInput">
+		                <f:convertNumber 	type="number" />
+						<f:selectItems 		value="#{ModificaIscrizioneExecuter.listaGareItem}" />
+	                </h:selectOneMenu>             
+
+					<h:outputText 	value="Numero pettorale"/>
+					<h:inputText value="#{ModificaIscrizioneExecuter.iscrizione.numeroPettorale}" class="FacetInput"/>
+					
+	            	<h:outputText 		value="&nbsp;"/>
+	            	<h:commandButton 	value="Modifica" 
+	            						action="#{ModificaIscrizioneExecuter.salva}" 
+	            						class="FacetButton" />
+					
+				</h:panelGrid>
+				
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

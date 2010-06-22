@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE web-app PUBLIC
+  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+  "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<servlet>
+      	<servlet-name>Faces Servlet</servlet-name>
+      	<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+   	</servlet>
+
+   	<servlet-mapping>
+      	<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+   	</servlet-mapping>
+
+	<filter>
+    	<filter-name>UserSessionFilter</filter-name>
+    	<filter-class>org.sbelli.gecomp.console.login.filters.UserSessionFilter</filter-class>
+  	</filter>
+	<filter-mapping>
+    	<filter-name>UserSessionFilter</filter-name>
+    	<url-pattern>/main/*</url-pattern>
+  	</filter-mapping>
+
+
+  	<context-param>
+    	<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+    	<param-value>.xhtml</param-value>
+  	</context-param>
+  	<context-param>
+    	<param-name>xmlValidation</param-name>
+    	<param-value>false</param-value>
+  	</context-param>
+  	<context-param>
+	    <param-name>xmlNamespaceAware</param-name>
+    	<param-value>false</param-value>
+  	</context-param>
+	<context-param>
+    	<param-name>com.sun.faces.validateXml</param-name>
+        <param-value>true</param-value>
+        <description>
+        	Set this flag to true if you want the JSF
+            Reference Implementation to validate the XML in your
+            faces-config.xml resources against the DTD.  Default
+            value is false.
+        </description>
+    </context-param>
+  
+</web-app>
