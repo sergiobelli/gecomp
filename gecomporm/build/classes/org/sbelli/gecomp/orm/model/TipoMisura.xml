@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="TipoMisura">
+
+  <typeAlias alias="TipoMisura" type="org.sbelli.gecomp.orm.model.TipoMisura"/>
+
+  <resultMap id="TipoMisuraResult" class="org.sbelli.gecomp.orm.model.TipoMisura">
+    <result property="idTipoMisura" 		column="ID_TIPO_MISURA"/>
+    <result property="descrizione" 			column="DESCRIZIONE"/>
+    <result property="unitaMisura" 			column="UNITA_MISURA"/>
+    <result property="modalitaComparazione" column="MODALITA_COMPARAZIONE"/>
+  </resultMap>
+
+  <cacheModel id="TipoMisuraCache" type="LRU" >
+    <flushInterval minutes="5"/>
+    <flushOnExecute  statement="TipoMisura.insert"/>
+    <flushOnExecute  statement="TipoMisura.update"/>
+    <flushOnExecute  statement="TipoMisura.delete"/>
+    <property name="CacheSize" value="10"/>
+  </cacheModel>
+  
+  <select id="list" resultMap="TipoMisuraResult" cacheModel="TipoMisuraCache">  
+    select * from tipo_misura order by DESCRIZIONE, UNITA_MISURA, MODALITA_COMPARAZIONE
+  </select>
+
+  <select id="select" parameterClass="long" resultMap="TipoMisuraResult" cacheModel="TipoMisuraCache">
+    select 	* 
+    from 	tipo_misura 
+    where ID_TIPO_MISURA = #idTipoMisura# 
+    order by DESCRIZIONE, UNITA_MISURA, MODALITA_COMPARAZIONE
+  </select>
+   
+  <insert id="insert" parameterClass="org.sbelli.gecomp.orm.model.TipoMisura">
+    insert into tipo_misura (
+      ID_TIPO_MISURA,
+      DESCRIZIONE,
+      UNITA_MISURA,
+      MODALITA_COMPARAZIONE )     
+    values (
+      #idTipoMisura#, #descrizione#, #unitaMisura#, #modalitaComparazione#
+    )
+  </insert>
+
+  <update id="update" parameterClass="org.sbelli.gecomp.orm.model.TipoMisura">
+    update tipo_misura set
+      ID_TIPO_MISURA = #idTipoMisura#,
+      DESCRIZIONE = #descrizione#,
+      UNITA_MISURA = #unitaMisura#,
+      MODALITA_COMPARAZIONE = #modalitaComparazione#
+    where
+      ID_TIPO_MISURA = #idTipoMisura#
+  </update>
+
+  <delete id="delete" parameterClass="long">
+    delete from tipo_misura where ID_TIPO_MISURA = #idTipoMisura#
+  </delete>
+
+</sqlMap>
