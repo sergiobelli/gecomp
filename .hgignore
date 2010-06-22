@@ -1,0 +1,5 @@
+
+syntax: regexp
+\.class$
+syntax: regexp
+^\.externalToolBuilders/GeComp Build\.launch$
