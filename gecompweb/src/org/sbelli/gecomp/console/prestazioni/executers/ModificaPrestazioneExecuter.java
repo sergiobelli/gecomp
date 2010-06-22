@@ -43,7 +43,7 @@ public class ModificaPrestazioneExecuter extends PrestazioneExecuter {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.iscrizione.eliminazione.ko.descrizione");
 			return "null";
 		}
-		return "null";
+		return "listaPrestazioni";
 	}
 	
 }
