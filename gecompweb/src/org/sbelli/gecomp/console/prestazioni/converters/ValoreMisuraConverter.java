@@ -42,11 +42,11 @@ public class ValoreMisuraConverter implements Converter {
 
 	public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object object) {
 		try {
-			int total_seconds = (int)((Integer)object).intValue();
-			int hours=(total_seconds)/(60*60); 
-			int rem=(total_seconds)%(60*60); 
-			int minutes=rem/60; 
-			int seconds=rem%60; 
+			Long total_seconds = ((Long)object);
+			Long hours=(total_seconds)/(60*60); 
+			Long rem=(total_seconds)%(60*60); 
+			Long minutes=rem/60; 
+			Long seconds=rem%60; 
 			String str_hours=""+hours; 
 			String str_minutes=""+minutes;
 			String str_seconds=""+seconds;
