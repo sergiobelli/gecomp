@@ -8,6 +8,7 @@ import javax.faces.convert.ConverterException;
 import javax.faces.validator.ValidatorException;
 
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.utils.misure.TipoMisuraTempoHelper;
 
 import org.sbelli.gecomp.console.prestazioni.controllers.ValoreMisuraValidator;
 
@@ -42,29 +43,10 @@ public class ValoreMisuraConverter implements Converter {
 
 	public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object object) {
 		try {
-			Long total_seconds = ((Long)object);
-			Long hours=(total_seconds)/(60*60); 
-			Long rem=(total_seconds)%(60*60); 
-			Long minutes=rem/60; 
-			Long seconds=rem%60; 
-			String str_hours=""+hours; 
-			String str_minutes=""+minutes;
-			String str_seconds=""+seconds;
-
-			if(hours<10){
-				str_hours="0"+hours;
-			}
-			if(minutes<10){
-				str_minutes="0"+minutes;
-			}
-			if(seconds<10){
-				str_seconds="0"+seconds; 
-			}
-			return str_hours + ":" + str_minutes + ":" + str_seconds;
-
-		} 
-		catch (Exception exception) {
-			throw new ConverterException(exception);
+			return TipoMisuraTempoHelper.parse(((Long)object));
+		} catch (Exception ex) {
+			logger.error(ex, "errore in fase di conversione del valore misura");
+			throw new ConverterException(ex);
 		}
 	}
 
