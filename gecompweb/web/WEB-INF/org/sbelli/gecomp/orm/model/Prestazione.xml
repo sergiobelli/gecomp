@@ -56,4 +56,15 @@
     )
   </insert>
 
+  <update id="updatePrestazione" parameterClass="Prestazione">
+    update prestazione set
+      ID_PRESTAZIONE = #idPrestazione#,
+      ISCRIZIONE = #iscrizione.idIscrizione#,
+      TIPO_PRESTAZIONE = #tipoPrestazione.idTipoPrestazione#,
+      TIPO_MISURA = #tipoMisura.idTipoMisura#,
+      VALORE_MISURA = #valoreMisura#
+    where
+      ID_PRESTAZIONE = #idPrestazione#
+  </update>
+
 </sqlMap>
