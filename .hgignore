@@ -1,0 +1,15 @@
+
+syntax: regexp
+\.class$
+syntax: regexp
+^\.externalToolBuilders/GeComp Build\.launch$
+syntax: regexp
+^\.hgignore$
+syntax: regexp
+^\.project$
+syntax: regexp
+^gecompweb/dist/gecomp\.war$
+syntax: regexp
+^gecompshared/dist/gecompshared\.jar$
+syntax: regexp
+^gecomporm/dist/gecomporm\.jar$
