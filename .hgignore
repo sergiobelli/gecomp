@@ -3,3 +3,27 @@ syntax: regexp
 \.class$
 syntax: regexp
 ^\.externalToolBuilders/GeComp Build\.launch$
+syntax: regexp
+^gecompweb/dist/gecomp\.war$
+syntax: regexp
+^gecomporm/dist/gecomporm\.jar$
+syntax: regexp
+^gecompshared/dist/gecompshared\.jar$
+syntax: regexp
+^gecomporm/build/classes/org/sbelli/gecomp/orm/model/Atleta\.xml$
+syntax: regexp
+^gecomporm/build/classes/org/sbelli/gecomp/orm/model/Categoria\.xml$
+syntax: regexp
+^gecomporm/build/classes/org/sbelli/gecomp/orm/model/Prestazione\.xml$
+syntax: regexp
+^gecompweb/web/WEB-INF/org/sbelli/gecomp/orm/model/Prestazione\.xml$
+syntax: regexp
+^gecompweb/web/WEB-INF/org/sbelli/gecomp/orm/model/Atleta\.xml$
+syntax: regexp
+^gecompweb/web/WEB-INF/org/sbelli/gecomp/orm/model/Categoria\.xml$
+syntax: regexp
+^gecompweb/web/WEB-INF/org/sbelli/gecomp/orm/model/CategoriaGara\.xml$
+syntax: regexp
+^gecompweb/web/WEB-INF/org/sbelli/gecomp/orm/model/Competizione\.xml$
+syntax: regexp
+^gecompweb/web/WEB-INF/org/sbelli/gecomp/orm/model/Gara\.xml$
