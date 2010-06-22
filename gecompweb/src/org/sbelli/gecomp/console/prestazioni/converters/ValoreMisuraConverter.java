@@ -19,6 +19,7 @@ public class ValoreMisuraConverter implements Converter {
 	public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String param) {
 		Long valoreMisura = null;
 		try {
+			logger.info("Valore misura in input = ", param);
 			ValoreMisuraValidator.validate(param);
 			
 			String time[] = param.split(":");
