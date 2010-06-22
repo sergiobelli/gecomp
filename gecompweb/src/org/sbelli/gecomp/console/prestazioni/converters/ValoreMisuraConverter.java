@@ -24,19 +24,24 @@ public class ValoreMisuraConverter implements Converter {
 			ValoreMisuraValidator.validate(param);
 			
 			String time[] = param.split(":");
-			int seconds = 
+			String secs[] = time[2].split("[.]");
+			int mseconds = 
 				Integer.parseInt(time[0])*60*60 + 
 				Integer.parseInt(time[1])*60+
-				Integer.parseInt(time[2]);
-			seconds = seconds * 1000;
-			valoreMisura = new Long(seconds);
+				Integer.parseInt(secs[0]);
+			mseconds = (mseconds * 1000) + Integer.parseInt(secs[1]);
+			valoreMisura = new Long(mseconds);
 		} catch (Exception ex) {
 			logger.error(ex, "errore in fase di conversione del valore misura");
+			FacesMessage message = null;
 			if (ex instanceof ValidatorException) {
-				facesContext.addMessage( null , ((ValidatorException) ex).getFacesMessage());
+				message =  ((ValidatorException) ex).getFacesMessage();
+				facesContext.addMessage( null , message);
 			} else {
-				facesContext.addMessage( null , new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errore in fase di conversione", "valore misura...."));//TODO:mettere in bundle
+				message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errore in fase di conversione", "valore misura....");
+				facesContext.addMessage( null , message);//TODO:mettere in bundle
 			}
+			throw new ConverterException(message);
 		}
 		return valoreMisura;
 	}
