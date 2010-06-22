@@ -3,6 +3,7 @@ package org.sbelli.gecomp.console.prestazioni.delegates;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
@@ -35,7 +36,11 @@ public class PrestazioneDelegate extends GenericDelegate {
 		Prestazione prestazione = (Prestazione) element;
 		retrieve(prestazione);
 		logger.debug("Customized Prestazione = " + prestazione);
-		bridge.insert(prestazione);
+		if (Eval.isNull(prestazione.getIdPrestazione())) {
+			bridge.insert(prestazione);
+		} else {
+			bridge.update(prestazione);
+		}
 	}
 
 	public void delete(GecompModelObject element) throws GeCompException {

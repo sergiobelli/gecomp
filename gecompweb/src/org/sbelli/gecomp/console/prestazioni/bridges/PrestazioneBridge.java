@@ -24,7 +24,7 @@ public class PrestazioneBridge extends GenericBridge {
 	}
 
 	public void update(final GecompModelObject element) throws GeCompOrmException {
-		throw new GeCompOrmException("NON IMPLEMENTATO!!!!");
+		DbManagerFactory.getInstance().getPrestazioneDao().update((Prestazione) element);
 	}
 
 	public List<Prestazione> list(Gara gara) throws GeCompOrmException {
