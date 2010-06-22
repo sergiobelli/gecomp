@@ -54,8 +54,12 @@
  	<!-- ======================= -->
 	<!-- Gecomp categories -->
 	<!-- ======================= -->
+	<category name="net.sb.gecomp">
+        <priority value="DEBUG"/>
+        <appender-ref ref="gecomp"/>
+    </category>
 	<category name="org.sbelli.gecomp">
-        <priority value="WARN"/>
+        <priority value="DEBUG"/>
         <appender-ref ref="gecomp"/>
     </category>
 	<category name="org.sbelli.gecomp.orm">
