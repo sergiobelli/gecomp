@@ -27,3 +27,5 @@ syntax: regexp
 ^gecompweb/web/WEB-INF/org/sbelli/gecomp/orm/model/Competizione\.xml$
 syntax: regexp
 ^gecompweb/web/WEB-INF/org/sbelli/gecomp/orm/model/Gara\.xml$
+syntax: regexp
+\.class$
