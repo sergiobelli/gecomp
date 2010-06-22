@@ -74,6 +74,26 @@
 	                    <h:outputText value="#{prestazione.valoreMisuraFormatted}"/>
 	                </h:column>
 
+					<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Operazioni"/>
+	                    </f:facet>
+	                    
+                        <h:commandLink actionListener="#{ModificaPrestazioneExecuter.load}" action="#{ModificaPrestazioneExecuter.modifica}" styleClass="FacetSorterLink">
+	                    	<h:graphicImage value="/styles/images/edit.png" alt="Modifica" />
+	                        <f:attribute name="idPrestazione" value="#{prestazione.idPrestazione}" />
+	                    </h:commandLink>
+                        
+                        <h:outputText value=" "/>
+	                    <h:commandLink actionListener="#{ModificaPrestazioneExecuter.load}" action="#{ModificaPrestazioneExecuter.elimina}" styleClass="FacetSorterLink">
+	                    	<h:graphicImage value="/styles/images/delete.png" alt="Elimina" />
+	                        <f:attribute name="idPrestazione" value="#{prestazione.idPrestazione}" />
+	                    </h:commandLink>
+                        
+                    </h:column>
+
+
+
 		<f:facet name="footer" class="FacetFormTABLE">
             <h:panelGroup>
                 <h:commandButton
