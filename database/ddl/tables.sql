@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `atleta` (
   PRIMARY KEY (`ID_ATLETA`),
   UNIQUE KEY `ID_ATLETA` (`ID_ATLETA`),
   KEY `ID_ATLETA_2` (`ID_ATLETA`),
-  KEY `fk_societa` (`SOCIETA_APPARTENENZA`)
+  FOREIGN KEY `fk_societa` (`SOCIETA_APPARTENENZA`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=105 ;
 
 -- --------------------------------------------------------
