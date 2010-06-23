@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    
+	<!-- BRIDGES -->
+	<bean id="atletaBridge" class="org.sbelli.gecomp.console.atleti.bridges.AtletaBridge" />
+	<!-- BRIDGES -->
+	
+	<!-- CONTROLLERS -->
+	<bean id="atletaController" class="org.sbelli.gecomp.console.atleti.controllers.AtletaController" />
+	<!-- CONTROLLERS -->
+	
+	<!-- DELEGATES -->
+	<bean id="atletaDelegate" class="org.sbelli.gecomp.console.atleti.delegates.AtletaDelegate">
+		<property name="bridge"><ref bean="atletaBridge" />
+		<property name="controller"><ref bean="atletaController" />
+	</bean>
+	<!-- DELEGATES -->
+	
+	<!-- EXECUTERS -->
+	<bean id="atletaExecuter" class="org.sbelli.gecomp.console.atleti.executers.AtletaExecuter">
+		<property name="delegate"><ref bean="atletaDelegate" />
+	</bean>
+	<bean id="InserisciAtletaExecuter" class="org.sbelli.gecomp.console.atleti.executers.InserisciAtletaExecuter">
+		<property name="delegate"><ref bean="atletaDelegate" />
+	</bean>
+	<!-- EXECUTERS -->
+	
+</beans>

@@ -10,17 +10,24 @@ import org.sbelli.gecomp.console.delegates.GenericDelegate;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Atleta;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.util.Assert;
 
-public class AtletaDelegate extends GenericDelegate {
+public class AtletaDelegate extends GenericDelegate implements InitializingBean {
 	
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 
 	private AtletaController controller = new AtletaController();
+	public AtletaController getController() {return controller;}
+	public void setController(AtletaController controller) {this.controller = controller;}
+
 	private AtletaBridge bridge = new AtletaBridge();
-	
+	public AtletaBridge getBridge() {return bridge;}
+	public void setBridge(AtletaBridge bridge) {this.bridge = bridge;}
+
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
 		Atleta atleta = (Atleta)element;
-		controller.checks(atleta);
+		getController().checks(atleta);
 		atleta.setSocietaAppartenenza(DbManagerFactory.getInstance().getSocietaDao().get(atleta.getSocietaAppartenenza().getId()));
 		return atleta;
 	}
@@ -30,19 +37,24 @@ public class AtletaDelegate extends GenericDelegate {
 		retrieve(atleta);
 		logger.debug("Customized atleta = " + atleta);
 		if (Eval.isNull(atleta.getIdAtleta())) {
-			bridge.insert(atleta);
+			getBridge().insert(atleta);
 		} else {
-			bridge.update(atleta);
+			getBridge().update(atleta);
 		}		
 	}
 
 	public void delete(GecompModelObject element) throws GeCompException {
 		Atleta atleta = (Atleta)element;
-		bridge.delete(atleta);		
+		getBridge().delete(atleta);		
 	}
 
 	public GecompModelObject get(Long id) throws GeCompException {
-		return bridge.get(id);
+		return getBridge().get(id);
+	}
+	
+	public void afterPropertiesSet() throws Exception {
+		Assert.notNull(getController(), "getController must be set");
+		Assert.notNull(getBridge(), "getBridge must be set");
 	}
 	
 }

@@ -170,6 +170,10 @@
       <managed-bean-name>InserisciAtletaExecuter</managed-bean-name>
       <managed-bean-class>org.sbelli.gecomp.console.atleti.executers.InserisciAtletaExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
+      <managed-property>
+		<property-name>delegate</property-name>
+		<value>#{atletaDelegate}</value>
+	  </managed-property>
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ModificaAtletaExecuter</managed-bean-name>

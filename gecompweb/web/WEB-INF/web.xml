@@ -26,6 +26,9 @@
     	<url-pattern>/main/*</url-pattern>
   	</filter-mapping>
 
+<listener>
+	<listener-class>de.mindmatters.faces.spring.context.ContextLoaderListener</listener-class>
+</listener>
 
   	<context-param>
     	<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
