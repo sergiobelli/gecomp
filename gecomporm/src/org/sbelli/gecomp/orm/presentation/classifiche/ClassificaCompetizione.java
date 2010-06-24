@@ -1,6 +1,5 @@
 package org.sbelli.gecomp.orm.presentation.classifiche;
 
-import java.io.Serializable;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import org.sbelli.gecomp.orm.model.Prestazione;
  * 
  * @author S.BELLI
  */
-public class ClassificaCompetizione implements Serializable {
+public class ClassificaCompetizione implements IClassifica {
 
 	private static final long serialVersionUID = 292866104169652816L;
 	

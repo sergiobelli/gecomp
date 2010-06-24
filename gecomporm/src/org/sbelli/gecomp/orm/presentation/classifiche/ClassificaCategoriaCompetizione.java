@@ -1,6 +1,5 @@
 package org.sbelli.gecomp.orm.presentation.classifiche;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import org.sbelli.gecomp.orm.model.Competizione;
 import org.sbelli.gecomp.orm.model.Prestazione;
 
 
-public class ClassificaCategoriaCompetizione implements Serializable {
+public class ClassificaCategoriaCompetizione implements IClassifica {
 
 	private static final long serialVersionUID = -7253161299223789162L;
 	

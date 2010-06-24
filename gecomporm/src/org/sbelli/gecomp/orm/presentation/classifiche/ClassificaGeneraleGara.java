@@ -1,12 +1,11 @@
 package org.sbelli.gecomp.orm.presentation.classifiche;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.Prestazione;
 
-public class ClassificaGeneraleGara implements Serializable {
+public class ClassificaGeneraleGara implements IClassifica {
 
 	private static final long serialVersionUID = 6957995475811788051L;
 
