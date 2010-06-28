@@ -125,33 +125,51 @@ public class GeCompMenu extends GenericExecuter {
 		return GeCompOutcomes.LISTA_ATLETI;
 	}
 
+	
+	//Classifiche gara
+	public String visualizzaClassificaGaraSocieta () {
+		try {
+			checks4ClassificaGara();
+		} catch (GeCompException e) {
+			GeCompGuiExceptionManager.manageGUIException(logger, e, e.getMessage());
+			return goHome();
+		}
+		return GeCompOutcomes.VISUALIZZA_CLASSIFICA_GARA_SOCIETA;
+	}
 	public String visualizzaClassificaGara () {
 		try {
-			checks4SelectedCompetizione();
-		} catch (Exception e) {
-			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.competizione.selezione.ko");
-			return goHome();
-		}
-		try {
-			checks4SelectedGara();
-		} catch (Exception e) {
-			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.gara.selezione.ko");
-			return goHome();
-		}
-		try {
-			checks4ExitentsIscrizioni();
-		} catch (Exception e) {
-			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.iscrizione.presenza.ko");
-			return goHome();
-		}
-		try {
-			checks4ExitentsPrestazioni();
-		} catch (Exception e) {
-			GeCompGuiExceptionManager.manageGUIException(logger, e, "message.gara.nessun.prestazione.presente.descrizione");
+			checks4ClassificaGara();
+		} catch (GeCompException e) {
+			GeCompGuiExceptionManager.manageGUIException(logger, e, e.getMessage());
 			return goHome();
 		}
 		return GeCompOutcomes.VISUALIZZA_CLASSIFICA_GARA;
 	}
+	private void checks4ClassificaGara() throws GeCompException {
+		try {
+			checks4SelectedCompetizione();
+		} catch (Exception e) {
+			throw new GeCompException("error.competizione.selezione.ko");
+		}
+		try {
+			checks4SelectedGara();
+		} catch (Exception e) {
+			throw new GeCompException("error.gara.selezione.ko");
+		}
+		try {
+			checks4ExitentsIscrizioni();
+		} catch (Exception e) {
+			throw new GeCompException("error.iscrizione.presenza.ko");
+		}
+		try {
+			checks4ExitentsPrestazioni();
+		} catch (Exception e) {
+			throw new GeCompException("message.gara.nessun.prestazione.presente.descrizione");
+		}
+	}
+	//Classifiche gara
+	
+	
 	public String visualizzaClassificaCompetizione () {
 		return GeCompOutcomes.VISUALIZZA_CLASSIFICA_COMPETIZIONE;
 	}
