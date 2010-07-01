@@ -17,6 +17,7 @@
     <result property="data"         column="DATA"/>
     <result property="distanza"     column="DISTANZA"/>
     <result property="tipoMisura"   column="TIPO_MISURA"  select="TipoMisura.select"/>
+    <!-- <result property="categorie" 	resultMapping="Categoria.CategoryResult" />-->    
   </resultMap>
 
   <cacheModel id="GaraCache" type="LRU" >
