@@ -39,10 +39,6 @@ public class Prestazione extends GecompModelObject implements Comparable<Prestaz
 		return this.getTipoMisura().getValoreMisuraFormatted(this.getValoreMisura());
 	}
 	
-	private Integer posizione;
-	public Integer getPosizione() {return posizione;}
-	public void setPosizione(Integer posizione) {this.posizione = posizione;}
-	
 	public int compareTo(Prestazione other) {
 		if (isTheSameGara(other) && isTheSameCompetizione(other)) {
 			

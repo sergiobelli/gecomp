@@ -156,7 +156,6 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 	
 	private static final List<Prestazione> manageTipiMisura (List<Prestazione> lista) {
 		if (Eval.isNotEmpty(lista)) {
-			int posizione = 1;
 			for (Prestazione p : lista) {
 				if (TipoMisura.TIPO_MISURA_TEMPO.equals(p.getTipoMisura().getIdTipoMisura())) {
 					p.setTipoMisura(new TipoMisuraTempo(p.getTipoMisura()));
@@ -167,8 +166,6 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 				} else if (TipoMisura.TIPO_MISURA_SALTO.equals(p.getTipoMisura().getIdTipoMisura())) {
 					p.setTipoMisura(new TipoMisuraSalto(p.getTipoMisura()));
 				}
-				p.setPosizione(posizione);
-				posizione++;
 			}			
 		}
 		return lista;

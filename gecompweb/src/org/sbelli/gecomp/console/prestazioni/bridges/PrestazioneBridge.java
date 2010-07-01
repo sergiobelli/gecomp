@@ -1,10 +1,15 @@
 package org.sbelli.gecomp.console.prestazioni.bridges;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import net.sb.gecomp.utils.Eval;
+
 import org.sbelli.gecomp.console.bridges.GenericBridge;
+import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
 import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
+import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 import org.sbelli.gecomp.orm.model.Prestazione;
@@ -27,8 +32,32 @@ public class PrestazioneBridge extends GenericBridge {
 		DbManagerFactory.getInstance().getPrestazioneDao().update((Prestazione) element);
 	}
 
-	public List<Prestazione> list(Gara gara) throws GeCompOrmException {
-		return DbManagerFactory.getInstance().getPrestazioneDao().list(gara);
+	public List<PrestazioneView> list(Gara gara) throws GeCompOrmException {
+		List<PrestazioneView> result = null;
+		List<Prestazione> prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().list(gara);
+		if (Eval.isNotEmpty(prestazioni)) {
+			result = new ArrayList<PrestazioneView>();
+			int posizione = 1;
+			for (Prestazione p : prestazioni) {
+				PrestazioneView pw = new PrestazioneView(p, posizione++);
+				result.add(pw);
+			}
+		}
+		return result;
+	}
+
+	public List<PrestazioneView> list(Gara gara, Categoria categoria) throws GeCompOrmException {
+		List<PrestazioneView> result = null;
+		List<Prestazione> prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().list(gara, categoria);
+		if (Eval.isNotEmpty(prestazioni)) {
+			result = new ArrayList<PrestazioneView>();
+			int posizione = 1;
+			for (Prestazione p : prestazioni) {
+				PrestazioneView pw = new PrestazioneView(p, posizione++);
+				result.add(pw);
+			}
+		}
+		return result;
 	}
 
 }

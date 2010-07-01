@@ -6,11 +6,13 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
+import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
 import org.sbelli.gecomp.console.prestazioni.bridges.PrestazioneBridge;
 import org.sbelli.gecomp.console.prestazioni.controllers.PrestazioneController;
 import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
+import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 import org.sbelli.gecomp.orm.model.Prestazione;
@@ -51,13 +53,21 @@ public class PrestazioneDelegate extends GenericDelegate {
 		return (Prestazione) bridge.get(id);
 	}
 
-	public List<Prestazione> list(Gara gara) throws GeCompException {
+	public List<PrestazioneView> list(Gara gara) throws GeCompException {
 		try {
 			return bridge.list(gara);
 		} catch (GeCompOrmException ex) {
 			logger.error(ex, "Non ci sono prestazioni per la gara specificata ", gara);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
+		}	
+	}
+
+	public List<PrestazioneView> list(Gara gara, Categoria categoria) throws GeCompException {
+		try {
+			return bridge.list(gara, categoria);
+		} catch (GeCompOrmException ex) {
+			logger.error(ex, "Non ci sono prestazioni per la gara specificata ", gara);
+			throw new GeCompException("x.x.x.x.x.x.x.x.x");
 		}
-	
 	}
 }
