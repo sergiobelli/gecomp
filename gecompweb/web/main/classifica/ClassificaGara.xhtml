@@ -20,6 +20,7 @@
 		        	<f:convertNumber type="number" />
 					<f:selectItems value="#{ClassificaGaraExecuter.categorieItem}" />
 	            </h:selectOneMenu>
+	            <h:outputText value="&nbsp;"/>
 	            <h:commandLink 
 	            		actionListener="#{ClassificaGaraExecuter.loadCategoria}" 
 	            		action="#{ClassificaGaraExecuter.ricaricaClassifica}" 
@@ -64,7 +65,14 @@
 	                    </f:facet>
 	                    <h:outputText value="#{prestazione.iscrizione.atleta.annoNascita}"/>
 	                </h:column>
-	                
+
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Categoria"/>
+	                    </f:facet>
+	                    <h:outputText value="#{prestazione.categoria.nomeCategoria}"/>
+	                </h:column>
+	                	                
 	            	<h:column>
 	                	<f:facet name="header">
 	                    	<h:outputText value="Societa"/>
