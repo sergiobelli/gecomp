@@ -35,11 +35,15 @@ public class PrestazioneBridge extends GenericBridge {
 	public List<PrestazioneView> list(Gara gara) throws GeCompOrmException {
 		List<PrestazioneView> result = null;
 		List<Prestazione> prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().list(gara);
+		List<Categoria> categorie = DbManagerFactory.getInstance().getCategoriaGaraDao().listCategorie(gara);//FIXME:male,risolvere con FS#63
 		if (Eval.isNotEmpty(prestazioni)) {
 			result = new ArrayList<PrestazioneView>();
 			int posizione = 1;
 			for (Prestazione p : prestazioni) {
 				PrestazioneView pw = new PrestazioneView(p, posizione++);
+				if (Eval.isEmpty(pw.getIscrizione().getGara().getCategorie())) {//FIXME:male,risolvere con FS#63
+					pw.getIscrizione().getGara().setCategorie(categorie);//FIXME:male,risolvere con FS#63
+				}//FIXME:male,risolvere con FS#63
 				result.add(pw);
 			}
 		}
