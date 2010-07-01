@@ -12,6 +12,7 @@ import net.sb.gecomp.utils.logger.GeCompLogger;
 import org.joda.time.DateTime;
 import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManager;
+import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Competizione;
 import org.sbelli.gecomp.orm.model.Gara;
@@ -61,7 +62,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 
 	public List<Prestazione> list () throws GeCompOrmException {
 		try {
-			return manageTipiMisura((List<Prestazione>) getDataBaseDao().queryForList(LIST_PRESTAZIONE));
+			return gestioneLista((List<Prestazione>) getDataBaseDao().queryForList(LIST_PRESTAZIONE), null);
 		} catch (Exception e) {
 			GeCompExceptionManager.manageException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
@@ -86,7 +87,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 			GeCompExceptionManager.manageException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}		
-		return manageTipiMisura(new ArrayList<Prestazione>(prestazioniGara));
+		return gestioneLista(new ArrayList<Prestazione>(prestazioniGara), gara);
 	}
 	
 	public List<Prestazione> list (Gara gara, Categoria categoria) throws GeCompOrmException {
@@ -105,7 +106,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 			GeCompExceptionManager.manageException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
-		return manageTipiMisura(new ArrayList<Prestazione>(prestazioniGara));
+		return gestioneLista(new ArrayList<Prestazione>(prestazioniGara), gara);
 	}
 	public List<Prestazione> list (Competizione competizione) throws GeCompOrmException {
 		List<Prestazione> prestazioniCompetizione = null;
@@ -121,7 +122,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 			GeCompExceptionManager.manageException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}		
-		return manageTipiMisura(prestazioniCompetizione);
+		return gestioneLista(prestazioniCompetizione, null);
 	}
 	public List<Prestazione> list (Competizione competizione, Categoria categoria) throws GeCompOrmException {
 		Set<Prestazione> prestazioniCompetizione = null;
@@ -140,7 +141,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 			GeCompExceptionManager.manageException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
-		return manageTipiMisura(new ArrayList<Prestazione>(prestazioniCompetizione));
+		return gestioneLista(new ArrayList<Prestazione>(prestazioniCompetizione), null);
 	}
 	
 	public final String getTempo(long tempo) {
@@ -154,20 +155,37 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 		return s.toString();
 	}
 	
-	private static final List<Prestazione> manageTipiMisura (List<Prestazione> lista) {
+	private static final List<Prestazione> gestioneLista (List<Prestazione> lista, Gara gara) throws GeCompOrmException {
 		if (Eval.isNotEmpty(lista)) {
+			
+			List<Categoria> categorieGara = null;
+			if (Eval.isNotNull(gara)) {
+				categorieGara = DbManagerFactory.getInstance().getCategoriaGaraDao().listCategorie(gara);	
+			}
+			
 			for (Prestazione p : lista) {
-				if (TipoMisura.TIPO_MISURA_TEMPO.equals(p.getTipoMisura().getIdTipoMisura())) {
-					p.setTipoMisura(new TipoMisuraTempo(p.getTipoMisura()));
-				} else if (TipoMisura.TIPO_MISURA_POSIZIONE.equals(p.getTipoMisura().getIdTipoMisura())) {
-					p.setTipoMisura(new TipoMisuraPosizione(p.getTipoMisura()));
-				} else if (TipoMisura.TIPO_MISURA_LANCIO.equals(p.getTipoMisura().getIdTipoMisura())) {
-					p.setTipoMisura(new TipoMisuraLancio(p.getTipoMisura()));
-				} else if (TipoMisura.TIPO_MISURA_SALTO.equals(p.getTipoMisura().getIdTipoMisura())) {
-					p.setTipoMisura(new TipoMisuraSalto(p.getTipoMisura()));
+				gestioneTipoMisura(p);
+				if (Eval.isNotEmpty(categorieGara)) {
+					gestioneCategorieGara(p, categorieGara);
 				}
 			}			
 		}
 		return lista;
+	}
+
+	private static final void gestioneCategorieGara(Prestazione prestazione, List<Categoria> categorieGara) {
+		prestazione.getIscrizione().getGara().setCategorie(categorieGara);
+	}
+
+	private static void gestioneTipoMisura(Prestazione p) {
+		if (TipoMisura.TIPO_MISURA_TEMPO.equals(p.getTipoMisura().getIdTipoMisura())) {
+			p.setTipoMisura(new TipoMisuraTempo(p.getTipoMisura()));
+		} else if (TipoMisura.TIPO_MISURA_POSIZIONE.equals(p.getTipoMisura().getIdTipoMisura())) {
+			p.setTipoMisura(new TipoMisuraPosizione(p.getTipoMisura()));
+		} else if (TipoMisura.TIPO_MISURA_LANCIO.equals(p.getTipoMisura().getIdTipoMisura())) {
+			p.setTipoMisura(new TipoMisuraLancio(p.getTipoMisura()));
+		} else if (TipoMisura.TIPO_MISURA_SALTO.equals(p.getTipoMisura().getIdTipoMisura())) {
+			p.setTipoMisura(new TipoMisuraSalto(p.getTipoMisura()));
+		}
 	}	
 }
