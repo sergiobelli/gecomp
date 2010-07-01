@@ -2,6 +2,7 @@ package org.sbelli.gecomp.orm.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author sbelli
@@ -36,12 +37,12 @@ public class Categoria extends GecompModelObject {
 	public Date getFine() {return fine;}
 	public void setFine(Date fine) {this.fine = fine;}
 	
-	public ArrayList getAnniAppartenenza() {
+	public List<Integer> getAnniAppartenenza() {
 		Integer annoPartenza = Integer.valueOf(getAnnoPartenza());
 		Integer annoFine = Integer.valueOf(getAnnoFine());
 		int offset = annoFine - annoPartenza;
 		
-		ArrayList<Integer> anni = new ArrayList<Integer>();
+		List<Integer> anni = new ArrayList<Integer>();
 		for (int i = 0; i <= offset; i++) {
 			anni.add(annoPartenza + i);
 		}
