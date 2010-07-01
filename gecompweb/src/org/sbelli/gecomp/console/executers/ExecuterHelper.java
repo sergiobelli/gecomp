@@ -49,7 +49,7 @@ public class ExecuterHelper {
 		}
 		return listaCategorie;
 	}
-	public SelectItem[] getListaCategorieItem(List<Categoria> tmpCat) {
+	public SelectItem[] getListaCategorieItem(List<? extends Categoria> tmpCat) {
 		SelectItem[] listaCategorie = new SelectItem[0];
 		try {
 			tmpCat = DbManagerFactory.getInstance().getCategoriaDao().list();

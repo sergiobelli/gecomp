@@ -1,15 +1,18 @@
 package org.sbelli.gecomp.console.categorie.delegates;
 
 import java.util.Calendar;
+import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
+import org.sbelli.gecomp.console.bridges.view.CategoriaView;
 import org.sbelli.gecomp.console.categorie.bridges.CategoriaBridge;
 import org.sbelli.gecomp.console.categorie.controllers.CategoriaController;
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
 import org.sbelli.gecomp.orm.model.Categoria;
+import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class CategoriaDelegate extends GenericDelegate {
@@ -69,5 +72,14 @@ public class CategoriaDelegate extends GenericDelegate {
 
 	public Categoria get(Long id) throws GeCompException {
 		return bridge.get(id);
+	}
+
+	public List<CategoriaView> list(Gara gara) throws GeCompException {
+		try {
+			return bridge.list(gara);
+		} catch (Exception ex) {
+			logger.error(ex, "XXXXXXXXXXXX");
+			throw new GeCompException("XXXXXXXXXXXX",ex);
+		}
 	}
 }

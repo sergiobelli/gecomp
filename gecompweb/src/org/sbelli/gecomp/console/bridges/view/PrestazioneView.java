@@ -8,7 +8,8 @@ import org.sbelli.gecomp.orm.model.Prestazione;
 public class PrestazioneView extends Prestazione {
 
 	private Integer posizione;
-
+	private IscrizioneView iscrizione;
+	
 	public PrestazioneView() { }
 	public PrestazioneView(Prestazione prestazione) {
 		ViewUtils.copyProperties(this, prestazione);
@@ -19,8 +20,12 @@ public class PrestazioneView extends Prestazione {
 	}
 
 	//getter/setter
+	
 	public Integer getPosizione() {return posizione;}
 	public void setPosizione(Integer posizione) {this.posizione = posizione;}
+	public IscrizioneView getIscrizione() {return iscrizione;}
+	public void setIscrizione(IscrizioneView iscrizione) {this.iscrizione = iscrizione;}
+	
 	public CategoriaView getCategoria() {
 		CategoriaView result = new CategoriaView();
 		result.setNomeCategoria("n.d.");

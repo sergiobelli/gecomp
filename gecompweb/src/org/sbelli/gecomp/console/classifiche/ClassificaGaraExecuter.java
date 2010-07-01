@@ -1,6 +1,5 @@
 package org.sbelli.gecomp.console.classifiche;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
@@ -10,13 +9,12 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
 import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
+import org.sbelli.gecomp.console.categorie.delegates.CategoriaDelegate;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.prestazioni.delegates.PrestazioneDelegate;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
-import org.sbelli.gecomp.orm.model.Prestazione;
 
 public class ClassificaGaraExecuter extends GenericExecuter {
 
@@ -34,18 +32,19 @@ public class ClassificaGaraExecuter extends GenericExecuter {
 	public SelectItem[] getCategorieItem() {return categorieItem;}
 	public void setCategorieItem(SelectItem[] categorieItem) {this.categorieItem = categorieItem;}
 
-	private PrestazioneDelegate delegate = new PrestazioneDelegate();
+	private PrestazioneDelegate prestazioneDelegate = new PrestazioneDelegate();
+	private CategoriaDelegate 	categoriaDelegate 	= new CategoriaDelegate();
 	
 	public ClassificaGaraExecuter () {
 		try {
 			checks4SelectedCompetizione();
 			checks4SelectedGara();
 
-			setPrestazioni(delegate.list(getSelectedGara()));
+			setPrestazioni(prestazioneDelegate.list(getSelectedGara()));
 			setCategorieItem(
 					getHelper()
 						.getListaCategorieItem(
-								DbManagerFactory.getInstance().getCategoriaGaraDao().listCategorie(getSelectedGara())));
+								categoriaDelegate.list(getSelectedGara())));
 		} catch (GeCompException e) {
 			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.classifica.rigenerazione.ko");
 		}
@@ -56,8 +55,8 @@ public class ClassificaGaraExecuter extends GenericExecuter {
 	} 
 	public String ricaricaClassifica() {
 		try {
-			Categoria categoria = DbManagerFactory.getInstance().getCategoriaDao().get(idCategoria);
-			setPrestazioni(delegate.list(getSelectedGara(),categoria));
+			Categoria categoria = categoriaDelegate.get(idCategoria);
+			setPrestazioni(prestazioneDelegate.list(getSelectedGara(),categoria));
 		} catch (Exception e) {
 			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.classifica.rigenerazione.ko");
 		}

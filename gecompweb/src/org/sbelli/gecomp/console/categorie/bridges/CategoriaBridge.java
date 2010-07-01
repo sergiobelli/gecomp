@@ -1,9 +1,16 @@
 package org.sbelli.gecomp.console.categorie.bridges;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.sb.gecomp.utils.Eval;
+
 import org.sbelli.gecomp.console.bridges.GenericBridge;
+import org.sbelli.gecomp.console.bridges.view.CategoriaView;
 import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Categoria;
+import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class CategoriaBridge extends GenericBridge {
@@ -22,6 +29,19 @@ public class CategoriaBridge extends GenericBridge {
 
 	public Categoria get(Long id) throws GeCompOrmException {
 		return DbManagerFactory.getInstance().getCategoriaDao().get(id);
+	}
+
+	public List<CategoriaView> list(Gara gara) throws GeCompOrmException {
+		List<CategoriaView> result = null;
+		List<Categoria> categorie = DbManagerFactory.getInstance().getCategoriaGaraDao().listCategorie(gara);
+		if (Eval.isNotEmpty(categorie)) {
+			result = new ArrayList<CategoriaView>();
+			for (Categoria c : categorie) {
+				CategoriaView pw = new CategoriaView(c);
+				result.add(pw);
+			}
+		}
+		return result;
 	}
 
 }
