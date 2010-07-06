@@ -8,6 +8,7 @@ import org.sbelli.gecomp.orm.model.Prestazione;
 public class PrestazioneView extends Prestazione {
 
 	private Integer posizione;
+	private Integer punteggio;
 	
 	public PrestazioneView() { }
 	public PrestazioneView(Prestazione prestazione) {
@@ -17,11 +18,19 @@ public class PrestazioneView extends Prestazione {
 		this(prestazione);
 		setPosizione(posizione);
 	}
-
+	public PrestazioneView(Prestazione prestazione, Integer posizione, Integer punteggio) {
+		this(prestazione);
+		setPosizione(posizione);
+		setPunteggio(punteggio);
+	}
 	//getter/setter
 	
 	public Integer getPosizione() {return posizione;}
 	public void setPosizione(Integer posizione) {this.posizione = posizione;}
+	
+	
+	public Integer getPunteggio() {return punteggio;}
+	public void setPunteggio(Integer punteggio) {this.punteggio = punteggio;}
 	
 	public CategoriaView getCategoria() {
 		CategoriaView result = new CategoriaView();

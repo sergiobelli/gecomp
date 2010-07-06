@@ -8,6 +8,8 @@ import javax.faces.model.SelectItem;
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
+import org.sbelli.gecomp.console.bridges.view.ClassificaSocietaView;
+import org.sbelli.gecomp.console.classifiche.societa.ClassificaSocietaPunteggioDecrescenteHandler;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
@@ -40,6 +42,11 @@ public class ClassificaSocietaGaraExecuter extends GenericExecuter {
 					getHelper()
 						.getListaCategorieItem(
 								DbManagerFactory.getInstance().getCategoriaGaraDao().listCategorie(getSelectedGara())));
+			
+			ClassificaSocietaPunteggioDecrescenteHandler c = new ClassificaSocietaPunteggioDecrescenteHandler();
+			ClassificaSocietaView classifica = c.getClassifica(getSelectedGara());
+			System.out.print(classifica);
+			
 		} catch (GeCompException e) {
 			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.classifica.rigenerazione.ko");
 		}
