@@ -1,4 +1,4 @@
-package org.sbelli.gecomp.console.classifiche;
+package org.sbelli.gecomp.console.classifiche.executers;
 
 import java.util.List;
 

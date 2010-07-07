@@ -1,4 +1,4 @@
-package org.sbelli.gecomp.console.classifiche;
+package org.sbelli.gecomp.console.classifiche.executers;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
 import org.sbelli.gecomp.console.bridges.view.ClassificaSocietaView;
-import org.sbelli.gecomp.console.classifiche.societa.ClassificaSocietaPunteggioDecrescenteHandler;
+import org.sbelli.gecomp.console.classifiche.delegates.societa.ClassificaSocietaPunteggioDecrescenteDelegate;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
@@ -43,7 +43,7 @@ public class ClassificaSocietaGaraExecuter extends GenericExecuter {
 						.getListaCategorieItem(
 								DbManagerFactory.getInstance().getCategoriaGaraDao().listCategorie(getSelectedGara())));
 			
-			ClassificaSocietaPunteggioDecrescenteHandler c = new ClassificaSocietaPunteggioDecrescenteHandler();
+			ClassificaSocietaPunteggioDecrescenteDelegate c = new ClassificaSocietaPunteggioDecrescenteDelegate();
 			ClassificaSocietaView classifica = c.getClassifica(getSelectedGara());
 			System.out.print(classifica);
 			

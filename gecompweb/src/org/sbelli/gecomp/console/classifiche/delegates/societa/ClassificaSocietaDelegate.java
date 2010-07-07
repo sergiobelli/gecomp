@@ -1,4 +1,4 @@
-package org.sbelli.gecomp.console.classifiche.societa;
+package org.sbelli.gecomp.console.classifiche.delegates.societa;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -6,11 +6,13 @@ import java.util.List;
 
 import org.sbelli.gecomp.console.bridges.view.ClassificaSocietaView;
 import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
+import org.sbelli.gecomp.console.classifiche.delegates.ClassificaDelegate;
 import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.Societa;
 import org.sbelli.gecomp.orm.model.TipoPrestazione;
 
-public abstract class ClassificaSocietaHandler {
+public abstract class ClassificaSocietaDelegate extends ClassificaDelegate {
+	
 	public abstract ClassificaSocietaView getClassifica(Gara gara);
 	
 	protected HashMap<Societa,Integer> getClassificaSocietaIscritte(List<PrestazioneView> prestazioni) {

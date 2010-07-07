@@ -1,4 +1,4 @@
-package org.sbelli.gecomp.console.classifiche.societa;
+package org.sbelli.gecomp.console.classifiche.delegates.societa;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +16,8 @@ import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.Societa;
 import org.sbelli.gecomp.orm.model.TipoPrestazione;
 
-public class ClassificaSocietaPunteggioDecrescenteHandler extends
-		ClassificaSocietaHandler {
+public class ClassificaSocietaPunteggioDecrescenteDelegate extends
+		ClassificaSocietaDelegate {
 
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 	
@@ -67,7 +67,7 @@ public class ClassificaSocietaPunteggioDecrescenteHandler extends
 	}
 
 	public static final void main(String[] args) throws GeCompException {
-		ClassificaSocietaPunteggioDecrescenteHandler c = new ClassificaSocietaPunteggioDecrescenteHandler();
+		ClassificaSocietaPunteggioDecrescenteDelegate c = new ClassificaSocietaPunteggioDecrescenteDelegate();
 		ClassificaSocietaView classifica = c.getClassifica(new GaraDelegate().get(18l));
 		System.out.print(ToStringBuilder.reflectionToString(classifica));
 	}

@@ -1,4 +1,4 @@
-package org.sbelli.gecomp.console.classifiche;
+package org.sbelli.gecomp.console.classifiche.executers;
 
 import org.sbelli.gecomp.orm.dao.ClassificaManager;
 import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;

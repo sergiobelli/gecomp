@@ -268,12 +268,12 @@
      
    <managed-bean> 
       <managed-bean-name>ClassificaCompetizioneExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.classifiche.ClassificaCompetizioneExecuter</managed-bean-class> 
+      <managed-bean-class>org.sbelli.gecomp.console.classifiche.executers.ClassificaCompetizioneExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ClassificaGaraExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.classifiche.ClassificaGaraExecuter</managed-bean-class> 
+      <managed-bean-class>org.sbelli.gecomp.console.classifiche.executers.ClassificaGaraExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    

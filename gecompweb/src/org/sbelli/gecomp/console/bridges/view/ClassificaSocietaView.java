@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import org.sbelli.gecomp.orm.model.Societa;
 
-public class ClassificaSocietaView {
+public class ClassificaSocietaView extends ClassificaView {
 
 	private HashMap<Societa,Integer> classificaSocietaIscritte;
 	private HashMap<Societa,Integer> classificaSocietaClassificate;
