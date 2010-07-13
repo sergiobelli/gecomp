@@ -126,6 +126,10 @@
        		<from-outcome>visualizzaClassificaCompetizione</from-outcome>
        		<to-view-id>/main/classifica/ClassificaCompetizione.xhtml</to-view-id>
     	</navigation-case>
+    	<navigation-case>
+       		<from-outcome>visualizzaClassificaGaraSocieta</from-outcome>
+       		<to-view-id>/main/classifica/ClassificaSocietaGara.xhtml</to-view-id>
+    	</navigation-case>
     	    	
     	<!-- Societa -->
         <navigation-case>
@@ -274,6 +278,11 @@
    <managed-bean> 
       <managed-bean-name>ClassificaGaraExecuter</managed-bean-name>
       <managed-bean-class>org.sbelli.gecomp.console.classifiche.executers.ClassificaGaraExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ClassificaSocietaGaraExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.classifiche.executers.ClassificaSocietaGaraExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    

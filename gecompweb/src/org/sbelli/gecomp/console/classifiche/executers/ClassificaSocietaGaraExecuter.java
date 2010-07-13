@@ -1,6 +1,11 @@
 package org.sbelli.gecomp.console.classifiche.executers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
@@ -9,60 +14,94 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
 import org.sbelli.gecomp.console.bridges.view.ClassificaSocietaView;
+import org.sbelli.gecomp.console.bridges.view.SocietaPunteggioView;
 import org.sbelli.gecomp.console.classifiche.delegates.societa.ClassificaSocietaPunteggioDecrescenteDelegate;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
+import org.sbelli.gecomp.console.menu.GeCompOutcomes;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 import org.sbelli.gecomp.orm.model.Prestazione;
+import org.sbelli.gecomp.orm.model.Societa;
 
+//TODO: NON funziona!!!!
 public class ClassificaSocietaGaraExecuter extends GenericExecuter {
+
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 
+	protected ClassificaSocietaPunteggioDecrescenteDelegate delegate = new ClassificaSocietaPunteggioDecrescenteDelegate();
+	
 	private List<Prestazione> prestazioni;
 	public List<Prestazione> getPrestazioni() {return prestazioni;}
 	public void setPrestazioni(List<Prestazione> prestazioni) {this.prestazioni = prestazioni;}
 
-	private Long idCategoria;
-	public Long getIdCategoria() {return idCategoria;}
-	public void setIdCategoria(Long idCategoria) {this.idCategoria = idCategoria;}
+	private Long tipoClassifica;
+	public Long getTipoClassifica() {return tipoClassifica;}
+	public void setTipoClassifica(Long tipoClassifica) {this.tipoClassifica = tipoClassifica;}
 
-	private SelectItem[] categorieItem;
-	public SelectItem[] getCategorieItem() {return categorieItem;}
-	public void setCategorieItem(SelectItem[] categorieItem) {this.categorieItem = categorieItem;}
-
+	private List<SocietaPunteggioView> classifica;
+	public List<SocietaPunteggioView> getClassifica() {return classifica;}
+	public void setClassifica(List<SocietaPunteggioView> classifica) {this.classifica = classifica;}
+	
+	private SelectItem[] tipiClassificaItem = 
+		new SelectItem[] {
+			new SelectItem(0, "Classifica di Societa' (Atleti iscritti)"),
+			new SelectItem(1, "Classifica di Societa' (Atleti classificati)"),
+			new SelectItem(2, "Classifica di Societa' (Punteggio)")
+	};
+	public SelectItem[] getTipiClassificaItem() {return tipiClassificaItem;}
+	public void setTipiClassificaItem(SelectItem[] tipiClassificaItem) {this.tipiClassificaItem = tipiClassificaItem;}
+	
 	public ClassificaSocietaGaraExecuter () {
 		try {
 			checks4SelectedCompetizione();
 			checks4SelectedGara();
 
-			setPrestazioni(DbManagerFactory.getInstance().getPrestazioneDao().list(getSelectedGara()));
-			setCategorieItem(
-					getHelper()
-						.getListaCategorieItem(
-								DbManagerFactory.getInstance().getCategoriaGaraDao().listCategorie(getSelectedGara())));
-			
-			ClassificaSocietaPunteggioDecrescenteDelegate c = new ClassificaSocietaPunteggioDecrescenteDelegate();
-			ClassificaSocietaView classifica = c.getClassifica(getSelectedGara());
-			System.out.print(classifica);
+			ClassificaSocietaView classifica = delegate.getClassifica(getSelectedGara());
+			Set<SocietaPunteggioView> classificaTmp = new TreeSet<SocietaPunteggioView>();
+			for (Map.Entry<Societa, Integer> entry : classifica.getClassificaSocietaIscritte().entrySet()) {
+				classificaTmp.add(new SocietaPunteggioView(entry.getKey(), entry.getValue()));
+			}
+			setClassifica(new ArrayList<SocietaPunteggioView>(classificaTmp));
 			
 		} catch (GeCompException e) {
-			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.classifica.rigenerazione.ko");
+			GeCompGuiExceptionManager.manageGUIException(logger, e, "xxxx.xxxxx.xxxxxxx.xxxxxxxxxxxxxxxxxxxxxx");
 		}
 	}
 
-	public void loadCategoria(ActionEvent event) {
-		idCategoria = (Long) event.getComponent().getAttributes().get("idCategoria");
+	public void loadTipoClassifica(ActionEvent event) {
+		tipoClassifica = (Long) event.getComponent().getAttributes().get("tipoClassifica");
 	} 
+	
 	public String ricaricaClassifica() {
 		try {
-			Categoria categoria = DbManagerFactory.getInstance().getCategoriaDao().get(idCategoria);
-			setPrestazioni(DbManagerFactory.getInstance().getPrestazioneDao().list(getSelectedGara(),categoria));
+			
+			ClassificaSocietaView classifica = delegate.getClassifica(getSelectedGara());
+			HashMap<Societa, Integer> mappa = null;
+			switch ( tipoClassifica.intValue() ) {
+				case 0: {
+					mappa = classifica.getClassificaSocietaIscritte();
+					break;
+				}
+				case 1: {
+					mappa = classifica.getClassificaSocietaClassificate();
+					break;
+				}
+				case 2: {
+					mappa = classifica.getClassificaSocietaPunteggio();
+					break;
+				}
+			}
+			
+			Set<SocietaPunteggioView> classificaTmp = new TreeSet<SocietaPunteggioView>();
+			for (Map.Entry<Societa, Integer> entry : mappa.entrySet()) {
+				classificaTmp.add(new SocietaPunteggioView(entry.getKey(), entry.getValue()));
+			}
+			setClassifica(new ArrayList<SocietaPunteggioView>(classificaTmp));
+			
 		} catch (Exception e) {
-			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.classifica.rigenerazione.ko");
+			GeCompGuiExceptionManager.manageGUIException(logger, e, "xxxx.xxxxx.xxxxxxx.xxxxxxxxxxxxxxxxxxx");
 		}
-		return "visualizzaClassificaGara";
+		return GeCompOutcomes.VISUALIZZA_CLASSIFICA_GARA_SOCIETA;
 	}
 	
 	protected GecompModelObject retrieve() throws GeCompException {

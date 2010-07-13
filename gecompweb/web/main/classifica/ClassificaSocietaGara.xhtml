@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../common/Template.xhtml">
+	
+		<ui:define name="title">
+			<h:outputText value="Classifica" />
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+			
+				<h:outputText value="Tipo Classifica"/>
+	            <h:selectOneMenu value="#{ClassificaSocietaGaraExecuter.tipoClassifica}"  class="FacetInput">
+		        	<f:convertNumber type="number" />
+					<f:selectItems value="#{ClassificaSocietaGaraExecuter.tipiClassificaItem}" />
+	            </h:selectOneMenu>
+	            <h:outputText value="&nbsp;"/>
+	            <h:commandLink 
+	            		actionListener="#{ClassificaSocietaGaraExecuter.loadTipoClassifica}" 
+	            		action="#{ClassificaSocietaGaraExecuter.ricaricaClassifica}" 
+	            		styleClass="FacetSorterLink">
+	            	<h:outputText value="Seleziona"/>
+	                <f:attribute name="tipoClassifica" value="#{ClassificaSocietaGaraExecuter.tipoClassifica}" />
+				</h:commandLink>
+	                        
+				<h:dataTable 
+	            		id="classifica" 
+	            		value="#{ClassificaSocietaGaraExecuter.classifica}" 
+	            		var="classifica" 
+	            		headerClass="tabella_intestazione"
+	            		rowClasses="tabella_dispari,tabella_pari"
+	            		styleClass="tabella">
+
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Societa'"/>
+	                    </f:facet>
+	                    <h:outputText value="#{classifica.societa.denominazione}"/>
+	                </h:column>
+	                	            
+	            	<h:column>
+	                	<f:facet name="header">
+	                    	<h:outputText value="Valore"/>
+	                    </f:facet>
+	                    <h:outputText value="#{classifica.punteggio}"/>
+	                </h:column>
+
+	            </h:dataTable>
+	            
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>
