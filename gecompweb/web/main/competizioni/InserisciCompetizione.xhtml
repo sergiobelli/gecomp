@@ -35,7 +35,7 @@
                     </h:inputText>
 					
 					<h:outputText value="Societa Organizzatrice"/>
-	            	<h:selectOneMenu  id="societaOrganizzatrice" 	value="#{InserisciCompetizioneExecuter.societa}"  class="FacetInput" >
+	            	<h:selectOneMenu  id="societaOrganizzatrice" 	value="#{InserisciCompetizioneExecuter.competizione.societaOrganizzatrice.id}"  class="FacetInput" >
 		                <f:convertNumber type="number" />
 						<f:selectItems value="#{InserisciCompetizioneExecuter.listaSocieta}" />
 	                </h:selectOneMenu>

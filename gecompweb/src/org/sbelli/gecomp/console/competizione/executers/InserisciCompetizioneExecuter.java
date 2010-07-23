@@ -2,6 +2,7 @@ package org.sbelli.gecomp.console.competizione.executers;
 
 import net.sb.gecomp.exceptions.GeCompException;
 
+import org.sbelli.gecomp.console.menu.GeCompOutcomes;
 import org.sbelli.gecomp.console.user.GeCompUserSessionHandler;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.model.Competizione;
@@ -26,7 +27,7 @@ public class InserisciCompetizioneExecuter extends CompetizioneExecuter {
 			return "null";
 		}
 
-		return "listaCompetizioni";
+		return GeCompOutcomes.LISTA_COMPETIZIONI;
 	}
 
 	public String inserisciESeleziona () {

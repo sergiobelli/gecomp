@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
@@ -24,7 +23,8 @@ public class CompetizioneExecuter extends GenericExecuter {
 	public CompetizioneExecuter () {
 
 		competizione = new Competizione();
-
+		competizione.setSocietaOrganizzatrice(new Societa());
+		
 		loadSocietaList();
 	}
 
@@ -36,10 +36,6 @@ public class CompetizioneExecuter extends GenericExecuter {
 	protected List<Competizione> competizioni;
 	public List<Competizione> getCompetizioni() { return competizioni; }
 	public void setCompetizioni(List<Competizione> competizioni) { this.competizioni = competizioni; }
-
-	protected Long societa;
-	public Long getSocieta() { return societa; }
-	public void setSocieta(Long societa) { this.societa = societa; }
 
 	protected SelectItem[] listaSocieta;
 	public SelectItem[] getListaSocieta() { return listaSocieta; }

@@ -33,6 +33,24 @@
 					
 	            	<h:outputText value="Distanza"/>
 	            	<h:inputText value="#{ModificaGaraExecuter.gara.distanza}" class="FacetInput"/>
+	                
+	                <h:outputText value="Categorie"/>
+	                <h:panelGroup>
+		                <h:selectManyListbox value="#{ModificaGaraExecuter.categorie}" class="FacetInput">
+		                	<f:convertNumber type="number" />
+		                	<f:selectItems value="#{ModificaGaraExecuter.helper.listaCategorieItem}" />
+		                </h:selectManyListbox>         
+		                <h:outputText value="*"/>
+	                </h:panelGroup>
+	                
+	                <h:outputText value="Tipo Misura"/>
+	                <h:panelGroup>
+		                <h:selectOneMenu value="#{ModificaGaraExecuter.gara.tipoMisura.idTipoMisura}" class="FacetInput">
+		                	<f:convertNumber type="number" />
+		                	<f:selectItems value="#{ModificaGaraExecuter.helper.listaTipiMisureItem}" />
+		                </h:selectOneMenu>
+		                <h:outputText value="*"/>
+	                </h:panelGroup>
 	                        
 	            	<h:outputText value="&nbsp;"/>
 	            	<h:commandButton action="#{ModificaGaraExecuter.salva}" value="Inserisci" class="FacetButton" />

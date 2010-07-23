@@ -2,29 +2,27 @@ package org.sbelli.gecomp.console.competizione.bridges;
 
 import org.sbelli.gecomp.console.bridges.GenericBridge;
 import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
+import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Competizione;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class CompetizioneBridge extends GenericBridge {
 
 	public void delete(GecompModelObject element) throws GeCompOrmException {
-		// TODO Auto-generated method stub
-
+		Competizione competizione = (Competizione) element;
+		DbManagerFactory.getInstance().getCompetizioneDao().delete(competizione.getIdCompetizione());
 	}
 
 	public GecompModelObject insert(GecompModelObject element) throws GeCompOrmException {
-		// TODO Auto-generated method stub
-		return null;
+		return DbManagerFactory.getInstance().getCompetizioneDao().insert((Competizione) element);
 	}
 
 	public void update(GecompModelObject element) throws GeCompOrmException {
-		// TODO Auto-generated method stub
-
+		DbManagerFactory.getInstance().getCompetizioneDao().update((Competizione) element);
 	}
 
 	public Competizione get(Long id) throws GeCompOrmException {
-		// TODO Auto-generated method stub
-		return null;
+		return DbManagerFactory.getInstance().getCompetizioneDao().get(id);
 	}
 
 }

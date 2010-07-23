@@ -9,6 +9,7 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.exceptions.MessageSeverity;
 
 import org.sbelli.gecomp.console.competizione.controllers.CompetizioneController;
+import org.sbelli.gecomp.console.menu.GeCompOutcomes;
 import org.sbelli.gecomp.console.user.GeCompUserSessionHandler;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.console.utils.guimessages.GuiMessageHandler;
@@ -89,7 +90,7 @@ public class ModificaCompetizioneExecuter extends CompetizioneExecuter {
 	}
 
 	public String modificaCompetizione () {
-		return "modificaCompetizione";
+		return GeCompOutcomes.MODIFICA_COMPETIZIONE;
 	}
 
 	public void load (ActionEvent event) {
@@ -101,26 +102,18 @@ public class ModificaCompetizioneExecuter extends CompetizioneExecuter {
 	}
 
 	private void init () {
-
 		try {
-
 			competizione = DbManagerFactory.getInstance().getCompetizioneDao().get(idCompetizione);
-
-			societa = Long.valueOf((competizione.getSocietaOrganizzatrice().getId()));
-
 			List<Societa> tmpSocieta = DbManagerFactory.getInstance().getSocietaDao().list();
-
 			int pos = 0;
 			listaSocieta = new SelectItem[tmpSocieta.size()];
 			for (Societa soc : tmpSocieta) {
 				listaSocieta[pos] = new SelectItem(soc.getId(), soc.getDenominazione());
 				pos++;
 			}
-
 		} catch (GeCompOrmException ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.competizione.caricamento.ko");
 		}
-
 	}
 
 }
