@@ -12,6 +12,7 @@ public class GeCompOutcomes {
 	public static final String INSERISCI_GARA = "inserisciGara";
 	public static final String LISTA_GARE = "listaGare";
 	public static final String INSERISCI_CATEGORIA = "inserisciCategoria";
+	public static final String MODIFICA_CATEGORIA = "modificaCategoria";
 	public static final String LISTA_CATEGORIE = "listaCategorie";
 	public static final String INSERISCI_ISCRIZIONI = "inserisciIscrizioni";
 	public static final String INSERISCI_PRESTAZIONI = "inserisciPrestazioni";

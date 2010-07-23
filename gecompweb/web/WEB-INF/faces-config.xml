@@ -84,7 +84,11 @@
        		<from-outcome>inserisciCategoria</from-outcome>
        		<to-view-id>/main/categorie/InserisciCategoria.xhtml</to-view-id>
     	</navigation-case>
-   		<navigation-case>
+    	<navigation-case>
+       		<from-outcome>modificaCategoria</from-outcome>
+       		<to-view-id>/main/categorie/ModificaCategoria.xhtml</to-view-id>
+    	</navigation-case>
+    	<navigation-case>
       		<from-outcome>listaCategorie</from-outcome>
       		<to-view-id>/main/categorie/ListaCategorie.xhtml</to-view-id>
    		</navigation-case>

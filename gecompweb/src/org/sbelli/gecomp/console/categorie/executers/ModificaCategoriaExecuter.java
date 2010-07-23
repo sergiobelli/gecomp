@@ -4,6 +4,7 @@ import javax.faces.event.ActionEvent;
 
 import net.sb.gecomp.exceptions.GeCompException;
 
+import org.sbelli.gecomp.console.menu.GeCompOutcomes;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 
@@ -28,7 +29,7 @@ public class ModificaCategoriaExecuter extends CategoriaExecuter {
 
 
 	public String modifica () {
-		return "modificaCategoria";
+		return GeCompOutcomes.MODIFICA_CATEGORIA;
 	}
 
 	public String elimina () {
@@ -40,7 +41,7 @@ public class ModificaCategoriaExecuter extends CategoriaExecuter {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.atleta.eliminazione.ko");
 			return "null";
 		}
-		return "listaCategorie";
+		return GeCompOutcomes.LISTA_CATEGORIE;
 	}
 
 }
