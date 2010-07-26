@@ -28,7 +28,11 @@
 	            	<h:outputText value="Seleziona"/>
 	                <f:attribute name="idCategoria" value="#{ClassificaGaraExecuter.idCategoria}" />
 				</h:commandLink>
-	                    
+	            <h:commandLink 
+	            		actionListener="#{ClassificaGaraExecuter.esporta}" 
+	            		styleClass="FacetSorterLink">
+	            	<h:outputText value="Esporta"/>
+				</h:commandLink>	                    
 	                        
 				<h:dataTable 
 	            		id="listaPrestazioni" 

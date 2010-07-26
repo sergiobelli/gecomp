@@ -12,9 +12,13 @@ import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
 import org.sbelli.gecomp.console.categorie.delegates.CategoriaDelegate;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.prestazioni.delegates.PrestazioneDelegate;
+import org.sbelli.gecomp.console.report.ReportManager;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
+import org.sbelli.gecomp.orm.dao.ClassificaManager;
 import org.sbelli.gecomp.orm.model.Categoria;
+import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
+import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
 
 public class ClassificaGaraExecuter extends GenericExecuter {
 
@@ -28,6 +32,10 @@ public class ClassificaGaraExecuter extends GenericExecuter {
 	public Long getIdCategoria() {return idCategoria;}
 	public void setIdCategoria(Long idCategoria) {this.idCategoria = idCategoria;}
 
+	private Gara gara;
+	public Gara getGara() {return gara;}
+	public void setGara(Gara gara) {this.gara = gara;}
+
 	private SelectItem[] categorieItem;
 	public SelectItem[] getCategorieItem() {return categorieItem;}
 	public void setCategorieItem(SelectItem[] categorieItem) {this.categorieItem = categorieItem;}
@@ -40,6 +48,7 @@ public class ClassificaGaraExecuter extends GenericExecuter {
 			checks4SelectedCompetizione();
 			checks4SelectedGara();
 
+			setGara(getSelectedGara());
 			setPrestazioni(prestazioneDelegate.list(getSelectedGara()));
 			setCategorieItem(
 					getHelper()
@@ -66,5 +75,12 @@ public class ClassificaGaraExecuter extends GenericExecuter {
 	protected GecompModelObject retrieve() throws GeCompException {
 //		Non me ne faccio niente....
 		return null;
+	}
+	
+	public void esporta(ActionEvent event) {
+		//Long idGara = (Long) event.getComponent().getAttributes().get("idGara");
+		ClassificaCompetizione classificaCompetizione = ClassificaManager.getInstance().getClassificaCompetizione(getSelectedGara().getCompetizione());
+		ReportManager r = new ReportManager();
+		r.generateReport(classificaCompetizione);
 	}
 }
