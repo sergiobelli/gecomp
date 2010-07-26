@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: 18 giu, 2010 at 03:07 PM
+-- Generato il: 26 lug, 2010 at 02:39 PM
 -- Versione MySQL: 5.1.36
 -- Versione PHP: 5.3.0
 
@@ -13,23 +13,23 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Database: `gecomp`
 --
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `atleta`
 --
+
 INSERT INTO `atleta` (`ID_ATLETA`, `COGNOME`, `NOME`, `SESSO`, `ANNO_NASCITA`, `SOCIETA_APPARTENENZA`) VALUES
 (1, 'Belli', 'Sergio', 'M', '1981', 2),
 (2, 'Viano', 'Valeria', 'F', '1977', 2),
 (3, 'Belli', 'Danilo', 'M', '1951', 2),
 (4, 'Zonca', 'Ermes', 'M', '1990', 2),
-(5, 'Quazzola', 'Italo', 'M', '1994', 2),
+(5, 'Quazzola', 'Italo', 'M', '1990', 2),
 (6, 'Sergio', 'Prolo', 'M', '1939', 3),
 (7, 'Mussi', 'Josef', 'M', '1990', 3),
 (8, 'Imbrosci', 'Vincenzo', 'M', '1947', 3),
 (9, 'Schepis', 'Maurizio', 'M', '1977', 3),
 (10, 'Chiara', 'Carlo', 'M', '1950', 3),
 (11, 'Munerato', 'Claudio', 'M', '1973', 4),
-(12, 'ATLETA_11', 'ATLETA_11', 'M', '1916', 4),
+(12, 'ATLETA_11', 'ATLETA_11', 'M', '1961', 4),
 (13, 'ATLETA_12', 'ATLETA_12', 'M', '1944', 4),
 (14, 'ATLETA_13', 'ATLETA_13', 'M', '1934', 4),
 (15, 'ATLETA_14', 'ATLETA_14', 'M', '1981', 4),
@@ -38,14 +38,14 @@ INSERT INTO `atleta` (`ID_ATLETA`, `COGNOME`, `NOME`, `SESSO`, `ANNO_NASCITA`, `
 (18, 'Vercellino', 'Paolo', 'M', '1990', 5),
 (19, 'ATLETA_18', 'ATLETA_18', 'M', '1916', 5),
 (20, 'ATLETA_19', 'ATLETA_19', 'M', '1933', 5),
-(21, 'Deganello', 'Luca', 'M', '1961', 6),
+(21, 'Deganello', 'Luca', 'M', '1980', 6),
 (22, 'ATLETA_21', 'ATLETA_21', 'M', '1977', 6),
 (23, 'ATLETA_22', 'ATLETA_22', 'M', '1977', 6),
 (24, 'ATLETA_23', 'ATLETA_23', 'M', '1932', 6),
 (25, 'ATLETA_24', 'ATLETA_24', 'F', '1936', 6),
 (26, 'ATLETA_25', 'ATLETA_25', 'M', '1980', 7),
-(27, 'ATLETA_26', 'ATLETA_26', 'M', '1939', 7),
-(28, 'ATLETA_27', 'ATLETA_27', 'F', '1964', 7),
+(27, 'D''Eredit√ ', 'Orazio', 'M', '1969', 7),
+(28, 'Mazzone', 'Flavio', 'F', '1964', 7),
 (29, 'ATLETA_28', 'ATLETA_28', 'F', '1978', 7),
 (30, 'ATLETA_29', 'ATLETA_29', 'M', '1960', 7),
 (31, 'Raimondi', 'Matteo', 'M', '1986', 8),
@@ -120,10 +120,10 @@ INSERT INTO `atleta` (`ID_ATLETA`, `COGNOME`, `NOME`, `SESSO`, `ANNO_NASCITA`, `
 (100, 'ATLETA_99', 'ATLETA_99', 'M', '1959', 21),
 (101, 'Zucco', 'Adriano', 'M', '1970', 7);
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `categoria`
 --
+
 INSERT INTO `categoria` (`ID_CATEGORIA`, `NOME_CATEGORIA`, `SESSO`, `ANNO_PARTENZA`, `ANNO_FINE`) VALUES
 (1, 'JPSM', 'M', '1976', '1992'),
 (2, 'JPSF', 'F', '1976', '1992'),
@@ -148,14 +148,15 @@ INSERT INTO `categoria` (`ID_CATEGORIA`, `NOME_CATEGORIA`, `SESSO`, `ANNO_PARTEN
 (21, 'MM80', 'M', '1926', '1930'),
 (22, 'MF80', 'F', '1926', '1930');
 
--- ----------------------------------------------------------
+--
 -- Dump dei dati per la tabella `categoria_competizione`
 --
 
--- --------------------------------------------------------
+
 --
 -- Dump dei dati per la tabella `categoria_gara`
 --
+
 INSERT INTO `categoria_gara` (`ID_CATEGORIA_GARA`, `CATEGORIA`, `GARA`) VALUES
 (1, 1, 1),
 (2, 2, 1),
@@ -413,27 +414,28 @@ INSERT INTO `categoria_gara` (`ID_CATEGORIA_GARA`, `CATEGORIA`, `GARA`) VALUES
 (254, 9, 46),
 (255, 10, 46);
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `categoria_gara_assoluta`
 --
 
--- --------------------------------------------------------
+
 --
 -- Dump dei dati per la tabella `competizione`
 --
+
 INSERT INTO `competizione` (`ID_COMPETIZIONE`, `DATA_INIZIO`, `DATA_FINE`, `NOME`, `DESCRIZIONE`, `SOCIETA_ORGANIZZATRICE`) VALUES
 (1, '2010-06-04', '2010-06-04', 'Grand Prix BI-VC 2010', 'Grand Prix BI-VC 2010', 5),
 (2, '2010-06-04', '2010-06-04', 'Campionato Valsesiano 2010', 'Campionato Valsesiano 2010', 2),
 (3, '2010-06-04', '2010-06-04', 'Gamba d''Oro 2010', 'Gamba d''Oro 2010', 18),
 (4, '2010-06-04', '2010-06-04', 'Martz a pia 2010', 'Martz a pia 2010', 15),
 (5, '2010-06-04', '2010-06-04', 'Piede d''Oro 2010', 'Piede d''Oro 2010', 11),
-(6, '2010-06-10', '2010-09-30', 'Prova Competizione 2010 A', 'Prova Competizione 2010 A', 2);
+(6, '2010-06-10', '2010-09-30', 'Prova Competizione 2010 A', 'Prova Competizione 2010 A', 2),
+(7, '2010-06-09', '2010-08-19', 'VII Circuito serale AXA  Assicurazioni', 'VII Circuito serale AXA  Assicurazioni 2010', 28);
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `gara`
 --
+
 INSERT INTO `gara` (`ID_GARA`, `COMPETIZIONE`, `NOME`, `DESCRIZIONE`, `DATA`, `DISTANZA`, `TIPO_MISURA`) VALUES
 (1, 1, 'Borgosesia 2010', 'Gara_0', '2010-06-04', 10, 1),
 (2, 1, 'StraCossato 2010', 'Gara_1', '2010-06-04', 9, 1),
@@ -462,10 +464,10 @@ INSERT INTO `gara` (`ID_GARA`, `COMPETIZIONE`, `NOME`, `DESCRIZIONE`, `DATA`, `D
 (25, 5, 'Gara_4', 'Gara_4', '2010-06-04', 11, 1),
 (46, 1, 'ada', 'afafsadf', '2010-06-10', 456, 1);
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `iscrizione`
 --
+
 INSERT INTO `iscrizione` (`ID_ISCRIZIONE`, `GARA`, `ATLETA`, `NUMERO_PETTORALE`) VALUES
 (1, 1, 1, NULL),
 (2, 2, 1, NULL),
@@ -2973,10 +2975,10 @@ INSERT INTO `iscrizione` (`ID_ISCRIZIONE`, `GARA`, `ATLETA`, `NUMERO_PETTORALE`)
 (2504, 46, 1, 12),
 (2505, 46, 2, 56);
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `prestazione`
 --
+
 INSERT INTO `prestazione` (`ID_PRESTAZIONE`, `ISCRIZIONE`, `TIPO_PRESTAZIONE`, `TIPO_MISURA`, `VALORE_MISURA`) VALUES
 (1, 1, 1, 1, 8330953),
 (2, 2, 4, 1, 2846373),
@@ -2987,7 +2989,7 @@ INSERT INTO `prestazione` (`ID_PRESTAZIONE`, `ISCRIZIONE`, `TIPO_PRESTAZIONE`, `
 (7, 7, 1, 1, 8174350),
 (8, 8, 1, 1, 9719410),
 (9, 9, 5, 1, 5969343),
-(10, 10, 1, 1, 6805560),
+(10, 10, 1, 1, 3205560),
 (11, 11, 1, 1, 2978411),
 (12, 12, 1, 1, 2807443),
 (13, 13, 1, 1, 7320652),
@@ -3062,7 +3064,7 @@ INSERT INTO `prestazione` (`ID_PRESTAZIONE`, `ISCRIZIONE`, `TIPO_PRESTAZIONE`, `
 (82, 82, 1, 1, 9049240),
 (83, 83, 1, 1, 2178831),
 (84, 84, 1, 1, 687071),
-(85, 85, 2, 1, 25993),
+(85, 85, 1, 1, 25993),
 (86, 86, 1, 1, 8446500),
 (87, 87, 1, 1, 2359201),
 (88, 88, 1, 1, 8747574),
@@ -3087,7 +3089,7 @@ INSERT INTO `prestazione` (`ID_PRESTAZIONE`, `ISCRIZIONE`, `TIPO_PRESTAZIONE`, `
 (107, 107, 1, 1, 6608327),
 (108, 108, 1, 1, 4399402),
 (109, 109, 1, 1, 7357029),
-(110, 110, 1, 1, 9990791),
+(110, 110, 1, 1, 2790791),
 (111, 111, 1, 1, 4850398),
 (112, 112, 2, 1, 4315117),
 (113, 113, 1, 1, 5533700),
@@ -4086,7 +4088,7 @@ INSERT INTO `prestazione` (`ID_PRESTAZIONE`, `ISCRIZIONE`, `TIPO_PRESTAZIONE`, `
 (1106, 1106, 1, 1, 1214440),
 (1107, 1107, 1, 1, 8693094),
 (1108, 1108, 1, 1, 4932496),
-(1109, 1109, 1, 1, 14740),
+(1109, 1109, 1, 1, 3621000),
 (1110, 1110, 1, 1, 6849318),
 (1111, 1111, 1, 1, 9405096),
 (1112, 1112, 1, 1, 1721757),
@@ -4162,7 +4164,7 @@ INSERT INTO `prestazione` (`ID_PRESTAZIONE`, `ISCRIZIONE`, `TIPO_PRESTAZIONE`, `
 (1182, 1182, 1, 1, 6211633),
 (1183, 1183, 1, 1, 5949835),
 (1184, 1184, 1, 1, 4755031),
-(1185, 1185, 1, 1, 2644817),
+(1185, 1185, 2, 1, 2644817),
 (1186, 1186, 1, 1, 2095731),
 (1187, 1187, 1, 1, 8121268),
 (1188, 1188, 1, 1, 6899565),
@@ -5480,23 +5482,24 @@ INSERT INTO `prestazione` (`ID_PRESTAZIONE`, `ISCRIZIONE`, `TIPO_PRESTAZIONE`, `
 (2499, 2499, 1, 1, 3000914),
 (2500, 2500, 1, 1, 7824476),
 (2501, 2504, 1, 1, 3600),
-(2502, 2505, 1, 1, 3601);
+(2502, 2505, 1, 1, 3601),
+(2503, 384, 1, 1, 754000);
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `properties`
 --
+
 INSERT INTO `properties` (`ID`, `CHIAVE`, `VALORE`) VALUES
 (1, 'gecomp.session.offset', '30'),
-(2, 'CHIAVE_1', 'VALORE_1'),
+(2, 'gecomp.staging.area', 'C:\\logs'),
 (3, 'CHIAVE_2', 'VALORE_2'),
 (4, 'CHIAVE_3', 'VALORE_3'),
 (5, 'CHIAVE_4', 'VALORE_4');
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `societa`
 --
+
 INSERT INTO `societa` (`ID`, `CODICE_FIDAL`, `DENOMINAZIONE`, `TELEFONO_SEDE`, `LOCALITA_SEDE`, `FAX`, `EMAIL`, `SITO`) VALUES
 (2, 'VC045', 'ATLETICA VALSESIA', '0163-200007', 'BORGOSESIA', '0163-26437', 'VC045@fidal.it', 'atleticavalsesia.altervista.org'),
 (3, 'VC014', 'G.S.A. VALSESIA', '0163-200236', 'AGNONA', '0163-25257', 'VC014@fidal.it ', ''),
@@ -5517,22 +5520,23 @@ INSERT INTO `societa` (`ID`, `CODICE_FIDAL`, `DENOMINAZIONE`, `TELEFONO_SEDE`, `
 (18, 'NO023', 'G.S. CASTELLANIA', '0322-913018', 'GOZZANO', '0322-917886', 'NO023@fidal.it', ''),
 (19, 'NO001', 'SOCIETA'' ATLETICA BELLINZAGO', '0321-987643', 'BELLINZAGO NOVARESE', '0321-987643', 'NO001@fidal.it', 'www.atleticabellinzago.it'),
 (20, 'VB012', 'A.S.D. CADDESE', '0324-338246', 'CREVOLADOSSOLA', '0324-338246', 'VB012@fidal.it', 'www.asdcaddese.it'),
-(21, 'VB025', 'G.S.D. GENZIANELLA', '0324-890189', 'CEPPO MORELLI', '0324-890189', 'VB025@fidal.it', '');
+(21, 'VB025', 'G.S.D. GENZIANELLA', '0324-890189', 'CEPPO MORELLI', '0324-890189', 'VB025@fidal.it', ''),
+(28, 'VC056', 'A.S.D. Podismo di Sera', '', '', '', '', 'www.podismodisera.eu');
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `tipo_misura`
 --
+
 INSERT INTO `tipo_misura` (`ID_TIPO_MISURA`, `DESCRIZIONE`, `UNITA_MISURA`, `MODALITA_COMPARAZIONE`) VALUES
 (1, 'Tempo', 'millisecondi', 0),
 (2, 'Lancio', 'metri', 1),
 (3, 'Salto', 'metri', 1),
 (4, 'Ordine di arrivo', 'posizione', 0);
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `tipo_prestazione`
 --
+
 INSERT INTO `tipo_prestazione` (`ID_TIPO_PRESTAZIONE`, `DESCRIZIONE`) VALUES
 (1, 'VALIDA'),
 (2, 'RITIRO'),
@@ -5540,9 +5544,9 @@ INSERT INTO `tipo_prestazione` (`ID_TIPO_PRESTAZIONE`, `DESCRIZIONE`) VALUES
 (4, 'NON CLASSIFICATO'),
 (5, 'NON PARTECIPATO');
 
--- --------------------------------------------------------
 --
 -- Dump dei dati per la tabella `user`
 --
+
 INSERT INTO `user` (`ID_USER`, `USERNAME`, `PASSWORD`) VALUES
 (1, 'a', 'a');

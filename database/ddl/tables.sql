@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: 18 giu, 2010 at 03:07 PM
+-- Generato il: 26 lug, 2010 at 02:38 PM
 -- Versione MySQL: 5.1.36
 -- Versione PHP: 5.3.0
 
@@ -14,9 +14,11 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `atleta`
 --
+
 CREATE TABLE IF NOT EXISTS `atleta` (
   `ID_ATLETA` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `COGNOME` varchar(255) NOT NULL,
@@ -27,13 +29,15 @@ CREATE TABLE IF NOT EXISTS `atleta` (
   PRIMARY KEY (`ID_ATLETA`),
   UNIQUE KEY `ID_ATLETA` (`ID_ATLETA`),
   KEY `ID_ATLETA_2` (`ID_ATLETA`),
-  FOREIGN KEY `fk_societa` (`SOCIETA_APPARTENENZA`)
+  KEY `fk_societa` (`SOCIETA_APPARTENENZA`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=105 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `categoria`
 --
+
 CREATE TABLE IF NOT EXISTS `categoria` (
   `ID_CATEGORIA` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `NOME_CATEGORIA` varchar(255) NOT NULL,
@@ -46,9 +50,11 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `categoria_competizione`
 --
+
 CREATE TABLE IF NOT EXISTS `categoria_competizione` (
   `ID_CATEGORIA_COMPETIZIONE` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `CATEGORIA` int(11) unsigned NOT NULL,
@@ -59,9 +65,11 @@ CREATE TABLE IF NOT EXISTS `categoria_competizione` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `categoria_gara`
 --
+
 CREATE TABLE IF NOT EXISTS `categoria_gara` (
   `ID_CATEGORIA_GARA` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `CATEGORIA` int(11) unsigned NOT NULL,
@@ -72,9 +80,11 @@ CREATE TABLE IF NOT EXISTS `categoria_gara` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=256 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `categoria_gara_assoluta`
 --
+
 CREATE TABLE IF NOT EXISTS `categoria_gara_assoluta` (
   `ID_CATEGORIA_GARA_ASSOLUTA` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ID_CATEGORIA_GARA` int(11) unsigned NOT NULL,
@@ -85,9 +95,11 @@ CREATE TABLE IF NOT EXISTS `categoria_gara_assoluta` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=226 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `competizione`
 --
+
 CREATE TABLE IF NOT EXISTS `competizione` (
   `ID_COMPETIZIONE` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `DATA_INIZIO` date NOT NULL,
@@ -96,12 +108,14 @@ CREATE TABLE IF NOT EXISTS `competizione` (
   `DESCRIZIONE` text,
   `SOCIETA_ORGANIZZATRICE` int(11) unsigned NOT NULL,
   PRIMARY KEY (`ID_COMPETIZIONE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `gara`
 --
+
 CREATE TABLE IF NOT EXISTS `gara` (
   `ID_GARA` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `COMPETIZIONE` int(11) unsigned NOT NULL,
@@ -114,9 +128,11 @@ CREATE TABLE IF NOT EXISTS `gara` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `iscrizione`
 --
+
 CREATE TABLE IF NOT EXISTS `iscrizione` (
   `ID_ISCRIZIONE` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `GARA` int(11) NOT NULL,
@@ -126,9 +142,11 @@ CREATE TABLE IF NOT EXISTS `iscrizione` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2506 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `prestazione`
 --
+
 CREATE TABLE IF NOT EXISTS `prestazione` (
   `ID_PRESTAZIONE` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ISCRIZIONE` int(11) unsigned NOT NULL,
@@ -138,12 +156,14 @@ CREATE TABLE IF NOT EXISTS `prestazione` (
   PRIMARY KEY (`ID_PRESTAZIONE`),
   UNIQUE KEY `ID_PRESTAZIONE` (`ID_PRESTAZIONE`),
   KEY `ID_PRESTAZIONE_2` (`ID_PRESTAZIONE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2503 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2504 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `properties`
 --
+
 CREATE TABLE IF NOT EXISTS `properties` (
   `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `CHIAVE` varchar(255) NOT NULL,
@@ -152,9 +172,11 @@ CREATE TABLE IF NOT EXISTS `properties` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `societa`
 --
+
 CREATE TABLE IF NOT EXISTS `societa` (
   `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `CODICE_FIDAL` varchar(5) NOT NULL DEFAULT '',
@@ -165,12 +187,14 @@ CREATE TABLE IF NOT EXISTS `societa` (
   `EMAIL` varchar(255) DEFAULT '',
   `SITO` varchar(255) DEFAULT '',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci' AUTO_INCREMENT=28 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci' AUTO_INCREMENT=29 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `tipo_misura`
 --
+
 CREATE TABLE IF NOT EXISTS `tipo_misura` (
   `ID_TIPO_MISURA` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `DESCRIZIONE` varchar(255) NOT NULL,
@@ -182,9 +206,11 @@ CREATE TABLE IF NOT EXISTS `tipo_misura` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `tipo_prestazione`
 --
+
 CREATE TABLE IF NOT EXISTS `tipo_prestazione` (
   `ID_TIPO_PRESTAZIONE` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `DESCRIZIONE` varchar(255) NOT NULL,
@@ -194,9 +220,11 @@ CREATE TABLE IF NOT EXISTS `tipo_prestazione` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
+
 --
 -- Struttura della tabella `user`
 --
+
 CREATE TABLE IF NOT EXISTS `user` (
   `ID_USER` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `USERNAME` varchar(255) NOT NULL,
