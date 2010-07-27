@@ -8,11 +8,10 @@ import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
 import org.sbelli.gecomp.console.bridges.view.CategoriaView;
+import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.console.categorie.bridges.CategoriaBridge;
 import org.sbelli.gecomp.console.categorie.controllers.CategoriaController;
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class CategoriaDelegate extends GenericDelegate {
@@ -23,7 +22,7 @@ public class CategoriaDelegate extends GenericDelegate {
 	private CategoriaBridge bridge = new CategoriaBridge();
 	
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
-		Categoria categoria = (Categoria)element;
+		CategoriaView categoria = (CategoriaView)element;
 		controller.checks(categoria);
 		
 		if (Eval.isNotNull(categoria)) {
@@ -42,7 +41,7 @@ public class CategoriaDelegate extends GenericDelegate {
 	
 	public void save(GecompModelObject element) throws GeCompException {		
 		try {
-			Categoria categoria = (Categoria)element;
+			CategoriaView categoria = (CategoriaView)element;
 			retrieve(categoria);
 			logger.info("Saving/updating Categoria...");
 			logger.debug("Customized Categoria = " + categoria);
@@ -62,7 +61,7 @@ public class CategoriaDelegate extends GenericDelegate {
 	
 	public void delete(GecompModelObject element) throws GeCompException {		
 		try {
-			Categoria categoria = (Categoria)element;
+			CategoriaView categoria = (CategoriaView)element;
 			bridge.delete(categoria);
 		} catch (Exception ex) {
 			logger.error(ex, "XXXXXXXXXXXX");
@@ -71,10 +70,10 @@ public class CategoriaDelegate extends GenericDelegate {
 	}
 
 	public CategoriaView get(Long id) throws GeCompException {
-		return new CategoriaView(bridge.get(id));
+		return bridge.get(id);
 	}
 
-	public List<CategoriaView> list(Gara gara) throws GeCompException {
+	public List<CategoriaView> list(GaraView gara) throws GeCompException {
 		try {
 			return bridge.list(gara);
 		} catch (Exception ex) {

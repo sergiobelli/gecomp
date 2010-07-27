@@ -25,7 +25,7 @@ public class ClassificaGaraDelegate extends ClassificaDelegate {
 	public ClassificaView getClassifica(Gara gara) throws GeCompException {
 		ClassificaGaraView classificaGara = new ClassificaGaraView();
 		classificaGara.setGara(new GaraView(gara));
-		classificaGara.setCategorie(categoriaDelegate.list(gara));
+		classificaGara.setCategorie(categoriaDelegate.list(classificaGara.getGara()));
 		classificaGara.setClassificaGenerale(prestazioneDelegate.list(classificaGara.getGara()));
 		
 		HashMap<CategoriaView, List<PrestazioneView>> classificheCategorie = new HashMap<CategoriaView, List<PrestazioneView>>();

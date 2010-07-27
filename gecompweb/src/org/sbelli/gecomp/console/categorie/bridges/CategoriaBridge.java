@@ -27,8 +27,8 @@ public class CategoriaBridge extends GenericBridge {
 		DbManagerFactory.getInstance().getCategoriaDao().update((Categoria)element);
 	}
 
-	public Categoria get(Long id) throws GeCompOrmException {
-		return DbManagerFactory.getInstance().getCategoriaDao().get(id);
+	public CategoriaView get(Long id) throws GeCompOrmException {
+		return new CategoriaView(DbManagerFactory.getInstance().getCategoriaDao().get(id));
 	}
 
 	public List<CategoriaView> list(Gara gara) throws GeCompOrmException {

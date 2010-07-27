@@ -16,6 +16,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.sbelli.gecomp.console.bridges.view.CategoriaView;
 import org.sbelli.gecomp.console.bridges.view.ClassificaCompetizioneView;
 import org.sbelli.gecomp.console.bridges.view.ClassificaGaraView;
 import org.sbelli.gecomp.console.bridges.view.IClassificaView;
@@ -58,24 +59,24 @@ public class ReportManager implements IReportManager {
 		writeReportToFile (report, nomeReport);
 	}
 	public void generateReport (IClassifica classifica) {
-
-		ClassificaCompetizione classificaCompetizione = (ClassificaCompetizione)classifica;
-		
-		report = new HSSFWorkbook();
-
-		titleStyle = getTitleStyle();
-		headerStyle = getHeaderStyle();
-		tableStyle = getTableStyle();
-
-		generateInformazioniSheet (classificaCompetizione.getCompetizione());
-		generateGareSheet (classificaCompetizione.getGare());
-		generateAtletiSheet (classificaCompetizione.getAtleti());
-		generateCategorieSheet (classificaCompetizione.getCategorie());
-		generateClassificaAssolutaSheet (classificaCompetizione.getClassificaAssolutaCompetizione());
-		generateClassificheDiCategoriaSheet (classificaCompetizione.getCategorie(), classificaCompetizione.getClassificheCompetizione());
-		generateClassificaDiSocietaSheet (classificaCompetizione);
-
-		writeReportToFile (report, classificaCompetizione.getCompetizione().getNome());
+//
+//		ClassificaCompetizione classificaCompetizione = (ClassificaCompetizione)classifica;
+//		
+//		report = new HSSFWorkbook();
+//
+//		titleStyle = getTitleStyle();
+//		headerStyle = getHeaderStyle();
+//		tableStyle = getTableStyle();
+//
+//		generateInformazioniSheet (classificaCompetizione.getCompetizione());
+//		generateGareSheet (classificaCompetizione.getGare());
+//		generateAtletiSheet (classificaCompetizione.getAtleti());
+//		generateCategorieSheet (classificaCompetizione.getCategorie());
+//		generateClassificaAssolutaSheet (classificaCompetizione.getClassificaAssolutaCompetizione());
+//		generateClassificheDiCategoriaSheet (classificaCompetizione.getCategorie(), classificaCompetizione.getClassificheCompetizione());
+//		generateClassificaDiSocietaSheet (classificaCompetizione);
+//
+//		writeReportToFile (report, classificaCompetizione.getCompetizione().getNome());
 	}
 
 	private void writeReportToFile (HSSFWorkbook report, String nomeCompetizione) {
@@ -107,7 +108,7 @@ public class ReportManager implements IReportManager {
 		// TODO Auto-generated method stub	  
 	}
 
-	private void generateClassificheDiCategoriaSheet (List<Categoria> categorie, Hashtable<Categoria, ClassificaCategoriaCompetizione> classificheCompetizione) {
+	private void generateClassificheDiCategoriaSheet (List<CategoriaView> categorie, Hashtable<Categoria, ClassificaCategoriaCompetizione> classificheCompetizione) {
 		int i = 0;
 		//Classifiche di Categoria
 		for (Categoria categoria : categorie) {
@@ -195,7 +196,7 @@ public class ReportManager implements IReportManager {
 		//Classifica assoluta
 	}
 
-	private void generateCategorieSheet (List<Categoria> categorie) {
+	protected void generateCategorieSheet (List<CategoriaView> categorie) {
 		int i = 0;
 		//Categorie
 		HSSFSheet categorieSheet = report.createSheet("Elenco Categorie Ammesse");
@@ -225,7 +226,7 @@ public class ReportManager implements IReportManager {
 		//Categorie
 	}
 
-	private void generateAtletiSheet (List<Atleta> atleti) {
+	protected void generateAtletiSheet (List<Atleta> atleti) {
 		int i = 0;
 		//Atleti
 		HSSFSheet atletiSheet = report.createSheet("Elenco Atleti Iscritti");
