@@ -6,11 +6,11 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
+import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.console.iscrizioni.delegates.IscrizioneDelegate;
 import org.sbelli.gecomp.console.prestazioni.delegates.PrestazioneDelegate;
 import org.sbelli.gecomp.console.user.GeCompUserSessionHandler;
 import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Gara;
 
 public abstract class GenericExecuter {
 
@@ -29,7 +29,7 @@ public abstract class GenericExecuter {
 	}
 
 	protected Boolean isSelectedGara() {return Eval.isNotNull(GeCompUserSessionHandler.getGeCompUserSession().getGara());}
-	protected Gara getSelectedGara() {return GeCompUserSessionHandler.getGeCompUserSession().getGara();}
+	protected GaraView getSelectedGara() {return new GaraView(GeCompUserSessionHandler.getGeCompUserSession().getGara());}
 	protected void checks4SelectedGara() throws GeCompException {
 		if (Eval.isNull(getSelectedGara())) {
 			throw new GeCompException("message.gara.non.selezionata");

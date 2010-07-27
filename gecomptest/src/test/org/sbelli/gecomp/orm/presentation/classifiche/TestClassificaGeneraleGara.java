@@ -2,7 +2,7 @@ package test.org.sbelli.gecomp.orm.presentation.classifiche;
 
 import java.util.List;
 
-import org.sbelli.gecomp.orm.dao.ClassificaManager;
+import org.sbelli.gecomp.orm.dao.ClassificaCompetizioneManager;
 import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Gara;
@@ -15,7 +15,7 @@ public class TestClassificaGeneraleGara {
 			Gara gara = DbManagerFactory.getInstance().getGaraDao().get(1l);
 			List<Prestazione> prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().list(gara);
 			
-			ClassificaGeneraleGara classificaGara = ClassificaManager.getInstance().getClassificaGeneraleGara(gara, prestazioni);
+			ClassificaGeneraleGara classificaGara = ClassificaCompetizioneManager.getInstance().getClassificaGeneraleGara(gara, prestazioni);
 			System.out.println(classificaGara.getClassificaGeneraleGara());
 			for (Prestazione p : classificaGara.getClassificaGeneraleGara()) {
 				System.out.println(

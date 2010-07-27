@@ -38,7 +38,7 @@ public class TestClassificaCategoriaGara {
 				);	
 			}
 			
-			//ClassificaCategoriaGara classificaGara = ClassificaManager.getInstance().getClassificaCategoriaGara(categoria, gara, prestazioni);
+			//ClassificaCategoriaGara classificaGara = ClassificaCompetizioneManager.getInstance().getClassificaCategoriaGara(categoria, gara, prestazioni);
 			//System.out.println(classificaGara);
 			
 		} catch (GeCompOrmException e) {

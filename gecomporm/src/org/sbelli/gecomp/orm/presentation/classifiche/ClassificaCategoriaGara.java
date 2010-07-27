@@ -2,7 +2,7 @@ package org.sbelli.gecomp.orm.presentation.classifiche;
 
 import java.util.List;
 
-import org.sbelli.gecomp.orm.dao.ClassificaManager;
+import org.sbelli.gecomp.orm.dao.ClassificaCompetizioneManager;
 import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.Prestazione;
@@ -28,7 +28,7 @@ public class ClassificaCategoriaGara implements IClassifica {
 	private List<Prestazione> classificaGara;
 	public List<Prestazione> getClassificaGara() { return classificaGara; }
 	public void setClassificaGara(List<Prestazione> classifica) {
-		classificaGara = ClassificaManager.ordina(classifica);
+		classificaGara = ClassificaCompetizioneManager.ordina(classifica);
 	}	
 
 }

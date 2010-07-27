@@ -6,6 +6,7 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
+import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
 import org.sbelli.gecomp.console.gare.bridges.GaraBridge;
 import org.sbelli.gecomp.console.gare.controllers.GaraController;
@@ -62,7 +63,7 @@ public class GaraDelegate extends GenericDelegate {
 		
 	}
 
-	public Gara get(Long idGara) throws GeCompException {
-		return bridge.get(idGara);
+	public GaraView get(Long idGara) throws GeCompException {
+		return new GaraView(bridge.get(idGara));
 	}
 }

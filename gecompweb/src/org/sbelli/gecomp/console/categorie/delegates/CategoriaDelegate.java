@@ -70,8 +70,8 @@ public class CategoriaDelegate extends GenericDelegate {
 		}
 	}
 
-	public Categoria get(Long id) throws GeCompException {
-		return bridge.get(id);
+	public CategoriaView get(Long id) throws GeCompException {
+		return new CategoriaView(bridge.get(id));
 	}
 
 	public List<CategoriaView> list(Gara gara) throws GeCompException {

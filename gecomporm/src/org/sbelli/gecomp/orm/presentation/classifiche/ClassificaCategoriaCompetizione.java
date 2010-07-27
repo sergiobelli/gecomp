@@ -5,7 +5,7 @@ import java.util.List;
 
 import net.sb.gecomp.utils.Eval;
 
-import org.sbelli.gecomp.orm.dao.ClassificaManager;
+import org.sbelli.gecomp.orm.dao.ClassificaCompetizioneManager;
 import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Competizione;
 import org.sbelli.gecomp.orm.model.Prestazione;
@@ -65,7 +65,7 @@ public class ClassificaCategoriaCompetizione implements IClassifica {
 		}
 		
 		//Ordino la classifica generata...
-		classificaCompetizione = ClassificaManager.ordina(classificaCompetizione);
+		classificaCompetizione = ClassificaCompetizioneManager.ordina(classificaCompetizione);
 				
 	}
 }

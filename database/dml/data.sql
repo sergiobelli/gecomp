@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: 27 lug, 2010 at 01:15 PM
+-- Generato il: 27 lug, 2010 at 01:20 PM
 -- Versione MySQL: 5.1.36
 -- Versione PHP: 5.3.0
 
@@ -4138,7 +4138,7 @@ INSERT INTO `prestazione` (`ID_PRESTAZIONE`, `ISCRIZIONE`, `TIPO_PRESTAZIONE`, `
 (1156, 1156, 1, 1, 4498217),
 (1157, 1157, 1, 1, 8239176),
 (1158, 1158, 1, 1, 4238345),
-(1159, 1159, 1, 1, 9741529),
+(1159, 1159, 6, 1, 9741529),
 (1160, 1160, 1, 1, 3983984),
 (1161, 1161, 1, 1, 8032690),
 (1162, 1162, 1, 1, 5226123),

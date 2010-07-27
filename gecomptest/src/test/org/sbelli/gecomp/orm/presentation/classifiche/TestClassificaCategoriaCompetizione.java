@@ -26,10 +26,10 @@ public class TestClassificaCategoriaCompetizione {
 //			List<Gara> gare = DbManagerFactory.getInstance().getGaraDao().list(competizione);
 //			List<Prestazione> prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().list(competizione, JPSM);
 //			
-//			ClassificaCompetizione cc = ClassificaManager.getInstance().getClassificaCompetizione(competizione);
+//			ClassificaCompetizione cc = ClassificaCompetizioneManager.getInstance().getClassificaCompetizione(competizione);
 //			System.out.println(cc);
 //			
-////			ClassificaCategoriaCompetizione classificaCompetizione = ClassificaManager.getInstance().getClassificaCategoriaCompetizione(JPSM, competizione, gare, prestazioni);
+////			ClassificaCategoriaCompetizione classificaCompetizione = ClassificaCompetizioneManager.getInstance().getClassificaCategoriaCompetizione(JPSM, competizione, gare, prestazioni);
 ////			System.out.println(classificaCompetizione);
 			
 			long end = System.currentTimeMillis();

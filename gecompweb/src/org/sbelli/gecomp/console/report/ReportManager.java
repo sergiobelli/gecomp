@@ -16,6 +16,9 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.sbelli.gecomp.console.bridges.view.ClassificaCompetizioneView;
+import org.sbelli.gecomp.console.bridges.view.ClassificaGaraView;
+import org.sbelli.gecomp.console.bridges.view.IClassificaView;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Atleta;
 import org.sbelli.gecomp.orm.model.Categoria;
@@ -34,16 +37,31 @@ public class ReportManager implements IReportManager {
 
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 
-	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	private HSSFCellStyle titleStyle;
-	private HSSFCellStyle headerStyle;
-	private HSSFCellStyle tableStyle;
-	private HSSFWorkbook classificaCompetizioneReport;
+	protected SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	protected HSSFCellStyle titleStyle;
+	protected HSSFCellStyle headerStyle;
+	protected HSSFCellStyle tableStyle;
+	protected HSSFWorkbook report;
+	
+	public void generateReport (IClassificaView classifica) {
+		HSSFWorkbook report = null;
+		String nomeReport = "";
+		if (classifica instanceof ClassificaGaraView) {
+			ClassificaGaraView classificaGaraView = (ClassificaGaraView)classifica;
+			report = new GaraReportManager().getReport(classificaGaraView);
+			nomeReport = classificaGaraView.getGara().getNome();
+		} else if (classifica instanceof ClassificaCompetizioneView) {
+			ClassificaCompetizioneView classificaCompetizioneView = (ClassificaCompetizioneView)classifica;
+			report = new CompetizioneReportManager().getReport(classificaCompetizioneView);
+			nomeReport = classificaCompetizioneView.getCompetizione().getNome();
+		}
+		writeReportToFile (report, nomeReport);
+	}
 	public void generateReport (IClassifica classifica) {
 
 		ClassificaCompetizione classificaCompetizione = (ClassificaCompetizione)classifica;
 		
-		classificaCompetizioneReport = new HSSFWorkbook();
+		report = new HSSFWorkbook();
 
 		titleStyle = getTitleStyle();
 		headerStyle = getHeaderStyle();
@@ -57,10 +75,10 @@ public class ReportManager implements IReportManager {
 		generateClassificheDiCategoriaSheet (classificaCompetizione.getCategorie(), classificaCompetizione.getClassificheCompetizione());
 		generateClassificaDiSocietaSheet (classificaCompetizione);
 
-		writeReportToFile (classificaCompetizione.getCompetizione().getNome());
+		writeReportToFile (report, classificaCompetizione.getCompetizione().getNome());
 	}
 
-	private void writeReportToFile (String nomeCompetizione) {
+	private void writeReportToFile (HSSFWorkbook report, String nomeCompetizione) {
 		try {
 			// Write the output to a file
 
@@ -78,7 +96,7 @@ public class ReportManager implements IReportManager {
 			}
 
 			FileOutputStream fileOut = new FileOutputStream(file);
-			classificaCompetizioneReport.write(fileOut);
+			report.write(fileOut);
 			fileOut.close();
 		} catch (Exception ex) {
 			GeCompExceptionManager.manageException(logger, ex);
@@ -97,7 +115,7 @@ public class ReportManager implements IReportManager {
 			i = 0;
 			ClassificaCategoriaCompetizione classificaCategoriaCompetizione = classificheCompetizione.get(categoria);
 
-			HSSFSheet classificaCategoriaCompetizioneSheet = classificaCompetizioneReport.createSheet("Classifica Categoria");
+			HSSFSheet classificaCategoriaCompetizioneSheet = report.createSheet("Classifica Categoria");
 
 			HSSFCell classificaCategoriaCompetizioneTitle = classificaCategoriaCompetizioneSheet.createRow((short) i).createCell((short) 0);
 			classificaCategoriaCompetizioneTitle.setCellValue("Classifica Categoria:" + classificaCategoriaCompetizione.getCategoria().getNomeCategoria());
@@ -131,7 +149,7 @@ public class ReportManager implements IReportManager {
 	private void generateClassificaAssolutaSheet (List<PrestazioneInCompetizione> prestazioniAssoluteInCompetizione) {
 		int i = 0;
 		//Classifica assoluta
-		HSSFSheet classificaAssolutaSheet = classificaCompetizioneReport.createSheet("Classifica Assoluta");
+		HSSFSheet classificaAssolutaSheet = report.createSheet("Classifica Assoluta");
 
 		HSSFCell classificaAssolutaTitle = classificaAssolutaSheet.createRow((short) i).createCell((short) 0);
 		classificaAssolutaTitle.setCellValue("Classifica Assoluta");
@@ -180,7 +198,7 @@ public class ReportManager implements IReportManager {
 	private void generateCategorieSheet (List<Categoria> categorie) {
 		int i = 0;
 		//Categorie
-		HSSFSheet categorieSheet = classificaCompetizioneReport.createSheet("Elenco Categorie Ammesse");
+		HSSFSheet categorieSheet = report.createSheet("Elenco Categorie Ammesse");
 
 		HSSFCell categorieTitle = categorieSheet.createRow((short) i).createCell((short) 0);
 		categorieTitle.setCellValue("Elenco Categorie Ammesse");
@@ -210,7 +228,7 @@ public class ReportManager implements IReportManager {
 	private void generateAtletiSheet (List<Atleta> atleti) {
 		int i = 0;
 		//Atleti
-		HSSFSheet atletiSheet = classificaCompetizioneReport.createSheet("Elenco Atleti Iscritti");
+		HSSFSheet atletiSheet = report.createSheet("Elenco Atleti Iscritti");
 
 		HSSFCell atletiTitle = atletiSheet.createRow((short) i).createCell((short) 0);
 		atletiTitle.setCellValue("Elenco Atleti Iscritti");
@@ -248,7 +266,7 @@ public class ReportManager implements IReportManager {
 	private void generateGareSheet (List<Gara> gare) {
 		int i = 0;
 		//Gare
-		HSSFSheet gareSheet = classificaCompetizioneReport.createSheet("Elenco Gare");
+		HSSFSheet gareSheet = report.createSheet("Elenco Gare");
 
 		HSSFCell gareTitle = gareSheet.createRow((short) i).createCell((short) 0);
 		gareTitle.setCellValue("Elenco Gare");
@@ -282,7 +300,7 @@ public class ReportManager implements IReportManager {
 	private void generateInformazioniSheet (Competizione competizione) {
 		int i = 0;
 		//Informazioni
-		HSSFSheet informazioniSheet = classificaCompetizioneReport.createSheet("Informazioni");
+		HSSFSheet informazioniSheet = report.createSheet("Informazioni");
 
 		HSSFCell informazioniTitle = informazioniSheet.createRow((short) i).createCell((short) 0);
 		informazioniTitle.setCellValue(competizione.getNome());
@@ -317,11 +335,11 @@ public class ReportManager implements IReportManager {
 		//Informazioni
 	}
 
-	private HSSFCellStyle getTitleStyle () {
+	protected HSSFCellStyle getTitleStyle () {
 
 		//title style
-		HSSFCellStyle titleStyle = classificaCompetizioneReport.createCellStyle();
-		HSSFFont titleFont = classificaCompetizioneReport.createFont();
+		HSSFCellStyle titleStyle = report.createCellStyle();
+		HSSFFont titleFont = report.createFont();
 		titleFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
 		titleStyle.setFont(titleFont);
 		//title style
@@ -329,11 +347,11 @@ public class ReportManager implements IReportManager {
 		return titleStyle;
 	}
 
-	private HSSFCellStyle getHeaderStyle () {
+	protected HSSFCellStyle getHeaderStyle () {
 
 		//header style                        
-		HSSFCellStyle headerStyle = classificaCompetizioneReport.createCellStyle();
-		HSSFFont headerFont = classificaCompetizioneReport.createFont();
+		HSSFCellStyle headerStyle = report.createCellStyle();
+		HSSFFont headerFont = report.createFont();
 		headerFont.setColor(HSSFColor.WHITE.index);
 		headerFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
 		headerStyle.setFont(headerFont);
@@ -353,10 +371,10 @@ public class ReportManager implements IReportManager {
 		return headerStyle;
 	}	
 
-	private HSSFCellStyle getTableStyle () {
+	protected HSSFCellStyle getTableStyle () {
 
 		//table style
-		HSSFCellStyle tableStyle = classificaCompetizioneReport.createCellStyle();
+		HSSFCellStyle tableStyle = report.createCellStyle();
 		tableStyle.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
 		tableStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 		tableStyle.setBottomBorderColor(HSSFColor.BLACK.index);

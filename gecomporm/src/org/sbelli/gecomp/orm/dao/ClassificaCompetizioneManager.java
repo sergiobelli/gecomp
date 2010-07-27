@@ -17,15 +17,15 @@ import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCategoriaCompeti
 import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
 import org.sbelli.gecomp.orm.presentation.classifiche.PrestazioneInCompetizione;
 
-public class ClassificaManager {
+public class ClassificaCompetizioneManager {
 	
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 	
-	private static ClassificaManager instance;
-	private ClassificaManager() {}
-	public static ClassificaManager getInstance() {
+	private static ClassificaCompetizioneManager instance;
+	private ClassificaCompetizioneManager() {}
+	public static ClassificaCompetizioneManager getInstance() {
 		if (instance == null) {
-			instance = new ClassificaManager();
+			instance = new ClassificaCompetizioneManager();
 		}
 		return instance;
 	}
@@ -130,7 +130,7 @@ public class ClassificaManager {
 		tmpDisordinata.addAll(disordinata);
 		
 		while (tmpDisordinata.size() > 0) {
-			Prestazione first = ClassificaManager.getFirst(tmpDisordinata);
+			Prestazione first = ClassificaCompetizioneManager.getFirst(tmpDisordinata);
 			ordinata.add(first);
 			tmpDisordinata.remove(first);
 		}
@@ -147,7 +147,7 @@ public class ClassificaManager {
 		tmpDisordinata.addAll(disordinata);
 		
 		while (tmpDisordinata.size() > 0) {
-			PrestazioneInCompetizione first = ClassificaManager.getFirstInCompetizione(tmpDisordinata);
+			PrestazioneInCompetizione first = ClassificaCompetizioneManager.getFirstInCompetizione(tmpDisordinata);
 			ordinata.add(first);
 			tmpDisordinata.remove(first);
 		}

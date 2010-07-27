@@ -1,7 +1,7 @@
 package org.sbelli.gecomp.console.user;
 
+import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.User;
 import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
 
@@ -18,9 +18,9 @@ public class GeCompUserSession {
 	public Competizione getCompetizione() { return competizione; }
 	public void setCompetizione(Competizione competizione) { this.competizione = competizione; }
 
-	private Gara gara;
-	public Gara getGara() {return gara;}
-	public void setGara(Gara gara) {this.gara = gara;}
+	private GaraView gara;
+	public GaraView getGara() {return gara;}
+	public void setGara(GaraView gara) {this.gara = gara;}
 
 	private ClassificaCompetizione classificaCompetizione;
 	public ClassificaCompetizione getClassificaCompetizione() { return classificaCompetizione; }

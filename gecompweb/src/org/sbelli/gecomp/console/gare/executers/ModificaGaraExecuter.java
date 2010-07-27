@@ -51,8 +51,7 @@ public class ModificaGaraExecuter extends GaraExecuter {
 
 	public String selezionaGara () {
 		try {
-			Gara gara = delegate.get(idGara);
-			GeCompUserSessionHandler.getGeCompUserSession().setGara(gara);
+			GeCompUserSessionHandler.getGeCompUserSession().setGara(delegate.get(idGara));
 		} catch (Exception e) {
 			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.gara.selezionata.ko");
 		}

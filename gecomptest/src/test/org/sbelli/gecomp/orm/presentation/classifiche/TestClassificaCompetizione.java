@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sbelli.gecomp.console.report.ReportManager;
-import org.sbelli.gecomp.orm.dao.ClassificaManager;
+import org.sbelli.gecomp.orm.dao.ClassificaCompetizioneManager;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Competizione;
 import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
@@ -17,7 +17,7 @@ public class TestClassificaCompetizione {
 			for (Competizione competizione : competizioni) {
 				
 				long start = System.currentTimeMillis();
-				ClassificaCompetizione classificaCompetizione = ClassificaManager.getInstance().getClassificaCompetizione(competizione);
+				ClassificaCompetizione classificaCompetizione = ClassificaCompetizioneManager.getInstance().getClassificaCompetizione(competizione);
 				long end = System.currentTimeMillis();
 				System.out.println("time taken = " + (end - start));
 				
@@ -29,7 +29,7 @@ public class TestClassificaCompetizione {
 //			Competizione competizione = CompetizioneDao.getInstance().list().iterator().next();
 //				
 //				long start = System.currentTimeMillis();
-//				ClassificaCompetizione classificaCompetizione = ClassificaManager.getInstance().getClassificaCompetizione(competizione);
+//				ClassificaCompetizione classificaCompetizione = ClassificaCompetizioneManager.getInstance().getClassificaCompetizione(competizione);
 //				long end = System.currentTimeMillis();
 //				System.out.println("time taken = " + (end - start));
 //				

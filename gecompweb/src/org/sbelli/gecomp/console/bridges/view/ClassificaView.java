@@ -1,5 +1,5 @@
 package org.sbelli.gecomp.console.bridges.view;
 
-public class ClassificaView {
+public class ClassificaView implements IClassificaView {
 
 }

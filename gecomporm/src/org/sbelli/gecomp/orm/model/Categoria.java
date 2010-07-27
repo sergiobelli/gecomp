@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author sbelli
  */
-public class Categoria extends GecompModelObject {
+public class Categoria extends GecompModelObject implements Comparable {
 
 	private Long idCategoria;
 	public Long getIdCategoria() {return idCategoria;}
@@ -58,45 +58,67 @@ public class Categoria extends GecompModelObject {
 		if (getClass() != obj.getClass())
 			return false;
 		Categoria other = (Categoria) obj;
-		if (annoFine == null) {
-			if (other.annoFine != null)
-				return false;
-		} else if (!annoFine.equals(other.annoFine))
-			return false;
-		if (annoPartenza == null) {
-			if (other.annoPartenza != null)
-				return false;
-		} else if (!annoPartenza.equals(other.annoPartenza))
-			return false;
-		if (fine == null) {
-			if (other.fine != null)
-				return false;
-		} else if (!fine.equals(other.fine))
-			return false;
-		if (idCategoria == null) {
-			if (other.idCategoria != null)
-				return false;
-		} else if (!idCategoria.equals(other.idCategoria))
-			return false;
-		if (inizio == null) {
-			if (other.inizio != null)
-				return false;
-		} else if (!inizio.equals(other.inizio))
-			return false;
+		
 		if (nomeCategoria == null) {
 			if (other.nomeCategoria != null)
 				return false;
 		} else if (!nomeCategoria.equals(other.nomeCategoria))
 			return false;
+		
 		if (sesso == null) {
 			if (other.sesso != null)
 				return false;
 		} else if (!sesso.equals(other.sesso))
 			return false;
+		
+		if (annoFine == null) {
+			if (other.annoFine != null)
+				return false;
+		} else if (!annoFine.equals(other.annoFine))
+			return false;
+		
+		if (annoPartenza == null) {
+			if (other.annoPartenza != null)
+				return false;
+		} else if (!annoPartenza.equals(other.annoPartenza))
+			return false;
+		
+		if (fine == null) {
+			if (other.fine != null)
+				return false;
+		} else if (!fine.equals(other.fine))
+			return false;
+		
+		if (inizio == null) {
+			if (other.inizio != null)
+				return false;
+		} else if (!inizio.equals(other.inizio))
+			return false;
+
+		if (idCategoria == null) {
+			if (other.idCategoria != null)
+				return false;
+		} else if (!idCategoria.equals(other.idCategoria))
+			return false;
+		
 		return true;
 	}
-
-  
-
 	
+	public int compareTo(Object o) {
+		if (!(o instanceof Categoria)) {
+			return 0;
+		} else {
+			Categoria cat = (Categoria)o;
+			if (this.getSesso().equals(cat.getSesso())) {
+				if (this.getNomeCategoria().equals(cat.getNomeCategoria())) {
+					return this.getIdCategoria().compareTo(cat.getIdCategoria());
+				} else {
+					return this.getNomeCategoria().compareTo(cat.getNomeCategoria());
+				}
+			} else {
+				return this.getSesso().compareTo(cat.getSesso());
+			}
+		}
+	}
+
 }
