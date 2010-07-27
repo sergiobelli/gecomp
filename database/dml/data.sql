@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: 26 lug, 2010 at 02:39 PM
+-- Generato il: 27 lug, 2010 at 01:15 PM
 -- Versione MySQL: 5.1.36
 -- Versione PHP: 5.3.0
 
@@ -2988,7 +2988,7 @@ INSERT INTO `prestazione` (`ID_PRESTAZIONE`, `ISCRIZIONE`, `TIPO_PRESTAZIONE`, `
 (6, 6, 3, 1, 5897117),
 (7, 7, 1, 1, 8174350),
 (8, 8, 1, 1, 9719410),
-(9, 9, 5, 1, 5969343),
+(9, 9, 1, 1, 5969343),
 (10, 10, 1, 1, 3205560),
 (11, 11, 1, 1, 2978411),
 (12, 12, 1, 1, 2807443),
@@ -5538,11 +5538,12 @@ INSERT INTO `tipo_misura` (`ID_TIPO_MISURA`, `DESCRIZIONE`, `UNITA_MISURA`, `MOD
 --
 
 INSERT INTO `tipo_prestazione` (`ID_TIPO_PRESTAZIONE`, `DESCRIZIONE`) VALUES
-(1, 'VALIDA'),
-(2, 'RITIRO'),
-(3, 'SQUALIFICA'),
+(1, 'CLASSIFICATO'),
+(2, 'RITIRATO'),
+(3, 'SQUALIFICATO'),
 (4, 'NON CLASSIFICATO'),
-(5, 'NON PARTECIPATO');
+(5, 'NON PARTECIPATO'),
+(6, 'NON COMPETITIVO');
 
 --
 -- Dump dei dati per la tabella `user`
