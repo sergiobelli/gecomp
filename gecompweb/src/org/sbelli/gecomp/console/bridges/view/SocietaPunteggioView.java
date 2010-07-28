@@ -2,7 +2,7 @@ package org.sbelli.gecomp.console.bridges.view;
 
 import org.sbelli.gecomp.orm.model.Societa;
 
-public class SocietaPunteggioView implements Comparable {
+public class SocietaPunteggioView extends SocietaView implements Comparable {
 
 	private Societa societa;
 	private Integer punteggio;

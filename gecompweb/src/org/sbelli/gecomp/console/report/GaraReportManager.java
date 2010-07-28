@@ -2,6 +2,7 @@ package org.sbelli.gecomp.console.report;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import net.sb.gecomp.utils.Eval;
 
@@ -11,8 +12,10 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.sbelli.gecomp.console.bridges.view.CategoriaView;
 import org.sbelli.gecomp.console.bridges.view.ClassificaGaraView;
+import org.sbelli.gecomp.console.bridges.view.ClassificaSocietaView;
 import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
+import org.sbelli.gecomp.orm.model.Societa;
 
 public class GaraReportManager extends ReportManager {
 
@@ -29,7 +32,132 @@ public class GaraReportManager extends ReportManager {
 		generateCategorieSheet(classificaGaraView.getCategorie());
 		generateClassificaGeneraleSheet(classificaGaraView.getClassificaGenerale());
 		generateClassificheDiCategoriaSheet(classificaGaraView.getClassificheCategorie());
+		generateClassificheDiSocietaSheet(classificaGaraView.getClassificaSocieta());
 		return report;
+	}
+
+	private void generateClassificheDiSocietaSheet(
+			ClassificaSocietaView classificaSocieta) {
+
+		generateClassificheDiSocietaIscrittiSheet(classificaSocieta);
+		generateClassificheDiSocietaArrivatiSheet(classificaSocieta);
+		generateClassificheDiSocietaPunteggioSheet(classificaSocieta);
+	}
+
+	private void generateClassificheDiSocietaPunteggioSheet(
+			ClassificaSocietaView classificaSocieta) {
+		int i;
+		HSSFSheet sheet;
+		HSSFCell title;
+		int pos;
+		//		Societa' a punti
+		i = 0;
+		sheet = report.createSheet("Societa' Punteggio");
+
+		title = sheet.createRow((short) i).createCell((short) 0);
+		title.setCellValue("Classifica Societa' a punteggio");
+		title.setCellStyle(headerStyle);
+
+		sheet.createRow((short) i).createCell((short) 0).setCellValue("Posizione");
+		sheet.getRow((short) i).getCell((short) 0).setCellStyle(headerStyle);
+
+		sheet.getRow((short) i).createCell((short) 1).setCellValue("Societa'");
+		sheet.getRow((short) i).getCell((short) 1).setCellStyle(headerStyle);
+
+		sheet.getRow((short) i).createCell((short) 2).setCellValue("Punteggio");
+		sheet.getRow((short) i).getCell((short) 2).setCellStyle(headerStyle);
+
+
+		i++;
+		pos = 1;
+		for (Entry<Societa, Integer> o : classificaSocieta.getClassificaSocietaPunteggio().entrySet()) {
+
+			sheet.createRow((short) i).createCell((short) 0).setCellValue(pos);
+			sheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+			sheet.createRow((short) i).createCell((short) 1).setCellValue(o.getKey().getDenominazione());
+			sheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+			sheet.createRow((short) i).createCell((short) 2).setCellValue(o.getValue());
+			sheet.getRow((short) i).getCell((short) 2).setCellStyle(tableStyle);
+
+			i++;
+			pos++;
+		}
+	}
+
+	private void generateClassificheDiSocietaArrivatiSheet(
+			ClassificaSocietaView classificaSocieta) {
+		int i;
+		HSSFSheet sheet;
+		HSSFCell title;
+		int pos;
+		//		Societa' classificate
+		i = 0;
+		sheet = report.createSheet("Societa' Arrivati");
+
+		title = sheet.createRow((short) i).createCell((short) 0);
+		title.setCellValue("Classifica Societa' Arrivati");
+		title.setCellStyle(headerStyle);
+
+		sheet.createRow((short) i).createCell((short) 0).setCellValue("Posizione");
+		sheet.getRow((short) i).getCell((short) 0).setCellStyle(headerStyle);
+
+		sheet.getRow((short) i).createCell((short) 1).setCellValue("Societa'");
+		sheet.getRow((short) i).getCell((short) 1).setCellStyle(headerStyle);
+
+		sheet.getRow((short) i).createCell((short) 2).setCellValue("Numero arrivati");
+		sheet.getRow((short) i).getCell((short) 2).setCellStyle(headerStyle);
+
+
+		i++;
+		pos = 1;
+		for (Entry<Societa, Integer> o : classificaSocieta.getClassificaSocietaClassificate().entrySet()) {
+
+			sheet.createRow((short) i).createCell((short) 0).setCellValue(pos);
+			sheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+			sheet.createRow((short) i).createCell((short) 1).setCellValue(o.getKey().getDenominazione());
+			sheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+			sheet.createRow((short) i).createCell((short) 2).setCellValue(o.getValue());
+			sheet.getRow((short) i).getCell((short) 2).setCellStyle(tableStyle);
+
+			i++;
+			pos++;
+		}
+	}
+
+	private void generateClassificheDiSocietaIscrittiSheet(
+			ClassificaSocietaView classificaSocieta) {
+		//		Societa' iscritte
+		int i = 0;
+		HSSFSheet sheet = report.createSheet("Societa' Iscritti");
+
+		HSSFCell title = sheet.createRow((short) i).createCell((short) 0);
+		title.setCellValue("Classifica Societa' Iscritti");
+		title.setCellStyle(headerStyle);
+
+		sheet.createRow((short) i).createCell((short) 0).setCellValue("Posizione");
+		sheet.getRow((short) i).getCell((short) 0).setCellStyle(headerStyle);
+
+		sheet.getRow((short) i).createCell((short) 1).setCellValue("Societa'");
+		sheet.getRow((short) i).getCell((short) 1).setCellStyle(headerStyle);
+
+		sheet.getRow((short) i).createCell((short) 2).setCellValue("Numero iscritti");
+		sheet.getRow((short) i).getCell((short) 2).setCellStyle(headerStyle);
+
+
+		i++;
+		int pos = 1;
+		for (Entry<Societa, Integer> o : classificaSocieta.getClassificaSocietaIscritte().entrySet()) {
+
+			sheet.createRow((short) i).createCell((short) 0).setCellValue(pos);
+			sheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+			sheet.createRow((short) i).createCell((short) 1).setCellValue(o.getKey().getDenominazione());
+			sheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+			sheet.createRow((short) i).createCell((short) 2).setCellValue(o.getValue());
+			sheet.getRow((short) i).getCell((short) 2).setCellStyle(tableStyle);
+
+			i++;
+			pos++;
+		}
 	}
 
 	private void generateInformazioniSheet (GaraView gara) {
@@ -75,28 +203,28 @@ public class GaraReportManager extends ReportManager {
 
 		sheet.createRow((short) i).createCell((short) 0).setCellValue("Posizione");
 		sheet.getRow((short) i).getCell((short) 0).setCellStyle(headerStyle);
-		
+
 		sheet.getRow((short) i).createCell((short) 1).setCellValue("Atleta");
 		sheet.getRow((short) i).getCell((short) 1).setCellStyle(headerStyle);
-		
+
 		sheet.getRow((short) i).createCell((short) 2).setCellValue("Sesso");
 		sheet.getRow((short) i).getCell((short) 2).setCellStyle(headerStyle);
-		
+
 		sheet.getRow((short) i).createCell((short) 3).setCellValue("Anno Nascita");
 		sheet.getRow((short) i).getCell((short) 3).setCellStyle(headerStyle);
-		
+
 		sheet.getRow((short) i).createCell((short) 4).setCellValue("Categoria");
 		sheet.getRow((short) i).getCell((short) 4).setCellStyle(headerStyle);
-		
+
 		sheet.getRow((short) i).createCell((short) 5).setCellValue("Societa");
 		sheet.getRow((short) i).getCell((short) 5).setCellStyle(headerStyle);
-		
+
 		sheet.getRow((short) i).createCell((short) 6).setCellValue("Tipo Prstazione");
 		sheet.getRow((short) i).getCell((short) 6).setCellStyle(headerStyle);
-		
+
 		sheet.getRow((short) i).createCell((short) 7).setCellValue("Tempo");
 		sheet.getRow((short) i).getCell((short) 7).setCellStyle(headerStyle);
-		
+
 		i++;
 
 		int pos = 1;
@@ -118,7 +246,7 @@ public class GaraReportManager extends ReportManager {
 			sheet.getRow((short) i).getCell((short) 6).setCellStyle(tableStyle);
 			sheet.createRow((short) i).createCell((short) 7).setCellValue(prest.getValoreMisuraFormatted());
 			sheet.getRow((short) i).getCell((short) 7).setCellStyle(tableStyle);
-			
+
 			i++;
 			pos++;
 		}
@@ -189,5 +317,5 @@ public class GaraReportManager extends ReportManager {
 		}
 		//Classifiche di Categoria
 	}
-	
+
 }
