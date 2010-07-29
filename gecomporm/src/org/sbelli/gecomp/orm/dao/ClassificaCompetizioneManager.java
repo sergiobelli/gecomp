@@ -17,6 +17,10 @@ import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCategoriaCompeti
 import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
 import org.sbelli.gecomp.orm.presentation.classifiche.PrestazioneInCompetizione;
 
+/**
+ * @author sbelli
+ * @deprecated tutte queste attivita' devono essere fatte a front-end
+ */
 public class ClassificaCompetizioneManager {
 	
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());

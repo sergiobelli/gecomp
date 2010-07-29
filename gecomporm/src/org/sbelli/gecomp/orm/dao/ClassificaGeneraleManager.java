@@ -3,14 +3,18 @@ package org.sbelli.gecomp.orm.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.Prestazione;
 import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaGeneraleGara;
 
+/**
+ * @author sbelli
+ * @deprecated tutte queste attivita' devono essere fatte a front-end
+ */
 public class ClassificaGeneraleManager {
 	
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());

@@ -3,7 +3,6 @@ package org.sbelli.gecomp.orm.presentation.classifiche;
 import java.util.Hashtable;
 import java.util.List;
 
-import org.sbelli.gecomp.console.bridges.view.CategoriaView;
 import org.sbelli.gecomp.orm.model.Atleta;
 import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Competizione;
@@ -28,9 +27,9 @@ public class ClassificaCompetizione implements IClassifica {
 	/**
 	 * Lista delle categorie ammesse alla competizione
 	 */
-	private List<CategoriaView> categorie;
-	public List<CategoriaView> getCategorie() { return categorie; }
-	public void setCategorie(List<CategoriaView> categorie) { this.categorie = categorie; }
+	private List<Categoria> categorie;
+	public List<Categoria> getCategorie() { return categorie; }
+	public void setCategorie(List<Categoria> categorie) { this.categorie = categorie; }
 	
 	/**
 	 * Lista delle gare della competizione

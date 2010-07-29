@@ -9,6 +9,10 @@ import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.Prestazione;
 import org.sbelli.gecomp.orm.presentation.classifiche.PrestazioneInCompetizione;
 
+/**
+ * @author sbelli
+ * @deprecated tutte queste attivita' devono essere fatte a front-end
+ */
 public class ClassificaAssolutaManager {
 	
 	/**
