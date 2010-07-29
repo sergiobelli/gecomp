@@ -165,12 +165,12 @@
    
    <managed-bean> 
       <managed-bean-name>GeCompUserSession</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.user.GeCompUserSession</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.user.GeCompUserSession</managed-bean-class> 
       <managed-bean-scope>session</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>GeCompMenu</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.menu.GeCompMenu</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.menu.GeCompMenu</managed-bean-class> 
       <managed-bean-scope>session</managed-bean-scope> 
    </managed-bean>
 

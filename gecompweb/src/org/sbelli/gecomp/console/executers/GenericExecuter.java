@@ -5,11 +5,11 @@ import javax.faces.component.html.HtmlDataTable;
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.user.GeCompUserSessionHandler;
 
 import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.console.iscrizioni.delegates.IscrizioneDelegate;
 import org.sbelli.gecomp.console.prestazioni.delegates.PrestazioneDelegate;
-import org.sbelli.gecomp.console.user.GeCompUserSessionHandler;
 import org.sbelli.gecomp.orm.model.Competizione;
 
 public abstract class GenericExecuter {

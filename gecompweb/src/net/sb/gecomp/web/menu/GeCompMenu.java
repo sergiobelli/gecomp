@@ -1,9 +1,9 @@
-package org.sbelli.gecomp.console.menu;
+package net.sb.gecomp.web.menu;
 
 import net.sb.gecomp.exceptions.GeCompException;
 
 import org.sbelli.gecomp.console.executers.GenericExecuter;
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 /**
  * @author S.BELLI

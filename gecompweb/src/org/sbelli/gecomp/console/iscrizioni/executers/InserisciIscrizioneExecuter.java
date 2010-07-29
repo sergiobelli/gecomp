@@ -1,6 +1,7 @@
 package org.sbelli.gecomp.console.iscrizioni.executers;
 
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
+
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Atleta;
 import org.sbelli.gecomp.orm.model.Iscrizione;

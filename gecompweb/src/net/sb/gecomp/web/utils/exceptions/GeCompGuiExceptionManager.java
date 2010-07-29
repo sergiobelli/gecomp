@@ -1,12 +1,12 @@
-package org.sbelli.gecomp.console.utils.exceptions;
+package net.sb.gecomp.web.utils.exceptions;
 
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.exceptions.MessageSeverity;
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.utils.guimessages.GuiMessageHandler;
 
-import org.sbelli.gecomp.console.utils.guimessages.GuiMessageHandler;
 
 public class GeCompGuiExceptionManager {
 

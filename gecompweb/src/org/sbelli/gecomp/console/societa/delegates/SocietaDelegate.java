@@ -5,11 +5,11 @@ import java.util.List;
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
 import org.sbelli.gecomp.console.societa.bridges.SocietaBridge;
 import org.sbelli.gecomp.console.societa.controllers.SocietaController;
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 import org.sbelli.gecomp.orm.model.Societa;
 

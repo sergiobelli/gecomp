@@ -1,10 +1,11 @@
-package org.sbelli.gecomp.console.report.gara;
+package net.sb.gecomp.web.report.gara;
 
 import java.text.SimpleDateFormat;
 
+import net.sb.gecomp.web.report.ReportManager;
+
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.sbelli.gecomp.console.report.ReportManager;
 
 public class ReportGaraManager extends ReportManager {
 	

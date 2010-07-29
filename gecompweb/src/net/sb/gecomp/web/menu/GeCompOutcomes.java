@@ -1,4 +1,4 @@
-package org.sbelli.gecomp.console.menu;
+package net.sb.gecomp.web.menu;
 
 public class GeCompOutcomes {
 

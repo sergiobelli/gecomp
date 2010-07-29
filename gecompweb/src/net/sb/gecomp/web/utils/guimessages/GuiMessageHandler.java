@@ -1,4 +1,4 @@
-package org.sbelli.gecomp.console.utils.guimessages;
+package net.sb.gecomp.web.utils.guimessages;
 
 import java.text.MessageFormat;
 import java.util.Locale;

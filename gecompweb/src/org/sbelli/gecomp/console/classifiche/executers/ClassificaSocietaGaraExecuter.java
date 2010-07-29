@@ -12,13 +12,13 @@ import javax.faces.model.SelectItem;
 
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.menu.GeCompOutcomes;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 import org.sbelli.gecomp.console.bridges.view.ClassificaSocietaView;
 import org.sbelli.gecomp.console.bridges.view.SocietaPunteggioView;
 import org.sbelli.gecomp.console.classifiche.delegates.societa.ClassificaSocietaPunteggioDecrescenteDelegate;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
-import org.sbelli.gecomp.console.menu.GeCompOutcomes;
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 import org.sbelli.gecomp.orm.model.Prestazione;
 import org.sbelli.gecomp.orm.model.Societa;

@@ -1,4 +1,4 @@
-package org.sbelli.gecomp.console.user;
+package net.sb.gecomp.web.user;
 
 import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.orm.model.Competizione;

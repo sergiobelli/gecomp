@@ -3,11 +3,11 @@ package org.sbelli.gecomp.console.gare.executers;
 import java.util.List;
 
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.menu.GeCompOutcomes;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.gare.delegates.GaraDelegate;
-import org.sbelli.gecomp.console.menu.GeCompOutcomes;
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.model.Gara;
 
 public abstract class GaraExecuter extends GenericExecuter {

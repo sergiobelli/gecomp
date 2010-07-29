@@ -1,6 +1,8 @@
 package org.sbelli.gecomp.console.societa.executers;
 
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
+import net.sb.gecomp.web.menu.GeCompOutcomes;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
+
 import org.sbelli.gecomp.orm.model.Societa;
 
 public class InserisciSocietaExecuter extends SocietaExecuter {
@@ -22,6 +24,6 @@ public class InserisciSocietaExecuter extends SocietaExecuter {
 			return "null";
 		}
 		
-		return "listaSocieta";
+		return GeCompOutcomes.LISTA_SOCIETA;
   }	
 }

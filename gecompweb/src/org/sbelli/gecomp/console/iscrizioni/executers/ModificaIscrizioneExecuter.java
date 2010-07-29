@@ -3,8 +3,7 @@ package org.sbelli.gecomp.console.iscrizioni.executers;
 import javax.faces.event.ActionEvent;
 
 import net.sb.gecomp.exceptions.GeCompException;
-
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 /**
  * @author 71862

@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.user.GeCompUserHttpSession;
 
-import org.sbelli.gecomp.console.user.GeCompUserHttpSession;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Properties;
 

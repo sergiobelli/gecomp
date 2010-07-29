@@ -1,4 +1,4 @@
-package org.sbelli.gecomp.console.user;
+package net.sb.gecomp.web.user;
 
 import java.util.Date;
 

@@ -7,6 +7,9 @@ import javax.faces.model.SelectItem;
 
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.menu.GeCompOutcomes;
+import net.sb.gecomp.web.report.ReportManager;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 import org.sbelli.gecomp.console.bridges.view.CategoriaView;
 import org.sbelli.gecomp.console.bridges.view.ClassificaGaraView;
@@ -15,10 +18,7 @@ import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
 import org.sbelli.gecomp.console.categorie.delegates.CategoriaDelegate;
 import org.sbelli.gecomp.console.classifiche.delegates.ClassificaGaraDelegate;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
-import org.sbelli.gecomp.console.menu.GeCompOutcomes;
 import org.sbelli.gecomp.console.prestazioni.delegates.PrestazioneDelegate;
-import org.sbelli.gecomp.console.report.ReportManager;
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 

@@ -5,9 +5,9 @@ import java.util.Calendar;
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.user.GeCompUserSessionHandler;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.console.user.GeCompUserSessionHandler;
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Properties;
 import org.sbelli.gecomp.orm.model.User;

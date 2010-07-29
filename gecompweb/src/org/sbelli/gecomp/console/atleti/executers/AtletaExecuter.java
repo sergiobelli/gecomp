@@ -1,10 +1,11 @@
 package org.sbelli.gecomp.console.atleti.executers;
 
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.menu.GeCompOutcomes;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 import org.sbelli.gecomp.console.atleti.delegates.AtletaDelegate;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.model.Atleta;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
@@ -25,14 +26,14 @@ public class AtletaExecuter extends GenericExecuter implements InitializingBean 
 		try {
 			logger.info("Saving Atleta...");
 
-			delegate.save(getAtleta());
+			new AtletaDelegate().save(getAtleta());
 			
 			logger.info("Saved Atleta...");
 		} catch (Exception ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.atleta.salvataggio.ko");
 			return "null";
 		}			
-		return "listaAtleti";
+		return GeCompOutcomes.LISTA_ATLETI;
 	}
 	
 	public void afterPropertiesSet() throws Exception {

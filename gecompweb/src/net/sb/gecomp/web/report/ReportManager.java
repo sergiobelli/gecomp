@@ -1,4 +1,4 @@
-package org.sbelli.gecomp.console.report;
+package net.sb.gecomp.web.report;
 
 import java.io.File;
 import java.io.FileOutputStream;

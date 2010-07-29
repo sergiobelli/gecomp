@@ -2,7 +2,7 @@ package org.sbelli.gecomp.console.societa.executers;
 
 import javax.faces.event.ActionEvent;
 
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 public class ModificaSocietaExecuter extends SocietaExecuter {
 

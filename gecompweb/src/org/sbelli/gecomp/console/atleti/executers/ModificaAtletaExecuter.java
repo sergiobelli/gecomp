@@ -3,8 +3,8 @@ package org.sbelli.gecomp.console.atleti.executers;
 import javax.faces.event.ActionEvent;
 
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 
 public class ModificaAtletaExecuter extends AtletaExecuter {

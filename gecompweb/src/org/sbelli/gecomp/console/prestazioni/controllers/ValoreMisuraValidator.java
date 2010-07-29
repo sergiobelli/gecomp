@@ -11,8 +11,8 @@ import javax.faces.validator.ValidatorException;
 
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.utils.guimessages.GuiMessageHandler;
 
-import org.sbelli.gecomp.console.utils.guimessages.GuiMessageHandler;
 
 public class ValoreMisuraValidator implements Validator {
 

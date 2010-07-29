@@ -3,9 +3,9 @@ package org.sbelli.gecomp.console.categorie.executers;
 import javax.faces.event.ActionEvent;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.web.menu.GeCompOutcomes;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.console.menu.GeCompOutcomes;
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 
 public class ModificaCategoriaExecuter extends CategoriaExecuter {

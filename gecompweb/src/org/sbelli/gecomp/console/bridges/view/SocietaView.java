@@ -7,4 +7,8 @@ public class SocietaView extends Societa {
 	public SocietaView(Societa societa) {
 		ViewUtils.copyProperties(this, societa);
 	}
+	
+	public String getDenominazioneEstesa() {
+		return this.getCodiceFidal() + " - " + this.getDenominazione();
+	}
 }

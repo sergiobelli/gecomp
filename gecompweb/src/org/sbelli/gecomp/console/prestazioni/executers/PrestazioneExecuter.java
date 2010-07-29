@@ -3,10 +3,10 @@ package org.sbelli.gecomp.console.prestazioni.executers;
 import javax.faces.model.SelectItem;
 
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.prestazioni.delegates.PrestazioneDelegate;
-import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.model.Prestazione;
 
 public class PrestazioneExecuter extends GenericExecuter {
