@@ -5,10 +5,10 @@ package org.sbelli.gecomp.orm.dao;
 
 import java.util.List;
 
+import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManager;
 import org.sbelli.gecomp.orm.model.Properties;
 

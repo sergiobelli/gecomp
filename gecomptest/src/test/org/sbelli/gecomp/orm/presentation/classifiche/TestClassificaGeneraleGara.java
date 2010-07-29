@@ -2,8 +2,9 @@ package test.org.sbelli.gecomp.orm.presentation.classifiche;
 
 import java.util.List;
 
+import net.sb.gecomp.exceptions.GeCompOrmException;
+
 import org.sbelli.gecomp.orm.dao.ClassificaCompetizioneManager;
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.Prestazione;

@@ -3,6 +3,7 @@ package org.sbelli.gecomp.console.prestazioni.delegates;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
@@ -10,7 +11,6 @@ import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
 import org.sbelli.gecomp.console.prestazioni.bridges.PrestazioneBridge;
 import org.sbelli.gecomp.console.prestazioni.controllers.PrestazioneController;
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Gara;
