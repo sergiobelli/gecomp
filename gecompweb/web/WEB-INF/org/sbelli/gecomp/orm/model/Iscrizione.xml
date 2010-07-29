@@ -15,7 +15,8 @@
     <result property="idIscrizione" 	column="ID_ISCRIZIONE"										/>
     <result property="gara" 			column="GARA" 				select="Gara.selectGara" 	    />
     <result property="atleta" 			column="ATLETA" 			select="Atleta.selectAtleta" 	/>
-    <result property="numeroPettorale" 	column="NUMERO_PETTORALE" 									/>
+    <result property="numeroPettorale" 	column="NUMERO_PETTORALE" 	/>
+  	<result property="competitivo" 		column="COMPETITIVO" 		/>
   </resultMap>
     
   <select id="listIscrizione"   resultMap="IscrizioneResult"                     >select * from iscrizione</select>
