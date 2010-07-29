@@ -2,9 +2,9 @@ package org.sbelli.gecomp.console.categorie.executers;
 
 import java.util.List;
 
+import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Categoria;
 

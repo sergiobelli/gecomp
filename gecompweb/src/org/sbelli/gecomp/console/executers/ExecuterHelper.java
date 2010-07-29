@@ -5,10 +5,10 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Atleta;
 import org.sbelli.gecomp.orm.model.Categoria;
