@@ -9,11 +9,11 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.exceptions.MessageSeverity;
 
+import org.sbelli.gecomp.console.menu.GeCompOutcomes;
 import org.sbelli.gecomp.console.user.GeCompUserSessionHandler;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.console.utils.guimessages.GuiMessageHandler;
 import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.Gara;
 
 public class ModificaGaraExecuter extends GaraExecuter {
 
@@ -56,9 +56,9 @@ public class ModificaGaraExecuter extends GaraExecuter {
 			logger.info("Deleted Gara...");
 		} catch (Exception ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.gara.eliminazione.ko");
-			return "null";
+			return GeCompOutcomes.NULL;
 		}
-		return "null";
+		return GeCompOutcomes.NULL;
 	}
 
 	public String selezionaGara () {
@@ -68,7 +68,7 @@ public class ModificaGaraExecuter extends GaraExecuter {
 			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.gara.selezionata.ko");
 		}
 		GuiMessageHandler.addGUIMessage(MessageSeverity.info, "message.gara.selezionata.ok", "message.gara.selezionata.ok.descrizione");
-		return "null";
+		return GeCompOutcomes.NULL;
 	}
 	
 }

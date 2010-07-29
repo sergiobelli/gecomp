@@ -3,18 +3,17 @@ package org.sbelli.gecomp.console.iscrizioni.executers;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Atleta;
-import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public class InserisciIscrizioneExecuter extends IscrizioneExecuter {
 
 	public InserisciIscrizioneExecuter () {
 		try {
-			Gara gara = new Gara();
-			if (isSelectedGara()) {
-				gara = getSelectedGara();
-			}
-			this.setIscrizione(new Iscrizione(new Atleta(), gara));
+			
+			checks4SelectedCompetizione();
+			checks4SelectedGara();
+			
+			this.setIscrizione(new Iscrizione(new Atleta(), getSelectedGara()));
 			setListaGareItem(getHelper().getListaGareItem(getSelectedCompetizione()));
 		} catch (Exception e) {
 			GeCompGuiExceptionManager.manageGUIException(logger, e, "");

@@ -6,7 +6,6 @@ import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 
 /**
- * 
  * @author S.BELLI
  */
 public class GeCompMenu extends GenericExecuter {
