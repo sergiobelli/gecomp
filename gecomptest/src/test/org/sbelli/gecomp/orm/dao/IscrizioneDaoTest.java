@@ -4,7 +4,8 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
+import net.sb.gecomp.exceptions.GeCompOrmException;
+
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Iscrizione;
 

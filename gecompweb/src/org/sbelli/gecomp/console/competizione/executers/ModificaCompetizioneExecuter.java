@@ -6,6 +6,7 @@ import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.exceptions.MessageSeverity;
 
 import org.sbelli.gecomp.console.competizione.controllers.CompetizioneController;
@@ -13,7 +14,6 @@ import org.sbelli.gecomp.console.menu.GeCompOutcomes;
 import org.sbelli.gecomp.console.user.GeCompUserSessionHandler;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.console.utils.guimessages.GuiMessageHandler;
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Competizione;
 import org.sbelli.gecomp.orm.model.Societa;

@@ -2,7 +2,7 @@ package org.sbelli.gecomp.orm.dao;
 
 import java.util.List;
 
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
+import net.sb.gecomp.exceptions.GeCompOrmException;
 
 public interface IGeCompDao<T extends java.io.Serializable> {
 

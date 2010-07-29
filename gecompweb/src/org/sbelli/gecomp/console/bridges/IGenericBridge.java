@@ -1,6 +1,7 @@
 package org.sbelli.gecomp.console.bridges;
 
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
+import net.sb.gecomp.exceptions.GeCompOrmException;
+
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public interface IGenericBridge<T extends GecompModelObject> {

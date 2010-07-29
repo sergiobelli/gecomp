@@ -4,13 +4,13 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
 import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.iscrizioni.delegates.IscrizioneDelegate;
 import org.sbelli.gecomp.console.menu.GeCompOutcomes;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Iscrizione;
 
