@@ -1,7 +1,8 @@
 package org.sbelli.gecomp.console.atleti.bridges;
 
+import net.sb.gecomp.exceptions.GeCompOrmException;
+
 import org.sbelli.gecomp.console.bridges.GenericBridge;
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Atleta;
 import org.sbelli.gecomp.orm.model.GecompModelObject;

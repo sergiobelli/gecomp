@@ -3,11 +3,11 @@ package org.sbelli.gecomp.console.categorie.bridges;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.Eval;
 
 import org.sbelli.gecomp.console.bridges.GenericBridge;
 import org.sbelli.gecomp.console.bridges.view.CategoriaView;
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Gara;
