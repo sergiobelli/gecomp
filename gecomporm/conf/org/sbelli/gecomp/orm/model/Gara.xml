@@ -72,7 +72,7 @@
       DESCRIZIONE = #descrizione#,
       DATA = #data#,
       DISTANZA = #distanza#,
-      TIPO_MISURA = #tipoMisura#
+      TIPO_MISURA = #tipoMisura.idTipoMisura#
     where
       ID_GARA = #idGara#
   </update>

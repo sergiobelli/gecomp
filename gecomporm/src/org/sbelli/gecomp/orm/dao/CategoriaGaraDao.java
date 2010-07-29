@@ -3,10 +3,10 @@ package org.sbelli.gecomp.orm.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
-import org.sbelli.gecomp.orm.exceptions.GeCompOrmException;
 import org.sbelli.gecomp.orm.ibatis.DbManager;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Categoria;
@@ -58,6 +58,18 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
+	
+	public List<CategoriaGara> list(Gara gara) throws GeCompOrmException {
+		List<CategoriaGara> categorieGara = null;
+		try {
+			categorieGara = (List<CategoriaGara>) getDataBaseDao().queryForList(LIST_CATEGORIA_GARA, gara);
+		} catch (Exception e) {
+			GeCompExceptionManager.manageException(logger, e);
+			throw new GeCompOrmException(e.getMessage());
+		}
+		return categorieGara;
+	}
+	
 	public void update (CategoriaGara categoriaGara) throws GeCompOrmException {
 		try {
 			getDataBaseDao().update(UPDATE_CATEGORIA_GARA, categoriaGara);
@@ -92,5 +104,6 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 			throw new GeCompOrmException(e.getMessage());
 		}
 		return categorie;
-	}	
+	}
+	
 }

@@ -1,13 +1,18 @@
 package org.sbelli.gecomp.console.gare.executers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.event.ActionEvent;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.exceptions.MessageSeverity;
 
 import org.sbelli.gecomp.console.user.GeCompUserSessionHandler;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.console.utils.guimessages.GuiMessageHandler;
+import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Gara;
 
 public class ModificaGaraExecuter extends GaraExecuter {
@@ -27,6 +32,13 @@ public class ModificaGaraExecuter extends GaraExecuter {
 	private void init () {
 		try {
 			setGara(delegate.get(idGara));
+			List<Long> categorie = new ArrayList<Long>();
+			if (Eval.isNotEmpty(getGara().getCategorie())) {
+				for (Categoria cat : getGara().getCategorie()) {
+					categorie.add(cat.getIdCategoria());
+				}
+			}
+			setCategorie(categorie);
 		} catch (GeCompException ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.competizione.caricamento.ko");
 		}

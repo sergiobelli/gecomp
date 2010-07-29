@@ -6,6 +6,7 @@ import net.sb.gecomp.utils.logger.GeCompLogger;
 
 import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.gare.delegates.GaraDelegate;
+import org.sbelli.gecomp.console.menu.GeCompOutcomes;
 import org.sbelli.gecomp.console.utils.exceptions.GeCompGuiExceptionManager;
 import org.sbelli.gecomp.orm.model.Gara;
 
@@ -33,7 +34,7 @@ public abstract class GaraExecuter extends GenericExecuter {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.gara.modifica.salvataggio.ko");
 			return "null";
 		}
-		return "listaGare";
+		return GeCompOutcomes.LISTA_GARE;
 	}
 	
 }
