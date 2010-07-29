@@ -27,7 +27,24 @@ public class Iscrizione extends GecompModelObject {
 	public Long getNumeroPettorale() {return numeroPettorale;}
 	public void setNumeroPettorale(Long numeroPettorale) {this.numeroPettorale = numeroPettorale;}
 	
-	@Override
+	public Boolean competitivo;
+	public Boolean getCompetitivo() {return competitivo;}
+	public void setCompetitivo(Boolean competitivo) {this.competitivo = competitivo;}
+	
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((atleta == null) ? 0 : atleta.hashCode());
+		result = prime * result
+				+ ((competitivo == null) ? 0 : competitivo.hashCode());
+		result = prime * result + ((gara == null) ? 0 : gara.hashCode());
+		result = prime * result
+				+ ((idIscrizione == null) ? 0 : idIscrizione.hashCode());
+		result = prime * result
+				+ ((numeroPettorale == null) ? 0 : numeroPettorale.hashCode());
+		return result;
+	}
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -40,6 +57,11 @@ public class Iscrizione extends GecompModelObject {
 			if (other.atleta != null)
 				return false;
 		} else if (!atleta.equals(other.atleta))
+			return false;
+		if (competitivo == null) {
+			if (other.competitivo != null)
+				return false;
+		} else if (!competitivo.equals(other.competitivo))
 			return false;
 		if (gara == null) {
 			if (other.gara != null)
@@ -58,8 +80,5 @@ public class Iscrizione extends GecompModelObject {
 			return false;
 		return true;
 	}
-	
-	
-	
 	
 }

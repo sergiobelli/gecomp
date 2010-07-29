@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: 26 lug, 2010 at 02:38 PM
+-- Generato il: 29 lug, 2010 at 02:52 PM
 -- Versione MySQL: 5.1.36
 -- Versione PHP: 5.3.0
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `atleta` (
   UNIQUE KEY `ID_ATLETA` (`ID_ATLETA`),
   KEY `ID_ATLETA_2` (`ID_ATLETA`),
   KEY `fk_societa` (`SOCIETA_APPARTENENZA`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=105 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=112 ;
 
 -- --------------------------------------------------------
 
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `categoria_gara` (
   PRIMARY KEY (`ID_CATEGORIA_GARA`),
   UNIQUE KEY `ID_CATEGORIA_GARA` (`ID_CATEGORIA_GARA`),
   KEY `ID_CATEGORIA_GARA_2` (`ID_CATEGORIA_GARA`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=256 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=322 ;
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `gara` (
   `DISTANZA` float unsigned NOT NULL,
   `TIPO_MISURA` int(11) NOT NULL,
   PRIMARY KEY (`ID_GARA`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
 
 -- --------------------------------------------------------
 
@@ -138,8 +138,9 @@ CREATE TABLE IF NOT EXISTS `iscrizione` (
   `GARA` int(11) NOT NULL,
   `ATLETA` int(11) NOT NULL,
   `NUMERO_PETTORALE` int(11) DEFAULT NULL,
+  `COMPETITIVO` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID_ISCRIZIONE`,`GARA`,`ATLETA`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2506 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2519 ;
 
 -- --------------------------------------------------------
 
@@ -156,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `prestazione` (
   PRIMARY KEY (`ID_PRESTAZIONE`),
   UNIQUE KEY `ID_PRESTAZIONE` (`ID_PRESTAZIONE`),
   KEY `ID_PRESTAZIONE_2` (`ID_PRESTAZIONE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2504 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2517 ;
 
 -- --------------------------------------------------------
 
@@ -187,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `societa` (
   `EMAIL` varchar(255) DEFAULT '',
   `SITO` varchar(255) DEFAULT '',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci' AUTO_INCREMENT=29 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='latin1_swedish_ci' AUTO_INCREMENT=34 ;
 
 -- --------------------------------------------------------
 
@@ -217,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `tipo_prestazione` (
   PRIMARY KEY (`ID_TIPO_PRESTAZIONE`),
   UNIQUE KEY `ID_TIPO_PRESTAZIONE` (`ID_TIPO_PRESTAZIONE`),
   KEY `ID_TIPO_PRESTAZIONE_2` (`ID_TIPO_PRESTAZIONE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
