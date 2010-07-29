@@ -24,21 +24,30 @@
 	            	<h:inputText value="#{ModificaAtletaExecuter.atleta.nome}" class="FacetInput"/>
 					
 	            	<h:outputText value="Sesso"/>
-	            	<h:inputText value="#{ModificaAtletaExecuter.atleta.sesso}" class="FacetInput"/>
+	            	<h:selectOneRadio value="#{ModificaAtletaExecuter.atleta.sesso}" class="FacetInput">
+	            		<f:selectItems value="#{ModificaAtletaExecuter.helper.sessoItems}" />
+	            	</h:selectOneRadio>
 					
 	            	<h:outputText value="Anno di Nascita"/>
-	            	<h:inputText value="#{ModificaAtletaExecuter.atleta.annoNascita}" class="FacetInput"/>
+	            	<h:inputText 
+	            		value="#{ModificaAtletaExecuter.atleta.annoNascita}"
+	            		size="5"
+	            		maxlength="4" 
+	            		class="FacetInput">
+	            		<f:convertNumber type="number" />
+	            	</h:inputText>
 					
 	            	<h:outputText value="Societa di Appartenenza"/>
-	            	<h:selectOneMenu  value="#{ModificaAtletaExecuter.atleta.societaAppartenenza.id}" class="FacetInput">
+	            	<h:selectOneMenu  id="societaAppartenenza" 	value="#{ModificaAtletaExecuter.atleta.societaAppartenenza.id}"  class="FacetInput">
 		                <f:convertNumber type="number" />
-						<f:selectItems  				value="#{ModificaAtletaExecuter.helper.listaSocietaItem}" />
-	                </h:selectOneMenu>
+						<f:selectItems value="#{ModificaAtletaExecuter.helper.listaSocietaItem}" />
+	                </h:selectOneMenu>             
 	                        
 	            	<h:outputText value="&nbsp;"/>
 	            	<h:commandButton action="#{ModificaAtletaExecuter.salva}" value="Modifica" class="FacetButton" />
 					
 				</h:panelGrid>
+				
 			
 			</h:form>
 					
