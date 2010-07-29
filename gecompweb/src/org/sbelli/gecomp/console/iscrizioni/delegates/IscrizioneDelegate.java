@@ -30,8 +30,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 		}
 	}
 
-	public GecompModelObject retrieve(GecompModelObject element)
-	throws GeCompException {
+	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
 		Iscrizione iscrizione = (Iscrizione)element;
 		controller.checks(element);
 		return iscrizione;
@@ -39,12 +38,12 @@ public class IscrizioneDelegate extends GenericDelegate {
 
 	public void save(GecompModelObject element) throws GeCompException {
 		try {
-			Iscrizione gara = (Iscrizione) retrieve(element);
-			logger.debug("Customized Iscrizione = " + gara);
-			if (Eval.isNull(gara.getIdIscrizione())) {
-				gara = (Iscrizione)bridge.insert(gara);
+			Iscrizione iscrizione = (Iscrizione) retrieve(element);
+			logger.debug("Customized Iscrizione = " + iscrizione);
+			if (Eval.isNull(iscrizione.getIdIscrizione())) {
+				iscrizione = (Iscrizione)bridge.insert(iscrizione);
 			} else {
-				bridge.update(gara);
+				bridge.update(iscrizione);
 			}
 		} catch (GeCompOrmException ex) {
 			logger.error(ex, "Errore in fase di modifica/savataggio dell'iscrizione");
