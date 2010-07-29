@@ -4,12 +4,13 @@ import net.sb.gecomp.exceptions.GeCompException;
 
 import org.sbelli.gecomp.console.controllers.GenericController;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
+import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public class IscrizioneController extends GenericController {
 
 	public void checks(GecompModelObject element) throws GeCompException {
 		// TODO implementare controlli!!!!!!!!!!!!
-
+		Iscrizione iscrizione = (Iscrizione)element;
 	}
 
 }
