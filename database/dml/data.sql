@@ -5548,7 +5548,7 @@ INSERT INTO `prestazione` (`ID_PRESTAZIONE`, `ISCRIZIONE`, `TIPO_PRESTAZIONE`, `
 
 INSERT INTO `properties` (`ID`, `CHIAVE`, `VALORE`) VALUES
 (1, 'gecomp.session.offset', '30'),
-(2, 'gecomp.staging.area', 'C:\\logs'),
+(2, 'gecomp.staging.area', 'C:\\gecomp\\classifiche'),
 (3, 'CHIAVE_2', 'VALORE_2'),
 (4, 'CHIAVE_3', 'VALORE_3'),
 (5, 'CHIAVE_4', 'VALORE_4');

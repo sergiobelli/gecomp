@@ -46,14 +46,16 @@ public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
 	public Iscrizione insert(Iscrizione object) throws GeCompOrmException {
 		try {
 			
-			List<Iscrizione> iscrizioni = list(((Iscrizione)object).getGara());
-			if (Eval.isNotEmpty(iscrizioni)) {
-				for (Iscrizione tmp : iscrizioni) {
-					if (tmp.getNumeroPettorale().equals(((Iscrizione)object).getNumeroPettorale())) {
-						throw new GeCompOrmException("xx.ss.ff.gg.numero.pettorale.gia.presente");
-					}
-				}
-			}
+//			Aggiunto constraint UNIQUE  KEY `GARA_PETTORALE_KEY` (`GARA`,`NUMERO_PETTORALE`)
+//			List<Iscrizione> iscrizioni = list(((Iscrizione)object).getGara());
+//			if (Eval.isNotEmpty(iscrizioni)) {
+//				for (Iscrizione tmp : iscrizioni) {
+//					if (tmp.getNumeroPettorale().equals(((Iscrizione)object).getNumeroPettorale())) {
+//						throw new GeCompOrmException("xx.ss.ff.gg.numero.pettorale.gia.presente");
+//					}
+//				}
+//			}
+//			Aggiunto constraint UNIQUE  KEY `GARA_PETTORALE_KEY` (`GARA`,`NUMERO_PETTORALE`)
 			
 			return (Iscrizione) getDataBaseDao().insert(INSERT_ISCRIZIONE, object);
 		} catch (Exception e) {
