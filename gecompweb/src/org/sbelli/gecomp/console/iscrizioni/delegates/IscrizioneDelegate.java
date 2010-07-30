@@ -7,6 +7,7 @@ import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
+import org.sbelli.gecomp.console.bridges.view.IscrizioneView;
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
 import org.sbelli.gecomp.console.iscrizioni.bridges.IscrizioneBridge;
 import org.sbelli.gecomp.console.iscrizioni.controllers.IscrizioneController;
@@ -51,11 +52,11 @@ public class IscrizioneDelegate extends GenericDelegate {
 		}
 	}
 
-	public Iscrizione get(Long id) throws GeCompException {
+	public IscrizioneView get(Long id) throws GeCompException {
 		return bridge.get(id);
 	}
 
-	public List<Iscrizione> list(Gara gara) throws GeCompException {
+	public List<IscrizioneView> list(Gara gara) throws GeCompException {
 		try {
 			return bridge.list(gara);
 		} catch (GeCompOrmException ex) {

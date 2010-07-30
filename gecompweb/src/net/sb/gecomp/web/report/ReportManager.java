@@ -2,9 +2,12 @@ package net.sb.gecomp.web.report;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Properties;
 
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
@@ -39,24 +42,30 @@ public class ReportManager implements IReportManager {
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 
 	protected SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	protected HSSFCellStyle titleStyle;
-	protected HSSFCellStyle headerStyle;
-	protected HSSFCellStyle tableStyle;
+	
+//	private HSSFCellStyle titleStyle;
+	//private HSSFCellStyle headerStyle;
+//	private HSSFCellStyle tableStyle;
+	protected HashMap<String,HSSFCellStyle> styles;
+	
 	protected HSSFWorkbook report;
 	
 	public void generateReport (IClassificaView classifica) {
 		HSSFWorkbook report = null;
 		String nomeReport = "";
+		String nomeCartella = "";
 		if (classifica instanceof ClassificaGaraView) {
 			ClassificaGaraView classificaGaraView = (ClassificaGaraView)classifica;
 			report = new GaraReportManager().getReport(classificaGaraView);
+			nomeCartella = classificaGaraView.getGara().getCompetizione().getNome() + "." + classificaGaraView.getGara().getNome();
 			nomeReport = classificaGaraView.getGara().getNome();
 		} else if (classifica instanceof ClassificaCompetizioneView) {
 			ClassificaCompetizioneView classificaCompetizioneView = (ClassificaCompetizioneView)classifica;
 			report = new CompetizioneReportManager().getReport(classificaCompetizioneView);
+			nomeCartella = classificaCompetizioneView.getCompetizione().getNome();
 			nomeReport = classificaCompetizioneView.getCompetizione().getNome();
 		}
-		writeReportToFile (report, nomeReport);
+		writeReportToFile (report, nomeCartella, nomeReport);
 	}
 	public void generateReport (IClassifica classifica) {
 //
@@ -79,16 +88,28 @@ public class ReportManager implements IReportManager {
 //		writeReportToFile (report, classificaCompetizione.getCompetizione().getNome());
 	}
 
-	private void writeReportToFile (HSSFWorkbook report, String nomeCompetizione) {
+	private void writeReportToFile (HSSFWorkbook report, String nomeCartella, String nomeFile) {
 		try {
 			// Write the output to a file
 
 			//TODO : CREARE TAB PROPERTIES E INSERIRE REPORT STAGING AREA !!!
-			String filePath 			= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.staging.area");
-			String fileName 			= nomeCompetizione.trim().replaceAll(" ", "");
-			String fileExtension 	= ".xls";
-
-			File file = new File(filePath + fileName + fileExtension);
+			String startPath 			= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.start.path");
+			String filePath 			= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.staging.area").replace(".", System.getProperty("file.separator"));
+			String fileName 			= nomeFile.trim().replaceAll(" ", "_");
+			String fileExtension 		= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.report.file.extension");
+			nomeCartella = nomeCartella.replace(".", System.getProperty("file.separator"));
+			
+			String dir = 
+				startPath + System.getProperty("file.separator") 
+				+ filePath + System.getProperty("file.separator")
+				+ nomeCartella;
+			String all = dir + System.getProperty("file.separator") + fileName  + fileExtension;
+			
+			
+			File file = new File(dir);
+			file.mkdirs();
+			
+			file = new File(all);
 			if (!file.exists()) {
 				boolean isCreated = file.createNewFile();
 				if (!isCreated) {
@@ -120,25 +141,25 @@ public class ReportManager implements IReportManager {
 
 			HSSFCell classificaCategoriaCompetizioneTitle = classificaCategoriaCompetizioneSheet.createRow((short) i).createCell((short) 0);
 			classificaCategoriaCompetizioneTitle.setCellValue("Classifica Categoria:" + classificaCategoriaCompetizione.getCategoria().getNomeCategoria());
-			classificaCategoriaCompetizioneTitle.setCellStyle(headerStyle);
+			classificaCategoriaCompetizioneTitle.setCellStyle(styles.get("headerStyle"));
 
 			classificaCategoriaCompetizioneSheet.createRow((short) i).createCell((short) 0).setCellValue("Posizione");
-			classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 0).setCellStyle(headerStyle);
+			classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("headerStyle"));
 			classificaCategoriaCompetizioneSheet.getRow((short) i).createCell((short) 1).setCellValue("Atleta");
-			classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 1).setCellStyle(headerStyle);
+			classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("headerStyle"));
 			classificaCategoriaCompetizioneSheet.getRow((short) i).createCell((short) 2).setCellValue("Tempo");
-			classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 2).setCellStyle(headerStyle);
+			classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("headerStyle"));
 			i++;
 
 			int pos = 1;
 			for (Prestazione prest : classificaCategoriaCompetizione.getClassificaCompetizione()) {
 
 				classificaCategoriaCompetizioneSheet.createRow((short) i).createCell((short) 0).setCellValue(pos);
-				classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+				classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
 				classificaCategoriaCompetizioneSheet.createRow((short) i).createCell((short) 1).setCellValue(prest.getIscrizione().getAtleta().toReportString());
-				classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+				classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
 				classificaCategoriaCompetizioneSheet.createRow((short) i).createCell((short) 2).setCellValue(DbManagerFactory.getInstance().getPrestazioneDao().getTempo(prest.getValoreMisura()));
-				classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 2).setCellStyle(tableStyle);
+				classificaCategoriaCompetizioneSheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("tableStyle"));
 
 				i++;
 				pos++;
@@ -154,41 +175,41 @@ public class ReportManager implements IReportManager {
 
 		HSSFCell classificaAssolutaTitle = classificaAssolutaSheet.createRow((short) i).createCell((short) 0);
 		classificaAssolutaTitle.setCellValue("Classifica Assoluta");
-		classificaAssolutaTitle.setCellStyle(headerStyle);
+		classificaAssolutaTitle.setCellStyle(styles.get("headerStyle"));
 
 		classificaAssolutaSheet.createRow((short) i).createCell((short) 0).setCellValue("Posizione");
-		classificaAssolutaSheet.getRow((short) i).getCell((short) 0).setCellStyle(headerStyle);
+		classificaAssolutaSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("headerStyle"));
 		classificaAssolutaSheet.getRow((short) i).createCell((short) 1).setCellValue("Atleta");
-		classificaAssolutaSheet.getRow((short) i).getCell((short) 1).setCellStyle(headerStyle);
+		classificaAssolutaSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("headerStyle"));
 		classificaAssolutaSheet.getRow((short) i).createCell((short) 2).setCellValue("Tempo");
-		classificaAssolutaSheet.getRow((short) i).getCell((short) 2).setCellStyle(headerStyle);
+		classificaAssolutaSheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("headerStyle"));
 		classificaAssolutaSheet.getRow((short) i).createCell((short) 3).setCellValue("Gare Sostenute");
-		classificaAssolutaSheet.getRow((short) i).getCell((short) 3).setCellStyle(headerStyle);
+		classificaAssolutaSheet.getRow((short) i).getCell((short) 3).setCellStyle(styles.get("headerStyle"));
 		classificaAssolutaSheet.getRow((short) i).createCell((short) 4).setCellValue("Ritirato");
-		classificaAssolutaSheet.getRow((short) i).getCell((short) 4).setCellStyle(headerStyle);
+		classificaAssolutaSheet.getRow((short) i).getCell((short) 4).setCellStyle(styles.get("headerStyle"));
 		classificaAssolutaSheet.getRow((short) i).createCell((short) 5).setCellValue("Squalificato");
-		classificaAssolutaSheet.getRow((short) i).getCell((short) 5).setCellStyle(headerStyle);
+		classificaAssolutaSheet.getRow((short) i).getCell((short) 5).setCellStyle(styles.get("headerStyle"));
 		classificaAssolutaSheet.getRow((short) i).createCell((short) 6).setCellValue("Note");
-		classificaAssolutaSheet.getRow((short) i).getCell((short) 6).setCellStyle(headerStyle);
+		classificaAssolutaSheet.getRow((short) i).getCell((short) 6).setCellStyle(styles.get("headerStyle"));
 		i++;
 
 		int pos = 1;
 		for (PrestazioneInCompetizione prest : prestazioniAssoluteInCompetizione) {
 
 			classificaAssolutaSheet.createRow((short) i).createCell((short) 0).setCellValue(pos);
-			classificaAssolutaSheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+			classificaAssolutaSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
 			classificaAssolutaSheet.createRow((short) i).createCell((short) 1).setCellValue(prest.getAtleta().toReportString());
-			classificaAssolutaSheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+			classificaAssolutaSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
 			classificaAssolutaSheet.createRow((short) i).createCell((short) 2).setCellValue(DbManagerFactory.getInstance().getPrestazioneDao().getTempo(prest.getValoreMisuraTotale()));
-			classificaAssolutaSheet.getRow((short) i).getCell((short) 2).setCellStyle(tableStyle);
+			classificaAssolutaSheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("tableStyle"));
 			classificaAssolutaSheet.createRow((short) i).createCell((short) 3).setCellValue(prest.getGareSostenute().size());
-			classificaAssolutaSheet.getRow((short) i).getCell((short) 3).setCellStyle(tableStyle);
+			classificaAssolutaSheet.getRow((short) i).getCell((short) 3).setCellStyle(styles.get("tableStyle"));
 			classificaAssolutaSheet.createRow((short) i).createCell((short) 4).setCellValue(prest.isRitirato());
-			classificaAssolutaSheet.getRow((short) i).getCell((short) 4).setCellStyle(tableStyle);
+			classificaAssolutaSheet.getRow((short) i).getCell((short) 4).setCellStyle(styles.get("tableStyle"));
 			classificaAssolutaSheet.createRow((short) i).createCell((short) 5).setCellValue(prest.isSqualificato());
-			classificaAssolutaSheet.getRow((short) i).getCell((short) 5).setCellStyle(tableStyle);
+			classificaAssolutaSheet.getRow((short) i).getCell((short) 5).setCellStyle(styles.get("tableStyle"));
 			classificaAssolutaSheet.createRow((short) i).createCell((short) 6).setCellValue(prest.getNote());
-			classificaAssolutaSheet.getRow((short) i).getCell((short) 6).setCellStyle(tableStyle);
+			classificaAssolutaSheet.getRow((short) i).getCell((short) 6).setCellStyle(styles.get("tableStyle"));
 
 			i++;
 			pos++;
@@ -203,24 +224,24 @@ public class ReportManager implements IReportManager {
 
 		HSSFCell categorieTitle = categorieSheet.createRow((short) i).createCell((short) 0);
 		categorieTitle.setCellValue("Elenco Categorie Ammesse");
-		categorieTitle.setCellStyle(headerStyle);
+		categorieTitle.setCellStyle(styles.get("headerStyle"));
 
 		categorieSheet.createRow((short) i).createCell((short) 0).setCellValue("Categorie");
-		categorieSheet.getRow((short) i).getCell((short) 0).setCellStyle(headerStyle);
+		categorieSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("headerStyle"));
 		categorieSheet.getRow((short) i).createCell((short) 1).setCellValue("Sesso");
-		categorieSheet.getRow((short) i).getCell((short) 1).setCellStyle(headerStyle);
+		categorieSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("headerStyle"));
 		categorieSheet.getRow((short) i).createCell((short) 2).setCellValue("Anni Appartenenza");
-		categorieSheet.getRow((short) i).getCell((short) 2).setCellStyle(headerStyle);
+		categorieSheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("headerStyle"));
 		i++;
 
 		for (Categoria categoria : categorie) {
 
 			categorieSheet.createRow((short) i).createCell((short) 0).setCellValue(categoria.getNomeCategoria());
-			categorieSheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+			categorieSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
 			categorieSheet.createRow((short) i).createCell((short) 1).setCellValue(categoria.getSesso());
-			categorieSheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+			categorieSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
 			categorieSheet.createRow((short) i).createCell((short) 2).setCellValue(categoria.getAnniAppartenenza().toString());
-			categorieSheet.getRow((short) i).getCell((short) 2).setCellStyle(tableStyle);
+			categorieSheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("tableStyle"));
 			i++;
 		}		
 		//Categorie
@@ -233,32 +254,32 @@ public class ReportManager implements IReportManager {
 
 		HSSFCell atletiTitle = atletiSheet.createRow((short) i).createCell((short) 0);
 		atletiTitle.setCellValue("Elenco Atleti Iscritti");
-		atletiTitle.setCellStyle(headerStyle);
+		atletiTitle.setCellStyle(styles.get("headerStyle"));
 
 		atletiSheet.createRow((short) i).createCell((short) 0).setCellValue("Cognome");
-		atletiSheet.getRow((short) i).getCell((short) 0).setCellStyle(headerStyle);
+		atletiSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("headerStyle"));
 		atletiSheet.getRow((short) i).createCell((short) 1).setCellValue("Nome");
-		atletiSheet.getRow((short) i).getCell((short) 1).setCellStyle(headerStyle);
+		atletiSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("headerStyle"));
 		atletiSheet.getRow((short) i).createCell((short) 2).setCellValue("Sesso");
-		atletiSheet.getRow((short) i).getCell((short) 2).setCellStyle(headerStyle);
+		atletiSheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("headerStyle"));
 		atletiSheet.getRow((short) i).createCell((short) 3).setCellValue("Anno Nascita");
-		atletiSheet.getRow((short) i).getCell((short) 3).setCellStyle(headerStyle);
+		atletiSheet.getRow((short) i).getCell((short) 3).setCellStyle(styles.get("headerStyle"));
 		atletiSheet.getRow((short) i).createCell((short) 4).setCellValue("Societa' Appartenenza");
-		atletiSheet.getRow((short) i).getCell((short) 4).setCellStyle(headerStyle);
+		atletiSheet.getRow((short) i).getCell((short) 4).setCellStyle(styles.get("headerStyle"));
 		i++;
 
 		for (Atleta atleta : atleti) {
 
 			atletiSheet.createRow((short) i).createCell((short) 0).setCellValue(atleta.getCognome());
-			atletiSheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+			atletiSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
 			atletiSheet.createRow((short) i).createCell((short) 1).setCellValue(atleta.getNome());
-			atletiSheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+			atletiSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
 			atletiSheet.createRow((short) i).createCell((short) 2).setCellValue(atleta.getSesso());
-			atletiSheet.getRow((short) i).getCell((short) 2).setCellStyle(tableStyle);
+			atletiSheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("tableStyle"));
 			atletiSheet.createRow((short) i).createCell((short) 3).setCellValue(atleta.getAnnoNascita());
-			atletiSheet.getRow((short) i).getCell((short) 3).setCellStyle(tableStyle);
+			atletiSheet.getRow((short) i).getCell((short) 3).setCellStyle(styles.get("tableStyle"));
 			atletiSheet.createRow((short) i).createCell((short) 4).setCellValue(atleta.getSocietaAppartenenza().getDenominazione());
-			atletiSheet.getRow((short) i).getCell((short) 4).setCellStyle(tableStyle);
+			atletiSheet.getRow((short) i).getCell((short) 4).setCellStyle(styles.get("tableStyle"));
 			i++;
 		}
 		//Atleti
@@ -271,28 +292,28 @@ public class ReportManager implements IReportManager {
 
 		HSSFCell gareTitle = gareSheet.createRow((short) i).createCell((short) 0);
 		gareTitle.setCellValue("Elenco Gare");
-		gareTitle.setCellStyle(headerStyle);
+		gareTitle.setCellStyle(styles.get("headerStyle"));
 
 		gareSheet.createRow((short) i).createCell((short) 0).setCellValue("Nome");
-		gareSheet.getRow((short) i).getCell((short) 0).setCellStyle(headerStyle);
+		gareSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("headerStyle"));
 		gareSheet.getRow((short) i).createCell((short) 1).setCellValue("Descrizione");
-		gareSheet.getRow((short) i).getCell((short) 1).setCellStyle(headerStyle);
+		gareSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("headerStyle"));
 		gareSheet.getRow((short) i).createCell((short) 2).setCellValue("Data");
-		gareSheet.getRow((short) i).getCell((short) 2).setCellStyle(headerStyle);
+		gareSheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("headerStyle"));
 		gareSheet.getRow((short) i).createCell((short) 3).setCellValue("Distanza");
-		gareSheet.getRow((short) i).getCell((short) 3).setCellStyle(headerStyle);
+		gareSheet.getRow((short) i).getCell((short) 3).setCellStyle(styles.get("headerStyle"));
 		i++;
 
 		for (Gara gara : gare) {
 
 			gareSheet.createRow((short) i).createCell((short) 0).setCellValue(gara.getNome());
-			gareSheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+			gareSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
 			gareSheet.createRow((short) i).createCell((short) 1).setCellValue(gara.getDescrizione());
-			gareSheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+			gareSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
 			gareSheet.createRow((short) i).createCell((short) 2).setCellValue(sdf.format(gara.getData()));
-			gareSheet.getRow((short) i).getCell((short) 2).setCellStyle(tableStyle);
+			gareSheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("tableStyle"));
 			gareSheet.createRow((short) i).createCell((short) 3).setCellValue(gara.getDistanza());
-			gareSheet.getRow((short) i).getCell((short) 3).setCellStyle(tableStyle);
+			gareSheet.getRow((short) i).getCell((short) 3).setCellStyle(styles.get("tableStyle"));
 			i++;
 		}		
 		//Gare
@@ -305,33 +326,33 @@ public class ReportManager implements IReportManager {
 
 		HSSFCell informazioniTitle = informazioniSheet.createRow((short) i).createCell((short) 0);
 		informazioniTitle.setCellValue(competizione.getNome());
-		informazioniTitle.setCellStyle(headerStyle);
+		informazioniTitle.setCellStyle(styles.get("headerStyle"));
 
 		i++;
 		HSSFRow informazioniHeader = informazioniSheet.createRow((short) i);
 
 		informazioniSheet.createRow((short) i).createCell((short) 0).setCellValue("Descrizione:");
-		informazioniSheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+		informazioniSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
 		informazioniSheet.getRow((short) i).createCell((short) 1).setCellValue(competizione.getDescrizione());
-		informazioniSheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+		informazioniSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
 		i++;
 
 		informazioniSheet.createRow((short) i).createCell((short) 0).setCellValue("Data Inizio:");
-		informazioniSheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+		informazioniSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
 		informazioniSheet.getRow((short) i).createCell((short) 1).setCellValue(sdf.format(competizione.getDataInizio()));
-		informazioniSheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+		informazioniSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
 		i++;
 
 		informazioniSheet.createRow((short) i).createCell((short) 0).setCellValue("Data Fine:");
-		informazioniSheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+		informazioniSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
 		informazioniSheet.getRow((short) i).createCell((short) 1).setCellValue(sdf.format(competizione.getDataFine()));
-		informazioniSheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+		informazioniSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
 		i++;
 
 		informazioniSheet.createRow((short) i).createCell((short) 0).setCellValue("Societa' Organizzatrice:");
-		informazioniSheet.getRow((short) i).getCell((short) 0).setCellStyle(tableStyle);
+		informazioniSheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
 		informazioniSheet.getRow((short) i).createCell((short) 1).setCellValue(competizione.getSocietaOrganizzatrice().getDenominazione());
-		informazioniSheet.getRow((short) i).getCell((short) 1).setCellStyle(tableStyle);
+		informazioniSheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
 		i++;      
 		//Informazioni
 	}
@@ -389,4 +410,5 @@ public class ReportManager implements IReportManager {
 
 		return tableStyle;
 	}
+	
 }

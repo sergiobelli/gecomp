@@ -13,6 +13,10 @@ public class ClassificaGaraView extends ClassificaView {
 	public List<CategoriaView> getCategorie() { return categorie; }
 	public void setCategorie(List<CategoriaView> categorie) { this.categorie = categorie; }
 
+	private List<IscrizioneView> iscritti;
+	public List<IscrizioneView> getIscritti() {return iscritti;}
+	public void setIscritti(List<IscrizioneView> iscritti) {this.iscritti = iscritti;}
+
 	private List<PrestazioneView> classificaGenerale;
 	public List<PrestazioneView> getClassificaGenerale() { return classificaGenerale; }
 	public void setClassificaGenerale(List<PrestazioneView> classifica) { classificaGenerale = classifica; }
