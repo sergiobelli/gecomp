@@ -44,6 +44,8 @@ public class GaraReportManager extends ReportManager {
 		return report;
 	}
 
+
+
 	private void generateIscrittiSheet(List<IscrizioneView> iscritti) {
 		new ElencoIscrittiSheetManager().addSheet(report, styles, iscritti);
 	}

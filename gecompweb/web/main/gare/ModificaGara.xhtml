@@ -52,6 +52,20 @@
 		                <h:outputText value="*"/>
 	                </h:panelGroup>
 	                        
+	                <h:outputText value="Numero assoluti maschile"/>
+	            	<h:panelGroup>
+	            		<h:inputText id="NumeroAssolutiMaschile" value="#{ModificaGaraExecuter.gara.numeroAssolutiMaschile}" required="true" class="FacetInput"/>
+						<h:outputText value="*"/>
+						<h:message style="color: red" for="NumeroAssolutiMaschile"/>
+					</h:panelGroup>
+
+	                <h:outputText value="Numero assoluti femminile"/>
+	            	<h:panelGroup>
+	            		<h:inputText id="NumeroAssolutiFemminile" value="#{ModificaGaraExecuter.gara.numeroAssolutiFemminile}" required="true" class="FacetInput"/>
+						<h:outputText value="*"/>
+						<h:message style="color: red" for="NumeroAssolutiFemminile"/>
+					</h:panelGroup>
+						                        
 	            	<h:outputText value="&nbsp;"/>
 	            	<h:commandButton action="#{ModificaGaraExecuter.salva}" value="Inserisci" class="FacetButton" />
 					

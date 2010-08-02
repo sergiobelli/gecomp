@@ -89,24 +89,40 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 		}		
 		return gestioneLista(new ArrayList<Prestazione>(prestazioniGara), gara);
 	}
+
+	public List<Prestazione> listSenzaAssoluti (Gara gara, Categoria categoria) throws GeCompOrmException {
+		List<Prestazione> listaPrestazioniSenzaAssoluti = new ArrayList<Prestazione>();
+		List<Prestazione> listaPrestazioniConAssoluti = list(gara);
+		if (Eval.isNotEmpty(listaPrestazioniConAssoluti)) {
+			int posizione = 1;
+			for (Prestazione p : listaPrestazioniConAssoluti) {
+				if (p.getIscrizione().getAtleta().getSesso().equals(categoria.getSesso())
+						&& posizione > gara.getNumeroAssoluti(categoria)) {
+					listaPrestazioniSenzaAssoluti.add(p);
+				}
+				posizione++;
+			}
+		}
+		return gestioneLista(new ArrayList<Prestazione>(listaPrestazioniSenzaAssoluti), gara);
+	}
 	
 	public List<Prestazione> list (Gara gara, Categoria categoria) throws GeCompOrmException {
-		Set<Prestazione> prestazioniGara = null;
+		Set<Prestazione> prestazioniGaraCategoria = null;
 		try {
 			List<Prestazione> listaPrestazioni = (List<Prestazione>) getDataBaseDao().queryForList(LIST_PRESTAZIONE_GARA, gara);
-			prestazioniGara = new TreeSet<Prestazione>();
+			prestazioniGaraCategoria = new TreeSet<Prestazione>();
 			
 			for (Prestazione prestazione : listaPrestazioni) {
 				if (categoria.getSesso().equals(prestazione.getIscrizione().getAtleta().getSesso())
 						&& categoria.getAnniAppartenenza().contains(Integer.valueOf(prestazione.getIscrizione().getAtleta().getAnnoNascita()))) {
-					prestazioniGara.add(prestazione);
+					prestazioniGaraCategoria.add(prestazione);
 				}
 			}
 		} catch (Exception e) {
 			GeCompExceptionManager.manageException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
-		return gestioneLista(new ArrayList<Prestazione>(prestazioniGara), gara);
+		return gestioneLista(new ArrayList<Prestazione>(prestazioniGaraCategoria), gara);
 	}
 	public List<Prestazione> list (Competizione competizione) throws GeCompOrmException {
 		List<Prestazione> prestazioniCompetizione = null;

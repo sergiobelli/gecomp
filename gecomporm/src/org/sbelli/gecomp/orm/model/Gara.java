@@ -15,6 +15,8 @@ public class Gara extends GecompModelObject {
 	private Float distanza;
 	private TipoMisura tipoMisura;
 	private List<Categoria> categorie;
+	private Integer numeroAssolutiMaschile;
+	private Integer numeroAssolutiFemminile;
 	
 	public Gara() {}
 	public Gara(Date data) {
@@ -75,7 +77,28 @@ public class Gara extends GecompModelObject {
 	public List<Categoria> getCategorie() {return categorie;}
 	public void setCategorie(List<Categoria> categorie) {this.categorie = categorie;}
 	
-	@Override
+	
+	public Integer getNumeroAssolutiMaschile() {
+		return numeroAssolutiMaschile;
+	}
+	public void setNumeroAssolutiMaschile(Integer numeroAssolutiMaschile) {
+		this.numeroAssolutiMaschile = numeroAssolutiMaschile;
+	}
+	public Integer getNumeroAssolutiFemminile() {
+		return numeroAssolutiFemminile;
+	}
+	public void setNumeroAssolutiFemminile(Integer numeroAssolutiFemminile) {
+		this.numeroAssolutiFemminile = numeroAssolutiFemminile;
+	}
+	
+	public Integer getNumeroAssoluti(Categoria categoria) {
+		if (categoria.getSesso().equals("M")) {
+			return this.getNumeroAssolutiMaschile();
+		} else {
+			return this.getNumeroAssolutiFemminile();
+		}
+	}
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

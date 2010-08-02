@@ -17,6 +17,8 @@
     <result property="data"         column="DATA"/>
     <result property="distanza"     column="DISTANZA"/>
     <result property="tipoMisura"   column="TIPO_MISURA"  select="TipoMisura.select"/>
+    <result property="numeroAssolutiMaschile"  column="NUMERO_ASSOLUTI_MASCHILE"/>
+  ` <result property="numeroAssolutiFemminile"  column="NUMERO_ASSOLUTI_FEMMINILE"/>
     <!-- <result property="categorie" 	resultMapping="Categoria.CategoryResult" />-->    
   </resultMap>
 
@@ -57,9 +59,11 @@
       DESCRIZIONE,
       DATA,
       DISTANZA,
-      TIPO_MISURA )   
+      TIPO_MISURA,
+      NUMERO_ASSOLUTI_MASCHILE,
+      NUMERO_ASSOLUTI_FEMMINILE )   
     values (
-      #idGara#, #competizione.idCompetizione#, #nome#, #descrizione#, #data#, #distanza#, #tipoMisura.idTipoMisura#
+      #idGara#, #competizione.idCompetizione#, #nome#, #descrizione#, #data#, #distanza#, #tipoMisura.idTipoMisura#, #numeroAssolutiMaschile#, #numeroAssolutiFemminile# 
     )
     <selectKey resultClass="long" keyProperty="idGara"> SELECT LAST_INSERT_ID() AS id </selectKey>
   </insert>
@@ -72,7 +76,9 @@
       DESCRIZIONE = #descrizione#,
       DATA = #data#,
       DISTANZA = #distanza#,
-      TIPO_MISURA = #tipoMisura.idTipoMisura#
+      TIPO_MISURA = #tipoMisura.idTipoMisura#,
+      NUMERO_ASSOLUTI_MASCHILE = #numeroAssolutiMaschile#,
+      NUMERO_ASSOLUTI_FEMMINILE = #numeroAssolutiFemminile#
     where
       ID_GARA = #idGara#
   </update>
