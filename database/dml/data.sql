@@ -44,7 +44,7 @@ INSERT INTO `atleta` (`ID_ATLETA`, `COGNOME`, `NOME`, `SESSO`, `ANNO_NASCITA`, `
 (24, 'ATLETA_23', 'ATLETA_23', 'M', '1932', 6),
 (25, 'ATLETA_24', 'ATLETA_24', 'F', '1936', 6),
 (26, 'ATLETA_25', 'ATLETA_25', 'M', '1980', 7),
-(27, 'D''EreditÃ ', 'Orazio', 'M', '1969', 7),
+(27, 'D''Ereditï¿½ ', 'Orazio', 'M', '1969', 7),
 (28, 'Mazzone', 'Flavio', 'M', '1964', 7),
 (29, 'ATLETA_28', 'ATLETA_28', 'F', '1978', 7),
 (30, 'ATLETA_29', 'ATLETA_29', 'M', '1960', 7),
@@ -5583,7 +5583,11 @@ INSERT INTO `societa` (`ID`, `CODICE_FIDAL`, `DENOMINAZIONE`, `TELEFONO_SEDE`, `
 (30, 'VC037', 'G.S.A. POLLONE', '', '', '', '', ''),
 (31, 'VC001', 'ATLETICA SANTHIA''', '', '', '', '', ''),
 (32, 'VC025', 'A.S. AMATORI SPORT', '', '', '', '', ''),
-(33, 'TO001', 'C.U.S. TORINO', '', '', '', '', '');
+(33, 'TO001', 'C.U.S. TORINO', '', '', '', '', ''),
+(34, 'MI077', 'PROPATRIA MILANO', '', '', '', '', ''),
+(35, 'VC024', 'CEDAS LANCIA VERRONE', '', '', '', '', ''),
+(36, 'VC021', ' ATL.LESSONA', '', '', '', '', ''),
+(0,  '     ', 'LIBERO', '', '', '', '', '');
 
 --
 -- Dump dei dati per la tabella `tipo_misura`
