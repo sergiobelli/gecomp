@@ -95,10 +95,11 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 		List<Prestazione> listaPrestazioniConAssoluti = list(gara);
 		if (Eval.isNotEmpty(listaPrestazioniConAssoluti)) {
 			int posizione = 1;
-			for (Prestazione p : listaPrestazioniConAssoluti) {
-				if (p.getIscrizione().getAtleta().getSesso().equals(categoria.getSesso())
+			for (Prestazione prestazione : listaPrestazioniConAssoluti) {
+				if (prestazione.getIscrizione().getAtleta().getSesso().equals(categoria.getSesso())
+						&& categoria.getAnniAppartenenza().contains(Integer.valueOf(prestazione.getIscrizione().getAtleta().getAnnoNascita()))
 						&& posizione > gara.getNumeroAssoluti(categoria)) {
-					listaPrestazioniSenzaAssoluti.add(p);
+					listaPrestazioniSenzaAssoluti.add(prestazione);
 				}
 				posizione++;
 			}
