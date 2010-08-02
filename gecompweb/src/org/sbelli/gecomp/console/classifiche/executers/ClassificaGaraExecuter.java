@@ -73,7 +73,7 @@ public class ClassificaGaraExecuter extends GenericExecuter {
 	public String ricaricaClassifica() {
 		try {
 			CategoriaView categoria = categoriaDelegate.get(idCategoria);
-			setPrestazioni(prestazioneDelegate.list(getSelectedGara(),categoria));
+			setPrestazioni(prestazioneDelegate.list(getSelectedGara(),categoria, false));
 		} catch (Exception e) {
 			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.classifica.rigenerazione.ko");
 		}

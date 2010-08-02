@@ -64,7 +64,16 @@ public class PrestazioneDelegate extends GenericDelegate {
 
 	public List<PrestazioneView> list(Gara gara, Categoria categoria) throws GeCompException {
 		try {
-			return bridge.list(gara, categoria);
+			return bridge.list(gara, categoria, true);
+		} catch (GeCompOrmException ex) {
+			logger.error(ex, "Non ci sono prestazioni per la gara specificata ", gara);
+			throw new GeCompException("x.x.x.x.x.x.x.x.x");
+		}
+	}
+	
+	public List<PrestazioneView> list(Gara gara, Categoria categoria, Boolean conAssoluti) throws GeCompException {
+		try {
+			return bridge.list(gara, categoria, conAssoluti);
 		} catch (GeCompOrmException ex) {
 			logger.error(ex, "Non ci sono prestazioni per la gara specificata ", gara);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");

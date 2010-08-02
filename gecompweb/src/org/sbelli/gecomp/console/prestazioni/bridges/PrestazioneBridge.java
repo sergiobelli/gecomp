@@ -50,9 +50,15 @@ public class PrestazioneBridge extends GenericBridge {
 		return result;
 	}
 
-	public List<PrestazioneView> list(Gara gara, Categoria categoria) throws GeCompOrmException {
+	public List<PrestazioneView> list(Gara gara, Categoria categoria, Boolean conAssoluti) throws GeCompOrmException {
 		List<PrestazioneView> result = null;
-		List<Prestazione> prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().list(gara, categoria);
+		List<Prestazione> prestazioni = null;
+		if (conAssoluti) {
+			prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().list(gara, categoria);	
+		} else {
+			prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().listSenzaAssoluti(gara, categoria);	
+		}
+		
 		if (Eval.isNotEmpty(prestazioni)) {
 			result = new ArrayList<PrestazioneView>();
 			int posizione = 1;
