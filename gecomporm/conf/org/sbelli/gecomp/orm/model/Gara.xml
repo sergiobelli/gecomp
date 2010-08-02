@@ -18,8 +18,7 @@
     <result property="distanza"     column="DISTANZA"/>
     <result property="tipoMisura"   column="TIPO_MISURA"  select="TipoMisura.select"/>
     <result property="numeroAssolutiMaschile"  column="NUMERO_ASSOLUTI_MASCHILE"/>
-  ` <result property="numeroAssolutiFemminile"  column="NUMERO_ASSOLUTI_FEMMINILE"/>
-    <!-- <result property="categorie" 	resultMapping="Categoria.CategoryResult" />-->    
+  	<result property="numeroAssolutiFemminile" column="NUMERO_ASSOLUTI_FEMMINILE"/>
   </resultMap>
 
   <cacheModel id="GaraCache" type="LRU" >
