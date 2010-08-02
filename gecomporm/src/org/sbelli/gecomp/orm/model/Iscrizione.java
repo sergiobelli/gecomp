@@ -27,7 +27,7 @@ public class Iscrizione extends GecompModelObject {
 	public Long getNumeroPettorale() {return numeroPettorale;}
 	public void setNumeroPettorale(Long numeroPettorale) {this.numeroPettorale = numeroPettorale;}
 	
-	public Boolean competitivo;
+	private Boolean competitivo;
 	public Boolean getCompetitivo() {return competitivo;}
 	public void setCompetitivo(Boolean competitivo) {this.competitivo = competitivo;}
 	
