@@ -36,6 +36,9 @@
 					<h:outputText 	value="Numero pettorale"/>
 					<h:inputText value="#{InserisciIscrizioneExecuter.iscrizione.numeroPettorale}" class="FacetInput"/>
 					
+					<h:outputText 	value="Competitivo"/>
+					<h:selectBooleanCheckbox value="#{InserisciIscrizioneExecuter.iscrizione.competitivo}" class="FacetInput"/>
+					
 	            	<h:outputText 		value="&nbsp;"/>
 	            	<h:commandButton 	value="Inserisci" 
 	            						action="#{InserisciIscrizioneExecuter.salva}" 

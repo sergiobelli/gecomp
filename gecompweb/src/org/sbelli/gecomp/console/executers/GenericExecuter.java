@@ -23,7 +23,7 @@ public abstract class GenericExecuter {
 	protected Boolean isSelectedCompetizione() { return Eval.isNotNull(GeCompUserSessionHandler.getGeCompUserSession().getCompetizione()); }
 	protected Competizione getSelectedCompetizione() { return GeCompUserSessionHandler.getGeCompUserSession().getCompetizione(); }
 	protected void checks4SelectedCompetizione() throws GeCompException {
-		if (Eval.isNull(getSelectedCompetizione())) {
+		if (!isSelectedCompetizione()) {
 			throw new GeCompException("message.competizione.non.selezionata");
 		}
 	}
@@ -31,7 +31,7 @@ public abstract class GenericExecuter {
 	protected Boolean isSelectedGara() {return Eval.isNotNull(GeCompUserSessionHandler.getGeCompUserSession().getGara());}
 	protected GaraView getSelectedGara() {return new GaraView(GeCompUserSessionHandler.getGeCompUserSession().getGara());}
 	protected void checks4SelectedGara() throws GeCompException {
-		if (Eval.isNull(getSelectedGara())) {
+		if (!isSelectedGara()) {
 			throw new GeCompException("message.gara.non.selezionata");
 		}
 	}

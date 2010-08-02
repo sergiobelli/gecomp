@@ -4,14 +4,14 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
+import org.sbelli.gecomp.console.atleti.delegates.AtletaDelegate;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.iscrizioni.delegates.IscrizioneDelegate;
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public abstract class IscrizioneExecuter extends GenericExecuter {
@@ -19,7 +19,7 @@ public abstract class IscrizioneExecuter extends GenericExecuter {
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 	
 	protected IscrizioneDelegate delegate = new IscrizioneDelegate();
-	
+
 	protected Long idIscrizione;
 	
 	protected Iscrizione iscrizione;
@@ -34,12 +34,6 @@ public abstract class IscrizioneExecuter extends GenericExecuter {
 	public SelectItem[] getListaGareItem() {return listaGareItem;}
 	public void setListaGareItem(SelectItem[] listaGare) {this.listaGareItem = listaGare;}
 
-	protected Iscrizione retrieve() throws GeCompOrmException {
-		Iscrizione tmpIscrizione = getIscrizione();
-		tmpIscrizione.setAtleta(DbManagerFactory.getInstance().getAtletaDao().get(tmpIscrizione.getAtleta().getIdAtleta()));
-		return tmpIscrizione;
-	}
-	
 	public String salva() {
 		try {
 			logger.info("Insert/Updating iscrizione...");
