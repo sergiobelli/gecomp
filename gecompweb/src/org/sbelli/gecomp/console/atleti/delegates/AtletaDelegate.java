@@ -6,6 +6,7 @@ import net.sb.gecomp.utils.logger.GeCompLogger;
 
 import org.sbelli.gecomp.console.atleti.bridges.AtletaBridge;
 import org.sbelli.gecomp.console.atleti.controllers.AtletaController;
+import org.sbelli.gecomp.console.bridges.view.AtletaView;
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Atleta;
@@ -48,7 +49,7 @@ public class AtletaDelegate extends GenericDelegate implements InitializingBean 
 		getBridge().delete(atleta);		
 	}
 
-	public GecompModelObject get(Long id) throws GeCompException {
+	public AtletaView get(Long id) throws GeCompException {
 		return getBridge().get(id);
 	}
 	
