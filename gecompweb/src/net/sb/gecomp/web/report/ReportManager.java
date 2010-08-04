@@ -2,12 +2,10 @@ package net.sb.gecomp.web.report;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Properties;
 
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
@@ -43,9 +41,6 @@ public class ReportManager implements IReportManager {
 
 	protected SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
-//	private HSSFCellStyle titleStyle;
-	//private HSSFCellStyle headerStyle;
-//	private HSSFCellStyle tableStyle;
 	protected HashMap<String,HSSFCellStyle> styles;
 	
 	protected HSSFWorkbook report;

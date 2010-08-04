@@ -38,7 +38,9 @@ public class GaraReportManager extends ReportManager {
 		generateInformazioniSheet(classificaGaraView.getGara());
 		generateCategorieSheet(classificaGaraView.getCategorie());
 		generateIscrittiSheet(classificaGaraView.getIscritti());
-		generateClassificaGeneraleSheet(classificaGaraView.getClassificaGenerale());
+		generateClassificaGeneraleSheet("Classifica Generale", classificaGaraView.getClassificaGenerale());
+		generateClassificaGeneraleSheet("Classifica Assoluta Maschile", classificaGaraView.getClassificaGenerale("M"));
+		generateClassificaGeneraleSheet("Classifica Assoluta Femminile", classificaGaraView.getClassificaGenerale("F"));
 		generateClassificheDiCategoriaSheet(classificaGaraView.getClassificheCategorie());
 		generateClassificheDiSocietaSheet(classificaGaraView.getClassificaSocieta());
 		return report;
@@ -204,13 +206,13 @@ public class GaraReportManager extends ReportManager {
 		//Informazioni
 	}
 
-	private void generateClassificaGeneraleSheet (List<PrestazioneView> prestazioni) {
+	private void generateClassificaGeneraleSheet (String titoloSheet, List<PrestazioneView> prestazioni) {
 		int i = 0;
 		//Classifica assoluta
-		HSSFSheet sheet = report.createSheet("Classifica Assoluta");
+		HSSFSheet sheet = report.createSheet(titoloSheet);
 
 		HSSFCell classificaAssolutaTitle = sheet.createRow((short) i).createCell((short) 0);
-		classificaAssolutaTitle.setCellValue("Classifica Assoluta");
+		classificaAssolutaTitle.setCellValue(titoloSheet);
 		classificaAssolutaTitle.setCellStyle(styles.get("headerStyle"));
 
 		sheet.createRow((short) i).createCell((short) 0).setCellValue("Posizione");
