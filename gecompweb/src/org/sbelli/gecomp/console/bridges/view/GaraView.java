@@ -1,11 +1,14 @@
 package org.sbelli.gecomp.console.bridges.view;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import net.sb.gecomp.utils.Eval;
 
 import org.sbelli.gecomp.orm.model.Categoria;
+import org.sbelli.gecomp.orm.model.Competizione;
 import org.sbelli.gecomp.orm.model.Gara;
+import org.sbelli.gecomp.orm.model.TipoMisura;
 
 public class GaraView extends Gara {
 	
@@ -13,6 +16,15 @@ public class GaraView extends Gara {
 //	private List<CategoriaView> categorie;
 	
 	public GaraView() { }
+	public GaraView(Date data) {
+		super(data);
+	}
+	
+	public GaraView(Competizione competizione, String nome, String descrizione,
+			Date data, Float distanza, TipoMisura tipoMisura) {
+		super(competizione, nome, descrizione, data, distanza, tipoMisura);
+	}
+
 	public GaraView(Gara gara) {
 		ViewUtils.copyProperties(this, gara);
 		this.setCompetizione(new CompetizioneView(gara.getCompetizione()));

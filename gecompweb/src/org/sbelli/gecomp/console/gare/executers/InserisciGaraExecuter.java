@@ -6,7 +6,7 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.web.user.GeCompUserSessionHandler;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.Gara;
+import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.orm.model.TipoMisura;
 
 public class InserisciGaraExecuter extends GaraExecuter {
@@ -15,7 +15,7 @@ public class InserisciGaraExecuter extends GaraExecuter {
 		try {
 			checks4SelectedCompetizione ();
 			setGara(
-					new Gara(
+					new GaraView(
 							GeCompUserSessionHandler.getGeCompUserSession().getCompetizione(),
 							"", 
 							"", 

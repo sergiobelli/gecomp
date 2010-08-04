@@ -1,6 +1,6 @@
 package org.sbelli.gecomp.console.atleti.executers;
 
-import org.sbelli.gecomp.orm.model.Atleta;
+import org.sbelli.gecomp.console.bridges.view.AtletaView;
 
 /**
  * 
@@ -10,7 +10,7 @@ import org.sbelli.gecomp.orm.model.Atleta;
 public class InserisciAtletaExecuter extends AtletaExecuter {
 
 	public InserisciAtletaExecuter () {
-		setAtleta(new Atleta());
+		setAtleta(new AtletaView());
 	}
 
 	public String salva() {

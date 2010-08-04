@@ -1,7 +1,10 @@
 package org.sbelli.gecomp.console.bridges.view;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import net.sb.gecomp.utils.Eval;
 
 public class ClassificaGaraView extends ClassificaView {
 
@@ -19,6 +22,17 @@ public class ClassificaGaraView extends ClassificaView {
 
 	private List<PrestazioneView> classificaGenerale;
 	public List<PrestazioneView> getClassificaGenerale() { return classificaGenerale; }
+	public List<PrestazioneView> getClassificaGenerale(String sesso) {
+		List<PrestazioneView> classifica = new ArrayList<PrestazioneView>();
+		if (Eval.isNotEmpty(classificaGenerale)){
+			for (PrestazioneView prestazioneView : classificaGenerale) {
+				if (prestazioneView.getIscrizione().getAtleta().getSesso().equals(sesso)) {
+					classifica.add(prestazioneView);
+				}
+			}
+		}
+		return classifica; 
+	}
 	public void setClassificaGenerale(List<PrestazioneView> classifica) { classificaGenerale = classifica; }
 
 	private HashMap<CategoriaView, List<PrestazioneView>> classificheCategorie;

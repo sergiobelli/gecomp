@@ -6,7 +6,6 @@ import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 
 public class ModificaAtletaExecuter extends AtletaExecuter {
 	
@@ -23,7 +22,7 @@ public class ModificaAtletaExecuter extends AtletaExecuter {
 
 	private void init () {
 		try {
-			setAtleta(DbManagerFactory.getInstance().getAtletaDao().get(idAtleta));
+			setAtleta(delegate.get(idAtleta));
 		} catch (Exception ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.atleta.caricamento.ko");
 		}

@@ -14,12 +14,12 @@ import org.sbelli.gecomp.orm.model.GecompModelObject;
 public class GaraBridge extends GenericBridge {
 
 	public void delete(GecompModelObject element) throws GeCompOrmException {
-		Gara gara = (Gara) element;
+		GaraView gara = (GaraView) element;
 		DbManagerFactory.getInstance().getGaraDao().delete(gara.getIdGara());
 	}
 
-	public GecompModelObject insert(GecompModelObject element) throws GeCompOrmException {
-		return DbManagerFactory.getInstance().getGaraDao().insert((Gara) element);
+	public GaraView insert(GecompModelObject element) throws GeCompOrmException {
+		return new GaraView(DbManagerFactory.getInstance().getGaraDao().insert((Gara) element));
 	}
 
 	public void update(GecompModelObject element) throws GeCompOrmException {
