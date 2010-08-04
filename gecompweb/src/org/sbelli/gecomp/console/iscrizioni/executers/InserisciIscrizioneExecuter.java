@@ -3,8 +3,8 @@ package org.sbelli.gecomp.console.iscrizioni.executers;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.Atleta;
-import org.sbelli.gecomp.orm.model.Iscrizione;
+import org.sbelli.gecomp.console.bridges.view.AtletaView;
+import org.sbelli.gecomp.console.bridges.view.IscrizioneView;
 
 public class InserisciIscrizioneExecuter extends IscrizioneExecuter {
 
@@ -14,7 +14,7 @@ public class InserisciIscrizioneExecuter extends IscrizioneExecuter {
 			checks4SelectedCompetizione();
 			checks4SelectedGara();
 			
-			this.setIscrizione(new Iscrizione(new Atleta(), getSelectedGara()));
+			this.setIscrizione(new IscrizioneView(new AtletaView(), getSelectedGara()));
 			setListaGareItem(getHelper().getListaGareItem(getSelectedCompetizione()));
 		} catch (Exception e) {
 			GeCompGuiExceptionManager.manageGUIException(logger, e, "sssssssssswwwwwwwwwwwweeeeeeeeeeeeee");

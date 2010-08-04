@@ -3,6 +3,7 @@ package org.sbelli.gecomp.console.iscrizioni.executers;
 import javax.faces.event.ActionEvent;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 /**
@@ -10,12 +11,13 @@ import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
  */
 public class ModificaIscrizioneExecuter extends IscrizioneExecuter {
 	
-	public String modificaIscrizione () {
-		return "modificaIscrizione";
+	public String modifica () {
+		return GeCompOutcomes.MODIFICA_ISCRIZIONE;
 	}
 	
 	public void load (ActionEvent event) {
 		idIscrizione = (Long) event.getComponent().getAttributes().get("idIscrizione");
+		stato = (STATO) event.getComponent().getAttributes().get("stato");
 		init ();
 	}
 	
@@ -34,15 +36,7 @@ public class ModificaIscrizioneExecuter extends IscrizioneExecuter {
 	}
 	
 	public String elimina () {
-		try {
-			logger.info("Deleting iscrizione...");
-			delegate.delete(getIscrizione());
-			logger.info("Deleted iscrizione...");
-		} catch (GeCompException ex) {
-			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.iscrizione.eliminazione.ko.descrizione");
-			return "null";
-		}
-		return "null";
+		return GeCompOutcomes.ELIMINA_ISCRIZIONE;
 	}
 	
 }

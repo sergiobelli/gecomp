@@ -4,10 +4,11 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
+import org.sbelli.gecomp.console.bridges.view.CompetizioneView;
 import org.sbelli.gecomp.console.competizione.bridges.CompetizioneBridge;
 import org.sbelli.gecomp.console.competizione.controllers.CompetizioneController;
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
+import org.sbelli.gecomp.console.societa.bridges.SocietaBridge;
 import org.sbelli.gecomp.orm.model.Competizione;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 
@@ -16,17 +17,19 @@ public class CompetizioneDelegate extends GenericDelegate {
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 	
 	private CompetizioneController controller = new CompetizioneController();
+	
 	private CompetizioneBridge bridge = new CompetizioneBridge();
+	private SocietaBridge socBridge = new SocietaBridge();
 	
 	public void delete(GecompModelObject element) throws GeCompException {
 		Competizione competizione = (Competizione) element;
 		bridge.delete(competizione);
 	}
 
-	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
-		Competizione competizione = (Competizione) element;
+	public CompetizioneView retrieve(GecompModelObject element) throws GeCompException {
+		CompetizioneView competizione = (CompetizioneView) element;
 		controller.checks(competizione);
-		competizione.setSocietaOrganizzatrice(DbManagerFactory.getInstance().getSocietaDao().get(competizione.getSocietaOrganizzatrice().getId()));
+		competizione.setSocietaOrganizzatrice(socBridge.get(competizione.getSocietaOrganizzatrice().getId()));
 		return competizione;
 	}
 
@@ -43,7 +46,7 @@ public class CompetizioneDelegate extends GenericDelegate {
 		}
 	}
 
-	public Competizione get(Long id) throws GeCompException {
+	public CompetizioneView get(Long id) throws GeCompException {
 		return bridge.get(id);
 	}
 

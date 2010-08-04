@@ -79,15 +79,17 @@
 	                    	<h:outputText value="Operazioni"/>
 	                    </f:facet>
 	                    
-                        <h:commandLink actionListener="#{ModificaIscrizioneExecuter.load}" action="#{ModificaIscrizioneExecuter.modificaIscrizione}" styleClass="FacetSorterLink">
+                        <h:commandLink actionListener="#{ModificaIscrizioneExecuter.load}" action="#{ModificaIscrizioneExecuter.modifica}" styleClass="FacetSorterLink">
 	                    	<h:graphicImage value="/styles/images/edit.png" alt="Modifica" />
 	                        <f:attribute name="idIscrizione" value="#{iscrizione.idIscrizione}" />
+	                        <f:attribute name="stato" value="#{ModificaIscrizioneExecuter.MODIFICA}" />
 	                    </h:commandLink>
                         
                         <h:outputText value=" "/>
-	                    <h:commandLink actionListener="#{ModificaIscrizioneExecuter.load}" action="#{ModificaIscrizioneExecuter.eliminaIscrizione}" styleClass="FacetSorterLink">
+	                    <h:commandLink actionListener="#{EliminaIscrizioneExecuter.load}" action="#{EliminaIscrizioneExecuter.elimina}" styleClass="FacetSorterLink">
 	                    	<h:graphicImage value="/styles/images/delete.png" alt="Elimina" />
 	                        <f:attribute name="idIscrizione" value="#{iscrizione.idIscrizione}" />
+	                        <f:attribute name="stato" value="#{EliminaIscrizioneExecuter.CANCELLAZIONE}" />
 	                    </h:commandLink>
                         
                     </h:column> 

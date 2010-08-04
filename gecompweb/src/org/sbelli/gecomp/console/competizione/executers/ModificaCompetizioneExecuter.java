@@ -6,17 +6,15 @@ import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
 import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.exceptions.MessageSeverity;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.user.GeCompUserSessionHandler;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 import net.sb.gecomp.web.utils.guimessages.GuiMessageHandler;
 
+import org.sbelli.gecomp.console.bridges.view.CompetizioneView;
+import org.sbelli.gecomp.console.bridges.view.SocietaView;
 import org.sbelli.gecomp.console.competizione.controllers.CompetizioneController;
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Societa;
 
 public class ModificaCompetizioneExecuter extends CompetizioneExecuter {
 
@@ -31,13 +29,13 @@ public class ModificaCompetizioneExecuter extends CompetizioneExecuter {
 		try {
 			logger.info("Modifing Competizione...");
 
-			final Competizione tmpCompetizione = (Competizione)delegate.retrieve(getCompetizione());
+			final CompetizioneView tmpCompetizione = delegate.retrieve(getCompetizione());
 			logger.debug("Customized Competizione = " + tmpCompetizione);
 
 			CompetizioneController competizioneController = new CompetizioneController(); 
 			competizioneController.checks(tmpCompetizione);
 
-			DbManagerFactory.getInstance().getCompetizioneDao().update(tmpCompetizione);
+			delegate.save(tmpCompetizione);
 
 			logger.info("Modified Competizione...");
 
@@ -60,7 +58,7 @@ public class ModificaCompetizioneExecuter extends CompetizioneExecuter {
 		String outcome = update ();
 
 		try {
-			GeCompUserSessionHandler.getGeCompUserSession().setCompetizione((Competizione)delegate.retrieve(getCompetizione()));
+			GeCompUserSessionHandler.getGeCompUserSession().setCompetizione(delegate.retrieve(getCompetizione()));
 		} catch (GeCompException e) {
 			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.competizione.modificata.selezionata.ko");
 		}
@@ -76,7 +74,7 @@ public class ModificaCompetizioneExecuter extends CompetizioneExecuter {
 
 		try {
 
-			Competizione comp = DbManagerFactory.getInstance().getCompetizioneDao().get(idCompetizione);
+			CompetizioneView comp = delegate.get(idCompetizione);
 			GeCompUserSessionHandler.getGeCompUserSession().setCompetizione(comp);
 			GeCompUserSessionHandler.getGeCompUserSession().setGara(null);
 			
@@ -85,7 +83,7 @@ public class ModificaCompetizioneExecuter extends CompetizioneExecuter {
 		}
 
 		GuiMessageHandler.addGUIMessage(MessageSeverity.info, "message.competizione.selezionata.ok", "message.competizione.selezionata.ok.descrizione");
-		return "null";
+		return GeCompOutcomes.NULL;
 
 	}
 
@@ -103,15 +101,15 @@ public class ModificaCompetizioneExecuter extends CompetizioneExecuter {
 
 	private void init () {
 		try {
-			competizione = DbManagerFactory.getInstance().getCompetizioneDao().get(idCompetizione);
-			List<Societa> tmpSocieta = DbManagerFactory.getInstance().getSocietaDao().list();
+			competizione = delegate.get(idCompetizione);
+			List<SocietaView> tmpSocieta = socDelegate.list();
 			int pos = 0;
 			listaSocieta = new SelectItem[tmpSocieta.size()];
-			for (Societa soc : tmpSocieta) {
+			for (SocietaView soc : tmpSocieta) {
 				listaSocieta[pos] = new SelectItem(soc.getId(), soc.getDenominazione());
 				pos++;
 			}
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.competizione.caricamento.ko");
 		}
 	}

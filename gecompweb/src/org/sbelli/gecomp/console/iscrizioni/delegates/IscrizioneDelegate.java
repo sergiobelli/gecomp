@@ -7,11 +7,12 @@ import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
+import org.sbelli.gecomp.console.bridges.view.CompetizioneView;
+import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.console.bridges.view.IscrizioneView;
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
 import org.sbelli.gecomp.console.iscrizioni.bridges.IscrizioneBridge;
 import org.sbelli.gecomp.console.iscrizioni.controllers.IscrizioneController;
-import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 import org.sbelli.gecomp.orm.model.Iscrizione;
 
@@ -56,11 +57,20 @@ public class IscrizioneDelegate extends GenericDelegate {
 		return bridge.get(id);
 	}
 
-	public List<IscrizioneView> list(Gara gara) throws GeCompException {
+	public List<IscrizioneView> list(GaraView gara) throws GeCompException {
 		try {
 			return bridge.list(gara);
 		} catch (GeCompOrmException ex) {
 			logger.error(ex, "Non ci sono iscrizioni per la gara specificata ", gara);
+			throw new GeCompException("c.c.c.c.c.c.c.c");
+		}
+	}
+	
+	public List<IscrizioneView> list(CompetizioneView competizione) throws GeCompException {
+		try {
+			return bridge.list(competizione);
+		} catch (GeCompOrmException ex) {
+			logger.error(ex, "Non ci sono iscrizioni per la competizione specificata ", competizione);
 			throw new GeCompException("c.c.c.c.c.c.c.c");
 		}
 	}

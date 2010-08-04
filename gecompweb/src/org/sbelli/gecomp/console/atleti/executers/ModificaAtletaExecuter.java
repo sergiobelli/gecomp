@@ -3,6 +3,7 @@ package org.sbelli.gecomp.console.atleti.executers;
 import javax.faces.event.ActionEvent;
 
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
@@ -30,7 +31,7 @@ public class ModificaAtletaExecuter extends AtletaExecuter {
 
 
 	public String modifica () {
-		return "modificaAtleta";
+		return GeCompOutcomes.MODIFICA_ATLETA;
 	}
 
 	public String elimina () {
@@ -40,9 +41,9 @@ public class ModificaAtletaExecuter extends AtletaExecuter {
 			logger.info("Deleted Atleta...");
 		} catch (Exception ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.atleta.eliminazione.ko");
-			return "null";
+			return GeCompOutcomes.NULL;
 		}
-		return "listaAtleti";
+		return GeCompOutcomes.LISTA_ATLETI;
 	}
 
 	public String salva() {

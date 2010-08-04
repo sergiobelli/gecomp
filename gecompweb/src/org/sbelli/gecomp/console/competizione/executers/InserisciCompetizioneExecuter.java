@@ -5,8 +5,6 @@ import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.user.GeCompUserSessionHandler;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.Competizione;
-
 public class InserisciCompetizioneExecuter extends CompetizioneExecuter {
 
 	public String salva () {
@@ -35,7 +33,7 @@ public class InserisciCompetizioneExecuter extends CompetizioneExecuter {
 		String outcome = insert ();
 
 		try {
-			GeCompUserSessionHandler.getGeCompUserSession().setCompetizione((Competizione)delegate.retrieve(this.getCompetizione()));
+			GeCompUserSessionHandler.getGeCompUserSession().setCompetizione(delegate.retrieve(this.getCompetizione()));
 			GeCompUserSessionHandler.getGeCompUserSession().setGara(null);
 		} catch (GeCompException e) {
 			GeCompGuiExceptionManager.manageGUIException(logger,e, "error.competizione.salvataggio.selezione.ko");

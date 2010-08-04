@@ -103,6 +103,10 @@
        		<to-view-id>/main/iscrizioni/ModificaIscrizioni.xhtml</to-view-id>
     	</navigation-case>
     	<navigation-case>
+       		<from-outcome>eliminaIscrizione</from-outcome>
+       		<to-view-id>/main/iscrizioni/EliminaIscrizioni.xhtml</to-view-id>
+    	</navigation-case>
+    	<navigation-case>
       		<from-outcome>listaIscrizioni</from-outcome>
       		<to-view-id>/main/iscrizioni/ListaIscrizioni.xhtml</to-view-id>
    		</navigation-case>
@@ -234,6 +238,11 @@
    <managed-bean> 
       <managed-bean-name>ModificaIscrizioneExecuter</managed-bean-name>
       <managed-bean-class>org.sbelli.gecomp.console.iscrizioni.executers.ModificaIscrizioneExecuter</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>EliminaIscrizioneExecuter</managed-bean-name>
+      <managed-bean-class>org.sbelli.gecomp.console.iscrizioni.executers.EliminaIscrizioneExecuter</managed-bean-class> 
       <managed-bean-scope>session</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 

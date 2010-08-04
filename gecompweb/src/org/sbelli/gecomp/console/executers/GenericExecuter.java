@@ -7,10 +7,10 @@ import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.user.GeCompUserSessionHandler;
 
+import org.sbelli.gecomp.console.bridges.view.CompetizioneView;
 import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.console.iscrizioni.delegates.IscrizioneDelegate;
 import org.sbelli.gecomp.console.prestazioni.delegates.PrestazioneDelegate;
-import org.sbelli.gecomp.orm.model.Competizione;
 
 public abstract class GenericExecuter {
 
@@ -18,10 +18,27 @@ public abstract class GenericExecuter {
 	
 	//protected abstract <T extends GecompModelObject> T retrieve(int i) throws GeCompException;//TODO:questo lavoro l'ho finito o no??????????
 	
+	public enum STATO { INSERIMENTO, MODIFICA, CANCELLAZIONE, LISTA; }
+	
+	private STATO INSERIMENTO = STATO.INSERIMENTO;
+	public STATO getINSERIMENTO() {return INSERIMENTO;}
+
+	public STATO MODIFICA = STATO.MODIFICA;
+	public STATO getMODIFICA() {return MODIFICA;}
+
+	public STATO CANCELLAZIONE = STATO.CANCELLAZIONE;
+	public STATO getCANCELLAZIONE() {return CANCELLAZIONE;}
+	
+	public STATO LISTA = STATO.LISTA;
+	public STATO getLISTA() {return LISTA;}	
+
+	
+	protected STATO stato;
+	
 	public ExecuterHelper getHelper() { return new ExecuterHelper(); }
 	
 	protected Boolean isSelectedCompetizione() { return Eval.isNotNull(GeCompUserSessionHandler.getGeCompUserSession().getCompetizione()); }
-	protected Competizione getSelectedCompetizione() { return GeCompUserSessionHandler.getGeCompUserSession().getCompetizione(); }
+	protected CompetizioneView getSelectedCompetizione() { return GeCompUserSessionHandler.getGeCompUserSession().getCompetizione(); }
 	protected void checks4SelectedCompetizione() throws GeCompException {
 		if (!isSelectedCompetizione()) {
 			throw new GeCompException("message.competizione.non.selezionata");

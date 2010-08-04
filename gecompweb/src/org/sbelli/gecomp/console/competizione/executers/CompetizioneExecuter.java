@@ -8,8 +8,10 @@ import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
+import org.sbelli.gecomp.console.bridges.view.CompetizioneView;
 import org.sbelli.gecomp.console.competizione.delegates.CompetizioneDelegate;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
+import org.sbelli.gecomp.console.societa.delegates.SocietaDelegate;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Competizione;
 import org.sbelli.gecomp.orm.model.Societa;
@@ -19,19 +21,20 @@ public class CompetizioneExecuter extends GenericExecuter {
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 
 	protected CompetizioneDelegate delegate = new CompetizioneDelegate();
+	protected SocietaDelegate socDelegate = new SocietaDelegate();
 	
 	public CompetizioneExecuter () {
 
-		competizione = new Competizione();
+		competizione = new CompetizioneView();
 		competizione.setSocietaOrganizzatrice(new Societa());
 		
 		loadSocietaList();
 	}
 
 	protected Long idCompetizione;
-	protected Competizione competizione;
-	public Competizione getCompetizione() { return competizione; }
-	public void setCompetizione(Competizione competizione) { this.competizione = competizione; }
+	protected CompetizioneView competizione;
+	public CompetizioneView getCompetizione() { return competizione; }
+	public void setCompetizione(CompetizioneView competizione) { this.competizione = competizione; }
 
 	protected List<Competizione> competizioni;
 	public List<Competizione> getCompetizioni() { return competizioni; }

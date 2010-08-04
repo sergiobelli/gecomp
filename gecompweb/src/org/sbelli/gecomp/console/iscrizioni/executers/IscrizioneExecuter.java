@@ -4,15 +4,13 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.console.atleti.delegates.AtletaDelegate;
+import org.sbelli.gecomp.console.bridges.view.IscrizioneView;
 import org.sbelli.gecomp.console.executers.GenericExecuter;
 import org.sbelli.gecomp.console.iscrizioni.delegates.IscrizioneDelegate;
-import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public abstract class IscrizioneExecuter extends GenericExecuter {
 
@@ -22,13 +20,13 @@ public abstract class IscrizioneExecuter extends GenericExecuter {
 
 	protected Long idIscrizione;
 	
-	protected Iscrizione iscrizione;
-	public Iscrizione getIscrizione() { return iscrizione; }
-	public void setIscrizione(Iscrizione iscrizione) { this.iscrizione = iscrizione; }
+	protected IscrizioneView iscrizione;
+	public IscrizioneView getIscrizione() { return iscrizione; }
+	public void setIscrizione(IscrizioneView iscrizione) { this.iscrizione = iscrizione; }
 	
-	private List<Iscrizione> iscrizioni;
-	public List<Iscrizione> getIscrizioni() {return iscrizioni;}
-	public void setIscrizioni(List<Iscrizione> iscrizioni) {this.iscrizioni = iscrizioni;}
+	private List<IscrizioneView> iscrizioni;
+	public List<IscrizioneView> getIscrizioni() {return iscrizioni;}
+	public void setIscrizioni(List<IscrizioneView> iscrizioni) {this.iscrizioni = iscrizioni;}
 
 	private SelectItem[] listaGareItem;
 	public SelectItem[] getListaGareItem() {return listaGareItem;}

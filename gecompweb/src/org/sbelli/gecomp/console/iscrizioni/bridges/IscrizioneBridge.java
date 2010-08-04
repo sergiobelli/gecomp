@@ -7,9 +7,10 @@ import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.Eval;
 
 import org.sbelli.gecomp.console.bridges.GenericBridge;
+import org.sbelli.gecomp.console.bridges.view.CompetizioneView;
+import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.console.bridges.view.IscrizioneView;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 import org.sbelli.gecomp.orm.model.Iscrizione;
 
@@ -33,9 +34,20 @@ public class IscrizioneBridge extends GenericBridge {
 		return new IscrizioneView(DbManagerFactory.getInstance().getIscrizioneDao().get(id));
 	}
 
-	public List<IscrizioneView> list(Gara gara) throws GeCompOrmException {
+	public List<IscrizioneView> list(GaraView gara) throws GeCompOrmException {
 		List<IscrizioneView> result = new ArrayList<IscrizioneView>();
 		List<Iscrizione> iscritti = DbManagerFactory.getInstance().getIscrizioneDao().list(gara);
+		if (Eval.isNotEmpty(iscritti)) {
+			for (Iscrizione i : iscritti) {
+				result.add(new IscrizioneView(i));
+			}
+		}
+		return result;
+	}
+	
+	public List<IscrizioneView> list(CompetizioneView competizione) throws GeCompOrmException {
+		List<IscrizioneView> result = new ArrayList<IscrizioneView>();
+		List<Iscrizione> iscritti = DbManagerFactory.getInstance().getIscrizioneDao().list(competizione);
 		if (Eval.isNotEmpty(iscritti)) {
 			for (Iscrizione i : iscritti) {
 				result.add(new IscrizioneView(i));

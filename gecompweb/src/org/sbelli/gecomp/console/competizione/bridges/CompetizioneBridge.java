@@ -3,6 +3,7 @@ package org.sbelli.gecomp.console.competizione.bridges;
 import net.sb.gecomp.exceptions.GeCompOrmException;
 
 import org.sbelli.gecomp.console.bridges.GenericBridge;
+import org.sbelli.gecomp.console.bridges.view.CompetizioneView;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Competizione;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
@@ -22,8 +23,8 @@ public class CompetizioneBridge extends GenericBridge {
 		DbManagerFactory.getInstance().getCompetizioneDao().update((Competizione) element);
 	}
 
-	public Competizione get(Long id) throws GeCompOrmException {
-		return DbManagerFactory.getInstance().getCompetizioneDao().get(id);
+	public CompetizioneView get(Long id) throws GeCompOrmException {
+		return new CompetizioneView(DbManagerFactory.getInstance().getCompetizioneDao().get(id));
 	}
 
 }
