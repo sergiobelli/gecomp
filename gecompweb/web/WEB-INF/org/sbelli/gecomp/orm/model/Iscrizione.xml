@@ -31,8 +31,8 @@
   <select id="selectIscrizione" resultMap="IscrizioneResult" parameterClass="long">select * from iscrizione where ID_ISCRIZIONE = #idIscrizione#</select>
    
   <insert id="insertIscrizione" parameterClass="Iscrizione">
-    insert into iscrizione ( ID_ISCRIZIONE, GARA, ATLETA, NUMERO_PETTORALE )  
-    values ( #idIscrizione#, #gara.idGara#, #atleta.idAtleta#, #numeroPettorale#  )
+    insert into iscrizione ( ID_ISCRIZIONE, GARA, ATLETA, NUMERO_PETTORALE, COMPETITIVO )  
+    values ( #idIscrizione#, #gara.idGara#, #atleta.idAtleta#, #numeroPettorale#, #competitivo#  )
   </insert>
 
   <update id="updateIscrizione" parameterClass="Iscrizione">
@@ -40,7 +40,8 @@
       ID_ISCRIZIONE = #idIscrizione#,
       GARA = #gara.idGara#,
       ATLETA = #atleta.idAtleta#,
-      NUMERO_PETTORALE = #numeroPettorale#
+      NUMERO_PETTORALE = #numeroPettorale#,
+      COMPETITIVO = #competitivo#
     where
       ID_ISCRIZIONE = #idIscrizione#
   </update>
