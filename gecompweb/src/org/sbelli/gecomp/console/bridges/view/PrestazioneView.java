@@ -1,12 +1,15 @@
 package org.sbelli.gecomp.console.bridges.view;
 
 import net.sb.gecomp.utils.Eval;
+import net.sb.gecomp.utils.logger.GeCompLogger;
 
 import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Prestazione;
 
 public class PrestazioneView extends Prestazione {
 
+	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
+	
 	private Integer posizione;
 	private Integer punteggio;
 	
@@ -34,16 +37,21 @@ public class PrestazioneView extends Prestazione {
 	
 	public CategoriaView getCategoria() {
 		CategoriaView result = new CategoriaView();
-		result.setNomeCategoria("n.d.");
-		Integer annoNascita = Integer.valueOf(this.getIscrizione().getAtleta().getAnnoNascita());
-		if (Eval.isNotEmpty(this.getIscrizione().getGara().getCategorie())) {
-			for (Categoria categoria : this.getIscrizione().getGara().getCategorie()) {
-				if (categoria.getAnniAppartenenza().contains(annoNascita)
-						&& categoria.getSesso().equals(this.getIscrizione().getAtleta().getSesso())) {
-					result = new CategoriaView(categoria);
-					break;
+		try {		
+			result.setNomeCategoria("n.d.");
+			Integer annoNascita = Integer.valueOf(this.getIscrizione().getAtleta().getAnnoNascita());
+			if (Eval.isNotEmpty(this.getIscrizione().getGara().getCategorie())) {
+				for (Categoria categoria : this.getIscrizione().getGara().getCategorie()) {
+					if (categoria.getAnniAppartenenza().contains(annoNascita)
+							&& categoria.getSesso().equals(this.getIscrizione().getAtleta().getSesso())) {
+						result = new CategoriaView(categoria);
+						break;
+					}
 				}
 			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			logger.error(ex);
 		}
 		return result;
 	}
