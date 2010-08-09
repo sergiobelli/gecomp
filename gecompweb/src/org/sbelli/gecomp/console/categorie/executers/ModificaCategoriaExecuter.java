@@ -6,7 +6,6 @@ import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 
 public class ModificaCategoriaExecuter extends CategoriaExecuter {
 
@@ -21,9 +20,11 @@ public class ModificaCategoriaExecuter extends CategoriaExecuter {
 
 	private void init () {
 		try {
-			setCategoria(DbManagerFactory.getInstance().getCategoriaDao().get(idCategoria));			
-		} catch (GeCompException ex) {
-			GeCompGuiExceptionManager.manageGUIException(logger, ex,"error.atleta.caricamento.ko");
+			setCategoria(delegate.get(idCategoria));			
+		} catch (GeCompException gce) {
+			GeCompGuiExceptionManager.manageGUIException(logger, gce, gce.getMessage());
+		} catch (Exception ex) {
+			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.atleta.caricamento.ko");
 		}
 	}
 
@@ -37,9 +38,12 @@ public class ModificaCategoriaExecuter extends CategoriaExecuter {
 			logger.info("Deleting Categoria...");
 			delegate.delete(getCategoria());
 			logger.info("Deleted Categoria...");
+		} catch (GeCompException gce) {
+			GeCompGuiExceptionManager.manageGUIException(logger, gce, gce.getMessage());
+			return GeCompOutcomes.NULL;
 		} catch (Exception ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.atleta.eliminazione.ko");
-			return "null";
+			return GeCompOutcomes.NULL;
 		}
 		return GeCompOutcomes.LISTA_CATEGORIE;
 	}

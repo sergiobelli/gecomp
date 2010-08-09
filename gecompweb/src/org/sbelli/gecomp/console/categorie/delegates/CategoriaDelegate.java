@@ -1,5 +1,6 @@
 package org.sbelli.gecomp.console.categorie.delegates;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -53,9 +54,12 @@ public class CategoriaDelegate extends GenericDelegate {
 			}
 			
 			logger.info("Saved/update Categoria...");
+		} catch (GeCompException gce) {
+			logger.error("Errore gestito", gce);
+			throw gce;
 		} catch (Exception ex) {
-			logger.error(ex, "XXXXXXXXXXXX");
-			throw new GeCompException("XXXXXXXXXXXX",ex);
+			logger.error(ex, "net.sb.gecomp.console.categorie.delegates.save.generic_error");
+			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.save.generic_error",ex);
 		}
 	}
 	
@@ -63,9 +67,12 @@ public class CategoriaDelegate extends GenericDelegate {
 		try {
 			CategoriaView categoria = (CategoriaView)element;
 			bridge.delete(categoria);
+		} catch (GeCompException gce) {
+			logger.error("Errore gestito", gce);
+			throw gce;
 		} catch (Exception ex) {
-			logger.error(ex, "XXXXXXXXXXXX");
-			throw new GeCompException("XXXXXXXXXXXX",ex);
+			logger.error(ex, "net.sb.gecomp.console.categorie.delegates.delete.generic_error");
+			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.delete.generic_error",ex);
 		}
 	}
 
@@ -73,12 +80,34 @@ public class CategoriaDelegate extends GenericDelegate {
 		return bridge.get(id);
 	}
 
+	public List<CategoriaView> list() throws GeCompException {
+		logger.info("start...");
+		
+		List<CategoriaView> result = new ArrayList<CategoriaView>();
+		try {
+			result = bridge.list();
+			logger.info("result = ", result);
+			
+			logger.info("end");
+			return result;
+		} catch (GeCompException gce) {
+			logger.error("Errore gestito", gce);
+			throw gce;
+		} catch (Exception ex) {
+			logger.error(ex, "net.sb.gecomp.console.categorie.delegates.list.generic_error");
+			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.list.generic_error",ex);
+		}
+	}
+	
 	public List<CategoriaView> list(GaraView gara) throws GeCompException {
 		try {
 			return bridge.list(gara);
+		} catch (GeCompException gce) {
+			logger.error("Errore gestito", gce);
+			throw gce;
 		} catch (Exception ex) {
-			logger.error(ex, "XXXXXXXXXXXX");
-			throw new GeCompException("XXXXXXXXXXXX",ex);
+			logger.error(ex, "net.sb.gecomp.console.categorie.delegates.list.generic_error");
+			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.list.generic_error",ex);
 		}
 	}
 }

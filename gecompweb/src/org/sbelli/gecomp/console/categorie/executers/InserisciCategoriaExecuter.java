@@ -1,6 +1,6 @@
 package org.sbelli.gecomp.console.categorie.executers;
 
-import org.sbelli.gecomp.orm.model.Categoria;
+import org.sbelli.gecomp.console.bridges.view.CategoriaView;
 
 /**
  * @author S.BELLI
@@ -8,7 +8,7 @@ import org.sbelli.gecomp.orm.model.Categoria;
 public class InserisciCategoriaExecuter extends CategoriaExecuter {
 	
 	public InserisciCategoriaExecuter () {
-		setCategoria(new Categoria());
+		setCategoria(new CategoriaView());
 	}
 
 }

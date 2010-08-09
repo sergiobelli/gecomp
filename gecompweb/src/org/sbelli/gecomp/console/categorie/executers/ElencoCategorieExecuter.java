@@ -2,26 +2,25 @@ package org.sbelli.gecomp.console.categorie.executers;
 
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Categoria;
+import org.sbelli.gecomp.console.bridges.view.CategoriaView;
 
 /**
  * @author sbelli
  */
 public class ElencoCategorieExecuter extends CategoriaExecuter {
 
-	private List<Categoria> categorie;
-	public List<Categoria> getCategorie() { return categorie; }
-	public void setCategorie(List<Categoria> atleti) { this.categorie = atleti; }	
+	private List<CategoriaView> categorie;
+	public List<CategoriaView> getCategorie() { return categorie; }
+	public void setCategorie(List<CategoriaView> atleti) { this.categorie = atleti; }	
 	
 	public ElencoCategorieExecuter() {
 		try {
-			setCategorie(DbManagerFactory.getInstance().getCategoriaDao().list());
-		} catch (GeCompOrmException e) {
-			GeCompExceptionManager.manageException(logger, e);
+			setCategorie(delegate.list());
+		} catch (GeCompException gce) {
+			GeCompGuiExceptionManager.manageGUIException(logger, gce, gce.getMessage());
 		}
 	}
 	

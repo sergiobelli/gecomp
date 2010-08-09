@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
+import net.sb.gecomp.utils.logger.GeCompLogger;
 
 import org.sbelli.gecomp.console.bridges.GenericBridge;
 import org.sbelli.gecomp.console.bridges.view.CategoriaView;
@@ -15,6 +16,8 @@ import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class CategoriaBridge extends GenericBridge {
 
+	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
+	
 	public void delete(GecompModelObject element) throws GeCompException {
 		DbManagerFactory.getInstance().getCategoriaDao().delete(((Categoria)element).getIdCategoria());
 	}
@@ -31,9 +34,30 @@ public class CategoriaBridge extends GenericBridge {
 		return new CategoriaView(DbManagerFactory.getInstance().getCategoriaDao().get(id));
 	}
 
+	public List<CategoriaView> list() throws GeCompException {
+		logger.info("start...");
+		
+		List<CategoriaView> result = new ArrayList<CategoriaView>();
+		List<Categoria> categorie = DbManagerFactory.getInstance().getCategoriaDao().list();
+		logger.info("categorie = ", categorie);
+		
+		if (Eval.isNotEmpty(categorie)) {
+			for (Categoria categoria : categorie) {
+				result.add(new CategoriaView(categoria));
+			}
+		}
+		logger.info("result = ", result);
+		
+		logger.info("end");
+		return result;
+	}
 	public List<CategoriaView> list(Gara gara) throws GeCompException {
+		logger.info("start...");
+		
 		List<CategoriaView> result = null;
 		List<Categoria> categorie = DbManagerFactory.getInstance().getCategoriaGaraDao().listCategorie(gara);
+		logger.info("categorie = ", categorie);
+		
 		if (Eval.isNotEmpty(categorie)) {
 			result = new ArrayList<CategoriaView>();
 			for (Categoria c : categorie) {
@@ -41,6 +65,9 @@ public class CategoriaBridge extends GenericBridge {
 				result.add(pw);
 			}
 		}
+		logger.info("result = ", result);
+
+		logger.info("end");
 		return result;
 	}
 
