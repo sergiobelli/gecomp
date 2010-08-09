@@ -21,8 +21,10 @@
                     <h:inputText value="#{InserisciCategoriaExecuter.categoria.nomeCategoria}" required="true" class="FacetInput"/>
 
             		<h:outputText value="Sesso"/>
-            		<h:inputText value="#{InserisciCategoriaExecuter.categoria.sesso}" required="true" class="FacetInput"/>
-
+	            	<h:selectOneRadio value="#{InserisciCategoriaExecuter.categoria.sesso}" required="true" class="FacetInput">
+	            		<f:selectItems value="#{InserisciCategoriaExecuter.helper.sessoItems}" />
+	            	</h:selectOneRadio>
+	            	
             		<h:outputText value="Anno di partenza"/>
             		<h:inputText value="#{InserisciCategoriaExecuter.categoria.annoPartenza}" class="FacetInput"/>
             		

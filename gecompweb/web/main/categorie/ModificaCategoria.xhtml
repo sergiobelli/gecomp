@@ -21,7 +21,9 @@
                     <h:inputText value="#{ModificaCategoriaExecuter.categoria.nomeCategoria}" required="true" class="FacetInput"/>
 
             		<h:outputText value="Sesso"/>
-            		<h:inputText value="#{ModificaCategoriaExecuter.categoria.sesso}" required="true" class="FacetInput"/>
+	            	<h:selectOneRadio value="#{ModificaCategoriaExecuter.categoria.sesso}" required="true" class="FacetInput">
+	            		<f:selectItems value="#{ModificaCategoriaExecuter.helper.sessoItems}" />
+	            	</h:selectOneRadio>
 
             		<h:outputText value="Anno di partenza"/>
             		<h:inputText value="#{ModificaCategoriaExecuter.categoria.annoPartenza}" class="FacetInput"/>
