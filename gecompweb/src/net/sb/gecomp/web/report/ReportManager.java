@@ -37,6 +37,8 @@ import org.sbelli.gecomp.orm.presentation.classifiche.PrestazioneInCompetizione;
  */
 public class ReportManager implements IReportManager {
 
+	private static final String INTERNAL_PATH_SEPARATOR = "|";
+	
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 
 	protected SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -52,7 +54,7 @@ public class ReportManager implements IReportManager {
 		if (classifica instanceof ClassificaGaraView) {
 			ClassificaGaraView classificaGaraView = (ClassificaGaraView)classifica;
 			report = new GaraReportManager().getReport(classificaGaraView);
-			nomeCartella = classificaGaraView.getGara().getCompetizione().getNome() + "." + classificaGaraView.getGara().getNome();
+			nomeCartella = classificaGaraView.getGara().getCompetizione().getNome() + INTERNAL_PATH_SEPARATOR + classificaGaraView.getGara().getNome();
 			nomeReport = classificaGaraView.getGara().getNome();
 		} else if (classifica instanceof ClassificaCompetizioneView) {
 			ClassificaCompetizioneView classificaCompetizioneView = (ClassificaCompetizioneView)classifica;
@@ -88,11 +90,11 @@ public class ReportManager implements IReportManager {
 			// Write the output to a file
 
 			//TODO : CREARE TAB PROPERTIES E INSERIRE REPORT STAGING AREA !!!
-			String startPath 			= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.start.path");
-			String filePath 			= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.staging.area").replace(".", System.getProperty("file.separator"));
+			String startPath 			= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.start.path").replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
+			String filePath 			= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.staging.area").replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
 			String fileName 			= nomeFile.trim().replaceAll(" ", "_");
 			String fileExtension 		= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.report.file.extension");
-			nomeCartella = nomeCartella.replace(".", System.getProperty("file.separator"));
+			nomeCartella = nomeCartella.replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
 			
 			String dir = 
 				startPath + System.getProperty("file.separator") 
