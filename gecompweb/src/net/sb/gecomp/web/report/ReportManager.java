@@ -100,7 +100,10 @@ public class ReportManager implements IReportManager {
 				startPath + System.getProperty("file.separator") 
 				+ filePath + System.getProperty("file.separator")
 				+ nomeCartella;
+			logger.info("dir=", dir);
+			
 			String all = dir + System.getProperty("file.separator") + fileName  + fileExtension;
+			logger.info("all=", all);
 			
 			
 			File file = new File(dir);
