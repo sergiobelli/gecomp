@@ -20,7 +20,7 @@ public class CategoriaController extends GenericController {
 		logger.info("Checks passed ! ");
 	}
 	
-	private void checksAnnoPartenza(Categoria categoria) throws GeCompException {
+	protected void checksAnnoPartenza(Categoria categoria) throws GeCompException {
 		if (Eval.isEmpty((categoria.getAnnoPartenza()))) {
 			throw new GeCompException("net.sb.gecomp.console.categorie.controllers.error.anno_partenza.empty");
 		} else {
@@ -31,7 +31,8 @@ public class CategoriaController extends GenericController {
 			}
 		}
 	}
-	private void checksAnnoFine(Categoria categoria) throws GeCompException {
+	
+	protected void checksAnnoFine(Categoria categoria) throws GeCompException {
 		if (Eval.isEmpty((categoria.getAnnoFine()))) {
 			throw new GeCompException("net.sb.gecomp.console.categorie.controllers.error.anno_fine.empty");
 		} else {
@@ -42,7 +43,8 @@ public class CategoriaController extends GenericController {
 			}
 		}
 	}
-	private void checksCongruenzaDate(Categoria categoria) throws GeCompException {
+	
+	protected void checksCongruenzaDate(Categoria categoria) throws GeCompException {
 		try {
 			String sAnnoPartenza = categoria.getAnnoPartenza();
 			String sAnnoFine = categoria.getAnnoFine();
