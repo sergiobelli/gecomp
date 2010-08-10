@@ -39,7 +39,15 @@ public class PrestazioneView extends Prestazione {
 		CategoriaView result = new CategoriaView();
 		try {		
 			result.setNomeCategoria("n.d.");
+			
+			logger.debug("[PrestazioneView.getCategoria]prestazione = " + this);
+			logger.debug("[PrestazioneView.getCategoria]prestazione.iscrizione = " + this.getIscrizione());
+			logger.debug("[PrestazioneView.getCategoria]prestazione.iscrizione.atleta = " + this.getIscrizione().getAtleta());
+			logger.debug("[PrestazioneView.getCategoria]prestazione.iscrizione.atleta.annoNascita = " + this.getIscrizione().getAtleta().getAnnoNascita());
+			
 			Integer annoNascita = Integer.valueOf(this.getIscrizione().getAtleta().getAnnoNascita());
+			logger.debug("[PrestazioneView.getCategoria]annoNascita = " + annoNascita);
+			
 			if (Eval.isNotEmpty(this.getIscrizione().getGara().getCategorie())) {
 				for (Categoria categoria : this.getIscrizione().getGara().getCategorie()) {
 					if (categoria.getAnniAppartenenza().contains(annoNascita)
@@ -50,9 +58,10 @@ public class PrestazioneView extends Prestazione {
 				}
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
-			logger.error(ex);
+			logger.error("[PrestazioneView.getCategoria]", ex);
 		}
+		
+		logger.info("[PrestazioneView.getCategoria]result = " + result);
 		return result;
 	}
 	//getter/setter
