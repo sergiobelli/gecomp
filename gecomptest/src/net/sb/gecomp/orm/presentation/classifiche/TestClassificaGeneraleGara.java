@@ -7,7 +7,6 @@ import net.sb.gecomp.model.Gara;
 import net.sb.gecomp.model.Prestazione;
 import net.sb.gecomp.orm.dao.ClassificaCompetizioneManager;
 import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.orm.presentation.classifiche.ClassificaGeneraleGara;
 
 
 public class TestClassificaGeneraleGara {

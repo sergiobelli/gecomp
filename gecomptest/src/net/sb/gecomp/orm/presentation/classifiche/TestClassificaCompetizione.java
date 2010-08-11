@@ -6,9 +6,7 @@ import java.util.List;
 import net.sb.gecomp.model.Competizione;
 import net.sb.gecomp.orm.dao.ClassificaCompetizioneManager;
 import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
-
-import org.sbelli.gecomp.console.report.ReportManager;
+import net.sb.gecomp.web.report.ReportManager;
 
 public class TestClassificaCompetizione {
 	public static void main(String[] args) {
