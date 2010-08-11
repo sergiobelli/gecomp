@@ -4,6 +4,8 @@ public class GeCompOutcomes {
 
 	public static final String NULL = "null";
 	
+	public static final String FAIL = NULL;
+	
 	public static final String HOME = "home";
 	
 	//Societa'
