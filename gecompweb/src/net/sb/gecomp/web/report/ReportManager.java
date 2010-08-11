@@ -21,6 +21,8 @@ import org.sbelli.gecomp.console.bridges.view.CategoriaView;
 import org.sbelli.gecomp.console.bridges.view.ClassificaCompetizioneView;
 import org.sbelli.gecomp.console.bridges.view.ClassificaGaraView;
 import org.sbelli.gecomp.console.bridges.view.IClassificaView;
+import org.sbelli.gecomp.console.bridges.view.PropertiesView;
+import org.sbelli.gecomp.console.properties.delegates.PropertiesDelegate;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Atleta;
 import org.sbelli.gecomp.orm.model.Categoria;
@@ -37,6 +39,8 @@ import org.sbelli.gecomp.orm.presentation.classifiche.PrestazioneInCompetizione;
  */
 public class ReportManager implements IReportManager {
 
+	protected PropertiesDelegate delegate = new PropertiesDelegate();
+	
 	private static final String INTERNAL_PATH_SEPARATOR = "|";
 	
 	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
@@ -64,37 +68,31 @@ public class ReportManager implements IReportManager {
 		}
 		writeReportToFile (report, nomeCartella, nomeReport);
 	}
-	public void generateReport (IClassifica classifica) {
-//
-//		ClassificaCompetizione classificaCompetizione = (ClassificaCompetizione)classifica;
-//		
-//		report = new HSSFWorkbook();
-//
-//		titleStyle = getTitleStyle();
-//		headerStyle = getHeaderStyle();
-//		tableStyle = getTableStyle();
-//
-//		generateInformazioniSheet (classificaCompetizione.getCompetizione());
-//		generateGareSheet (classificaCompetizione.getGare());
-//		generateAtletiSheet (classificaCompetizione.getAtleti());
-//		generateCategorieSheet (classificaCompetizione.getCategorie());
-//		generateClassificaAssolutaSheet (classificaCompetizione.getClassificaAssolutaCompetizione());
-//		generateClassificheDiCategoriaSheet (classificaCompetizione.getCategorie(), classificaCompetizione.getClassificheCompetizione());
-//		generateClassificaDiSocietaSheet (classificaCompetizione);
-//
-//		writeReportToFile (report, classificaCompetizione.getCompetizione().getNome());
-	}
+	public void generateReport (IClassifica classifica) { }
 
 	private void writeReportToFile (HSSFWorkbook report, String nomeCartella, String nomeFile) {
 		try {
 			// Write the output to a file
 
-			//TODO : CREARE TAB PROPERTIES E INSERIRE REPORT STAGING AREA !!!
-			String startPath 			= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.start.path").replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
-			String filePath 			= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.staging.area").replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
-			String fileName 			= nomeFile.trim().replaceAll(" ", "_");
-			String fileExtension 		= DbManagerFactory.getInstance().getPropertiesDao().get("gecomp.report.file.extension");
+			String startPath = 
+				delegate.get(PropertiesView.START_PATH).getValore()
+					.replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
+			logger.info("startPath=", startPath);
+			
+			String filePath = 
+				delegate.get(PropertiesView.STAGING_AREA_PATH).getValore()
+					.replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
+			logger.info("filePath=", filePath);
+			
+			String fileName = nomeFile.trim().replaceAll(" ", "_");
+			logger.info("fileName=", fileName);
+			
+			String fileExtension = 
+				delegate.get(PropertiesView.FILE_EXTENSION).getValore();
+			logger.info("fileExtension=", fileExtension);
+			
 			nomeCartella = nomeCartella.replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
+			logger.info("nomeCartella=", nomeCartella);
 			
 			String dir = 
 				startPath + System.getProperty("file.separator") 
@@ -104,7 +102,6 @@ public class ReportManager implements IReportManager {
 			
 			String all = dir + System.getProperty("file.separator") + fileName  + fileExtension;
 			logger.info("all=", all);
-			
 			
 			File file = new File(dir);
 			file.mkdirs();
@@ -121,7 +118,7 @@ public class ReportManager implements IReportManager {
 			report.write(fileOut);
 			fileOut.close();
 		} catch (Exception ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 	}
 
