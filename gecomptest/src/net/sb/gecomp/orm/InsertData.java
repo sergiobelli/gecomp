@@ -4,19 +4,19 @@ import java.util.Date;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.model.Atleta;
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.model.CategoriaGara;
+import net.sb.gecomp.model.Competizione;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.Iscrizione;
+import net.sb.gecomp.model.Prestazione;
+import net.sb.gecomp.model.Properties;
+import net.sb.gecomp.model.Societa;
+import net.sb.gecomp.model.TipoMisura;
+import net.sb.gecomp.model.TipoPrestazione;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Atleta;
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.CategoriaGara;
-import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.Iscrizione;
-import org.sbelli.gecomp.orm.model.Prestazione;
-import org.sbelli.gecomp.orm.model.Properties;
-import org.sbelli.gecomp.orm.model.Societa;
-import org.sbelli.gecomp.orm.model.TipoMisura;
-import org.sbelli.gecomp.orm.model.TipoPrestazione;
 
 public class InsertData {
 

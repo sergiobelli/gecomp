@@ -3,12 +3,12 @@ package net.sb.gecomp.orm.presentation.classifiche;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.model.Competizione;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.Iscrizione;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public class TestClassificaCategoriaCompetizione {
 	public static void main(String[] args) {

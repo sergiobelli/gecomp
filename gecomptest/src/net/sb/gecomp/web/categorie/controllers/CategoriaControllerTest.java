@@ -2,12 +2,12 @@ package net.sb.gecomp.web.categorie.controllers;
 
 import static org.junit.Assert.fail;
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Categoria;
 import net.sb.gecomp.web.bridges.view.CategoriaView;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.sbelli.gecomp.orm.model.Categoria;
 
 public class CategoriaControllerTest {
 

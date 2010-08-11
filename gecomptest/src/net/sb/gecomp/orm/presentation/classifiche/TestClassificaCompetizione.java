@@ -3,11 +3,12 @@ package net.sb.gecomp.orm.presentation.classifiche;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sb.gecomp.model.Competizione;
+import net.sb.gecomp.orm.dao.ClassificaCompetizioneManager;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
+
 import org.sbelli.gecomp.console.report.ReportManager;
-import org.sbelli.gecomp.orm.dao.ClassificaCompetizioneManager;
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
 
 public class TestClassificaCompetizione {
 	public static void main(String[] args) {

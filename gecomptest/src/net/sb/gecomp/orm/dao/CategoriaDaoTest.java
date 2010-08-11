@@ -5,9 +5,9 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Categoria;
 
 public class CategoriaDaoTest extends TestCase {
 

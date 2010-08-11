@@ -5,9 +5,9 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.model.Iscrizione;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public class IscrizioneDaoTest extends TestCase {
 

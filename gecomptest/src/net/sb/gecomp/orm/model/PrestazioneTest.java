@@ -5,12 +5,12 @@ import java.util.TreeSet;
 
 import junit.framework.TestCase;
 
-import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.Iscrizione;
-import org.sbelli.gecomp.orm.model.Prestazione;
-import org.sbelli.gecomp.orm.model.TipoMisura;
-import org.sbelli.gecomp.orm.model.TipoPrestazione;
+import net.sb.gecomp.model.Competizione;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.Iscrizione;
+import net.sb.gecomp.model.Prestazione;
+import net.sb.gecomp.model.TipoMisura;
+import net.sb.gecomp.model.TipoPrestazione;
 
 public class PrestazioneTest extends TestCase {
 

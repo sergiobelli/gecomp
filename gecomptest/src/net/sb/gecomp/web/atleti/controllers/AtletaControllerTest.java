@@ -3,10 +3,10 @@ package net.sb.gecomp.web.atleti.controllers;
 import junit.framework.TestCase;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Atleta;
+import net.sb.gecomp.model.Societa;
 import net.sb.gecomp.web.controllers.atleti.AtletaController;
 
-import org.sbelli.gecomp.orm.model.Atleta;
-import org.sbelli.gecomp.orm.model.Societa;
 
 public class AtletaControllerTest extends TestCase {
 
