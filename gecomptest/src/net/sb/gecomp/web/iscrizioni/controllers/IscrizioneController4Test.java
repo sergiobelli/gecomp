@@ -1,9 +1,9 @@
 package net.sb.gecomp.web.iscrizioni.controllers;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.web.bridges.view.IscrizioneView;
+import net.sb.gecomp.web.controllers.iscrizioni.IscrizioneController;
 
-import org.sbelli.gecomp.console.bridges.view.IscrizioneView;
-import org.sbelli.gecomp.console.iscrizioni.controllers.IscrizioneController;
 
 public class IscrizioneController4Test extends IscrizioneController {
 

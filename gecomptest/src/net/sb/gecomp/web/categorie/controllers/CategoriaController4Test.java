@@ -1,8 +1,8 @@
 package net.sb.gecomp.web.categorie.controllers;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.web.controllers.categorie.CategoriaController;
 
-import org.sbelli.gecomp.console.categorie.controllers.CategoriaController;
 import org.sbelli.gecomp.orm.model.Categoria;
 
 public class CategoriaController4Test extends CategoriaController {

@@ -3,8 +3,8 @@ package net.sb.gecomp.web.atleti.controllers;
 import junit.framework.TestCase;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.web.controllers.atleti.AtletaController;
 
-import org.sbelli.gecomp.console.atleti.controllers.AtletaController;
 import org.sbelli.gecomp.orm.model.Atleta;
 import org.sbelli.gecomp.orm.model.Societa;
 
