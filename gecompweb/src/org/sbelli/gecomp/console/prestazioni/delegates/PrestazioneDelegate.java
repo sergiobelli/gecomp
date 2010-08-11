@@ -3,7 +3,6 @@ package org.sbelli.gecomp.console.prestazioni.delegates;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
@@ -15,6 +14,7 @@ import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Categoria;
 import org.sbelli.gecomp.orm.model.Gara;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
+import org.sbelli.gecomp.orm.model.Iscrizione;
 import org.sbelli.gecomp.orm.model.Prestazione;
 
 public class PrestazioneDelegate extends GenericDelegate {
@@ -56,7 +56,7 @@ public class PrestazioneDelegate extends GenericDelegate {
 	public List<PrestazioneView> list(Gara gara) throws GeCompException {
 		try {
 			return bridge.list(gara);
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			logger.error(ex, "Non ci sono prestazioni per la gara specificata ", gara);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
 		}	
@@ -65,7 +65,7 @@ public class PrestazioneDelegate extends GenericDelegate {
 	public List<PrestazioneView> list(Gara gara, Categoria categoria) throws GeCompException {
 		try {
 			return bridge.list(gara, categoria, true);
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			logger.error(ex, "Non ci sono prestazioni per la gara specificata ", gara);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
 		}
@@ -74,8 +74,17 @@ public class PrestazioneDelegate extends GenericDelegate {
 	public List<PrestazioneView> list(Gara gara, Categoria categoria, Boolean conAssoluti) throws GeCompException {
 		try {
 			return bridge.list(gara, categoria, conAssoluti);
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			logger.error(ex, "Non ci sono prestazioni per la gara specificata ", gara);
+			throw new GeCompException("x.x.x.x.x.x.x.x.x");
+		}
+	}
+
+	public PrestazioneView get(Iscrizione iscrizione) throws GeCompException {
+		try {
+			return bridge.get(iscrizione);
+		} catch (GeCompException ex) {
+			logger.error(ex, "Non ci sono prestazioni per l'iscrizione specificata ", iscrizione);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
 		}
 	}

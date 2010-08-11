@@ -7,12 +7,16 @@ import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
+import org.sbelli.gecomp.console.atleti.delegates.AtletaDelegate;
 import org.sbelli.gecomp.console.bridges.view.CompetizioneView;
 import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.console.bridges.view.IscrizioneView;
+import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
 import org.sbelli.gecomp.console.delegates.GenericDelegate;
+import org.sbelli.gecomp.console.gare.delegates.GaraDelegate;
 import org.sbelli.gecomp.console.iscrizioni.bridges.IscrizioneBridge;
 import org.sbelli.gecomp.console.iscrizioni.controllers.IscrizioneController;
+import org.sbelli.gecomp.console.prestazioni.delegates.PrestazioneDelegate;
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 import org.sbelli.gecomp.orm.model.Iscrizione;
 
@@ -25,19 +29,32 @@ public class IscrizioneDelegate extends GenericDelegate {
 
 	public void delete(GecompModelObject element) throws GeCompException {
 		try {
-			bridge.delete((Iscrizione)element);
+			Iscrizione iscrizione = (Iscrizione)element;
+			logger.info("Inizio operazione di cancellazione dell'iscrizione ", iscrizione);
+			
+			PrestazioneView prestazioneAssociata = new PrestazioneDelegate().get(iscrizione);
+			if (Eval.isNotNull(prestazioneAssociata)) {
+				logger.warn("Trovata una prestazione associata all'iscrizione ", prestazioneAssociata);
+				throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.delete.prestazione_associata");
+			} else { 
+				bridge.delete(iscrizione);			
+			}
 		} catch (GeCompException gce) {
 			logger.error("Errore gestito", gce);
 			throw gce;
 		} catch (Exception ex) {
 			logger.error(ex, "net.sb.gecomp.console.iscrizioni.delegates.delete.generic_error");
-			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.delete.generic_error",ex);
+			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.delete.generic_error",ex);
 		}
 	}
 
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
 		Iscrizione iscrizione = (Iscrizione)element;
 		controller.checks(element);
+		
+		iscrizione.setAtleta(new AtletaDelegate().get(iscrizione.getAtleta().getIdAtleta()));//recupero l'oggettone AtletaView
+		iscrizione.setGara(new GaraDelegate().get(iscrizione.getGara().getIdGara()));//recupero l'oggettone GaraView
+		
 		return iscrizione;
 	}
 
