@@ -14,7 +14,7 @@
 	      <fileset dir="conf/" includes="*.*"/>
 	    </copy>
 	    <java dir="${run.dir}" fork="yes" classname="junit.textui.TestRunner"  failonerror="true">
-	      <arg value="test.org.sbelli.gecomp.orm.GeCompDaoTestSuite"/>
+	      <arg value="net.sb.gecomp.orm.GeCompDaoTestSuite"/>
 	      <classpath>
 	        <fileset dir="${lib.dir}" includes="**/*.*"/>
 	        <pathelement location="${classes.dir}"/>
