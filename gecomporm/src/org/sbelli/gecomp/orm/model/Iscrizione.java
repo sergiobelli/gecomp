@@ -1,7 +1,9 @@
 package org.sbelli.gecomp.orm.model;
 
+import net.sb.gecomp.utils.Eval;
 
-public class Iscrizione extends GecompModelObject {
+
+public class Iscrizione extends GecompModelObject implements Comparable<Iscrizione> {
 	
 	private static final long serialVersionUID = 2390550056411675120L;
 	
@@ -23,9 +25,9 @@ public class Iscrizione extends GecompModelObject {
 	public Atleta getAtleta() { return atleta; }
 	public void setAtleta(Atleta atleta) { this.atleta = atleta; }
 	
-	private Long numeroPettorale;
-	public Long getNumeroPettorale() {return numeroPettorale;}
-	public void setNumeroPettorale(Long numeroPettorale) {this.numeroPettorale = numeroPettorale;}
+	private String numeroPettorale;
+	public String getNumeroPettorale() {return numeroPettorale;}
+	public void setNumeroPettorale(String numeroPettorale) {this.numeroPettorale = numeroPettorale;}
 	
 	private Boolean competitivo;
 	public Boolean getCompetitivo() {return competitivo;}
@@ -81,4 +83,51 @@ public class Iscrizione extends GecompModelObject {
 		return true;
 	}
 	
+	
+	public int compareTo(Iscrizione other) {
+		try {
+			if (isTheSameGara(other) && isTheSameCompetizione(other)) {
+				if (Eval.equalsIgnoreCase(this.getNumeroPettorale(), other.getNumeroPettorale())) {
+					if (Eval.equals(this.getCompetitivo(), other.getCompetitivo())) {
+						if (Eval.equals(this.getAtleta().getCognome(), other.getAtleta().getCognome())) {
+							if (Eval.equals(this.getAtleta().getNome(), other.getAtleta().getNome())) {
+								if (Eval.equals(this.getAtleta().getSesso(), other.getAtleta().getSesso())) {
+
+									//Se ancora non basta proseguire......
+									return this.getAtleta().getAnnoNascita().compareTo( other.getAtleta().getAnnoNascita());
+
+								} else {
+									return this.getAtleta().getSesso().compareTo( other.getAtleta().getSesso());
+								}
+							} else {
+								return this.getAtleta().getNome().compareTo( other.getAtleta().getNome());
+							}
+						} else {
+							return this.getAtleta().getCognome().compareTo( other.getAtleta().getCognome());	
+						}
+					} else {
+						return this.getCompetitivo().compareTo(other.getCompetitivo());	
+					}
+				} else {
+					if (Eval.isEmpty(this.getNumeroPettorale())) {
+						return 1;
+					} else if (Eval.isEmpty(other.getNumeroPettorale())) {
+						return -1;
+					} else {
+						return this.getNumeroPettorale().compareTo(other.getNumeroPettorale());	
+					}				
+				}
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return -2;
+	}
+	private boolean isTheSameGara(Iscrizione altra) {
+		return this.getGara().equals(altra.getGara());
+    }
+    private boolean isTheSameCompetizione(Iscrizione altra) {
+    	return this.getGara().getCompetizione().equals(altra.getGara().getCompetizione());
+    }
+    
 }
