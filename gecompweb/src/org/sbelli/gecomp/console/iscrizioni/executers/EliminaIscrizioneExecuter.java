@@ -13,7 +13,7 @@ public class EliminaIscrizioneExecuter extends ModificaIscrizioneExecuter {
 			logger.info("Deleted iscrizione...");
 		} catch (GeCompException gce) {
 			GeCompGuiExceptionManager.manageGUIException(logger, gce, gce.getMessage());
-			return GeCompOutcomes.NULL;
+			return GeCompOutcomes.FAIL;
 		}
 		return GeCompOutcomes.LISTA_ISCRIZIONI;
 	}

@@ -20,7 +20,8 @@
                     <h:outputText 	value="Atleta"/>
 					<h:selectOneMenu  	value="#{EliminaIscrizioneExecuter.iscrizione.atleta.idAtleta}"
 					  					required="true" 
-					  					class="FacetInput">
+					  					class="FacetInput"
+					  					disabled="true">
 		                <f:convertNumber 	type="number" />
 						<f:selectItems 		value="#{EliminaIscrizioneExecuter.helper.listaAtletiItem}" />
 	                </h:selectOneMenu>
@@ -28,16 +29,17 @@
                     <h:outputText 	value="Gara"/>
 					<h:selectOneMenu  	value="#{EliminaIscrizioneExecuter.iscrizione.gara.idGara}"
 					  					required="true" 
-										class="FacetInput">
+										class="FacetInput"
+										disabled="true">
 		                <f:convertNumber 	type="number" />
 						<f:selectItems 		value="#{EliminaIscrizioneExecuter.listaGareItem}" />
 	                </h:selectOneMenu>             
 
 					<h:outputText 	value="Numero pettorale"/>
-					<h:inputText value="#{EliminaIscrizioneExecuter.iscrizione.numeroPettorale}" class="FacetInput"/>
+					<h:inputText value="#{EliminaIscrizioneExecuter.iscrizione.numeroPettorale}" class="FacetInput" disabled="true"/>
 					
 					<h:outputText 	value="Competitivo"/>
-					<h:selectBooleanCheckbox value="#{EliminaIscrizioneExecuter.iscrizione.competitivo}" class="FacetInput"/>
+					<h:selectBooleanCheckbox value="#{EliminaIscrizioneExecuter.iscrizione.competitivo}" class="FacetInput" disabled="true"/>
 					
 	            	<h:outputText 		value="&nbsp;"/>
 	            	<h:commandButton 	value="Elimina" 
