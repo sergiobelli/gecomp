@@ -21,7 +21,7 @@ public class CompetizioneDao extends DbManager implements IGeCompDao<Competizion
 		try {
 			getDataBaseDao().delete(DELETE_COMPETIZIONE, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 
 		}
@@ -31,7 +31,7 @@ public class CompetizioneDao extends DbManager implements IGeCompDao<Competizion
 		try {
 			return (Competizione) getDataBaseDao().queryForObject(GET_COMPETIZIONE, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -39,7 +39,7 @@ public class CompetizioneDao extends DbManager implements IGeCompDao<Competizion
 		try {
 			return (Competizione) getDataBaseDao().insert(INSERT_COMPETIZIONE, competizione);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -48,7 +48,7 @@ public class CompetizioneDao extends DbManager implements IGeCompDao<Competizion
 		try {
 			return (List<Competizione>) getDataBaseDao().queryForList(LIST_COMPETIZIONE);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -56,7 +56,7 @@ public class CompetizioneDao extends DbManager implements IGeCompDao<Competizion
 		try {
 			getDataBaseDao().update(UPDATE_COMPETIZIONE, competizione);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}

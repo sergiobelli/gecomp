@@ -36,7 +36,7 @@ public class ClassificaGeneraleManager {
 			classificaGeneraleGara = new ClassificaGeneraleGara( gara, prestazioniGeneraleGara );
 			
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		

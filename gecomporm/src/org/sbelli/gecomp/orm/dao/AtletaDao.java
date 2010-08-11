@@ -20,12 +20,14 @@ public class AtletaDao extends DbManager implements IGeCompDao<Atleta> {
 	private final String INSERT_ATLETA = "Atleta.insertAtleta";
 	private final String UPDATE_ATLETA = "Atleta.updateAtleta";
 	private final String DELETE_ATLETA = "Atleta.deleteAtleta";
-	
+
+
+    
 	public void delete (Long id) throws GeCompOrmException {
 		try {
 			getDataBaseDao().delete(DELETE_ATLETA, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -34,7 +36,7 @@ public class AtletaDao extends DbManager implements IGeCompDao<Atleta> {
 		try {
 			return (Atleta) getDataBaseDao().queryForObject(GET_ATLETA, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -42,7 +44,7 @@ public class AtletaDao extends DbManager implements IGeCompDao<Atleta> {
 		try {
 			return (Atleta) getDataBaseDao().insert(INSERT_ATLETA, atleta);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -51,7 +53,7 @@ public class AtletaDao extends DbManager implements IGeCompDao<Atleta> {
 		try {
 			return (List<Atleta>) getDataBaseDao().queryForList(LIST_ATLETA);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -59,7 +61,7 @@ public class AtletaDao extends DbManager implements IGeCompDao<Atleta> {
 		try {
 			getDataBaseDao().update(UPDATE_ATLETA, atleta);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -76,7 +78,7 @@ public class AtletaDao extends DbManager implements IGeCompDao<Atleta> {
 			}
 			
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		

@@ -21,7 +21,7 @@ public class UserDao extends DbManager implements IGeCompDao<User> {
 		try {
 			getDataBaseDao().delete(UPDATE_USER, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -30,7 +30,7 @@ public class UserDao extends DbManager implements IGeCompDao<User> {
 		try {
 			return (User) getDataBaseDao().queryForObject(GET_USER, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -39,7 +39,7 @@ public class UserDao extends DbManager implements IGeCompDao<User> {
 		try {
 			return (User) getDataBaseDao().insert(INSERT_USER, object);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -48,7 +48,7 @@ public class UserDao extends DbManager implements IGeCompDao<User> {
 		try {
 			return (List<User>) getDataBaseDao().queryForList(LIST_USER);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -57,7 +57,7 @@ public class UserDao extends DbManager implements IGeCompDao<User> {
 		try {
 			getDataBaseDao().update(UPDATE_USER, object);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}

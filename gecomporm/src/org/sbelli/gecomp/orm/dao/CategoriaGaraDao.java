@@ -28,7 +28,7 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 		try {
 			getDataBaseDao().delete(DELETE_CATEGORIA_GARA, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -37,7 +37,7 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 		try {
 			return (CategoriaGara) getDataBaseDao().queryForObject(GET_CATEGORIA_GARA, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -45,7 +45,7 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 		try {
 			return (CategoriaGara) getDataBaseDao().insert(INSERT_CATEGORIA_GARA, categoriaGara);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -54,7 +54,7 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 		try {
 			return (List<CategoriaGara>) getDataBaseDao().queryForList(LIST_CATEGORIA_GARA);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -64,7 +64,7 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 		try {
 			categorieGara = (List<CategoriaGara>) getDataBaseDao().queryForList(LIST_CATEGORIA_GARA, gara);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		return categorieGara;
@@ -74,7 +74,7 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 		try {
 			getDataBaseDao().update(UPDATE_CATEGORIA_GARA, categoriaGara);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -86,7 +86,7 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 				categorie.addAll(listCategorie(gara));
 			}
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		return categorie;
@@ -100,7 +100,7 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 				categorie.add(categoriaGara.getCategoria());
 			}
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		return categorie;

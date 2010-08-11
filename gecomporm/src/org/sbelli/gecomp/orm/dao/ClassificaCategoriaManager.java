@@ -55,7 +55,7 @@ public class ClassificaCategoriaManager {
 			}
 			
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		
@@ -95,7 +95,7 @@ public class ClassificaCategoriaManager {
 			classificaGara = new ClassificaCategoriaGara(categoriaGara.getGara(), categoriaGara.getCategoria(), prestazioniCategoriaGara);
 			
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		
@@ -122,7 +122,7 @@ public class ClassificaCategoriaManager {
 			classificaGara = new ClassificaCategoriaGara(gara, categoria, prestazioniCategoriaGara);
 			
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		

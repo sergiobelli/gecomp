@@ -29,7 +29,7 @@ public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
 		try {
 			getDataBaseDao().delete(DELETE_ISCRIZIONE, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -38,7 +38,7 @@ public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
 		try {
 			return (Iscrizione) getDataBaseDao().queryForObject(GET_ISCRIZIONE, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -59,8 +59,12 @@ public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
 			
 			return (Iscrizione) getDataBaseDao().insert(INSERT_ISCRIZIONE, object);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
-			throw new GeCompOrmException(e.getMessage());
+			GeCompExceptionManager.traceException(logger, e);
+			if (e instanceof org.springframework.dao.DataIntegrityViolationException) {
+				throw new GeCompOrmException("net.sb.gecomp.orm.dao.iscrizione.constraints.violation", e);	
+			} else {
+				throw new GeCompOrmException(e.getMessage());
+			}
 		}
 	}
 
@@ -68,7 +72,7 @@ public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
 		try {
 			return (List<Iscrizione>) getDataBaseDao().queryForList(LIST_ISCRIZIONE);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -86,7 +90,7 @@ public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
 			}
 			
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		
@@ -100,7 +104,7 @@ public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
 				listaIscrizioniGara = (List<Iscrizione>) getDataBaseDao().queryForList(LIST_ISCRIZIONE_GARA, gara.getIdGara());
 			}
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		
@@ -111,8 +115,12 @@ public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
 		try {
 			getDataBaseDao().update(UPDATE_ISCRIZIONE, object);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
-			throw new GeCompOrmException(e.getMessage());
+			GeCompExceptionManager.traceException(logger, e);
+			if (e instanceof org.springframework.dao.DataIntegrityViolationException) {
+				throw new GeCompOrmException("net.sb.gecomp.orm.dao.iscrizione.constraints.violation", e);	
+			} else {
+				throw new GeCompOrmException(e.getMessage());
+			}
 		}
 	}
 

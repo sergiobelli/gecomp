@@ -38,7 +38,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 		try {
 			getDataBaseDao().delete(DELETE_PRESTAZIONE, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -47,7 +47,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 		try {
 			return (Prestazione) getDataBaseDao().queryForObject(GET_PRESTAZIONE, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -55,7 +55,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 		try {
 			return (Prestazione) getDataBaseDao().insert(INSERT_PRESTAZIONE, prestazione);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -64,7 +64,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 		try {
 			return gestioneLista((List<Prestazione>) getDataBaseDao().queryForList(LIST_PRESTAZIONE), null);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -72,7 +72,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 		try {
 			getDataBaseDao().update(UPDATE_PRESTAZIONE, prestazione);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -84,7 +84,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 			prestazioniGara = new TreeSet<Prestazione>();
 			prestazioniGara.addAll(listaPrestazioni);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}		
 		return gestioneLista(new ArrayList<Prestazione>(prestazioniGara), gara);
@@ -120,7 +120,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 				}
 			}
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		return gestioneLista(new ArrayList<Prestazione>(prestazioniGaraCategoria), gara);
@@ -136,7 +136,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 				}
 			}
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}		
 		return gestioneLista(prestazioniCompetizione, null);
@@ -155,7 +155,7 @@ public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione>
 				}
 			}
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		return gestioneLista(new ArrayList<Prestazione>(prestazioniCompetizione), null);

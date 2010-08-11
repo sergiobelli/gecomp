@@ -41,7 +41,7 @@ public class PropertiesDao extends DbManager implements IGeCompDao<Properties> {
 		try {
 			getDataBaseDao().delete(UPDATE_PROPERTIES, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -53,7 +53,7 @@ public class PropertiesDao extends DbManager implements IGeCompDao<Properties> {
 		try {
 			return (Properties) getDataBaseDao().queryForObject(GET_PROPERTIES, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -64,10 +64,10 @@ public class PropertiesDao extends DbManager implements IGeCompDao<Properties> {
 	 * @return
 	 * @throws GeCompOrmException
 	 */
-	public String get(String chiave) throws GeCompOrmException {
+	public Properties get(String chiave) throws GeCompOrmException {
 	  for (Properties property : list()) {
 	  	if (property.getChiave().equals(chiave)) {
-	  		return property.getValore();
+	  		return property;
 	  	}
 	  }
 	  return null;
@@ -80,7 +80,7 @@ public class PropertiesDao extends DbManager implements IGeCompDao<Properties> {
 		try {
 			return (Properties) getDataBaseDao().insert(INSERT_PROPERTIES, object);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -92,7 +92,7 @@ public class PropertiesDao extends DbManager implements IGeCompDao<Properties> {
 		try {
 			return (List<Properties>) getDataBaseDao().queryForList(LIST_PROPERTIES);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -104,7 +104,7 @@ public class PropertiesDao extends DbManager implements IGeCompDao<Properties> {
 		try {
 			getDataBaseDao().update(UPDATE_PROPERTIES, object);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}

@@ -21,7 +21,7 @@ public class TipoMisuraDao extends DbManager implements IGeCompDao<TipoMisura> {
 		try {
 			getDataBaseDao().delete(DELETE, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -30,7 +30,7 @@ public class TipoMisuraDao extends DbManager implements IGeCompDao<TipoMisura> {
 		try {
 			return (TipoMisura) getDataBaseDao().queryForObject(GET, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -38,7 +38,7 @@ public class TipoMisuraDao extends DbManager implements IGeCompDao<TipoMisura> {
 		try {
 			return (TipoMisura) getDataBaseDao().insert(INSERT, atleta);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -47,7 +47,7 @@ public class TipoMisuraDao extends DbManager implements IGeCompDao<TipoMisura> {
 		try {
 			return (List<TipoMisura>) getDataBaseDao().queryForList(LIST);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -55,7 +55,7 @@ public class TipoMisuraDao extends DbManager implements IGeCompDao<TipoMisura> {
 		try {
 			getDataBaseDao().update(UPDATE, atleta);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}	

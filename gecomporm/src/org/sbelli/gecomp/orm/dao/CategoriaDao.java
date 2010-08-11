@@ -22,7 +22,7 @@ public class CategoriaDao extends DbManager implements IGeCompDao<Categoria> {
 		try {
 			getDataBaseDao().delete(DELETE_CATEGORIA, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 
 		}
@@ -32,7 +32,7 @@ public class CategoriaDao extends DbManager implements IGeCompDao<Categoria> {
 		try {
 			return (Categoria) getDataBaseDao().queryForObject(GET_CATEGORIA, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -40,7 +40,7 @@ public class CategoriaDao extends DbManager implements IGeCompDao<Categoria> {
 		try {
 			return (Categoria) getDataBaseDao().insert(INSERT_CATEGORIA, categoria);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -49,7 +49,7 @@ public class CategoriaDao extends DbManager implements IGeCompDao<Categoria> {
 		try {
 			return (List<Categoria>) getDataBaseDao().queryForList(LIST_CATEGORIA);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -57,7 +57,7 @@ public class CategoriaDao extends DbManager implements IGeCompDao<Categoria> {
 		try {
 			getDataBaseDao().update(UPDATE_CATEGORIA, categoria);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}

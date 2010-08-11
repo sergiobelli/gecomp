@@ -32,7 +32,7 @@ public class SocietaDao extends DbManager implements IGeCompDao<Societa> {
 		try {
 			getDataBaseDao().delete(DELETE_SOCIETA, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 
 		}
@@ -41,7 +41,7 @@ public class SocietaDao extends DbManager implements IGeCompDao<Societa> {
 		try {
 			getDataBaseDao().delete(DELETE_SOCIETA, societa.getId());
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 
 		}
@@ -51,7 +51,7 @@ public class SocietaDao extends DbManager implements IGeCompDao<Societa> {
 		try {
 			return (Societa) getDataBaseDao().queryForObject(GET_SOCIETA, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -59,7 +59,7 @@ public class SocietaDao extends DbManager implements IGeCompDao<Societa> {
 		try {
 			return (Societa) getDataBaseDao().insert(INSERT_SOCIETA, societa);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -68,7 +68,7 @@ public class SocietaDao extends DbManager implements IGeCompDao<Societa> {
 		try {
 			return (List<Societa>) getDataBaseDao().queryForList(LIST_SOCIETA);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -76,7 +76,7 @@ public class SocietaDao extends DbManager implements IGeCompDao<Societa> {
 		try {
 			getDataBaseDao().update(UPDATE_SOCIETA, societa);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}

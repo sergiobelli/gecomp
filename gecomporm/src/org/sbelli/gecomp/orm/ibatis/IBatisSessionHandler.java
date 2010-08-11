@@ -41,7 +41,7 @@ public class IBatisSessionHandler {
 				sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(url.openStream());
 			}
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new RuntimeException("Something bad happened while building the SqlMapClient instance." + e, e);
 		}
 		logger.info("Trying to get IBatis configuration = DONE");

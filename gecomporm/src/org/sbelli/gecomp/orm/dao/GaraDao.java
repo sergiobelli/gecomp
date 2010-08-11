@@ -23,7 +23,7 @@ public class GaraDao extends DbManager implements IGeCompDao<Gara> {
 		try {
 			getDataBaseDao().delete(DELETE_GARA, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 
 		}
@@ -33,7 +33,7 @@ public class GaraDao extends DbManager implements IGeCompDao<Gara> {
 		try {
 			return (Gara) getDataBaseDao().queryForObject(GET_GARA, id);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -42,7 +42,7 @@ public class GaraDao extends DbManager implements IGeCompDao<Gara> {
 			Long id = (Long) getDataBaseDao().insert(INSERT_GARA, gara);
 			return gara;
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -51,7 +51,7 @@ public class GaraDao extends DbManager implements IGeCompDao<Gara> {
 		try {
 			return (List<Gara>) getDataBaseDao().queryForList(LIST_GARA);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
@@ -70,7 +70,7 @@ public class GaraDao extends DbManager implements IGeCompDao<Gara> {
 			listaGareCompetizione = (List<Gara>) getDataBaseDao().queryForList(LIST_GARA_COMPETIZIONE, competizione);
 			
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		
@@ -80,7 +80,7 @@ public class GaraDao extends DbManager implements IGeCompDao<Gara> {
 		try {
 			getDataBaseDao().update(UPDATE_GARA, gara);
 		} catch (Exception e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}

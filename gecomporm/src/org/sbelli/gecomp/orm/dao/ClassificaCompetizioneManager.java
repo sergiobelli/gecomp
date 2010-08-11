@@ -113,7 +113,7 @@ public class ClassificaCompetizioneManager {
 			
 			logger.debug("classificaCompetizione = " + classificaCompetizione);			
 		} catch (Exception ex) {
-			GeCompExceptionManager.manageException(logger, ex);			
+			GeCompExceptionManager.traceException(logger, ex);			
 		}
 		
 		logger.info("Classifiche per la competizione (" + competizione + ") generate correttamente ! ");
