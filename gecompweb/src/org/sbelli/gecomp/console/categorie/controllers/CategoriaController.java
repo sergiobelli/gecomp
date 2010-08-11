@@ -22,24 +22,24 @@ public class CategoriaController extends GenericController {
 	
 	protected void checksAnnoPartenza(Categoria categoria) throws GeCompException {
 		if (Eval.isEmpty((categoria.getAnnoPartenza()))) {
-			throw new GeCompException("net.sb.gecomp.console.categorie.controllers.error.anno_partenza.empty");
+			throw new GeCompException("net.sb.gecomp.web.categorie.controllers.error.anno_partenza.empty");
 		} else {
 			try {
 				Integer.valueOf(categoria.getAnnoPartenza());
 			} catch (NumberFormatException nfe) {
-				throw new GeCompException("net.sb.gecomp.console.categorie.controllers.error.anno_partenza.bad_format");
+				throw new GeCompException("net.sb.gecomp.web.categorie.controllers.error.anno_partenza.bad_format");
 			}
 		}
 	}
 	
 	protected void checksAnnoFine(Categoria categoria) throws GeCompException {
 		if (Eval.isEmpty((categoria.getAnnoFine()))) {
-			throw new GeCompException("net.sb.gecomp.console.categorie.controllers.error.anno_fine.empty");
+			throw new GeCompException("net.sb.gecomp.web.categorie.controllers.error.anno_fine.empty");
 		} else {
 			try {
 				Integer.valueOf(categoria.getAnnoFine());
 			} catch (NumberFormatException nfe) {
-				throw new GeCompException("net.sb.gecomp.console.categorie.controllers.error.anno_fine.bad_format");
+				throw new GeCompException("net.sb.gecomp.web.categorie.controllers.error.anno_fine.bad_format");
 			}
 		}
 	}
@@ -52,10 +52,10 @@ public class CategoriaController extends GenericController {
 			Integer annoFine = Integer.valueOf(sAnnoFine);
 			
 			if (annoPartenza >= annoFine) {
-				throw new GeCompException("net.sb.gecomp.console.categorie.controllers.error.congruenza_date.error");
+				throw new GeCompException("net.sb.gecomp.web.categorie.controllers.error.congruenza_date.error");
 			}
 		} catch (NumberFormatException nfe) {
-			throw new GeCompException("net.sb.gecomp.console.categorie.controllers.error.congruenza_date.bad_format");
+			throw new GeCompException("net.sb.gecomp.web.categorie.controllers.error.congruenza_date.bad_format");
 		} catch (GeCompException gce) {
 			throw gce;
 		} catch (Exception e) {
