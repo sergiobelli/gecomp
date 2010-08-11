@@ -56,7 +56,7 @@ public class CompetizioneExecuter extends GenericExecuter {
 			}
 
 		} catch (GeCompOrmException ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 	}
 

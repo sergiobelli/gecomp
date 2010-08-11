@@ -11,7 +11,7 @@ public class ListaCompetizioniExecuter extends CompetizioneExecuter {
 		try {
 			competizioni = DbManagerFactory.getInstance().getCompetizioneDao().list();
 		} catch (GeCompOrmException e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 		}
 	}
 	
