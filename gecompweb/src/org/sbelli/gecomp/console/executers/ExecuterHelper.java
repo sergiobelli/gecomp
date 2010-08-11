@@ -45,7 +45,7 @@ public class ExecuterHelper {
 				pos++;
 			}
 		} catch (GeCompOrmException ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaCategorie;
 	}
@@ -63,7 +63,7 @@ public class ExecuterHelper {
 				pos++;
 			}
 		} catch (GeCompOrmException ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaCategorie;
 	}
@@ -81,7 +81,7 @@ public class ExecuterHelper {
 			}
 
 		} catch (Exception ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaSocieta;
 	}
@@ -107,7 +107,7 @@ public class ExecuterHelper {
 			}
 
 		} catch (GeCompOrmException ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaGare;
 	}
@@ -125,7 +125,7 @@ public class ExecuterHelper {
 			}
 
 		} catch (GeCompOrmException ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaGare;
 	}
@@ -143,7 +143,7 @@ public class ExecuterHelper {
 			}
 
 		} catch (Exception ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaAtleti;
 	}
@@ -151,7 +151,7 @@ public class ExecuterHelper {
 		try {
 			return DbManagerFactory.getInstance().getAtletaDao().list();
 		} catch (GeCompOrmException e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			return new ArrayList<Atleta>();
 		}
 	}
@@ -160,7 +160,7 @@ public class ExecuterHelper {
 		try {
 			return DbManagerFactory.getInstance().getTipoPrestazioneDao().list();
 		} catch (GeCompOrmException e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			return new ArrayList<TipoPrestazione>();
 		}
 	}	
@@ -177,7 +177,7 @@ public class ExecuterHelper {
 			}
 
 		} catch (Exception ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaTipiPrestazione;
 	}
@@ -186,7 +186,7 @@ public class ExecuterHelper {
 		try {
 			return DbManagerFactory.getInstance().getIscrizioneDao().list(selectedGara);
 		} catch (GeCompOrmException e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			return new ArrayList<Iscrizione>();
 		}
 	}
@@ -204,7 +204,7 @@ public class ExecuterHelper {
 				pos++;
 			}
 		} catch (Exception ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaIscritti;
 	}
@@ -214,7 +214,7 @@ public class ExecuterHelper {
 		try {
 			return DbManagerFactory.getInstance().getTipoMisuraDao().list();
 		} catch (GeCompOrmException e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 			return new ArrayList<TipoMisura>();
 		}
 	}
@@ -229,7 +229,7 @@ public class ExecuterHelper {
 				pos++;
 			}
 		} catch (Exception ex) {
-			GeCompExceptionManager.manageException(logger, ex);
+			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaIscritti;
 	}

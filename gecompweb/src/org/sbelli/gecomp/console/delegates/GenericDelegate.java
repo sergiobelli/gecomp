@@ -1,5 +1,5 @@
 package org.sbelli.gecomp.console.delegates;
 
-public abstract class GenericDelegate implements IGenericDelegate {
+public abstract class GenericDelegate implements IGenericDaoDelegate {
 
 }

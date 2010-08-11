@@ -4,7 +4,7 @@ import net.sb.gecomp.exceptions.GeCompException;
 
 import org.sbelli.gecomp.orm.model.GecompModelObject;
 
-public interface IGenericDelegate<T extends GecompModelObject> {
+public interface IGenericDaoDelegate<T extends GecompModelObject> extends IGenericDelegate {
 
 	T retrieve(T element) throws GeCompException;
 

@@ -46,7 +46,7 @@ public class ListaGareExecuter extends GaraExecuter {
 					competizione);
 
 		} catch (GeCompException e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 		}
 
 	}
