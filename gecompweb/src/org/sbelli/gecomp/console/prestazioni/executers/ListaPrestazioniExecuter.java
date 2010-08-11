@@ -25,7 +25,7 @@ public class ListaPrestazioniExecuter extends PrestazioneExecuter {
 				setPrestazioni(new ArrayList<Prestazione>(DbManagerFactory.getInstance().getPrestazioneDao().list(getSelectedCompetizione())));	
 			}
 		} catch (GeCompException e) {
-			GeCompExceptionManager.manageException(logger, e);
+			GeCompExceptionManager.traceException(logger, e);
 		}
 	}
 	
