@@ -58,22 +58,14 @@
         <priority value="DEBUG"/>
         <appender-ref ref="gecomp"/>
     </category>
-	<category name="org.sbelli.gecomp">
-        <priority value="DEBUG"/>
-        <appender-ref ref="gecomp"/>
-    </category>
     
     <!-- orm -->
-	<category name="org.sbelli.gecomp.orm">
+	<category name="net.sb.gecomp.orm">
         <priority value="DEBUG"/>
         <appender-ref ref="gecomporm"/>
     </category>
     
     <!-- web -->
-	<category name="org.sbelli.gecomp.console">
-        <priority value="DEBUG"/>
-        <appender-ref ref="gecompweb"/>
-    </category>
     <category name="net.sb.gecomp.web">
         <priority value="DEBUG"/>
         <appender-ref ref="gecompweb"/>
