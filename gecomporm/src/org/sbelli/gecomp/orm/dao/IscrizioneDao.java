@@ -3,6 +3,8 @@ package org.sbelli.gecomp.orm.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
 import net.sb.gecomp.utils.Eval;
@@ -98,17 +100,29 @@ public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
 	}
 	
 	public List<Iscrizione> list (Gara gara) throws GeCompOrmException {
-		List<Iscrizione> listaIscrizioniGara = null;
+		Set<Iscrizione> result = new TreeSet<Iscrizione>();
 		try {
+			logger.info("Richiesta lista di iscrizioni per la gara ", gara);
+			
 			if (Eval.isNotNull(gara)) {
-				listaIscrizioniGara = (List<Iscrizione>) getDataBaseDao().queryForList(LIST_ISCRIZIONE_GARA, gara.getIdGara());
+				List<Iscrizione> listaIscrizioniGara = (List<Iscrizione>) getDataBaseDao().queryForList(LIST_ISCRIZIONE_GARA, gara.getIdGara());
+				logger.debug("lista di iscrizioni reperita da db ", listaIscrizioniGara);
+				
+				if (Eval.isNotEmpty(listaIscrizioniGara)) {
+					for (Iscrizione iscrizione : listaIscrizioniGara) {
+						result.add(iscrizione);
+					}
+				}
 			}
+			
+			logger.info("set di iscrizioni da restituire ", result);
+			
 		} catch (Exception e) {
 			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());
 		}
 		
-		return listaIscrizioniGara;
+		return new ArrayList<Iscrizione>(result);
 	}
 	
 	public void update(Iscrizione object) throws GeCompOrmException {
