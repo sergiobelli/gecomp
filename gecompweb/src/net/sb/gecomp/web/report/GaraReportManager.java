@@ -1,8 +1,11 @@
 package net.sb.gecomp.web.report;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.web.report.sheet.ElencoIscrittiSheetManager;
@@ -18,6 +21,7 @@ import org.sbelli.gecomp.console.bridges.view.ClassificaSocietaView;
 import org.sbelli.gecomp.console.bridges.view.GaraView;
 import org.sbelli.gecomp.console.bridges.view.IscrizioneView;
 import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
+import org.sbelli.gecomp.console.bridges.view.SocietaPunteggioView;
 import org.sbelli.gecomp.orm.model.Societa;
 
 public class GaraReportManager extends ReportManager {
@@ -85,13 +89,18 @@ public class GaraReportManager extends ReportManager {
 
 		i++;
 		pos = 1;
-		for (Entry<Societa, Integer> o : classificaSocieta.getClassificaSocietaPunteggio().entrySet()) {
+		Set<SocietaPunteggioView> classificaTmp = new TreeSet<SocietaPunteggioView>();
+		for (Map.Entry<Societa, Integer> entry : classificaSocieta.getClassificaSocietaPunteggio().entrySet()) {
+			classificaTmp.add(new SocietaPunteggioView(entry.getKey(), entry.getValue()));
+		}
+		
+		for (SocietaPunteggioView o : new ArrayList<SocietaPunteggioView>(classificaTmp)) {
 
 			sheet.createRow((short) i).createCell((short) 0).setCellValue(pos);
 			sheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
-			sheet.createRow((short) i).createCell((short) 1).setCellValue(o.getKey().getDenominazione());
+			sheet.createRow((short) i).createCell((short) 1).setCellValue(o.getDenominazione());
 			sheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
-			sheet.createRow((short) i).createCell((short) 2).setCellValue(o.getValue());
+			sheet.createRow((short) i).createCell((short) 2).setCellValue(o.getPunteggio());
 			sheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("tableStyle"));
 
 			i++;
@@ -124,13 +133,18 @@ public class GaraReportManager extends ReportManager {
 
 		i++;
 		pos = 1;
-		for (Entry<Societa, Integer> o : classificaSocieta.getClassificaSocietaClassificate().entrySet()) {
+		Set<SocietaPunteggioView> classificaTmp = new TreeSet<SocietaPunteggioView>();
+		for (Map.Entry<Societa, Integer> entry : classificaSocieta.getClassificaSocietaClassificate().entrySet()) {
+			classificaTmp.add(new SocietaPunteggioView(entry.getKey(), entry.getValue()));
+		}
+		
+		for (SocietaPunteggioView o : new ArrayList<SocietaPunteggioView>(classificaTmp)) {
 
 			sheet.createRow((short) i).createCell((short) 0).setCellValue(pos);
 			sheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
-			sheet.createRow((short) i).createCell((short) 1).setCellValue(o.getKey().getDenominazione());
+			sheet.createRow((short) i).createCell((short) 1).setCellValue(o.getDenominazione());
 			sheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
-			sheet.createRow((short) i).createCell((short) 2).setCellValue(o.getValue());
+			sheet.createRow((short) i).createCell((short) 2).setCellValue(o.getPunteggio());
 			sheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("tableStyle"));
 
 			i++;
@@ -160,13 +174,19 @@ public class GaraReportManager extends ReportManager {
 
 		i++;
 		int pos = 1;
-		for (Entry<Societa, Integer> o : classificaSocieta.getClassificaSocietaIscritte().entrySet()) {
+		
+		Set<SocietaPunteggioView> classificaTmp = new TreeSet<SocietaPunteggioView>();
+		for (Map.Entry<Societa, Integer> entry : classificaSocieta.getClassificaSocietaIscritte().entrySet()) {
+			classificaTmp.add(new SocietaPunteggioView(entry.getKey(), entry.getValue()));
+		}
+		
+		for (SocietaPunteggioView o : new ArrayList<SocietaPunteggioView>(classificaTmp)) {
 
 			sheet.createRow((short) i).createCell((short) 0).setCellValue(pos);
 			sheet.getRow((short) i).getCell((short) 0).setCellStyle(styles.get("tableStyle"));
-			sheet.createRow((short) i).createCell((short) 1).setCellValue(o.getKey().getDenominazione());
+			sheet.createRow((short) i).createCell((short) 1).setCellValue(o.getDenominazione());
 			sheet.getRow((short) i).getCell((short) 1).setCellStyle(styles.get("tableStyle"));
-			sheet.createRow((short) i).createCell((short) 2).setCellValue(o.getValue());
+			sheet.createRow((short) i).createCell((short) 2).setCellValue(o.getPunteggio());
 			sheet.getRow((short) i).getCell((short) 2).setCellStyle(styles.get("tableStyle"));
 
 			i++;
