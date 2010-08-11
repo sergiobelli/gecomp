@@ -1,8 +1,8 @@
 package net.sb.gecomp.srv.authentication;
 
 import net.sb.gecomp.exceptions.GeCompSrvException;
+import net.sb.gecomp.model.User;
 
-import org.sbelli.gecomp.orm.model.User;
 
 public interface IAuthenticationService {
 

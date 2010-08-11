@@ -1,10 +1,10 @@
 package net.sb.gecomp.srv.authentication;
 
 import net.sb.gecomp.exceptions.GeCompSrvException;
+import net.sb.gecomp.model.User;
+import net.sb.gecomp.orm.dao.UserDao;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
-import org.sbelli.gecomp.orm.dao.UserDao;
-import org.sbelli.gecomp.orm.model.User;
 
 public class AuthenticationService implements IAuthenticationService {
 	

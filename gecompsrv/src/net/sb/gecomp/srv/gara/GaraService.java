@@ -1,8 +1,8 @@
 package net.sb.gecomp.srv.gara;
 
 import net.sb.gecomp.exceptions.GeCompSrvException;
+import net.sb.gecomp.model.Gara;
 
-import org.sbelli.gecomp.orm.model.Gara;
 
 public class GaraService implements IGaraService {
 
