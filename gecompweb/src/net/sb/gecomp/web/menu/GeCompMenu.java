@@ -2,7 +2,7 @@ package net.sb.gecomp.web.menu;
 
 import net.sb.gecomp.exceptions.GeCompException;
 
-import org.sbelli.gecomp.console.executers.GenericExecuter;
+import net.sb.gecomp.web.executers.GenericExecuter;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 /**

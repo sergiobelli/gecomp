@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.sb.gecomp.utils.Eval;
+import net.sb.gecomp.web.bridges.view.IscrizioneView;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.sbelli.gecomp.console.bridges.view.IscrizioneView;
 
 public class ElencoIscrittiSheetManager {
 

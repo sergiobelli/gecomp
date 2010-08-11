@@ -9,6 +9,12 @@ import java.util.List;
 
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.web.bridges.view.CategoriaView;
+import net.sb.gecomp.web.bridges.view.ClassificaCompetizioneView;
+import net.sb.gecomp.web.bridges.view.ClassificaGaraView;
+import net.sb.gecomp.web.bridges.view.IClassificaView;
+import net.sb.gecomp.web.bridges.view.PropertiesView;
+import net.sb.gecomp.web.delegates.properties.PropertiesDelegate;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -17,12 +23,6 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.sbelli.gecomp.console.bridges.view.CategoriaView;
-import org.sbelli.gecomp.console.bridges.view.ClassificaCompetizioneView;
-import org.sbelli.gecomp.console.bridges.view.ClassificaGaraView;
-import org.sbelli.gecomp.console.bridges.view.IClassificaView;
-import org.sbelli.gecomp.console.bridges.view.PropertiesView;
-import org.sbelli.gecomp.console.properties.delegates.PropertiesDelegate;
 import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 import org.sbelli.gecomp.orm.model.Atleta;
 import org.sbelli.gecomp.orm.model.Categoria;

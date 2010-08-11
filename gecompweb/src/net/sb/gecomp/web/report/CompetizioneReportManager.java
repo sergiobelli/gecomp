@@ -1,7 +1,8 @@
 package net.sb.gecomp.web.report;
 
+import net.sb.gecomp.web.bridges.view.ClassificaCompetizioneView;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.sbelli.gecomp.console.bridges.view.ClassificaCompetizioneView;
 
 public class CompetizioneReportManager extends ReportManager {
 

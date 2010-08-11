@@ -1,7 +1,8 @@
 package net.sb.gecomp.web.user;
 
-import org.sbelli.gecomp.console.bridges.view.CompetizioneView;
-import org.sbelli.gecomp.console.bridges.view.GaraView;
+import net.sb.gecomp.web.bridges.view.CompetizioneView;
+import net.sb.gecomp.web.bridges.view.GaraView;
+
 import org.sbelli.gecomp.orm.model.User;
 import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
 

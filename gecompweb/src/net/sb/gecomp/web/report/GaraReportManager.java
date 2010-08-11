@@ -8,6 +8,13 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import net.sb.gecomp.utils.Eval;
+import net.sb.gecomp.web.bridges.view.CategoriaView;
+import net.sb.gecomp.web.bridges.view.ClassificaGaraView;
+import net.sb.gecomp.web.bridges.view.ClassificaSocietaView;
+import net.sb.gecomp.web.bridges.view.GaraView;
+import net.sb.gecomp.web.bridges.view.IscrizioneView;
+import net.sb.gecomp.web.bridges.view.PrestazioneView;
+import net.sb.gecomp.web.bridges.view.SocietaPunteggioView;
 import net.sb.gecomp.web.report.sheet.ElencoIscrittiSheetManager;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -15,13 +22,6 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.sbelli.gecomp.console.bridges.view.CategoriaView;
-import org.sbelli.gecomp.console.bridges.view.ClassificaGaraView;
-import org.sbelli.gecomp.console.bridges.view.ClassificaSocietaView;
-import org.sbelli.gecomp.console.bridges.view.GaraView;
-import org.sbelli.gecomp.console.bridges.view.IscrizioneView;
-import org.sbelli.gecomp.console.bridges.view.PrestazioneView;
-import org.sbelli.gecomp.console.bridges.view.SocietaPunteggioView;
 import org.sbelli.gecomp.orm.model.Societa;
 
 public class GaraReportManager extends ReportManager {
