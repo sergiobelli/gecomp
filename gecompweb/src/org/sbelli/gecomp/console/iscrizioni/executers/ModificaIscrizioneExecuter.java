@@ -3,8 +3,11 @@ package org.sbelli.gecomp.console.iscrizioni.executers;
 import javax.faces.event.ActionEvent;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.utils.Eval;
+import net.sb.gecomp.utils.exceptions.MessageSeverity;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
+import net.sb.gecomp.web.utils.guimessages.GuiMessageHandler;
 
 /**
  * @author 71862
@@ -34,7 +37,11 @@ public class ModificaIscrizioneExecuter extends IscrizioneExecuter {
 	
 	public String salva() {
 		logger.info("Modifica di una iscrizione in corso...");
-		return super.salva();
+		String outcome = super.salva();
+		if (!Eval.equalsIgnoreCase(outcome, GeCompOutcomes.FAIL)) {
+			GuiMessageHandler.addGUIMessage(MessageSeverity.info, "message.info.success", "net.sb.gecomp.console.iscrizioni.executers.modifica.success");
+		}
+		return outcome;
 	}
 	
 	public String elimina () {
