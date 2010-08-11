@@ -53,4 +53,7 @@ public class Eval {
 		return (Eval.isNull(arg1)) ? false : arg1.equals(arg2);
 	}
 	
+	public static final boolean equalsIgnoreCase(String arg1, String arg2) {
+		return (Eval.isNull(arg1)) ? false : arg1.equalsIgnoreCase(arg2);
+	}
 }
