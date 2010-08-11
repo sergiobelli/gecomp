@@ -40,10 +40,10 @@ public abstract class IscrizioneExecuter extends GenericExecuter {
 			logger.info("Insert/Updating new iscrizione...");
 		} catch (GeCompException gce) {
 			GeCompGuiExceptionManager.manageGUIException(logger, gce, gce.getMessage());
-			return GeCompOutcomes.NULL;
+			return GeCompOutcomes.FAIL;
 		} catch (Exception ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.iscrizione.modifica.salvataggio.ko.descrizione");
-			return GeCompOutcomes.NULL;
+			return GeCompOutcomes.FAIL;
 		}
 		return GeCompOutcomes.LISTA_ISCRIZIONI;
 	}
