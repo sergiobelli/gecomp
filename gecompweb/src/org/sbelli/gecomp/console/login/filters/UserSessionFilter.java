@@ -16,8 +16,8 @@ import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.user.GeCompUserHttpSession;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Properties;
+import org.sbelli.gecomp.console.bridges.view.PropertiesView;
+import org.sbelli.gecomp.console.properties.delegates.PropertiesDelegate;
 
 public class UserSessionFilter implements Filter {
 
@@ -59,7 +59,8 @@ public class UserSessionFilter implements Filter {
 				return;
 			} else {//Tutto ok, sessione presente e valida
 				try {
-					String sessionOffset = DbManagerFactory.getInstance().getPropertiesDao().get(Properties.SESSION_OFFSET);
+					PropertiesDelegate delegate = new PropertiesDelegate();
+					String sessionOffset = delegate.get(PropertiesView.SESSION_OFFSET).getValore();
 					actualTime.add(Calendar.MINUTE, Integer.valueOf(sessionOffset).intValue());
 					session.setExpireDate(actualTime.getTime());
 					logger.info("Sessione aggiornata per l'utente ", session.getLoggedUser().getUsername());

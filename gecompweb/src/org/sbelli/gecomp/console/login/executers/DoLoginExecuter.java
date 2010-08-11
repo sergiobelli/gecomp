@@ -8,14 +8,15 @@ import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.user.GeCompUserSessionHandler;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Properties;
-import org.sbelli.gecomp.orm.model.User;
+import org.sbelli.gecomp.console.bridges.view.UserView;
+import org.sbelli.gecomp.console.login.delegates.LoginDelegate;
 
 /**
  * @author Sergio Belli
  */
 public class DoLoginExecuter {
+	
+	private LoginDelegate delegate = new LoginDelegate();
 	
 	private String username;
 	public String getUsername() { return username; }
@@ -33,7 +34,7 @@ public class DoLoginExecuter {
 		String result = LOGIN_FAILED;
 		try {
 
-			User loggedUser = DbManagerFactory.getInstance().getUserDao().isAutheticated(getUsername(), getPassword());
+			UserView loggedUser = delegate.login(getUsername(), getPassword());
 			if (Eval.isNotNull(loggedUser)) {
 				logger.info("Utente loggato = ",loggedUser);	
 				result = LOGIN_DONE;
@@ -41,7 +42,9 @@ public class DoLoginExecuter {
 				GeCompUserSessionHandler.getGeCompUserSession().setLoggedUser(loggedUser);
 				
 				Calendar actualTime = Calendar.getInstance();
-				actualTime.add(Calendar.MINUTE, Integer.valueOf(DbManagerFactory.getInstance().getPropertiesDao().get(Properties.SESSION_OFFSET)));
+				actualTime.add(
+						Calendar.MINUTE, 
+						Integer.valueOf(delegate.getRefreshSessionOffset()));
 				GeCompUserSessionHandler.getGeCompUserHttpSession().setLoggedUser(loggedUser);
 				GeCompUserSessionHandler.getGeCompUserHttpSession().setExpireDate(actualTime.getTime());
 				
