@@ -72,7 +72,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 			throw gce;
 		} catch (Exception ex) {
 			logger.error(ex, "net.sb.gecomp.console.iscrizioni.delegates.save.generic_error");
-			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.save.generic_error",ex);
+			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.save.generic_error",ex);
 		}
 	}
 
@@ -84,8 +84,8 @@ public class IscrizioneDelegate extends GenericDelegate {
 		try {
 			return bridge.list(gara);
 		} catch (GeCompOrmException ex) {
-			logger.error(ex, "Non ci sono iscrizioni per la gara specificata ", gara);
-			throw new GeCompException("c.c.c.c.c.c.c.c");
+			logger.error(ex, "net.sb.gecomp.console.iscrizioni.delegates.generic_error", gara);
+			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.generic_error");
 		}
 	}
 	
@@ -93,8 +93,8 @@ public class IscrizioneDelegate extends GenericDelegate {
 		try {
 			return bridge.list(competizione);
 		} catch (GeCompOrmException ex) {
-			logger.error(ex, "Non ci sono iscrizioni per la competizione specificata ", competizione);
-			throw new GeCompException("c.c.c.c.c.c.c.c");
+			logger.error(ex, "net.sb.gecomp.console.iscrizioni.delegates.generic_error", competizione);
+			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.generic_error");
 		}
 	}
 }
