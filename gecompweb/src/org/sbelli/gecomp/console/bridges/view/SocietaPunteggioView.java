@@ -4,21 +4,21 @@ import org.sbelli.gecomp.orm.model.Societa;
 
 public class SocietaPunteggioView extends SocietaView implements Comparable {
 
-	private Societa societa;
+//	private Societa societa;
 	private Integer punteggio;
 	
 	public SocietaPunteggioView() {}
 	public SocietaPunteggioView(Societa societa, Integer punteggio) {
-		setSocieta(societa);
+		super(societa);
 		setPunteggio(punteggio);
 	}
 	
-	public Societa getSocieta() {
-		return societa;
-	}
-	public void setSocieta(Societa societa) {
-		this.societa = societa;
-	}
+//	public Societa getSocieta() {
+//		return societa;
+//	}
+//	public void setSocieta(Societa societa) {
+//		this.societa = societa;
+//	}
 	public Integer getPunteggio() {
 		return punteggio;
 	}
@@ -32,7 +32,7 @@ public class SocietaPunteggioView extends SocietaView implements Comparable {
 			SocietaPunteggioView other = (SocietaPunteggioView)o;
 			result = other.getPunteggio().compareTo(this.getPunteggio());
 			if (result == 0) {
-				result = this.getSocieta().getDenominazione().compareTo(other.getSocieta().getDenominazione());
+				result = this.getDenominazione().compareTo(other.getDenominazione());
 			}
 		} else {
 			return result;

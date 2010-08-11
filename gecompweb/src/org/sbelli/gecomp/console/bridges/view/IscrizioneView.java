@@ -1,5 +1,7 @@
 package org.sbelli.gecomp.console.bridges.view;
 
+import net.sb.gecomp.utils.Eval;
+
 import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public class IscrizioneView extends Iscrizione {
@@ -9,6 +11,16 @@ public class IscrizioneView extends Iscrizione {
 		this.setGara(gara);
 	}
 	public IscrizioneView(Iscrizione iscrizione) {
-		ViewUtils.copyProperties(this, iscrizione);
+		ViewUtils.copyProperties(this, iscrizione);//FIXME:Il numero pettorale = null lo trasforma in numero pettorale = 0!!! Correggere!!!
 	}
+	@Override
+	public String getNumeroPettorale() {
+		if (Eval.isNotNull(super.getNumeroPettorale())) {
+			return super.getNumeroPettorale();
+		} else {
+			return "n.d.";
+		}
+	}
+	
+	
 }
