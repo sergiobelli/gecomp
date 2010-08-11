@@ -31,9 +31,9 @@ public class InsertData {
 //		insertCategorie();
 //		insertCompetizioni();
 //		insertGare();
-//		insertIscrizioni();
+		insertIscrizioni();
 //		insertPrestazioni();
-		insertCategoriaGara();
+//		insertCategoriaGara();
 //		insertProperties();
 	}
 
@@ -103,7 +103,6 @@ public class InsertData {
 				gara.setDescrizione("Gara_" + i);
 				gara.setData(new Date(System.currentTimeMillis()));
 				gara.setCompetizione(comp);
-				gara.setDistanza(10l);
 				DbManagerFactory.getInstance().getGaraDao().insert(gara);
 			}
 		}

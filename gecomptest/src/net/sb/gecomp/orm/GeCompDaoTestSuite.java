@@ -12,8 +12,7 @@ import junit.framework.TestSuite;
 public class GeCompDaoTestSuite {
 
 	public static Test suite() {
-		TestSuite suite = new TestSuite(
-				"Test for net.sb.gecomp.orm.dao");
+		TestSuite suite = new TestSuite("Test for net.sb.gecomp.orm.dao");
 		
 		//$JUnit-BEGIN$
 		suite.addTestSuite(GaraDaoTest.class);
