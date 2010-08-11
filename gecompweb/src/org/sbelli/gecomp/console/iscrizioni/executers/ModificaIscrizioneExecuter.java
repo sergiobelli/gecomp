@@ -25,8 +25,10 @@ public class ModificaIscrizioneExecuter extends IscrizioneExecuter {
 		try {
 			setIscrizione(delegate.get(idIscrizione));
 			setListaGareItem(getHelper().getListaGareItem(getSelectedCompetizione()));
-		} catch (GeCompException ex) {
-			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.iscrizione.ciupa.ko");
+		} catch (GeCompException gce) {
+			GeCompGuiExceptionManager.manageGUIException(logger, gce, gce.getMessage());
+		} catch (Exception e) {
+			GeCompGuiExceptionManager.manageGUIException(logger, e, "net.sb.gecomp.console.iscrizioni.executers.generic_error");
 		}
 	}
 	

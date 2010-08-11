@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
@@ -37,6 +38,9 @@ public abstract class IscrizioneExecuter extends GenericExecuter {
 			logger.info("Insert/Updating iscrizione...");
 			delegate.save(getIscrizione());
 			logger.info("Insert/Updating new iscrizione...");
+		} catch (GeCompException gce) {
+			GeCompGuiExceptionManager.manageGUIException(logger, gce, gce.getMessage());
+			return GeCompOutcomes.NULL;
 		} catch (Exception ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.iscrizione.modifica.salvataggio.ko.descrizione");
 			return GeCompOutcomes.NULL;

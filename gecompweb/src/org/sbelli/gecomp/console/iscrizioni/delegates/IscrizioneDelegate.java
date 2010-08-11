@@ -26,9 +26,12 @@ public class IscrizioneDelegate extends GenericDelegate {
 	public void delete(GecompModelObject element) throws GeCompException {
 		try {
 			bridge.delete((Iscrizione)element);
+		} catch (GeCompException gce) {
+			logger.error("Errore gestito", gce);
+			throw gce;
 		} catch (Exception ex) {
-			logger.error(ex, "Errore in fase di cancellazione di un'iscrizione");
-			throw new GeCompException("error.iscrizione.eliminazione.ko");
+			logger.error(ex, "net.sb.gecomp.console.iscrizioni.delegates.delete.generic_error");
+			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.delete.generic_error",ex);
 		}
 	}
 
@@ -47,9 +50,12 @@ public class IscrizioneDelegate extends GenericDelegate {
 			} else {
 				bridge.update(iscrizione);
 			}
-		} catch (GeCompOrmException ex) {
-			logger.error(ex, "Errore in fase di modifica/savataggio dell'iscrizione");
-			throw new GeCompException("error.iscrizione.modifica.salvataggio.ko");
+		} catch (GeCompException gce) {
+			logger.error("Errore gestito", gce);
+			throw gce;
+		} catch (Exception ex) {
+			logger.error(ex, "net.sb.gecomp.console.iscrizioni.delegates.save.generic_error");
+			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.save.generic_error",ex);
 		}
 	}
 

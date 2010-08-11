@@ -11,8 +11,8 @@ public class EliminaIscrizioneExecuter extends ModificaIscrizioneExecuter {
 			logger.info("Deleting iscrizione...");
 			delegate.delete(getIscrizione());
 			logger.info("Deleted iscrizione...");
-		} catch (GeCompException ex) {
-			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.iscrizione.eliminazione.ko.descrizione");
+		} catch (GeCompException gce) {
+			GeCompGuiExceptionManager.manageGUIException(logger, gce, gce.getMessage());
 			return GeCompOutcomes.NULL;
 		}
 		return GeCompOutcomes.LISTA_ISCRIZIONI;

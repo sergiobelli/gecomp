@@ -3,7 +3,7 @@ package org.sbelli.gecomp.console.iscrizioni.bridges;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
 
 import org.sbelli.gecomp.console.bridges.GenericBridge;
@@ -16,25 +16,25 @@ import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public class IscrizioneBridge extends GenericBridge {
 
-	public void delete(GecompModelObject element) throws GeCompOrmException {
+	public void delete(GecompModelObject element) throws GeCompException {
 		Iscrizione gara = (Iscrizione) element;
 		DbManagerFactory.getInstance().getIscrizioneDao().delete(gara.getIdIscrizione());
 	}
 
 	public GecompModelObject insert(GecompModelObject element)
-			throws GeCompOrmException {
+			throws GeCompException {
 		return DbManagerFactory.getInstance().getIscrizioneDao().insert((Iscrizione) element);
 	}
 
-	public void update(GecompModelObject element) throws GeCompOrmException {
+	public void update(GecompModelObject element) throws GeCompException {
 		DbManagerFactory.getInstance().getIscrizioneDao().update((Iscrizione) element);
 	}
 
-	public IscrizioneView get(Long id) throws GeCompOrmException {
+	public IscrizioneView get(Long id) throws GeCompException {
 		return new IscrizioneView(DbManagerFactory.getInstance().getIscrizioneDao().get(id));
 	}
 
-	public List<IscrizioneView> list(GaraView gara) throws GeCompOrmException {
+	public List<IscrizioneView> list(GaraView gara) throws GeCompException {
 		List<IscrizioneView> result = new ArrayList<IscrizioneView>();
 		List<Iscrizione> iscritti = DbManagerFactory.getInstance().getIscrizioneDao().list(gara);
 		if (Eval.isNotEmpty(iscritti)) {
@@ -45,7 +45,7 @@ public class IscrizioneBridge extends GenericBridge {
 		return result;
 	}
 	
-	public List<IscrizioneView> list(CompetizioneView competizione) throws GeCompOrmException {
+	public List<IscrizioneView> list(CompetizioneView competizione) throws GeCompException {
 		List<IscrizioneView> result = new ArrayList<IscrizioneView>();
 		List<Iscrizione> iscritti = DbManagerFactory.getInstance().getIscrizioneDao().list(competizione);
 		if (Eval.isNotEmpty(iscritti)) {

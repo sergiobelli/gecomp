@@ -2,7 +2,7 @@ package org.sbelli.gecomp.console.iscrizioni.executers;
 
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 public class ListaIscrizioniExecuter extends IscrizioneExecuter {
 	
@@ -14,8 +14,10 @@ public class ListaIscrizioniExecuter extends IscrizioneExecuter {
 			} else {
 				setIscrizioni(delegate.list(getSelectedCompetizione()));
 			}
-		} catch (GeCompException e) {
-			GeCompExceptionManager.manageException(logger, e);
+		} catch (GeCompException gce) {
+			GeCompGuiExceptionManager.manageGUIException(logger, gce, gce.getMessage());
+		} catch (Exception e) {
+			GeCompGuiExceptionManager.manageGUIException(logger, e, "net.sb.gecomp.console.iscrizioni.executers.generic_error");
 		}
 	}
 	
