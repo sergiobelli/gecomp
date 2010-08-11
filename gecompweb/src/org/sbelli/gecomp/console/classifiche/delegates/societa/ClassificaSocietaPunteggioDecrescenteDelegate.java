@@ -61,6 +61,8 @@ public class ClassificaSocietaPunteggioDecrescenteDelegate extends
 					classificaSocietaPunti.remove(societa);
 					classificaSocietaPunti.put(societa, punteggioTmp);
 				}
+			} else {
+				logger.info("prestazione non valida ", "[", prestazioneValida.getIdPrestazione(), ",", prestazioneValida.getTipoPrestazione(), "]");
 			}
 		}
 		return classificaSocietaPunti;
