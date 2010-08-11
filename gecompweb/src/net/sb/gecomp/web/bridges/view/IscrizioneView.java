@@ -1,8 +1,8 @@
 package net.sb.gecomp.web.bridges.view;
 
+import net.sb.gecomp.model.Iscrizione;
 import net.sb.gecomp.utils.Eval;
 
-import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public class IscrizioneView extends Iscrizione {
 	public IscrizioneView() { }

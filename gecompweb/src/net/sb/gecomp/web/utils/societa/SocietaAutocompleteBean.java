@@ -8,9 +8,9 @@ import java.util.List;
 //import javax.faces.event.ValueChangeEvent;
 //import javax.faces.model.SelectItem;
 
+import net.sb.gecomp.model.Societa;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
-import org.sbelli.gecomp.orm.model.Societa;
 
 //import com.icesoft.faces.component.selectinputtext.SelectInputText;
 

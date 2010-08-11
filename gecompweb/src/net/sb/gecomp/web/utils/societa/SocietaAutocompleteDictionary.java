@@ -6,9 +6,9 @@ import java.util.List;
 //import javax.faces.model.SelectItem;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 
 public class SocietaAutocompleteDictionary {
 

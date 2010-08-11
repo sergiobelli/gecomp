@@ -1,11 +1,11 @@
 package net.sb.gecomp.web.controllers.iscrizioni;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.GecompModelObject;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.web.bridges.view.IscrizioneView;
 import net.sb.gecomp.web.controllers.GenericController;
 
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class IscrizioneController extends GenericController {
 

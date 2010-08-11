@@ -1,9 +1,9 @@
 package net.sb.gecomp.web.executers.societa;
 
+import net.sb.gecomp.model.Societa;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.Societa;
 
 public class InserisciSocietaExecuter extends SocietaExecuter {
 	

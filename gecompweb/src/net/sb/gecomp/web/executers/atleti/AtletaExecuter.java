@@ -1,12 +1,12 @@
 package net.sb.gecomp.web.executers.atleti;
 
+import net.sb.gecomp.model.Atleta;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.delegates.atleti.AtletaDelegate;
 import net.sb.gecomp.web.executers.GenericExecuter;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.Atleta;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 

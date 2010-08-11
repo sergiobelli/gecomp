@@ -7,6 +7,16 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
+import net.sb.gecomp.model.Atleta;
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.model.Competizione;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.Prestazione;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.orm.presentation.classifiche.ClassificaCategoriaCompetizione;
+import net.sb.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
+import net.sb.gecomp.orm.presentation.classifiche.IClassifica;
+import net.sb.gecomp.orm.presentation.classifiche.PrestazioneInCompetizione;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.view.CategoriaView;
@@ -23,16 +33,6 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Atleta;
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.Prestazione;
-import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCategoriaCompetizione;
-import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
-import org.sbelli.gecomp.orm.presentation.classifiche.IClassifica;
-import org.sbelli.gecomp.orm.presentation.classifiche.PrestazioneInCompetizione;
 
 /**
  * @author S.BELLI

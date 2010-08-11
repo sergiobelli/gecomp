@@ -3,6 +3,7 @@ package net.sb.gecomp.web.delegates.societa;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.GecompModelObject;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.societa.SocietaBridge;
@@ -11,7 +12,6 @@ import net.sb.gecomp.web.controllers.societa.SocietaController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class SocietaDelegate extends GenericDelegate {
 

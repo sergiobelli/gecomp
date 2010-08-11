@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.GecompModelObject;
+import net.sb.gecomp.model.Iscrizione;
+import net.sb.gecomp.model.Prestazione;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.GenericBridge;
 import net.sb.gecomp.web.bridges.view.PrestazioneView;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
-import org.sbelli.gecomp.orm.model.Iscrizione;
-import org.sbelli.gecomp.orm.model.Prestazione;
 
 public class PrestazioneBridge extends GenericBridge {
 

@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.bridges.view;
 
-import org.sbelli.gecomp.orm.model.Properties;
+import net.sb.gecomp.model.Properties;
 
 public class PropertiesView extends Properties {
 

@@ -2,7 +2,7 @@ package net.sb.gecomp.web.bridges.view;
 
 import java.util.HashMap;
 
-import org.sbelli.gecomp.orm.model.Societa;
+import net.sb.gecomp.model.Societa;
 
 public class ClassificaSocietaView extends ClassificaView {
 

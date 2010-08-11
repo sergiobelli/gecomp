@@ -3,12 +3,12 @@ package net.sb.gecomp.web.bridges.view;
 import java.util.ArrayList;
 import java.util.Date;
 
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.model.Competizione;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.TipoMisura;
 import net.sb.gecomp.utils.Eval;
 
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.TipoMisura;
 
 public class GaraView extends Gara {
 	

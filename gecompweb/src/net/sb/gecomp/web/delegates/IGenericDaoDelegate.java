@@ -1,8 +1,8 @@
 package net.sb.gecomp.web.delegates;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.GecompModelObject;
 
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public interface IGenericDaoDelegate<T extends GecompModelObject> extends IGenericDelegate {
 

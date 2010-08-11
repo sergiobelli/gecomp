@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.bridges.view;
 
-import org.sbelli.gecomp.orm.model.Societa;
+import net.sb.gecomp.model.Societa;
 
 public class SocietaView extends Societa {
 	public SocietaView() { }

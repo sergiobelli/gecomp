@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Gara;
 import net.sb.gecomp.web.bridges.view.CategoriaView;
 import net.sb.gecomp.web.bridges.view.ClassificaGaraView;
 import net.sb.gecomp.web.bridges.view.ClassificaView;
@@ -15,7 +16,6 @@ import net.sb.gecomp.web.delegates.classifiche.societa.ClassificaSocietaPunteggi
 import net.sb.gecomp.web.delegates.iscrizioni.IscrizioneDelegate;
 import net.sb.gecomp.web.delegates.prestazioni.PrestazioneDelegate;
 
-import org.sbelli.gecomp.orm.model.Gara;
 
 public class ClassificaGaraDelegate extends ClassificaDelegate {
 

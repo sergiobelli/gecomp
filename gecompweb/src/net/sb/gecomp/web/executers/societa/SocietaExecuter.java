@@ -1,10 +1,10 @@
 package net.sb.gecomp.web.executers.societa;
 
+import net.sb.gecomp.model.Societa;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.delegates.societa.SocietaDelegate;
 import net.sb.gecomp.web.executers.GenericExecuter;
 
-import org.sbelli.gecomp.orm.model.Societa;
 
 public abstract class SocietaExecuter extends GenericExecuter {
 

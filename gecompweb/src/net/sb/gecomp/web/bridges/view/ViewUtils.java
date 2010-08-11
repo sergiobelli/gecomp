@@ -2,8 +2,9 @@ package net.sb.gecomp.web.bridges.view;
 
 import java.lang.reflect.InvocationTargetException;
 
+import net.sb.gecomp.model.GecompModelObject;
+
 import org.apache.commons.beanutils.BeanUtils;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class ViewUtils {
 

@@ -3,11 +3,11 @@ package net.sb.gecomp.web.executers.gare;
 import java.util.Date;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.TipoMisura;
 import net.sb.gecomp.web.bridges.view.GaraView;
 import net.sb.gecomp.web.user.GeCompUserSessionHandler;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.TipoMisura;
 
 public class InserisciGaraExecuter extends GaraExecuter {
 	

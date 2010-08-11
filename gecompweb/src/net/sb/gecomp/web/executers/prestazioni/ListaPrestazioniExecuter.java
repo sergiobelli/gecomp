@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Prestazione;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Prestazione;
 
 public class ListaPrestazioniExecuter extends PrestazioneExecuter {
 

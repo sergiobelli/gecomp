@@ -1,11 +1,11 @@
 package net.sb.gecomp.web.controllers.atleti;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Atleta;
+import net.sb.gecomp.model.GecompModelObject;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.web.controllers.GenericController;
 
-import org.sbelli.gecomp.orm.model.Atleta;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class AtletaController extends GenericController {
 	

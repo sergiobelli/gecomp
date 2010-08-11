@@ -6,18 +6,18 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.model.Atleta;
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.model.Competizione;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.Iscrizione;
+import net.sb.gecomp.model.Societa;
+import net.sb.gecomp.model.TipoMisura;
+import net.sb.gecomp.model.TipoPrestazione;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Atleta;
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.Iscrizione;
-import org.sbelli.gecomp.orm.model.Societa;
-import org.sbelli.gecomp.orm.model.TipoMisura;
-import org.sbelli.gecomp.orm.model.TipoPrestazione;
 
 public class ExecuterHelper {
 

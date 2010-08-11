@@ -1,10 +1,10 @@
 package net.sb.gecomp.web.user;
 
+import net.sb.gecomp.model.User;
+import net.sb.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
 import net.sb.gecomp.web.bridges.view.CompetizioneView;
 import net.sb.gecomp.web.bridges.view.GaraView;
 
-import org.sbelli.gecomp.orm.model.User;
-import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
 
 /**
  * @author S.BELLI

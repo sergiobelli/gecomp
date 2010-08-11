@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.bridges.view;
 
-import org.sbelli.gecomp.orm.model.CategoriaGara;
+import net.sb.gecomp.model.CategoriaGara;
 
 public class CategoriaGaraView extends CategoriaGara {
 	public CategoriaGaraView() { }

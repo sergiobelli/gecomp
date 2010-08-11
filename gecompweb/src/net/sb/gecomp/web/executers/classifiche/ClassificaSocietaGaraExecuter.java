@@ -11,6 +11,9 @@ import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.GecompModelObject;
+import net.sb.gecomp.model.Prestazione;
+import net.sb.gecomp.model.Societa;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.view.ClassificaSocietaView;
 import net.sb.gecomp.web.bridges.view.SocietaPunteggioView;
@@ -19,9 +22,6 @@ import net.sb.gecomp.web.executers.GenericExecuter;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.GecompModelObject;
-import org.sbelli.gecomp.orm.model.Prestazione;
-import org.sbelli.gecomp.orm.model.Societa;
 
 //TODO: NON funziona!!!!
 public class ClassificaSocietaGaraExecuter extends GenericExecuter {

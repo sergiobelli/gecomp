@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.bridges.view;
 
-import org.sbelli.gecomp.orm.model.Categoria;
+import net.sb.gecomp.model.Categoria;
 
 public class CategoriaView extends Categoria {
 

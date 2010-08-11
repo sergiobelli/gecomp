@@ -1,9 +1,9 @@
 package net.sb.gecomp.web.executers.atleti;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.model.Atleta;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Atleta;
 
 public class ElencoAtletiExecuter extends AtletaExecuter {
 

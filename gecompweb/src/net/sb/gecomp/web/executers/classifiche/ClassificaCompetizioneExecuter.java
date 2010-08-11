@@ -1,10 +1,10 @@
 package net.sb.gecomp.web.executers.classifiche;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.orm.dao.ClassificaCompetizioneManager;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
 
-import org.sbelli.gecomp.orm.dao.ClassificaCompetizioneManager;
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
 
 public class ClassificaCompetizioneExecuter {
 

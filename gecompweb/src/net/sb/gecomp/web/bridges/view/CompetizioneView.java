@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.bridges.view;
 
-import org.sbelli.gecomp.orm.model.Competizione;
+import net.sb.gecomp.model.Competizione;
 
 public class CompetizioneView extends Competizione {
 	public CompetizioneView() { }

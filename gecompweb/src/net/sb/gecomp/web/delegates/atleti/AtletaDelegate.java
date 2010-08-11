@@ -1,6 +1,7 @@
 package net.sb.gecomp.web.delegates.atleti;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.GecompModelObject;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.atleti.AtletaBridge;
@@ -9,7 +10,6 @@ import net.sb.gecomp.web.controllers.atleti.AtletaController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 import net.sb.gecomp.web.delegates.societa.SocietaDelegate;
 
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 

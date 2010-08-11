@@ -4,6 +4,8 @@ import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.model.GecompModelObject;
+import net.sb.gecomp.model.Iscrizione;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.iscrizioni.IscrizioneBridge;
@@ -17,8 +19,6 @@ import net.sb.gecomp.web.delegates.atleti.AtletaDelegate;
 import net.sb.gecomp.web.delegates.gare.GaraDelegate;
 import net.sb.gecomp.web.delegates.prestazioni.PrestazioneDelegate;
 
-import org.sbelli.gecomp.orm.model.GecompModelObject;
-import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public class IscrizioneDelegate extends GenericDelegate {
 

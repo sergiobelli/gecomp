@@ -4,14 +4,14 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.Societa;
+import net.sb.gecomp.model.TipoPrestazione;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.view.ClassificaSocietaView;
 import net.sb.gecomp.web.bridges.view.PrestazioneView;
 import net.sb.gecomp.web.delegates.classifiche.ClassificaDelegate;
 
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.Societa;
-import org.sbelli.gecomp.orm.model.TipoPrestazione;
 
 public abstract class ClassificaSocietaDelegate extends ClassificaDelegate {
 	

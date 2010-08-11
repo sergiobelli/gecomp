@@ -1,13 +1,13 @@
 package net.sb.gecomp.web.delegates.properties;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.GecompModelObject;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.properties.PropertiesBridge;
 import net.sb.gecomp.web.bridges.view.PropertiesView;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class PropertiesDelegate extends GenericDelegate {
 	

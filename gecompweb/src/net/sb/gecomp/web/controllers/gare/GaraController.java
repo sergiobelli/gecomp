@@ -1,11 +1,11 @@
 package net.sb.gecomp.web.controllers.gare;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.GecompModelObject;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.web.controllers.GenericController;
 
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class GaraController extends GenericController {
 	

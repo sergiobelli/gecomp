@@ -4,13 +4,13 @@ import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.model.Atleta;
+import net.sb.gecomp.model.Competizione;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Atleta;
-import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Gara;
 
 public class ListaGareExecuter extends GaraExecuter {
 

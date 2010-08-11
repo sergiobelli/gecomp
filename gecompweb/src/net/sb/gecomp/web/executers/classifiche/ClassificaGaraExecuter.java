@@ -6,6 +6,8 @@ import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.GecompModelObject;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.view.CategoriaView;
 import net.sb.gecomp.web.bridges.view.ClassificaGaraView;
@@ -19,8 +21,6 @@ import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.report.ReportManager;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class ClassificaGaraExecuter extends GenericExecuter {
 

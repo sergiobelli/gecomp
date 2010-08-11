@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.model.GecompModelObject;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.categorie.CategoriaBridge;
@@ -15,8 +17,6 @@ import net.sb.gecomp.web.bridges.view.GaraView;
 import net.sb.gecomp.web.controllers.gare.GaraController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class GaraDelegate extends GenericDelegate {
 	

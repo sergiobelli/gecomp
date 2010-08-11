@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import net.sb.gecomp.model.Societa;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.web.bridges.view.CategoriaView;
 import net.sb.gecomp.web.bridges.view.ClassificaGaraView;
@@ -22,7 +23,6 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.sbelli.gecomp.orm.model.Societa;
 
 public class GaraReportManager extends ReportManager {
 

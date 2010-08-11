@@ -1,9 +1,9 @@
 package net.sb.gecomp.web.bridges.login;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.web.bridges.view.UserView;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
 
 public class UserBridge {
 

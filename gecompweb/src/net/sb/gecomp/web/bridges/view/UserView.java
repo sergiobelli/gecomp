@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.bridges.view;
 
-import org.sbelli.gecomp.orm.model.User;
+import net.sb.gecomp.model.User;
 
 public class UserView extends User {
 	public UserView() { }

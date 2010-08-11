@@ -3,13 +3,13 @@ package net.sb.gecomp.web.bridges.gare;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.GecompModelObject;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.web.bridges.GenericBridge;
 import net.sb.gecomp.web.bridges.view.GaraView;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class GaraBridge extends GenericBridge {
 

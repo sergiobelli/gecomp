@@ -1,10 +1,10 @@
 package net.sb.gecomp.web.bridges.view;
 
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.model.Prestazione;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.Prestazione;
 
 public class PrestazioneView extends Prestazione {
 

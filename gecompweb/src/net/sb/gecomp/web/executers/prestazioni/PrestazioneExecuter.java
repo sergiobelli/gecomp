@@ -2,12 +2,12 @@ package net.sb.gecomp.web.executers.prestazioni;
 
 import javax.faces.model.SelectItem;
 
+import net.sb.gecomp.model.Prestazione;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.delegates.prestazioni.PrestazioneDelegate;
 import net.sb.gecomp.web.executers.GenericExecuter;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.Prestazione;
 
 public class PrestazioneExecuter extends GenericExecuter {
 

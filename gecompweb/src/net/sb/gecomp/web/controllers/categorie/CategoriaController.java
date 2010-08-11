@@ -1,11 +1,11 @@
 package net.sb.gecomp.web.controllers.categorie;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.model.GecompModelObject;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.web.controllers.GenericController;
 
-import org.sbelli.gecomp.orm.model.Categoria;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class CategoriaController extends GenericController {
 	

@@ -5,6 +5,9 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.model.Competizione;
+import net.sb.gecomp.model.Societa;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.bridges.view.CompetizioneView;
@@ -12,9 +15,6 @@ import net.sb.gecomp.web.delegates.competizione.CompetizioneDelegate;
 import net.sb.gecomp.web.delegates.societa.SocietaDelegate;
 import net.sb.gecomp.web.executers.GenericExecuter;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Competizione;
-import org.sbelli.gecomp.orm.model.Societa;
 
 public class CompetizioneExecuter extends GenericExecuter {
 

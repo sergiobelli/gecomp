@@ -1,11 +1,11 @@
 package net.sb.gecomp.web.bridges.properties;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.GecompModelObject;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.web.bridges.GenericBridge;
 import net.sb.gecomp.web.bridges.view.PropertiesView;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class PropertiesBridge extends GenericBridge {
 

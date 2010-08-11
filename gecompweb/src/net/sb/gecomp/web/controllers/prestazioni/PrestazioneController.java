@@ -1,11 +1,11 @@
 package net.sb.gecomp.web.controllers.prestazioni;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.GecompModelObject;
+import net.sb.gecomp.model.Prestazione;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.web.controllers.GenericController;
 
-import org.sbelli.gecomp.orm.model.GecompModelObject;
-import org.sbelli.gecomp.orm.model.Prestazione;
 
 public class PrestazioneController extends GenericController {
 	

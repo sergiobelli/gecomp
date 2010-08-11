@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.GecompModelObject;
+import net.sb.gecomp.model.Iscrizione;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.web.bridges.GenericBridge;
 import net.sb.gecomp.web.bridges.view.CompetizioneView;
 import net.sb.gecomp.web.bridges.view.GaraView;
 import net.sb.gecomp.web.bridges.view.IscrizioneView;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
-import org.sbelli.gecomp.orm.model.Iscrizione;
 
 public class IscrizioneBridge extends GenericBridge {
 

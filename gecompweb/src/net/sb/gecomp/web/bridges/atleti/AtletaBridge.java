@@ -1,12 +1,12 @@
 package net.sb.gecomp.web.bridges.atleti;
 
 import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.model.Atleta;
+import net.sb.gecomp.model.GecompModelObject;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.web.bridges.GenericBridge;
 import net.sb.gecomp.web.bridges.view.AtletaView;
 
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.Atleta;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
 
 public class AtletaBridge extends GenericBridge {
 

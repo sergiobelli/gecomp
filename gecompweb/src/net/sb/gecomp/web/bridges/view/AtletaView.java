@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.bridges.view;
 
-import org.sbelli.gecomp.orm.model.Atleta;
+import net.sb.gecomp.model.Atleta;
 
 public class AtletaView extends Atleta {
 	public AtletaView() { }

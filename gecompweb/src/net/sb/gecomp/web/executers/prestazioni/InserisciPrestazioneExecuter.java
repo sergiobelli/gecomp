@@ -1,13 +1,13 @@
 package net.sb.gecomp.web.executers.prestazioni;
 
+import net.sb.gecomp.model.Atleta;
+import net.sb.gecomp.model.Gara;
+import net.sb.gecomp.model.Iscrizione;
+import net.sb.gecomp.model.Prestazione;
+import net.sb.gecomp.model.TipoMisura;
+import net.sb.gecomp.model.TipoPrestazione;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
-import org.sbelli.gecomp.orm.model.Atleta;
-import org.sbelli.gecomp.orm.model.Gara;
-import org.sbelli.gecomp.orm.model.Iscrizione;
-import org.sbelli.gecomp.orm.model.Prestazione;
-import org.sbelli.gecomp.orm.model.TipoMisura;
-import org.sbelli.gecomp.orm.model.TipoPrestazione;
 
 public class InserisciPrestazioneExecuter extends PrestazioneExecuter {
 	

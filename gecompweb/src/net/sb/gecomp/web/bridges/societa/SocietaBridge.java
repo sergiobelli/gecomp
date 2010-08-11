@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sb.gecomp.exceptions.GeCompOrmException;
+import net.sb.gecomp.model.GecompModelObject;
+import net.sb.gecomp.model.Societa;
+import net.sb.gecomp.orm.dao.SocietaDao;
+import net.sb.gecomp.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.utils.Eval;
 import net.sb.gecomp.web.bridges.GenericBridge;
 import net.sb.gecomp.web.bridges.view.SocietaView;
 
-import org.sbelli.gecomp.orm.dao.SocietaDao;
-import org.sbelli.gecomp.orm.ibatis.DbManagerFactory;
-import org.sbelli.gecomp.orm.model.GecompModelObject;
-import org.sbelli.gecomp.orm.model.Societa;
 
 public class SocietaBridge extends GenericBridge {
 
