@@ -1,6 +1,6 @@
 package net.sb.gecomp.srv.services.authentication;
 
-//import javax.jws.WebService;
+import javax.jws.WebService;
 
 import net.sb.gecomp.commons.exceptions.GeCompSrvException;
 import net.sb.gecomp.commons.model.User;
@@ -10,7 +10,7 @@ import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
 import org.apache.log4j.Logger;
 
-//@WebService(endpointInterface = "net.sb.gecomp.commons.services.IAuthenticationService")
+@WebService(endpointInterface = "net.sb.gecomp.commons.services.IAuthenticationService", serviceName = "aauthenticationService")
 public class AuthenticationService implements IAuthenticationService {
 	
 	protected Logger logger = Logger.getLogger(this.getClass().getName());
