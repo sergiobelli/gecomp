@@ -4,21 +4,18 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.model.Competizione;
-import net.sb.gecomp.model.Societa;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.web.bridges.view.CompetizioneView;
+import net.sb.gecomp.commons.exceptions.GeCompOrmException;
+import net.sb.gecomp.commons.model.Competizione;
+import net.sb.gecomp.commons.model.Societa;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.web.delegates.competizione.CompetizioneDelegate;
 import net.sb.gecomp.web.delegates.societa.SocietaDelegate;
 import net.sb.gecomp.web.executers.GenericExecuter;
 
 
 public class CompetizioneExecuter extends GenericExecuter {
-
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 
 	protected CompetizioneDelegate delegate = new CompetizioneDelegate();
 	protected SocietaDelegate socDelegate = new SocietaDelegate();

@@ -1,8 +1,8 @@
 package net.sb.gecomp.web.executers.competizione;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.commons.exceptions.GeCompOrmException;
+import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
 
 public class ListaCompetizioniExecuter extends CompetizioneExecuter {

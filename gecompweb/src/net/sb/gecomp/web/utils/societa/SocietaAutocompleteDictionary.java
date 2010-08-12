@@ -1,18 +1,10 @@
 package net.sb.gecomp.web.utils.societa;
 
-import java.util.Comparator;
-import java.util.List;
-
-//import javax.faces.model.SelectItem;
-
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.utils.logger.GeCompLogger;
 
 
 public class SocietaAutocompleteDictionary {
 
-//	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
+//	protected Logger logger = Logger.getLogger(this.getClass().getName());
 //
 //	// list of cities.
 //	private static List dictionary;

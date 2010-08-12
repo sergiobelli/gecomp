@@ -3,40 +3,41 @@ package net.sb.gecomp.web.bridges.iscrizioni;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.model.Iscrizione;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.utils.Eval;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.Iscrizione;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.commons.model.view.GaraView;
+import net.sb.gecomp.commons.model.view.IscrizioneView;
+import net.sb.gecomp.commons.services.IIscrizioneService;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.srv.services.iscrizioni.IscrizioneService;
 import net.sb.gecomp.web.bridges.GenericBridge;
-import net.sb.gecomp.web.bridges.view.CompetizioneView;
-import net.sb.gecomp.web.bridges.view.GaraView;
-import net.sb.gecomp.web.bridges.view.IscrizioneView;
 
 
 public class IscrizioneBridge extends GenericBridge {
 
-	public void delete(GecompModelObject element) throws GeCompException {
-		Iscrizione gara = (Iscrizione) element;
-		DbManagerFactory.getInstance().getIscrizioneDao().delete(gara.getIdIscrizione());
+	private final IIscrizioneService service = new IscrizioneService();
+	
+	public void delete(GecompModelObject iscrizione) throws GeCompException {
+		service.delete(((Iscrizione) iscrizione).getIdIscrizione());
 	}
 
-	public GecompModelObject insert(GecompModelObject element)
-			throws GeCompException {
-		return DbManagerFactory.getInstance().getIscrizioneDao().insert((Iscrizione) element);
+	public GecompModelObject insert(GecompModelObject iscrizione) throws GeCompException {
+		return service.save((Iscrizione) iscrizione);
 	}
 
-	public void update(GecompModelObject element) throws GeCompException {
-		DbManagerFactory.getInstance().getIscrizioneDao().update((Iscrizione) element);
+	public void update(GecompModelObject iscrizione) throws GeCompException {
+		service.save((Iscrizione) iscrizione);
 	}
 
 	public IscrizioneView get(Long id) throws GeCompException {
-		return new IscrizioneView(DbManagerFactory.getInstance().getIscrizioneDao().get(id));
+		return new IscrizioneView(service.get(id));
 	}
 
 	public List<IscrizioneView> list(GaraView gara) throws GeCompException {
 		List<IscrizioneView> result = new ArrayList<IscrizioneView>();
-		List<Iscrizione> iscritti = DbManagerFactory.getInstance().getIscrizioneDao().list(gara);
+		List<Iscrizione> iscritti = service.list(gara);
 		if (Eval.isNotEmpty(iscritti)) {
 			for (Iscrizione i : iscritti) {
 				result.add(new IscrizioneView(i));
@@ -47,7 +48,7 @@ public class IscrizioneBridge extends GenericBridge {
 	
 	public List<IscrizioneView> list(CompetizioneView competizione) throws GeCompException {
 		List<IscrizioneView> result = new ArrayList<IscrizioneView>();
-		List<Iscrizione> iscritti = DbManagerFactory.getInstance().getIscrizioneDao().list(competizione);
+		List<Iscrizione> iscritti = service.list(competizione);
 		if (Eval.isNotEmpty(iscritti)) {
 			for (Iscrizione i : iscritti) {
 				result.add(new IscrizioneView(i));

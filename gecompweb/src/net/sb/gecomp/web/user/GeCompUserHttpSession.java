@@ -2,7 +2,7 @@ package net.sb.gecomp.web.user;
 
 import java.util.Date;
 
-import net.sb.gecomp.model.User;
+import net.sb.gecomp.commons.model.User;
 
 public class GeCompUserHttpSession {
 	

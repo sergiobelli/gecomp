@@ -1,15 +1,16 @@
 package net.sb.gecomp.web.utils.exceptions;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.utils.exceptions.MessageSeverity;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.commons.utils.exceptions.MessageSeverity;
 import net.sb.gecomp.web.utils.guimessages.GuiMessageHandler;
+
+import org.apache.log4j.Logger;
 
 public class GeCompGuiExceptionManager {
 
-	public static final void manageGUIException (GeCompLogger logger, Throwable ex, Object message) {
+	public static final void manageGUIException (Logger logger, Throwable ex, Object message) {
 		if (Eval.isNotNull(ex)) {
 			GeCompExceptionManager.traceException(logger, ex);
 			if (ex instanceof GeCompException) {
@@ -20,7 +21,7 @@ public class GeCompGuiExceptionManager {
 		}
 	}
 
-	public static final void manageGUIException (GeCompLogger logger, Throwable ex, Object ... messages) {
+	public static final void manageGUIException (Logger logger, Throwable ex, Object ... messages) {
 		if (Eval.isNotNull(ex)) {	
 			GeCompExceptionManager.traceException(logger, ex);
 			StringBuilder sb = new StringBuilder();

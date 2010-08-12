@@ -3,10 +3,9 @@ package net.sb.gecomp.orm.dao;
 import java.util.List;
 
 import junit.framework.TestCase;
-
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Prestazione;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
 
 public class PrestazioneDaoTest extends TestCase {

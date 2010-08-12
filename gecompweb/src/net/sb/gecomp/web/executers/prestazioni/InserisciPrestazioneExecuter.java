@@ -1,18 +1,18 @@
 package net.sb.gecomp.web.executers.prestazioni;
 
-import net.sb.gecomp.model.Atleta;
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.model.Iscrizione;
-import net.sb.gecomp.model.Prestazione;
-import net.sb.gecomp.model.TipoMisura;
-import net.sb.gecomp.model.TipoPrestazione;
+import net.sb.gecomp.commons.model.Atleta;
+import net.sb.gecomp.commons.model.Iscrizione;
+import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.commons.model.TipoMisura;
+import net.sb.gecomp.commons.model.TipoPrestazione;
+import net.sb.gecomp.commons.model.view.GaraView;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 
 public class InserisciPrestazioneExecuter extends PrestazioneExecuter {
 	
 	public InserisciPrestazioneExecuter () {
-		Gara garaSelezionata = new Gara();
+		GaraView garaSelezionata = new GaraView();
 		TipoMisura tipoMisura = new TipoMisura();
 		try {
 			garaSelezionata = getSelectedGara();

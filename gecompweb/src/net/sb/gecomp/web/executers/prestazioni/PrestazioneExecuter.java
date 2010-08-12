@@ -2,8 +2,7 @@ package net.sb.gecomp.web.executers.prestazioni;
 
 import javax.faces.model.SelectItem;
 
-import net.sb.gecomp.model.Prestazione;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.model.Prestazione;
 import net.sb.gecomp.web.delegates.prestazioni.PrestazioneDelegate;
 import net.sb.gecomp.web.executers.GenericExecuter;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
@@ -11,8 +10,6 @@ import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 public class PrestazioneExecuter extends GenericExecuter {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
-	
 	protected PrestazioneDelegate delegate = new PrestazioneDelegate();
 	
 	protected Long idPrestazione;

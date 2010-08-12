@@ -1,18 +1,15 @@
 package net.sb.gecomp.web.delegates.properties;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.view.PropertiesView;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.properties.PropertiesBridge;
-import net.sb.gecomp.web.bridges.view.PropertiesView;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 
 
 public class PropertiesDelegate extends GenericDelegate {
 	
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
-
 	private PropertiesBridge bridge = new PropertiesBridge();
 
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {

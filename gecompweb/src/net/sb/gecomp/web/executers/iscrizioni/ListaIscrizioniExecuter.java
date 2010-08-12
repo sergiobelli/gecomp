@@ -1,7 +1,7 @@
 package net.sb.gecomp.web.executers.iscrizioni;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.utils.Eval;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 public class ListaIscrizioniExecuter extends IscrizioneExecuter {

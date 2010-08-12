@@ -1,9 +1,9 @@
 package net.sb.gecomp.web.categorie.controllers;
 
 import static org.junit.Assert.fail;
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Categoria;
-import net.sb.gecomp.web.bridges.view.CategoriaView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Categoria;
+import net.sb.gecomp.commons.model.view.CategoriaView;
 
 import org.junit.After;
 import org.junit.Before;

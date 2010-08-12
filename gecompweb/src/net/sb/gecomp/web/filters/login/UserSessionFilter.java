@@ -12,16 +12,17 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.web.bridges.view.PropertiesView;
+import net.sb.gecomp.commons.model.view.PropertiesView;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.delegates.properties.PropertiesDelegate;
 import net.sb.gecomp.web.user.GeCompUserHttpSession;
+
+import org.apache.log4j.Logger;
 
 
 public class UserSessionFilter implements Filter {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
+	protected Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	private FilterConfig filterConfig = null;
 	
@@ -46,7 +47,7 @@ public class UserSessionFilter implements Filter {
 		
 		GeCompUserHttpSession session = (GeCompUserHttpSession) request.getSession().getAttribute("GeCompUserHttpSession");//FIXME:La sessione GeCompUserSession e' sempre nulla
 		if (Eval.isNull(session)) {//Sessione non esistente, redirigere verso pagina di login
-			logger.warn("Richiesta pervenuta da host [",request.getRemoteHost(), ",",request.getRemoteAddr(),"] con sessione non presente, redirigo verso pagina di login");
+			logger.warn("Richiesta pervenuta da host [" + request.getRemoteHost() + "," + request.getRemoteAddr() + "] con sessione non presente, redirigo verso pagina di login");
 			if (!request.getRequestURI().contains(LOGIN_URI)) {
 				response.sendRedirect(target);
 				return;
@@ -54,7 +55,7 @@ public class UserSessionFilter implements Filter {
 		} else {
 			Calendar actualTime = Calendar.getInstance();
 			if (actualTime.after(session.getExpireDate())) {//Sessione presente ma scaduta, redirigo verso la pagina di login
-				logger.warn("Richiesta pervenuta da host [",request.getRemoteHost(), ",",request.getRemoteAddr(),"] con sessione presente ma scaduta, redirigo verso pagina di login");
+				logger.warn("Richiesta pervenuta da host [" + request.getRemoteHost() + "," + request.getRemoteAddr() + "] con sessione presente ma scaduta, redirigo verso pagina di login");
 				response.sendRedirect(target);
 				return;
 			} else {//Tutto ok, sessione presente e valida
@@ -63,9 +64,9 @@ public class UserSessionFilter implements Filter {
 					String sessionOffset = delegate.get(PropertiesView.SESSION_OFFSET).getValore();
 					actualTime.add(Calendar.MINUTE, Integer.valueOf(sessionOffset).intValue());
 					session.setExpireDate(actualTime.getTime());
-					logger.info("Sessione aggiornata per l'utente ", session.getLoggedUser().getUsername());
+					logger.info("Sessione aggiornata per l'utente " + session.getLoggedUser().getUsername());
 				} catch (Exception e) {
-					logger.error(e, "Non e' stato possibile aggiornare l'expiration date per l'utente ", session.getLoggedUser().getUsername());
+					logger.error("Non e' stato possibile aggiornare l'expiration date per l'utente " + session.getLoggedUser().getUsername());
 				}
 			}
 		}
@@ -73,7 +74,7 @@ public class UserSessionFilter implements Filter {
 		long before = System.currentTimeMillis();
 		chain.doFilter(request, response);
 		long after = System.currentTimeMillis();
-		logger.info("For request [",request.getRequestURI(),"] took time : ",(after - before),"ms");
+		logger.info("For request [" + request.getRequestURI() + "] took time : " + (after - before) + "ms");
 
 	}
 	

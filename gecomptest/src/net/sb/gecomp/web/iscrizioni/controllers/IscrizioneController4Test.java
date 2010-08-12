@@ -1,7 +1,7 @@
 package net.sb.gecomp.web.iscrizioni.controllers;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.web.bridges.view.IscrizioneView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.view.IscrizioneView;
 import net.sb.gecomp.web.controllers.iscrizioni.IscrizioneController;
 
 

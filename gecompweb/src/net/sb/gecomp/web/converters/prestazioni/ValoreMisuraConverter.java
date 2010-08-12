@@ -7,20 +7,21 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.validator.ValidatorException;
 
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.utils.misure.TipoMisuraTempoHelper;
+import net.sb.gecomp.commons.utils.misure.TipoMisuraTempoHelper;
 import net.sb.gecomp.web.controllers.prestazioni.ValoreMisuraValidator;
+
+import org.apache.log4j.Logger;
 
 
 
 public class ValoreMisuraConverter implements Converter {
 	
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
+	protected Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String param) {
 		Long valoreMisura = null;
 		try {
-			logger.info("Valore misura in input = ", param);
+			logger.info("Valore misura in input = "+ param);
 			ValoreMisuraValidator.validate(param);
 			
 			String time[] = param.split(":");
@@ -32,7 +33,7 @@ public class ValoreMisuraConverter implements Converter {
 			mseconds = (mseconds * 1000) + Integer.parseInt(secs[1]);
 			valoreMisura = new Long(mseconds);
 		} catch (Exception ex) {
-			logger.error(ex, "errore in fase di conversione del valore misura");
+			logger.error("errore in fase di conversione del valore misura", ex);
 			FacesMessage message = null;
 			if (ex instanceof ValidatorException) {
 				message =  ((ValidatorException) ex).getFacesMessage();
@@ -50,7 +51,7 @@ public class ValoreMisuraConverter implements Converter {
 		try {
 			return TipoMisuraTempoHelper.parse(((Long)object));
 		} catch (Exception ex) {
-			logger.error(ex, "errore in fase di conversione del valore misura");
+			logger.error("errore in fase di conversione del valore misura", ex);
 			throw new ConverterException(ex);
 		}
 	}

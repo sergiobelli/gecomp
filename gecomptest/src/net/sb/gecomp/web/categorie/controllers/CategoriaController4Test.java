@@ -1,7 +1,7 @@
 package net.sb.gecomp.web.categorie.controllers;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Categoria;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Categoria;
 import net.sb.gecomp.web.controllers.categorie.CategoriaController;
 
 

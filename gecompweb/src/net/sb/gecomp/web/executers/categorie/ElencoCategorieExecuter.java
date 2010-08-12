@@ -2,13 +2,13 @@ package net.sb.gecomp.web.executers.categorie;
 
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.web.bridges.view.CategoriaView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.view.CategoriaView;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 
 /**
- * @author sbelli
+ * @author 
  */
 public class ElencoCategorieExecuter extends CategoriaExecuter {
 

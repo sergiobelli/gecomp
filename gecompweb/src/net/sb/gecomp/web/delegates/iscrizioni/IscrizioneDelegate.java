@@ -2,17 +2,16 @@ package net.sb.gecomp.web.delegates.iscrizioni;
 
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.model.Iscrizione;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.exceptions.GeCompOrmException;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.Iscrizione;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.commons.model.view.GaraView;
+import net.sb.gecomp.commons.model.view.IscrizioneView;
+import net.sb.gecomp.commons.model.view.PrestazioneView;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.iscrizioni.IscrizioneBridge;
-import net.sb.gecomp.web.bridges.view.CompetizioneView;
-import net.sb.gecomp.web.bridges.view.GaraView;
-import net.sb.gecomp.web.bridges.view.IscrizioneView;
-import net.sb.gecomp.web.bridges.view.PrestazioneView;
 import net.sb.gecomp.web.controllers.iscrizioni.IscrizioneController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 import net.sb.gecomp.web.delegates.atleti.AtletaDelegate;
@@ -22,19 +21,17 @@ import net.sb.gecomp.web.delegates.prestazioni.PrestazioneDelegate;
 
 public class IscrizioneDelegate extends GenericDelegate {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
-
 	private IscrizioneController controller = new IscrizioneController();
 	private IscrizioneBridge bridge = new IscrizioneBridge();
 
 	public void delete(GecompModelObject element) throws GeCompException {
 		try {
 			Iscrizione iscrizione = (Iscrizione)element;
-			logger.info("Inizio operazione di cancellazione dell'iscrizione ", iscrizione);
+			logger.info("Inizio operazione di cancellazione dell'iscrizione "+ iscrizione);
 			
 			PrestazioneView prestazioneAssociata = new PrestazioneDelegate().get(iscrizione);
 			if (Eval.isNotNull(prestazioneAssociata)) {
-				logger.warn("Trovata una prestazione associata all'iscrizione ", prestazioneAssociata);
+				logger.warn("Trovata una prestazione associata all'iscrizione " + prestazioneAssociata);
 				throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.delete.prestazione_associata");
 			} else { 
 				bridge.delete(iscrizione);			
@@ -43,7 +40,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 			logger.error("Errore gestito", gce);
 			throw gce;
 		} catch (Exception ex) {
-			logger.error(ex, "net.sb.gecomp.console.iscrizioni.delegates.delete.generic_error");
+			logger.error("net.sb.gecomp.console.iscrizioni.delegates.delete.generic_error", ex);
 			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.delete.generic_error",ex);
 		}
 	}
@@ -71,7 +68,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 			logger.error("Errore gestito", gce);
 			throw gce;
 		} catch (Exception ex) {
-			logger.error(ex, "net.sb.gecomp.console.iscrizioni.delegates.save.generic_error");
+			logger.error("net.sb.gecomp.console.iscrizioni.delegates.save.generic_error", ex);
 			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.save.generic_error",ex);
 		}
 	}
@@ -84,7 +81,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 		try {
 			return bridge.list(gara);
 		} catch (GeCompOrmException ex) {
-			logger.error(ex, "net.sb.gecomp.console.iscrizioni.delegates.generic_error", gara);
+			logger.error("net.sb.gecomp.console.iscrizioni.delegates.generic_error " + gara, ex);
 			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.generic_error");
 		}
 	}
@@ -93,7 +90,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 		try {
 			return bridge.list(competizione);
 		} catch (GeCompOrmException ex) {
-			logger.error(ex, "net.sb.gecomp.console.iscrizioni.delegates.generic_error", competizione);
+			logger.error("net.sb.gecomp.console.iscrizioni.delegates.generic_error " + competizione, ex);
 			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.generic_error");
 		}
 	}

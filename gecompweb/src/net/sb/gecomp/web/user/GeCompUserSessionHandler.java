@@ -4,12 +4,13 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.utils.Eval;
+
+import org.apache.log4j.Logger;
 
 public class GeCompUserSessionHandler {
 	
-	private static GeCompLogger logger = GeCompLogger.getGeCompLogger(GeCompUserSessionHandler.class);
+	protected static Logger logger = Logger.getLogger(GeCompUserSessionHandler.class.getName());
 	
 	public static final String GECOMP_USER_SESSION_NAME = "GeCompUserSession";
 	public static final String GECOMP_USER_HTTP_SESSION_NAME = "GeCompUserHttpSession";
@@ -27,7 +28,7 @@ public class GeCompUserSessionHandler {
 			}
 			return geCompUserSession;
 		} catch (Throwable ex) {
-			logger.error(ex, "Errore nel reperimento della sessione utente : ", ex.getMessage());
+			logger.error("Errore nel reperimento della sessione utente : ", ex);
 			return null;
 		}
 	}
@@ -53,7 +54,7 @@ public class GeCompUserSessionHandler {
 				}
 			}
 		} catch (Throwable ex) {
-			logger.error(ex, "Errore nel reperimento della sessione http : ", ex.getMessage());
+			logger.error("Errore nel reperimento della sessione http : ", ex);
 		}
 		return geCompUserSession;
 	}

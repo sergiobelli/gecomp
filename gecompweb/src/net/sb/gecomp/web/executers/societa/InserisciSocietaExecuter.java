@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.executers.societa;
 
-import net.sb.gecomp.model.Societa;
+import net.sb.gecomp.commons.model.Societa;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 

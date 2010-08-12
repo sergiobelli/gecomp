@@ -4,18 +4,15 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.model.Societa;
-import net.sb.gecomp.model.TipoPrestazione;
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.web.bridges.view.ClassificaSocietaView;
-import net.sb.gecomp.web.bridges.view.PrestazioneView;
+import net.sb.gecomp.commons.model.Gara;
+import net.sb.gecomp.commons.model.Societa;
+import net.sb.gecomp.commons.model.TipoPrestazione;
+import net.sb.gecomp.commons.model.view.ClassificaSocietaView;
+import net.sb.gecomp.commons.model.view.PrestazioneView;
 import net.sb.gecomp.web.delegates.classifiche.ClassificaDelegate;
 
 
 public abstract class ClassificaSocietaDelegate extends ClassificaDelegate {
-	
-	private final GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass());
 	
 	public abstract ClassificaSocietaView getClassifica(Gara gara);
 	
@@ -24,7 +21,7 @@ public abstract class ClassificaSocietaDelegate extends ClassificaDelegate {
 		for (PrestazioneView prestazione : prestazioni) {
 			Societa societa = prestazione.getIscrizione().getAtleta().getSocietaAppartenenza();
 			if (!TipoPrestazione.NON_PARTECIPATO.equals(prestazione.getTipoPrestazione().getIdTipoPrestazione())) {
-				logger.debug("prestazione valida ", prestazione.getTipoPrestazione());
+				logger.debug("prestazione valida "+ prestazione.getTipoPrestazione());
 				if (!classificaSocietaIscritte.containsKey(societa)) {
 					classificaSocietaIscritte.put(societa, Integer.valueOf(1));
 				} else {
@@ -34,7 +31,7 @@ public abstract class ClassificaSocietaDelegate extends ClassificaDelegate {
 					classificaSocietaIscritte.put(societa, numero);
 				}
 			} else {
-				logger.info("prestazione non valida ", "[", prestazione.getIdPrestazione(), ",", prestazione.getTipoPrestazione(), "]");
+				logger.info("prestazione non valida [" + prestazione.getIdPrestazione() + "," + prestazione.getTipoPrestazione() + "]");
 			}
 		}
 		return classificaSocietaIscritte;
@@ -45,7 +42,7 @@ public abstract class ClassificaSocietaDelegate extends ClassificaDelegate {
 		for (PrestazioneView prestazione : prestazioni) {
 			Societa societa = prestazione.getIscrizione().getAtleta().getSocietaAppartenenza();
 			if (TipoPrestazione.VALIDA.equals(prestazione.getTipoPrestazione().getIdTipoPrestazione())) {
-				logger.debug("prestazione valida ", prestazione.getTipoPrestazione());
+				logger.debug("prestazione valida "+ prestazione.getTipoPrestazione());
 				if (!classificaSocietaClassificate.containsKey(societa)) {
 					classificaSocietaClassificate.put(societa, Integer.valueOf(1));
 				} else {
@@ -55,7 +52,7 @@ public abstract class ClassificaSocietaDelegate extends ClassificaDelegate {
 					classificaSocietaClassificate.put(societa, numero);
 				}
 			} else {
-				logger.info("prestazione non valida ", "[", prestazione.getIdPrestazione(), ",", prestazione.getTipoPrestazione(), "]");
+				logger.info("prestazione non valida [" + prestazione.getIdPrestazione() + "," + prestazione.getTipoPrestazione() + "]");
 			}
 		}
 		return classificaSocietaClassificate;

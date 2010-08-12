@@ -2,19 +2,22 @@ package net.sb.gecomp.web.executers.login;
 
 import java.util.Calendar;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.web.bridges.view.UserView;
-import net.sb.gecomp.web.delegates.login.LoginDelegate;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.view.UserView;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.web.delegates.authentication.LoginDelegate;
 import net.sb.gecomp.web.user.GeCompUserSessionHandler;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
+
+import org.apache.log4j.Logger;
 
 
 /**
  * @author Sergio Belli
  */
 public class DoLoginExecuter {
+
+	protected Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	private LoginDelegate delegate = new LoginDelegate();
 	
@@ -29,14 +32,14 @@ public class DoLoginExecuter {
 	private final String LOGIN_DONE = "loginDone";
 	private final String LOGIN_FAILED = "loginFailed";
 	public String doLogin() {
-		logger.info("Login operation started for user = ",getUsername());
+		logger.info("Login operation started for user = " + getUsername());
 		
 		String result = LOGIN_FAILED;
 		try {
 
 			UserView loggedUser = delegate.login(getUsername(), getPassword());
 			if (Eval.isNotNull(loggedUser)) {
-				logger.info("Utente loggato = ",loggedUser);	
+				logger.info("Utente loggato = "  + loggedUser);	
 				result = LOGIN_DONE;
 				
 				GeCompUserSessionHandler.getGeCompUserSession().setLoggedUser(loggedUser);
@@ -56,10 +59,8 @@ public class DoLoginExecuter {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.login.ko.descrizione");
 		}
 		
-		logger.info("Login operation result = ",result);
+		logger.info("Login operation result = " + result);
 		return result;		
 	}
-
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 
 }

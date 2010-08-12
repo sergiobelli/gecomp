@@ -3,11 +3,11 @@ package net.sb.gecomp.web.executers.prestazioni;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Prestazione;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
 
 public class ListaPrestazioniExecuter extends PrestazioneExecuter {

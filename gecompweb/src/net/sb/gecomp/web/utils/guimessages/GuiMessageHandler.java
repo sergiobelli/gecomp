@@ -8,8 +8,8 @@ import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.exceptions.MessageSeverity;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.commons.utils.exceptions.MessageSeverity;
 
 
 

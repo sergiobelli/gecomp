@@ -3,8 +3,8 @@ package net.sb.gecomp.web.report.sheet;
 import java.util.HashMap;
 import java.util.List;
 
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.web.bridges.view.IscrizioneView;
+import net.sb.gecomp.commons.model.view.IscrizioneView;
+import net.sb.gecomp.commons.utils.Eval;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;

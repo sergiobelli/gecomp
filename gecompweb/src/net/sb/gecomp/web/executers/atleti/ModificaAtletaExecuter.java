@@ -2,14 +2,11 @@ package net.sb.gecomp.web.executers.atleti;
 
 import javax.faces.event.ActionEvent;
 
-import net.sb.gecomp.utils.logger.GeCompLogger;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 
 public class ModificaAtletaExecuter extends AtletaExecuter {
-	
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 	
 	private Long idAtleta;
 
@@ -40,7 +37,7 @@ public class ModificaAtletaExecuter extends AtletaExecuter {
 			logger.info("Deleted Atleta...");
 		} catch (Exception ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.atleta.eliminazione.ko");
-			return GeCompOutcomes.NULL;
+			return GeCompOutcomes.FAIL;
 		}
 		return GeCompOutcomes.LISTA_ATLETI;
 	}

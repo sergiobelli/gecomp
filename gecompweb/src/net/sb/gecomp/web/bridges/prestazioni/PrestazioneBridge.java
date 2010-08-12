@@ -3,42 +3,42 @@ package net.sb.gecomp.web.bridges.prestazioni;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Categoria;
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.model.Iscrizione;
-import net.sb.gecomp.model.Prestazione;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Categoria;
+import net.sb.gecomp.commons.model.Gara;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.Iscrizione;
+import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.commons.model.view.PrestazioneView;
+import net.sb.gecomp.commons.services.IPrestazioneService;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.srv.services.prestazioni.PrestazioneService;
 import net.sb.gecomp.web.bridges.GenericBridge;
-import net.sb.gecomp.web.bridges.view.PrestazioneView;
 
 
 public class PrestazioneBridge extends GenericBridge {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
+	private final IPrestazioneService service = new PrestazioneService();
 	
 	public void delete(final GecompModelObject element) throws GeCompException {
-		throw new GeCompException("NON IMPLEMENTATO!!!!");
+		service.delete(((Prestazione)element).getIdPrestazione());
 	}
 
 	public GecompModelObject get(final Long id) throws GeCompException {
-		return DbManagerFactory.getInstance().getPrestazioneDao().get(id);
+		return service.get(id);
 	}
 
 	public GecompModelObject insert(final GecompModelObject element) throws GeCompException {
-		return DbManagerFactory.getInstance().getPrestazioneDao().insert((Prestazione)element);	
+		return service.save((Prestazione)element);	
 	}
 
 	public void update(final GecompModelObject element) throws GeCompException {
-		DbManagerFactory.getInstance().getPrestazioneDao().update((Prestazione) element);
+		service.save((Prestazione) element);
 	}
 
 	public List<PrestazioneView> list(Gara gara) throws GeCompException {
 		List<PrestazioneView> result = null;
-		List<Prestazione> prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().list(gara);
+		List<Prestazione> prestazioni = service.list(gara);
 //		List<Categoria> categorie = DbManagerFactory.getInstance().getCategoriaGaraDao().listCategorie(gara);//FIXME:male,risolvere con FS#63
 		if (Eval.isNotEmpty(prestazioni)) {
 			result = new ArrayList<PrestazioneView>();
@@ -56,12 +56,7 @@ public class PrestazioneBridge extends GenericBridge {
 
 	public List<PrestazioneView> list(Gara gara, Categoria categoria, Boolean conAssoluti) throws GeCompException {
 		List<PrestazioneView> result = null;
-		List<Prestazione> prestazioni = null;
-		if (conAssoluti) {
-			prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().list(gara, categoria);	
-		} else {
-			prestazioni = DbManagerFactory.getInstance().getPrestazioneDao().listSenzaAssoluti(gara, categoria);	
-		}
+		List<Prestazione> prestazioni = service.list(gara, categoria, conAssoluti);	
 		
 		if (Eval.isNotEmpty(prestazioni)) {
 			result = new ArrayList<PrestazioneView>();
@@ -75,16 +70,16 @@ public class PrestazioneBridge extends GenericBridge {
 	}
 
 	public PrestazioneView get(Iscrizione iscrizione) throws GeCompException {
-		logger.info("Recupero prestazione associata all'iscrizione ", iscrizione);
+		logger.info("Recupero prestazione associata all'iscrizione " + iscrizione);
 		PrestazioneView result = null;
 		
-		Prestazione prestazione = DbManagerFactory.getInstance().getPrestazioneDao().get(iscrizione.getIdIscrizione());
-		logger.debug("prestazione associata all'iscrizione recuperata ", iscrizione);
+		Prestazione prestazione = service.get(iscrizione.getIdIscrizione());
+		logger.debug("prestazione associata all'iscrizione recuperata " + iscrizione);
 		if (Eval.isNotNull(prestazione)) {
 			result = new PrestazioneView(prestazione);
 		}
 		
-		logger.info("prestazione associata all'iscrizione recuperata ", iscrizione);
+		logger.info("prestazione associata all'iscrizione recuperata " + iscrizione);
 		return result;
 	}
 

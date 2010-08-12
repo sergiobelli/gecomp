@@ -1,9 +1,9 @@
 package net.sb.gecomp.web.controllers.competizione;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Competizione;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.utils.Eval;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Competizione;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.controllers.GenericController;
 
 

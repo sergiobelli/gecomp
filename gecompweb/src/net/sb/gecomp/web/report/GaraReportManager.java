@@ -7,15 +7,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import net.sb.gecomp.model.Societa;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.web.bridges.view.CategoriaView;
-import net.sb.gecomp.web.bridges.view.ClassificaGaraView;
-import net.sb.gecomp.web.bridges.view.ClassificaSocietaView;
-import net.sb.gecomp.web.bridges.view.GaraView;
-import net.sb.gecomp.web.bridges.view.IscrizioneView;
-import net.sb.gecomp.web.bridges.view.PrestazioneView;
-import net.sb.gecomp.web.bridges.view.SocietaPunteggioView;
+import net.sb.gecomp.commons.model.Societa;
+import net.sb.gecomp.commons.model.view.CategoriaView;
+import net.sb.gecomp.commons.model.view.ClassificaGaraView;
+import net.sb.gecomp.commons.model.view.ClassificaSocietaView;
+import net.sb.gecomp.commons.model.view.GaraView;
+import net.sb.gecomp.commons.model.view.IscrizioneView;
+import net.sb.gecomp.commons.model.view.PrestazioneView;
+import net.sb.gecomp.commons.model.view.SocietaPunteggioView;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.report.sheet.ElencoIscrittiSheetManager;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;

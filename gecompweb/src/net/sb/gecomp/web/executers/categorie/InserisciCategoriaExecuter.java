@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.executers.categorie;
 
-import net.sb.gecomp.web.bridges.view.CategoriaView;
+import net.sb.gecomp.commons.model.view.CategoriaView;
 
 /**
  * @author S.BELLI

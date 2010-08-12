@@ -5,23 +5,35 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.model.Atleta;
-import net.sb.gecomp.model.Categoria;
-import net.sb.gecomp.model.Competizione;
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.model.Iscrizione;
-import net.sb.gecomp.model.Societa;
-import net.sb.gecomp.model.TipoMisura;
-import net.sb.gecomp.model.TipoPrestazione;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Atleta;
+import net.sb.gecomp.commons.model.Categoria;
+import net.sb.gecomp.commons.model.Gara;
+import net.sb.gecomp.commons.model.Iscrizione;
+import net.sb.gecomp.commons.model.Societa;
+import net.sb.gecomp.commons.model.TipoMisura;
+import net.sb.gecomp.commons.model.TipoPrestazione;
+import net.sb.gecomp.commons.model.view.AtletaView;
+import net.sb.gecomp.commons.model.view.CategoriaView;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.commons.model.view.GaraView;
+import net.sb.gecomp.commons.model.view.IscrizioneView;
+import net.sb.gecomp.commons.model.view.SocietaView;
+import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.web.delegates.atleti.AtletaDelegate;
+import net.sb.gecomp.web.delegates.categorie.CategoriaDelegate;
+import net.sb.gecomp.web.delegates.gare.GaraDelegate;
+import net.sb.gecomp.web.delegates.iscrizioni.IscrizioneDelegate;
+import net.sb.gecomp.web.delegates.societa.SocietaDelegate;
+import net.sb.gecomp.web.delegates.tipimisure.TipoMisuraDelegate;
+import net.sb.gecomp.web.delegates.tipiprestazione.TipoPrestazioneDelegate;
+
+import org.apache.log4j.Logger;
 
 
 public class ExecuterHelper {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
+	protected Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	public SelectItem[] getSessoItems() {
 		SelectItem[] si = new SelectItem[2];
@@ -33,8 +45,8 @@ public class ExecuterHelper {
 	public SelectItem[] getListaCategorieItem() {
 		SelectItem[] listaCategorie = new SelectItem[0];
 		try {
-			List<Categoria> tmpCat;
-			tmpCat = DbManagerFactory.getInstance().getCategoriaDao().list();
+			List<CategoriaView> tmpCat;
+			tmpCat = new CategoriaDelegate().list();
 			int pos = 0;
 			listaCategorie = new SelectItem[tmpCat.size()];
 			for (Categoria soc : tmpCat) {
@@ -44,7 +56,7 @@ public class ExecuterHelper {
 							" " + soc.getNomeCategoria() + ", " + soc.getSesso() + ", " + soc.getAnnoPartenza() + "-" + soc.getAnnoFine() + " ");
 				pos++;
 			}
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaCategorie;
@@ -52,7 +64,7 @@ public class ExecuterHelper {
 	public SelectItem[] getListaCategorieItem(List<? extends Categoria> tmpCat) {
 		SelectItem[] listaCategorie = new SelectItem[0];
 		try {
-			tmpCat = DbManagerFactory.getInstance().getCategoriaDao().list();
+			tmpCat = new CategoriaDelegate().list();
 			int pos = 0;
 			listaCategorie = new SelectItem[tmpCat.size()];
 			for (Categoria soc : tmpCat) {
@@ -62,7 +74,7 @@ public class ExecuterHelper {
 							" " + soc.getNomeCategoria() + ", " + soc.getSesso() + ", " + soc.getAnnoPartenza() + "-" + soc.getAnnoFine() + " ");
 				pos++;
 			}
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaCategorie;
@@ -71,7 +83,7 @@ public class ExecuterHelper {
 	public SelectItem[] getListaSocietaItem() {
 		SelectItem[] listaSocieta = new SelectItem[0];
 		try {
-			List<Societa> tmpSocieta = getListaSocieta();
+			List<SocietaView> tmpSocieta = getListaSocieta();
 
 			int pos = 0;
 			listaSocieta = new SelectItem[tmpSocieta.size()];
@@ -85,19 +97,19 @@ public class ExecuterHelper {
 		}
 		return listaSocieta;
 	}
-	public List<Societa> getListaSocieta() {
+	public List<SocietaView> getListaSocieta() {
 		try {
-			return DbManagerFactory.getInstance().getSocietaDao().list();
-		} catch (GeCompOrmException e) {
+			return new SocietaDelegate().list();
+		} catch (GeCompException e) {
 			e.printStackTrace();
-			return new ArrayList<Societa>();
+			return new ArrayList<SocietaView>();
 		}
 	}
 	
 	public SelectItem[] getListaGareItem() {
 		SelectItem[] listaGare = new SelectItem[0];
 		try {
-			List<Gara> gare = DbManagerFactory.getInstance().getGaraDao().list();
+			List<GaraView> gare = new GaraDelegate().list();
 
 			int pos = 0;
 			listaGare = new SelectItem[gare.size()];
@@ -106,16 +118,16 @@ public class ExecuterHelper {
 				pos++;
 			}
 
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaGare;
 	}
 	
-	public SelectItem[] getListaGareItem(Competizione competizione) {
+	public SelectItem[] getListaGareItem(CompetizioneView competizione) {
 		SelectItem[] listaGare = new SelectItem[0];
 		try {
-			List<Gara> gare = DbManagerFactory.getInstance().getGaraDao().list(competizione);
+			List<GaraView> gare = new GaraDelegate().list(competizione);
 
 			int pos = 0;
 			listaGare = new SelectItem[gare.size()];
@@ -124,7 +136,7 @@ public class ExecuterHelper {
 				pos++;
 			}
 
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			GeCompExceptionManager.traceException(logger, ex);
 		}
 		return listaGare;
@@ -133,7 +145,7 @@ public class ExecuterHelper {
 	public SelectItem[] getListaAtletiItem() {
 		SelectItem[] listaAtleti = new SelectItem[0];
 		try {
-			List<Atleta> atleti = getListaAtleti();
+			List<AtletaView> atleti = getListaAtleti();
 
 			int pos = 0;
 			listaAtleti = new SelectItem[atleti.size()];
@@ -147,19 +159,19 @@ public class ExecuterHelper {
 		}
 		return listaAtleti;
 	}
-	public List<Atleta> getListaAtleti() {
+	public List<AtletaView> getListaAtleti() {
 		try {
-			return DbManagerFactory.getInstance().getAtletaDao().list();
-		} catch (GeCompOrmException e) {
+			return new AtletaDelegate().list();
+		} catch (GeCompException e) {
 			GeCompExceptionManager.traceException(logger, e);
-			return new ArrayList<Atleta>();
+			return new ArrayList<AtletaView>();
 		}
 	}
 	
 	public List<TipoPrestazione> getListaTipiPrestazione() {
 		try {
-			return DbManagerFactory.getInstance().getTipoPrestazioneDao().list();
-		} catch (GeCompOrmException e) {
+			return new TipoPrestazioneDelegate().list();
+		} catch (GeCompException e) {
 			GeCompExceptionManager.traceException(logger, e);
 			return new ArrayList<TipoPrestazione>();
 		}
@@ -182,18 +194,18 @@ public class ExecuterHelper {
 		return listaTipiPrestazione;
 	}
 
-	public List<Iscrizione> getListaIscritti(Gara selectedGara) {
+	public List<IscrizioneView> getListaIscritti(GaraView selectedGara) {
 		try {
-			return DbManagerFactory.getInstance().getIscrizioneDao().list(selectedGara);
-		} catch (GeCompOrmException e) {
+			return new IscrizioneDelegate().list(selectedGara);
+		} catch (GeCompException e) {
 			GeCompExceptionManager.traceException(logger, e);
-			return new ArrayList<Iscrizione>();
+			return new ArrayList<IscrizioneView>();
 		}
 	}
-	public SelectItem[] getListaIscrittiItem(Gara selectedGara) {
+	public SelectItem[] getListaIscrittiItem(GaraView selectedGara) {
 		SelectItem[] listaIscritti = new SelectItem[0];
 		try {
-			List<Iscrizione> iscrizioni = getListaIscritti(selectedGara);
+			List<IscrizioneView> iscrizioni = getListaIscritti(selectedGara);
 			int pos = 0;
 			listaIscritti = new SelectItem[iscrizioni.size()];
 			for (Iscrizione a : iscrizioni) {
@@ -212,8 +224,8 @@ public class ExecuterHelper {
 	
 	public List<TipoMisura> getListaTipiMisure() {
 		try {
-			return DbManagerFactory.getInstance().getTipoMisuraDao().list();
-		} catch (GeCompOrmException e) {
+			return new TipoMisuraDelegate().list();
+		} catch (GeCompException e) {
 			GeCompExceptionManager.traceException(logger, e);
 			return new ArrayList<TipoMisura>();
 		}

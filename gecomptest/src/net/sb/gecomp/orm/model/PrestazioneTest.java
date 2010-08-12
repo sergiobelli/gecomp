@@ -4,13 +4,12 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import junit.framework.TestCase;
-
-import net.sb.gecomp.model.Competizione;
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.model.Iscrizione;
-import net.sb.gecomp.model.Prestazione;
-import net.sb.gecomp.model.TipoMisura;
-import net.sb.gecomp.model.TipoPrestazione;
+import net.sb.gecomp.commons.model.Competizione;
+import net.sb.gecomp.commons.model.Gara;
+import net.sb.gecomp.commons.model.Iscrizione;
+import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.commons.model.TipoMisura;
+import net.sb.gecomp.commons.model.TipoPrestazione;
 
 public class PrestazioneTest extends TestCase {
 

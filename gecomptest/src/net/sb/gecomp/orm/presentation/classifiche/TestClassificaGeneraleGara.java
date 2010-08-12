@@ -2,11 +2,12 @@ package net.sb.gecomp.orm.presentation.classifiche;
 
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.model.Prestazione;
-import net.sb.gecomp.orm.dao.ClassificaCompetizioneManager;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.commons.exceptions.GeCompOrmException;
+import net.sb.gecomp.commons.model.Gara;
+import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.srv.orm.dao.ClassificaCompetizioneManager;
+import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.srv.orm.presentation.classifiche.ClassificaGeneraleGara;
 
 
 public class TestClassificaGeneraleGara {

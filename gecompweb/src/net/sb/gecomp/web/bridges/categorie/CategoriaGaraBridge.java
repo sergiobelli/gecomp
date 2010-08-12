@@ -3,14 +3,14 @@ package net.sb.gecomp.web.bridges.categorie;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.model.CategoriaGara;
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.utils.Eval;
+import net.sb.gecomp.commons.exceptions.GeCompOrmException;
+import net.sb.gecomp.commons.model.CategoriaGara;
+import net.sb.gecomp.commons.model.Gara;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.view.CategoriaGaraView;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.web.bridges.GenericBridge;
-import net.sb.gecomp.web.bridges.view.CategoriaGaraView;
 
 
 public class CategoriaGaraBridge extends GenericBridge {

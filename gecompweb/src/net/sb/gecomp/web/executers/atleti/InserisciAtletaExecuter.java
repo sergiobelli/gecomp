@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.executers.atleti;
 
-import net.sb.gecomp.web.bridges.view.AtletaView;
+import net.sb.gecomp.commons.model.view.AtletaView;
 
 /**
  * 

@@ -1,9 +1,9 @@
 package net.sb.gecomp.web.user;
 
-import net.sb.gecomp.model.User;
-import net.sb.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
-import net.sb.gecomp.web.bridges.view.CompetizioneView;
-import net.sb.gecomp.web.bridges.view.GaraView;
+import net.sb.gecomp.commons.model.User;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.commons.model.view.GaraView;
+import net.sb.gecomp.srv.orm.presentation.classifiche.ClassificaCompetizione;
 
 
 /**

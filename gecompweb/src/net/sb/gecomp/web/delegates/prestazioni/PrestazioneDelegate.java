@@ -2,25 +2,22 @@ package net.sb.gecomp.web.delegates.prestazioni;
 
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Categoria;
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.model.Iscrizione;
-import net.sb.gecomp.model.Prestazione;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Categoria;
+import net.sb.gecomp.commons.model.Gara;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.Iscrizione;
+import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.commons.model.view.PrestazioneView;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.web.bridges.prestazioni.PrestazioneBridge;
-import net.sb.gecomp.web.bridges.view.PrestazioneView;
 import net.sb.gecomp.web.controllers.prestazioni.PrestazioneController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 
 
 public class PrestazioneDelegate extends GenericDelegate {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
-	
 	private PrestazioneController controller = new PrestazioneController();
 	private PrestazioneBridge bridge = new PrestazioneBridge(); 
 	
@@ -57,7 +54,7 @@ public class PrestazioneDelegate extends GenericDelegate {
 		try {
 			return bridge.list(gara);
 		} catch (GeCompException ex) {
-			logger.error(ex, "Non ci sono prestazioni per la gara specificata ", gara);
+			logger.error("Non ci sono prestazioni per la gara specificata " + gara, ex);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
 		}	
 	}
@@ -66,7 +63,7 @@ public class PrestazioneDelegate extends GenericDelegate {
 		try {
 			return bridge.list(gara, categoria, true);
 		} catch (GeCompException ex) {
-			logger.error(ex, "Non ci sono prestazioni per la gara specificata ", gara);
+			logger.error("Non ci sono prestazioni per la gara specificata " + gara, ex);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
 		}
 	}
@@ -75,7 +72,7 @@ public class PrestazioneDelegate extends GenericDelegate {
 		try {
 			return bridge.list(gara, categoria, conAssoluti);
 		} catch (GeCompException ex) {
-			logger.error(ex, "Non ci sono prestazioni per la gara specificata ", gara);
+			logger.error("Non ci sono prestazioni per la gara specificata " + gara, ex);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
 		}
 	}
@@ -84,7 +81,7 @@ public class PrestazioneDelegate extends GenericDelegate {
 		try {
 			return bridge.get(iscrizione);
 		} catch (GeCompException ex) {
-			logger.error(ex, "Non ci sono prestazioni per l'iscrizione specificata ", iscrizione);
+			logger.error("Non ci sono prestazioni per l'iscrizione specificata " + iscrizione, ex);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
 		}
 	}

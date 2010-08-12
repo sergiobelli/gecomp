@@ -4,21 +4,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.view.CategoriaView;
+import net.sb.gecomp.commons.model.view.GaraView;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.categorie.CategoriaBridge;
-import net.sb.gecomp.web.bridges.view.CategoriaView;
-import net.sb.gecomp.web.bridges.view.GaraView;
 import net.sb.gecomp.web.controllers.categorie.CategoriaController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 
 
 public class CategoriaDelegate extends GenericDelegate {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
-	
 	private CategoriaController controller = new CategoriaController();
 	private CategoriaBridge bridge = new CategoriaBridge();
 	
@@ -58,7 +55,7 @@ public class CategoriaDelegate extends GenericDelegate {
 			logger.error("Errore gestito", gce);
 			throw gce;
 		} catch (Exception ex) {
-			logger.error(ex, "net.sb.gecomp.console.categorie.delegates.save.generic_error");
+			logger.error("net.sb.gecomp.console.categorie.delegates.save.generic_error", ex);
 			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.save.generic_error",ex);
 		}
 	}
@@ -71,7 +68,7 @@ public class CategoriaDelegate extends GenericDelegate {
 			logger.error("Errore gestito", gce);
 			throw gce;
 		} catch (Exception ex) {
-			logger.error(ex, "net.sb.gecomp.console.categorie.delegates.delete.generic_error");
+			logger.error("net.sb.gecomp.console.categorie.delegates.delete.generic_error", ex);
 			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.delete.generic_error",ex);
 		}
 	}
@@ -86,7 +83,7 @@ public class CategoriaDelegate extends GenericDelegate {
 		List<CategoriaView> result = new ArrayList<CategoriaView>();
 		try {
 			result = bridge.list();
-			logger.info("result = ", result);
+			logger.info("result = "+ result);
 			
 			logger.info("end");
 			return result;
@@ -94,7 +91,7 @@ public class CategoriaDelegate extends GenericDelegate {
 			logger.error("Errore gestito", gce);
 			throw gce;
 		} catch (Exception ex) {
-			logger.error(ex, "net.sb.gecomp.console.categorie.delegates.list.generic_error");
+			logger.error("net.sb.gecomp.console.categorie.delegates.list.generic_error", ex);
 			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.list.generic_error",ex);
 		}
 	}
@@ -106,7 +103,7 @@ public class CategoriaDelegate extends GenericDelegate {
 			logger.error("Errore gestito", gce);
 			throw gce;
 		} catch (Exception ex) {
-			logger.error(ex, "net.sb.gecomp.console.categorie.delegates.list.generic_error");
+			logger.error("net.sb.gecomp.console.categorie.delegates.list.generic_error", ex);
 			throw new GeCompException("net.sb.gecomp.console.categorie.delegates.list.generic_error",ex);
 		}
 	}

@@ -7,25 +7,25 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
-import net.sb.gecomp.model.Atleta;
-import net.sb.gecomp.model.Categoria;
-import net.sb.gecomp.model.Competizione;
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.model.Prestazione;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.orm.presentation.classifiche.ClassificaCategoriaCompetizione;
-import net.sb.gecomp.orm.presentation.classifiche.ClassificaCompetizione;
-import net.sb.gecomp.orm.presentation.classifiche.IClassifica;
-import net.sb.gecomp.orm.presentation.classifiche.PrestazioneInCompetizione;
-import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.web.bridges.view.CategoriaView;
-import net.sb.gecomp.web.bridges.view.ClassificaCompetizioneView;
-import net.sb.gecomp.web.bridges.view.ClassificaGaraView;
-import net.sb.gecomp.web.bridges.view.IClassificaView;
-import net.sb.gecomp.web.bridges.view.PropertiesView;
+import net.sb.gecomp.commons.model.Atleta;
+import net.sb.gecomp.commons.model.Categoria;
+import net.sb.gecomp.commons.model.Competizione;
+import net.sb.gecomp.commons.model.Gara;
+import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.commons.model.view.CategoriaView;
+import net.sb.gecomp.commons.model.view.ClassificaCompetizioneView;
+import net.sb.gecomp.commons.model.view.ClassificaGaraView;
+import net.sb.gecomp.commons.model.view.IClassificaView;
+import net.sb.gecomp.commons.model.view.PropertiesView;
+import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.srv.orm.presentation.classifiche.ClassificaCategoriaCompetizione;
+import net.sb.gecomp.srv.orm.presentation.classifiche.ClassificaCompetizione;
+import net.sb.gecomp.srv.orm.presentation.classifiche.IClassifica;
+import net.sb.gecomp.srv.orm.presentation.classifiche.PrestazioneInCompetizione;
 import net.sb.gecomp.web.delegates.properties.PropertiesDelegate;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
@@ -43,7 +43,7 @@ public class ReportManager implements IReportManager {
 	
 	private static final String INTERNAL_PATH_SEPARATOR = "|";
 	
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
+	protected Logger logger = Logger.getLogger(this.getClass().getName());
 
 	protected SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
@@ -77,31 +77,31 @@ public class ReportManager implements IReportManager {
 			String startPath = 
 				delegate.get(PropertiesView.START_PATH).getValore()
 					.replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
-			logger.info("startPath=", startPath);
+			logger.info("startPath=" + startPath);
 			
 			String filePath = 
 				delegate.get(PropertiesView.STAGING_AREA_PATH).getValore()
 					.replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
-			logger.info("filePath=", filePath);
+			logger.info("filePath=" +  filePath);
 			
 			String fileName = nomeFile.trim().replaceAll(" ", "_");
-			logger.info("fileName=", fileName);
+			logger.info("fileName=" +  fileName);
 			
 			String fileExtension = 
 				delegate.get(PropertiesView.FILE_EXTENSION).getValore();
-			logger.info("fileExtension=", fileExtension);
+			logger.info("fileExtension=" +  fileExtension);
 			
 			nomeCartella = nomeCartella.replace(INTERNAL_PATH_SEPARATOR, System.getProperty("file.separator"));
-			logger.info("nomeCartella=", nomeCartella);
+			logger.info("nomeCartella=" +  nomeCartella);
 			
 			String dir = 
 				startPath + System.getProperty("file.separator") 
 				+ filePath + System.getProperty("file.separator")
 				+ nomeCartella;
-			logger.info("dir=", dir);
+			logger.info("dir=" +  dir);
 			
 			String all = dir + System.getProperty("file.separator") + fileName  + fileExtension;
-			logger.info("all=", all);
+			logger.info("all=" +  all);
 			
 			File file = new File(dir);
 			file.mkdirs();

@@ -3,35 +3,36 @@ package net.sb.gecomp.web.bridges.societa;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.model.Societa;
-import net.sb.gecomp.orm.dao.SocietaDao;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
-import net.sb.gecomp.utils.Eval;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.exceptions.GeCompOrmException;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.Societa;
+import net.sb.gecomp.commons.model.view.SocietaView;
+import net.sb.gecomp.commons.services.ISocietaService;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.srv.services.societa.SocietaService;
 import net.sb.gecomp.web.bridges.GenericBridge;
-import net.sb.gecomp.web.bridges.view.SocietaView;
 
 
 public class SocietaBridge extends GenericBridge {
 
-	private SocietaDao dao = DbManagerFactory.getInstance().getSocietaDao();
+	private ISocietaService service = new SocietaService();
 	
-	public void delete(GecompModelObject element) throws GeCompOrmException {
-		dao.delete((SocietaView)element);
+	public void delete(GecompModelObject element) throws GeCompException {
+		service.delete(((SocietaView)element).getId());
 	}
 
-	public GecompModelObject insert(GecompModelObject element) throws GeCompOrmException {
-		return dao.insert((Societa)element);
+	public GecompModelObject insert(GecompModelObject element) throws GeCompException {
+		return service.save((Societa)element);
 	}
 
-	public void update(GecompModelObject element) throws GeCompOrmException {
-		dao.update((SocietaView)element);
+	public void update(GecompModelObject element) throws GeCompException {
+		service.save((SocietaView)element);
 	}
 
-	public List<SocietaView> list() throws GeCompOrmException {
+	public List<SocietaView> list() throws GeCompException {
 		List<SocietaView> result = new ArrayList<SocietaView>();
-		List<Societa> lista = dao.list();
+		List<Societa> lista = service.list();
 		if (Eval.isNotEmpty(lista)) {
 			for (Societa s : lista) {
 				result.add(new SocietaView(s));
@@ -40,8 +41,8 @@ public class SocietaBridge extends GenericBridge {
 		return result;
 	}
 
-	public SocietaView get(Long idSocieta) throws GeCompOrmException {
-		return new SocietaView(dao.get(idSocieta));
+	public SocietaView get(Long idSocieta) throws GeCompException {
+		return new SocietaView(service.get(idSocieta));
 	}
 
 }

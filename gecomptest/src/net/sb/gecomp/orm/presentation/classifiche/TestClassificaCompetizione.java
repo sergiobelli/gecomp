@@ -3,9 +3,10 @@ package net.sb.gecomp.orm.presentation.classifiche;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sb.gecomp.model.Competizione;
-import net.sb.gecomp.orm.dao.ClassificaCompetizioneManager;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.commons.model.Competizione;
+import net.sb.gecomp.srv.orm.dao.ClassificaCompetizioneManager;
+import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.srv.orm.presentation.classifiche.ClassificaCompetizione;
 import net.sb.gecomp.web.report.ReportManager;
 
 public class TestClassificaCompetizione {

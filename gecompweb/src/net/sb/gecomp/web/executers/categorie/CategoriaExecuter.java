@@ -1,8 +1,7 @@
 package net.sb.gecomp.web.executers.categorie;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.web.bridges.view.CategoriaView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.view.CategoriaView;
 import net.sb.gecomp.web.delegates.categorie.CategoriaDelegate;
 import net.sb.gecomp.web.executers.GenericExecuter;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
@@ -11,8 +10,6 @@ import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 public class CategoriaExecuter extends GenericExecuter {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
-	
 	protected CategoriaDelegate delegate = new CategoriaDelegate();
 	
 	private CategoriaView categoria;
@@ -26,10 +23,10 @@ public class CategoriaExecuter extends GenericExecuter {
 			logger.info("Saved Categoria...");
 		} catch (GeCompException gce) {
 			GeCompGuiExceptionManager.manageGUIException(logger, gce, gce.getMessage());
-			return GeCompOutcomes.NULL;
+			return GeCompOutcomes.FAIL;
 		} catch (Exception ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.categoria.salvataggio.ko");
-			return GeCompOutcomes.NULL;
+			return GeCompOutcomes.FAIL;
 		}
 		return GeCompOutcomes.LISTA_CATEGORIE;		
 	}

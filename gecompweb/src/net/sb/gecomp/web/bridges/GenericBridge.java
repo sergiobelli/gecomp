@@ -1,5 +1,7 @@
 package net.sb.gecomp.web.bridges;
 
-public abstract class GenericBridge implements IGenericBridge {
+import org.apache.log4j.Logger;
 
+public abstract class GenericBridge implements IGenericBridge {
+	protected Logger logger = Logger.getLogger(this.getClass().getName());
 }

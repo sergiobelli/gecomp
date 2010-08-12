@@ -5,10 +5,10 @@ import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Categoria;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.exceptions.MessageSeverity;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Categoria;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.commons.utils.exceptions.MessageSeverity;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.user.GeCompUserSessionHandler;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
@@ -18,13 +18,11 @@ import net.sb.gecomp.web.utils.guimessages.GuiMessageHandler;
 public class ModificaGaraExecuter extends GaraExecuter {
 
 	public String modificaGara () {
-		return "modificaGara";
+		return GeCompOutcomes.MODIFICA_GARA;
 	}
 
 	public void load (ActionEvent event) {
-
 		idGara = (Long) event.getComponent().getAttributes().get("idGara");
-
 		init ();
 
 	}
@@ -56,9 +54,9 @@ public class ModificaGaraExecuter extends GaraExecuter {
 			logger.info("Deleted Gara...");
 		} catch (Exception ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.gara.eliminazione.ko");
-			return GeCompOutcomes.NULL;
+			return GeCompOutcomes.FAIL;
 		}
-		return GeCompOutcomes.NULL;
+		return GeCompOutcomes.FAIL;
 	}
 
 	public String selezionaGara () {

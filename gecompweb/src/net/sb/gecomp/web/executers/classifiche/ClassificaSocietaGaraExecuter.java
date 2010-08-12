@@ -10,13 +10,12 @@ import java.util.TreeSet;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.model.Prestazione;
-import net.sb.gecomp.model.Societa;
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.web.bridges.view.ClassificaSocietaView;
-import net.sb.gecomp.web.bridges.view.SocietaPunteggioView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.commons.model.Societa;
+import net.sb.gecomp.commons.model.view.ClassificaSocietaView;
+import net.sb.gecomp.commons.model.view.SocietaPunteggioView;
 import net.sb.gecomp.web.delegates.classifiche.societa.ClassificaSocietaPunteggioDecrescenteDelegate;
 import net.sb.gecomp.web.executers.GenericExecuter;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
@@ -25,8 +24,6 @@ import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 //TODO: NON funziona!!!!
 public class ClassificaSocietaGaraExecuter extends GenericExecuter {
-
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
 
 	protected ClassificaSocietaPunteggioDecrescenteDelegate delegate = new ClassificaSocietaPunteggioDecrescenteDelegate();
 	

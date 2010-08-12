@@ -4,23 +4,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.model.Societa;
-import net.sb.gecomp.model.TipoPrestazione;
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.web.bridges.view.ClassificaSocietaView;
-import net.sb.gecomp.web.bridges.view.PrestazioneView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Gara;
+import net.sb.gecomp.commons.model.Societa;
+import net.sb.gecomp.commons.model.TipoPrestazione;
+import net.sb.gecomp.commons.model.view.ClassificaSocietaView;
+import net.sb.gecomp.commons.model.view.PrestazioneView;
 import net.sb.gecomp.web.delegates.gare.GaraDelegate;
 import net.sb.gecomp.web.delegates.prestazioni.PrestazioneDelegate;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class ClassificaSocietaPunteggioDecrescenteDelegate extends
-		ClassificaSocietaDelegate {
+public class ClassificaSocietaPunteggioDecrescenteDelegate extends ClassificaSocietaDelegate {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
-	
 	private PrestazioneDelegate prestazioneDelegate = new PrestazioneDelegate();
 	
 	public ClassificaSocietaView getClassifica(Gara gara) {
@@ -33,7 +29,7 @@ public class ClassificaSocietaPunteggioDecrescenteDelegate extends
 			result.setClassificaSocietaPunteggio(getClassificaSocietaPunteggio(prestazioni));
 			
 		} catch (GeCompException e) {
-			logger.error(e, "XXXXXXXXXXXXXXXXXXXXXX");
+			logger.error("XXXXXXXXXXXXXXXXXXXXXX", e);
 		}
 		return result;
 	}
@@ -62,7 +58,7 @@ public class ClassificaSocietaPunteggioDecrescenteDelegate extends
 					classificaSocietaPunti.put(societa, punteggioTmp);
 				}
 			} else {
-				logger.info("prestazione non valida ", "[", prestazioneValida.getIdPrestazione(), ",", prestazioneValida.getTipoPrestazione(), "]");
+				logger.info("prestazione non valida [" + prestazioneValida.getIdPrestazione() + "," + prestazioneValida.getTipoPrestazione() + "]");
 			}
 		}
 		return classificaSocietaPunti;

@@ -5,10 +5,10 @@ import java.util.List;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.utils.exceptions.MessageSeverity;
-import net.sb.gecomp.web.bridges.view.CompetizioneView;
-import net.sb.gecomp.web.bridges.view.SocietaView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.commons.model.view.SocietaView;
+import net.sb.gecomp.commons.utils.exceptions.MessageSeverity;
 import net.sb.gecomp.web.controllers.competizione.CompetizioneController;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.user.GeCompUserSessionHandler;

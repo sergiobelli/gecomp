@@ -1,10 +1,10 @@
 package net.sb.gecomp.web.executers.iscrizioni;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.exceptions.MessageSeverity;
-import net.sb.gecomp.web.bridges.view.AtletaView;
-import net.sb.gecomp.web.bridges.view.IscrizioneView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.view.AtletaView;
+import net.sb.gecomp.commons.model.view.IscrizioneView;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.commons.utils.exceptions.MessageSeverity;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 import net.sb.gecomp.web.utils.guimessages.GuiMessageHandler;

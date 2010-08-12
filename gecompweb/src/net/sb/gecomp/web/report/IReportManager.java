@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.report;
 
-import net.sb.gecomp.orm.presentation.classifiche.IClassifica;
+import net.sb.gecomp.srv.orm.presentation.classifiche.IClassifica;
 
 public interface IReportManager<T extends IClassifica> {
 

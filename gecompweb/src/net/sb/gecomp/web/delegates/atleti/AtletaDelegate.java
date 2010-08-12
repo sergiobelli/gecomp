@@ -1,11 +1,12 @@
 package net.sb.gecomp.web.delegates.atleti;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import java.util.List;
+
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.view.AtletaView;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.atleti.AtletaBridge;
-import net.sb.gecomp.web.bridges.view.AtletaView;
 import net.sb.gecomp.web.controllers.atleti.AtletaController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 import net.sb.gecomp.web.delegates.societa.SocietaDelegate;
@@ -15,8 +16,6 @@ import org.springframework.util.Assert;
 
 public class AtletaDelegate extends GenericDelegate implements InitializingBean {
 	
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
-
 	private AtletaController controller = new AtletaController();
 
 
@@ -49,6 +48,10 @@ public class AtletaDelegate extends GenericDelegate implements InitializingBean 
 
 	public AtletaView get(Long id) throws GeCompException {
 		return bridge.get(id);
+	}
+	
+	public List<AtletaView> list() throws GeCompException {
+		return bridge.list();
 	}
 	
 	public void afterPropertiesSet() throws Exception {

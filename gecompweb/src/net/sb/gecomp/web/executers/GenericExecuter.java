@@ -2,19 +2,20 @@ package net.sb.gecomp.web.executers;
 
 import javax.faces.component.html.HtmlDataTable;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.web.bridges.view.CompetizioneView;
-import net.sb.gecomp.web.bridges.view.GaraView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.commons.model.view.GaraView;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.delegates.iscrizioni.IscrizioneDelegate;
 import net.sb.gecomp.web.delegates.prestazioni.PrestazioneDelegate;
 import net.sb.gecomp.web.user.GeCompUserSessionHandler;
 
+import org.apache.log4j.Logger;
+
 
 public abstract class GenericExecuter {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
+	protected Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	//protected abstract <T extends GecompModelObject> T retrieve(int i) throws GeCompException;//TODO:questo lavoro l'ho finito o no??????????
 	

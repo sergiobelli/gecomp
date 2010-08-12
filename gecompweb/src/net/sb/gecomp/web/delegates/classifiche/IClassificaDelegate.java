@@ -1,8 +1,8 @@
 package net.sb.gecomp.web.delegates.classifiche;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Gara;
-import net.sb.gecomp.web.bridges.view.ClassificaView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Gara;
+import net.sb.gecomp.commons.model.view.ClassificaView;
 
 
 public interface IClassificaDelegate {

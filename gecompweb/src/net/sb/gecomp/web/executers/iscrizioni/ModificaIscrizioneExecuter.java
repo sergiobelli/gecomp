@@ -2,9 +2,9 @@ package net.sb.gecomp.web.executers.iscrizioni;
 
 import javax.faces.event.ActionEvent;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.exceptions.MessageSeverity;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.commons.utils.exceptions.MessageSeverity;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 import net.sb.gecomp.web.utils.guimessages.GuiMessageHandler;

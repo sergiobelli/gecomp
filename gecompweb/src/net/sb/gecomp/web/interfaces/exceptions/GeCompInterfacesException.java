@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.interfaces.exceptions;
 
-import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.commons.exceptions.GeCompException;
 
 public class GeCompInterfacesException extends GeCompException {
 

@@ -1,11 +1,11 @@
 package net.sb.gecomp.web.bridges.competizione;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.model.Competizione;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.commons.exceptions.GeCompOrmException;
+import net.sb.gecomp.commons.model.Competizione;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.web.bridges.GenericBridge;
-import net.sb.gecomp.web.bridges.view.CompetizioneView;
 
 
 public class CompetizioneBridge extends GenericBridge {

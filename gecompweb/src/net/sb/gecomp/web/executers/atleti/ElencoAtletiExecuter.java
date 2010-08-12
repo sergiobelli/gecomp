@@ -1,8 +1,7 @@
 package net.sb.gecomp.web.executers.atleti;
 
-import net.sb.gecomp.exceptions.GeCompOrmException;
-import net.sb.gecomp.model.Atleta;
-import net.sb.gecomp.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Atleta;
 
 
 public class ElencoAtletiExecuter extends AtletaExecuter {
@@ -13,8 +12,8 @@ public class ElencoAtletiExecuter extends AtletaExecuter {
 		Atleta tmpAtleta = getAtleta();
 		
 		try {
-			DbManagerFactory.getInstance().getAtletaDao().insert(tmpAtleta);
-		} catch (GeCompOrmException e) {
+			delegate.save(tmpAtleta);
+		} catch (GeCompException e) {
 			e.printStackTrace();
 		}		
 		return "";

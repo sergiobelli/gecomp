@@ -3,25 +3,22 @@ package net.sb.gecomp.web.delegates.gare;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.Categoria;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.Categoria;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.view.CategoriaGaraView;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.commons.model.view.GaraView;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.categorie.CategoriaBridge;
 import net.sb.gecomp.web.bridges.categorie.CategoriaGaraBridge;
 import net.sb.gecomp.web.bridges.gare.GaraBridge;
-import net.sb.gecomp.web.bridges.view.CategoriaGaraView;
-import net.sb.gecomp.web.bridges.view.CategoriaView;
-import net.sb.gecomp.web.bridges.view.GaraView;
 import net.sb.gecomp.web.controllers.gare.GaraController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 
 
 public class GaraDelegate extends GenericDelegate {
 	
-	protected GeCompLogger 		logger 				= GeCompLogger.getGeCompLogger(this.getClass().getName());
-
 	private GaraController 		controller 			= new GaraController();
 	
 	private GaraBridge 			garaBridge 			= new GaraBridge();
@@ -48,6 +45,7 @@ public class GaraDelegate extends GenericDelegate {
 		}
 	}
 	
+	//TODO: FS#78 - GaraDelegate : spostare codice salvataggio su lato server 
 	public void save(GaraView element, List<Long> categorieId) throws GeCompException {//TODO:tutto il codice seguente dovrebbe essere messo in transazione lato server!!!!
 		
 		GaraView gara = (GaraView) retrieve(element);
@@ -89,10 +87,18 @@ public class GaraDelegate extends GenericDelegate {
 				}
 			}
 		}
-		
 	}
-
+	//TODO: FS#78 - GaraDelegate : spostare codice salvataggio su lato server 
+	
 	public GaraView get(Long idGara) throws GeCompException {
 		return garaBridge.get(idGara);
+	}
+	
+	public List<GaraView> list() throws GeCompException {
+		return garaBridge.list();
+	}
+	
+	public List<GaraView> list(CompetizioneView competizione) throws GeCompException {
+		return garaBridge.list(competizione);
 	}
 }

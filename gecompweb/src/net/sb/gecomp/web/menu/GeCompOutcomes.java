@@ -19,10 +19,11 @@ public class GeCompOutcomes {
 	
 	//Gare
 	public static final String INSERISCI_GARA = "inserisciGara";
+	public static final String MODIFICA_GARA = "modificaGara";
 	public static final String LISTA_GARE = "listaGare";
-	public static final String INSERISCI_CATEGORIA = "inserisciCategoria";
 	
 	//Categorie
+	public static final String INSERISCI_CATEGORIA = "inserisciCategoria";
 	public static final String MODIFICA_CATEGORIA = "modificaCategoria";
 	public static final String LISTA_CATEGORIE = "listaCategorie";
 	
@@ -44,6 +45,8 @@ public class GeCompOutcomes {
 	public static final String VISUALIZZA_CLASSIFICA_GARA = "visualizzaClassificaGara";
 	public static final String VISUALIZZA_CLASSIFICA_GARA_SOCIETA = "visualizzaClassificaGaraSocieta";
 	public static final String VISUALIZZA_CLASSIFICA_COMPETIZIONE = "visualizzaClassificaCompetizione";
+
+	
 
 	
 	

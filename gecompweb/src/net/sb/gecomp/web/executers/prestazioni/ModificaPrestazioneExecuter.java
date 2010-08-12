@@ -2,7 +2,7 @@ package net.sb.gecomp.web.executers.prestazioni;
 
 import javax.faces.event.ActionEvent;
 
-import net.sb.gecomp.exceptions.GeCompException;
+import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 /**

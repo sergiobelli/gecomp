@@ -2,12 +2,11 @@ package net.sb.gecomp.web.delegates.societa;
 
 import java.util.List;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.model.GecompModelObject;
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.view.SocietaView;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.societa.SocietaBridge;
-import net.sb.gecomp.web.bridges.view.SocietaView;
 import net.sb.gecomp.web.controllers.societa.SocietaController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
@@ -15,8 +14,6 @@ import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 public class SocietaDelegate extends GenericDelegate {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
-	
 	private SocietaController controller = new SocietaController();
 	private SocietaBridge bridge = new SocietaBridge();
 	

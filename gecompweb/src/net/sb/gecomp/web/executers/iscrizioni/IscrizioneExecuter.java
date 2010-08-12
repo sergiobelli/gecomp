@@ -4,9 +4,8 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.utils.logger.GeCompLogger;
-import net.sb.gecomp.web.bridges.view.IscrizioneView;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.model.view.IscrizioneView;
 import net.sb.gecomp.web.delegates.iscrizioni.IscrizioneDelegate;
 import net.sb.gecomp.web.executers.GenericExecuter;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
@@ -15,8 +14,6 @@ import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 public abstract class IscrizioneExecuter extends GenericExecuter {
 
-	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
-	
 	protected IscrizioneDelegate delegate = new IscrizioneDelegate();
 
 	protected Long idIscrizione;

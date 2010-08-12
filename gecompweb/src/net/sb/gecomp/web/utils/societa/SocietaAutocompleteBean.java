@@ -1,22 +1,12 @@
 package net.sb.gecomp.web.utils.societa;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-
-//import javax.faces.event.ValueChangeEvent;
-//import javax.faces.model.SelectItem;
-
-import net.sb.gecomp.model.Societa;
-import net.sb.gecomp.utils.logger.GeCompLogger;
 
 
 //import com.icesoft.faces.component.selectinputtext.SelectInputText;
 
 public class SocietaAutocompleteBean {
 
-//	protected GeCompLogger logger = GeCompLogger.getGeCompLogger(this.getClass().getName());
+//	protected Logger logger = Logger.getLogger(this.getClass().getName());
 //	
 //    // list of cities, used for auto complete list.
 //    private static List dictionary;

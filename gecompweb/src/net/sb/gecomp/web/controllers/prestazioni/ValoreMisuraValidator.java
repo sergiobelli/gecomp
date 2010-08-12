@@ -9,14 +9,15 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-import net.sb.gecomp.utils.Eval;
-import net.sb.gecomp.utils.logger.GeCompLogger;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.utils.guimessages.GuiMessageHandler;
+
+import org.apache.log4j.Logger;
 
 
 public class ValoreMisuraValidator implements Validator {
 
-	protected static GeCompLogger logger = GeCompLogger.getGeCompLogger(ValoreMisuraValidator.class);
+	protected static Logger logger = Logger.getLogger(ValoreMisuraValidator.class.getName());
 	
 	private static final String PATTERN = "[\\d]?\\d:[\\d]?\\d:[\\d]?\\d.(\\d\\d\\d)*";
 	public void validate(FacesContext facesContext, UIComponent uiComponent, Object object) throws ValidatorException {
@@ -24,7 +25,7 @@ public class ValoreMisuraValidator implements Validator {
 	}
 
 	public static void validate(String valoreMisura) throws ValidatorException {
-		logger.info("valore misura = ", valoreMisura);
+		logger.info("valore misura = "+ valoreMisura);
 		
 		FacesMessage message = 
 			new FacesMessage(

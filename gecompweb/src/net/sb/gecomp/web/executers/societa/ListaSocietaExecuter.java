@@ -1,7 +1,7 @@
 package net.sb.gecomp.web.executers.societa;
 
-import net.sb.gecomp.exceptions.GeCompException;
-import net.sb.gecomp.utils.exceptions.GeCompExceptionManager;
+import net.sb.gecomp.commons.exceptions.GeCompException;
+import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
 
 public class ListaSocietaExecuter extends SocietaExecuter {
 		
