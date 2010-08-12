@@ -18,8 +18,8 @@
         	<param name="ConversionPattern" value="%d %-5p [%t] [%C.%M] :::%m%n"/>
         </layout>
 	</appender>
-	<appender name="gecomporm" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${catalina.home}/logs/GeComp/gecomporm.log"/>
+	<appender name="gecompsrv" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${catalina.home}/logs/GeComp/gecompsrv.log"/>
   		<param name="MaxFileSize" value="10000KB"/>
   		<param name="MaxBackupIndex" value="10"/>
   		<layout class="org.apache.log4j.PatternLayout">
@@ -34,35 +34,31 @@
     		<param name="ConversionPattern" value="%d %-5p [%t] [%C.%M] :::%m%n"/>
   		</layout>
 	</appender>	
-	<appender name="sql" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${catalina.home}/logs/GeComp/sql.log"/>
-        <param name="MaxFileSize" value="10000KB"/>
-        <param name="MaxBackupIndex" value="10"/>
-        <layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d %-5p [%t] [%C.%M] :::%m%n"/>
-        </layout>
-	</appender>
-	<appender name="ibatis" class="org.apache.log4j.RollingFileAppender">
-        <param name="file" value="${catalina.home}/logs/GeComp/ibatis.log"/>
-        <param name="MaxFileSize" value="10000KB"/>
-        <param name="MaxBackupIndex" value="10"/>
-        <layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d %-5p [%t] [%C.%M] :::%m%n"/>
-        </layout>
-	</appender>
 
  	<!-- ======================= -->
 	<!-- Gecomp categories -->
 	<!-- ======================= -->
-	<category name="net.sb.gecomp">
-        <priority value="DEBUG"/>
+	<category name="net.sb.gecomp.commons">
+        <priority value="ERROR"/>
+        <appender-ref ref="gecomp"/>
+    </category>
+    <category name="org.apache">
+        <priority value="ERROR"/>
+        <appender-ref ref="gecomp"/>
+    </category>
+    <category name="org.springframework">
+        <priority value="ERROR"/>
+        <appender-ref ref="gecomp"/>
+    </category>
+    <category name="com.ibatis">
+        <priority value="ERROR"/>
         <appender-ref ref="gecomp"/>
     </category>
     
-    <!-- orm -->
-	<category name="net.sb.gecomp.orm">
+    <!-- srv -->
+	<category name="net.sb.gecomp.srv">
         <priority value="DEBUG"/>
-        <appender-ref ref="gecomporm"/>
+        <appender-ref ref="gecompsrv"/>
     </category>
     
     <!-- web -->
