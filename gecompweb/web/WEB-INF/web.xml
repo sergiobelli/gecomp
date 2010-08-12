@@ -19,7 +19,7 @@
 
 	<filter>
     	<filter-name>UserSessionFilter</filter-name>
-    	<filter-class>org.sbelli.gecomp.console.login.filters.UserSessionFilter</filter-class>
+    	<filter-class>net.sb.gecomp.web.filters.login.UserSessionFilter</filter-class>
   	</filter>
 	<filter-mapping>
     	<filter-name>UserSessionFilter</filter-name>
