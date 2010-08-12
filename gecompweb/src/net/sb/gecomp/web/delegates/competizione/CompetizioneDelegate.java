@@ -1,5 +1,7 @@
 package net.sb.gecomp.web.delegates.competizione;
 
+import java.util.List;
+
 import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.commons.model.Competizione;
 import net.sb.gecomp.commons.model.GecompModelObject;
@@ -45,6 +47,10 @@ public class CompetizioneDelegate extends GenericDelegate {
 
 	public CompetizioneView get(Long id) throws GeCompException {
 		return bridge.get(id);
+	}
+	
+	public List<CompetizioneView> list() throws GeCompException {
+		return bridge.list();
 	}
 
 }

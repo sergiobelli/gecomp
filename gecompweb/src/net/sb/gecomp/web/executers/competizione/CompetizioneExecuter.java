@@ -4,12 +4,11 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import net.sb.gecomp.commons.exceptions.GeCompOrmException;
-import net.sb.gecomp.commons.model.Competizione;
+import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.commons.model.Societa;
 import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.commons.model.view.SocietaView;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.web.delegates.competizione.CompetizioneDelegate;
 import net.sb.gecomp.web.delegates.societa.SocietaDelegate;
 import net.sb.gecomp.web.executers.GenericExecuter;
@@ -33,9 +32,9 @@ public class CompetizioneExecuter extends GenericExecuter {
 	public CompetizioneView getCompetizione() { return competizione; }
 	public void setCompetizione(CompetizioneView competizione) { this.competizione = competizione; }
 
-	protected List<Competizione> competizioni;
-	public List<Competizione> getCompetizioni() { return competizioni; }
-	public void setCompetizioni(List<Competizione> competizioni) { this.competizioni = competizioni; }
+	protected List<CompetizioneView> competizioni;
+	public List<CompetizioneView> getCompetizioni() { return competizioni; }
+	public void setCompetizioni(List<CompetizioneView> competizioni) { this.competizioni = competizioni; }
 
 	protected SelectItem[] listaSocieta;
 	public SelectItem[] getListaSocieta() { return listaSocieta; }
@@ -43,7 +42,7 @@ public class CompetizioneExecuter extends GenericExecuter {
 
 	protected void loadSocietaList () {
 		try {
-			List<Societa> tmpSocieta = DbManagerFactory.getInstance().getSocietaDao().list();
+			List<SocietaView> tmpSocieta = socDelegate.list();
 
 			int pos = 0;
 			listaSocieta = new SelectItem[tmpSocieta.size()];
@@ -52,7 +51,7 @@ public class CompetizioneExecuter extends GenericExecuter {
 				pos++;
 			}
 
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			GeCompExceptionManager.traceException(logger, ex);
 		}
 	}

@@ -8,10 +8,13 @@ import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.Iscrizione;
 import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
 import net.sb.gecomp.commons.model.view.PrestazioneView;
 import net.sb.gecomp.commons.utils.Eval;
-import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
+import net.sb.gecomp.web.bridges.iscrizioni.IscrizioneBridge;
 import net.sb.gecomp.web.bridges.prestazioni.PrestazioneBridge;
+import net.sb.gecomp.web.bridges.tipimisure.TipoMisuraBridge;
+import net.sb.gecomp.web.bridges.tipiprestazione.TipoPrestazioneBridge;
 import net.sb.gecomp.web.controllers.prestazioni.PrestazioneController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
 
@@ -19,15 +22,19 @@ import net.sb.gecomp.web.delegates.GenericDelegate;
 public class PrestazioneDelegate extends GenericDelegate {
 
 	private PrestazioneController controller = new PrestazioneController();
-	private PrestazioneBridge bridge = new PrestazioneBridge(); 
+	
+	private PrestazioneBridge prestazioneBridge = new PrestazioneBridge(); 
+	private IscrizioneBridge iscrizioneBridge = new IscrizioneBridge();
+	private TipoPrestazioneBridge tipoPrestazioneBridge = new TipoPrestazioneBridge();
+	private TipoMisuraBridge tipoMisuraBridge = new TipoMisuraBridge();
 	
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
 		Prestazione prestazione = (Prestazione) element;
 		controller.checks(prestazione);
 		
-		prestazione.setIscrizione(DbManagerFactory.getInstance().getIscrizioneDao().get(prestazione.getIscrizione().getIdIscrizione()));
-		prestazione.setTipoPrestazione(DbManagerFactory.getInstance().getTipoPrestazioneDao().get(prestazione.getTipoPrestazione().getIdTipoPrestazione()));
-		prestazione.setTipoMisura(DbManagerFactory.getInstance().getTipoMisuraDao().get(prestazione.getTipoMisura().getIdTipoMisura()));
+		prestazione.setIscrizione(iscrizioneBridge.get(prestazione.getIscrizione().getIdIscrizione()));
+		prestazione.setTipoPrestazione(tipoPrestazioneBridge.get(prestazione.getTipoPrestazione().getIdTipoPrestazione()));
+		prestazione.setTipoMisura(tipoMisuraBridge.get(prestazione.getTipoMisura().getIdTipoMisura()));
 		return prestazione;
 	}
 	
@@ -36,9 +43,9 @@ public class PrestazioneDelegate extends GenericDelegate {
 		retrieve(prestazione);
 		logger.debug("Customized Prestazione = " + prestazione);
 		if (Eval.isNull(prestazione.getIdPrestazione())) {
-			bridge.insert(prestazione);
+			prestazioneBridge.insert(prestazione);
 		} else {
-			bridge.update(prestazione);
+			prestazioneBridge.update(prestazione);
 		}
 	}
 
@@ -47,21 +54,21 @@ public class PrestazioneDelegate extends GenericDelegate {
 	}
 
 	public Prestazione get(Long id) throws GeCompException {
-		return (Prestazione) bridge.get(id);
+		return (Prestazione) prestazioneBridge.get(id);
 	}
 
-	public List<PrestazioneView> list(Gara gara) throws GeCompException {
+	public List<PrestazioneView> list(CompetizioneView competizione) throws GeCompException {
 		try {
-			return bridge.list(gara);
+			return prestazioneBridge.list(competizione);
 		} catch (GeCompException ex) {
-			logger.error("Non ci sono prestazioni per la gara specificata " + gara, ex);
+			logger.error("Non ci sono prestazioni per la competizione specificata " + competizione, ex);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
 		}	
 	}
 
 	public List<PrestazioneView> list(Gara gara, Categoria categoria) throws GeCompException {
 		try {
-			return bridge.list(gara, categoria, true);
+			return prestazioneBridge.list(gara, categoria, true);
 		} catch (GeCompException ex) {
 			logger.error("Non ci sono prestazioni per la gara specificata " + gara, ex);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
@@ -70,16 +77,25 @@ public class PrestazioneDelegate extends GenericDelegate {
 	
 	public List<PrestazioneView> list(Gara gara, Categoria categoria, Boolean conAssoluti) throws GeCompException {
 		try {
-			return bridge.list(gara, categoria, conAssoluti);
+			return prestazioneBridge.list(gara, categoria, conAssoluti);
 		} catch (GeCompException ex) {
 			logger.error("Non ci sono prestazioni per la gara specificata " + gara, ex);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");
 		}
 	}
 
+	public List<PrestazioneView> list(Gara gara) throws GeCompException {
+		try {
+			return prestazioneBridge.list(gara);
+		} catch (GeCompException ex) {
+			logger.error("Non ci sono prestazioni per la gara specificata " + gara, ex);
+			throw new GeCompException("x.x.x.x.x.x.x.x.x");
+		}	
+	}
+	
 	public PrestazioneView get(Iscrizione iscrizione) throws GeCompException {
 		try {
-			return bridge.get(iscrizione);
+			return prestazioneBridge.get(iscrizione);
 		} catch (GeCompException ex) {
 			logger.error("Non ci sono prestazioni per l'iscrizione specificata " + iscrizione, ex);
 			throw new GeCompException("x.x.x.x.x.x.x.x.x");

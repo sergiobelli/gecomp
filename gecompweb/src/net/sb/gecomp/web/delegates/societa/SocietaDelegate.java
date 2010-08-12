@@ -64,6 +64,6 @@ public class SocietaDelegate extends GenericDelegate {
 
 	public SocietaView get(Long idSocieta) throws GeCompException {
 		return bridge.get(idSocieta);
-	}		
+	}
 	
 }

@@ -9,6 +9,7 @@ import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.Iscrizione;
 import net.sb.gecomp.commons.model.Prestazione;
+import net.sb.gecomp.commons.model.view.CompetizioneView;
 import net.sb.gecomp.commons.model.view.PrestazioneView;
 import net.sb.gecomp.commons.services.IPrestazioneService;
 import net.sb.gecomp.commons.utils.Eval;
@@ -54,6 +55,21 @@ public class PrestazioneBridge extends GenericBridge {
 		return result;
 	}
 
+	public List<PrestazioneView> list(CompetizioneView competizione) throws GeCompException {
+		List<PrestazioneView> result = null;
+		List<Prestazione> prestazioni = service.list(competizione);	
+		
+		if (Eval.isNotEmpty(prestazioni)) {
+			result = new ArrayList<PrestazioneView>();
+			int posizione = 1;
+			for (Prestazione p : prestazioni) {
+				PrestazioneView pw = new PrestazioneView(p, posizione++);
+				result.add(pw);
+			}
+		}
+		return result;
+	}
+	
 	public List<PrestazioneView> list(Gara gara, Categoria categoria, Boolean conAssoluti) throws GeCompException {
 		List<PrestazioneView> result = null;
 		List<Prestazione> prestazioni = service.list(gara, categoria, conAssoluti);	

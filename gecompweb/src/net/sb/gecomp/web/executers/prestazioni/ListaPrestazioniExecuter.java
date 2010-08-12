@@ -7,7 +7,6 @@ import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.commons.model.Prestazione;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
 
 public class ListaPrestazioniExecuter extends PrestazioneExecuter {
@@ -20,15 +19,13 @@ public class ListaPrestazioniExecuter extends PrestazioneExecuter {
 		try {
 			checks4SelectedCompetizione();
 			if (Eval.isNotNull(getSelectedGara())) {
-				setPrestazioni(new ArrayList<Prestazione>(DbManagerFactory.getInstance().getPrestazioneDao().list(getSelectedGara())));
+				setPrestazioni(new ArrayList<Prestazione>(delegate.list(getSelectedGara())));
 			} else {
-				setPrestazioni(new ArrayList<Prestazione>(DbManagerFactory.getInstance().getPrestazioneDao().list(getSelectedCompetizione())));	
+				setPrestazioni(new ArrayList<Prestazione>(delegate.list(getSelectedCompetizione())));	
 			}
 		} catch (GeCompException e) {
 			GeCompExceptionManager.traceException(logger, e);
 		}
 	}
-	
-	public String salva() {return "";}
 	
 }

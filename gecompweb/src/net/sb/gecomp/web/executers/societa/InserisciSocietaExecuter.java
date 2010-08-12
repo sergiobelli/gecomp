@@ -1,6 +1,6 @@
 package net.sb.gecomp.web.executers.societa;
 
-import net.sb.gecomp.commons.model.Societa;
+import net.sb.gecomp.commons.model.view.SocietaView;
 import net.sb.gecomp.web.menu.GeCompOutcomes;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
@@ -8,7 +8,7 @@ import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 public class InserisciSocietaExecuter extends SocietaExecuter {
 	
 	public InserisciSocietaExecuter () {
-		setSocieta(new Societa());
+		setSocieta(new SocietaView());
 	}
 
 	public String salva() {

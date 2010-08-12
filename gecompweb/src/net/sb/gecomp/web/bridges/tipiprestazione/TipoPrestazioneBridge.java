@@ -17,11 +17,11 @@ public class TipoPrestazioneBridge extends GenericBridge {
 		service.delete(((TipoPrestazione) tipoPrestazione).getIdTipoPrestazione());
 	}
 
-	public GecompModelObject get(Long id) throws GeCompException {
+	public TipoPrestazione get(Long id) throws GeCompException {
 		return service.get(id);
 	}
 
-	public GecompModelObject insert(GecompModelObject tipoPrestazione) throws GeCompException {
+	public TipoPrestazione insert(GecompModelObject tipoPrestazione) throws GeCompException {
 		return service.save((TipoPrestazione) tipoPrestazione);
 	}
 

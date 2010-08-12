@@ -3,7 +3,6 @@ package net.sb.gecomp.web.delegates.iscrizioni;
 import java.util.List;
 
 import net.sb.gecomp.commons.exceptions.GeCompException;
-import net.sb.gecomp.commons.exceptions.GeCompOrmException;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.Iscrizione;
 import net.sb.gecomp.commons.model.view.CompetizioneView;
@@ -80,7 +79,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 	public List<IscrizioneView> list(GaraView gara) throws GeCompException {
 		try {
 			return bridge.list(gara);
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			logger.error("net.sb.gecomp.console.iscrizioni.delegates.generic_error " + gara, ex);
 			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.generic_error");
 		}
@@ -89,7 +88,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 	public List<IscrizioneView> list(CompetizioneView competizione) throws GeCompException {
 		try {
 			return bridge.list(competizione);
-		} catch (GeCompOrmException ex) {
+		} catch (GeCompException ex) {
 			logger.error("net.sb.gecomp.console.iscrizioni.delegates.generic_error " + competizione, ex);
 			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.generic_error");
 		}
