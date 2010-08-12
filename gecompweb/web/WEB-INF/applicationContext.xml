@@ -3,27 +3,27 @@
 <beans>
     
 	<!-- BRIDGES -->
-	<bean id="atletaBridge" class="org.sbelli.gecomp.console.atleti.bridges.AtletaBridge" />
+	<!--<bean id="atletaBridge" class="net.sb.gecomp.web.bridges.atleti.AtletaBridge" />-->
 	<!-- BRIDGES -->
 	
 	<!-- CONTROLLERS -->
-	<bean id="atletaController" class="org.sbelli.gecomp.console.atleti.controllers.AtletaController" />
+	<!--<bean id="atletaController" class="net.sb.gecomp.web.controllers.atleti.AtletaController" />-->
 	<!-- CONTROLLERS -->
 	
 	<!-- DELEGATES -->
-	<bean id="atletaDelegate" class="org.sbelli.gecomp.console.atleti.delegates.AtletaDelegate">
+	<!--<bean id="atletaDelegate" class="net.sb.gecomp.web.delegates.atleti.AtletaDelegate">
 		<property name="bridge"><ref bean="atletaBridge" />
 		<property name="controller"><ref bean="atletaController" />
-	</bean>
+	</bean>-->
 	<!-- DELEGATES -->
 	
 	<!-- EXECUTERS -->
-	<bean id="atletaExecuter" class="org.sbelli.gecomp.console.atleti.executers.AtletaExecuter">
+	<!--<bean id="atletaExecuter" class="net.sb.gecomp.web.executers.atleti.AtletaExecuter">
 		<property name="delegate"><ref bean="atletaDelegate" />
 	</bean>
-	<bean id="InserisciAtletaExecuter" class="org.sbelli.gecomp.console.atleti.executers.InserisciAtletaExecuter">
+	<bean id="InserisciAtletaExecuter" class="net.sb.gecomp.web.executers.atleti.InserisciAtletaExecuter">
 		<property name="delegate"><ref bean="atletaDelegate" />
-	</bean>
+	</bean>-->
 	<!-- EXECUTERS -->
 	
 </beans>
