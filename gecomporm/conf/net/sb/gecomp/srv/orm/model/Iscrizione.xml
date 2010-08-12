@@ -6,10 +6,10 @@
 
 <sqlMap namespace="Iscrizione">
 
-  <typeAlias alias="Iscrizione" 	type="org.sbelli.gecomp.orm.model.Iscrizione"	/>
-  <typeAlias alias="Gara" 			type="org.sbelli.gecomp.orm.model.Gara"			/>
-  <typeAlias alias="Atleta" 		type="org.sbelli.gecomp.orm.model.Atleta"		/>
-  <typeAlias alias="Competizione" 	type="org.sbelli.gecomp.orm.model.Competizione"		/>
+  <typeAlias alias="Iscrizione" 	type="net.sb.gecomp.commons.model.Iscrizione"	/>
+  <typeAlias alias="Gara" 			type="net.sb.gecomp.commons.model.Gara"			/>
+  <typeAlias alias="Atleta" 		type="net.sb.gecomp.commons.model.Atleta"		/>
+  <typeAlias alias="Competizione" 	type="net.sb.gecomp.commons.model.Competizione"		/>
 
   <resultMap id="IscrizioneResult" class="Iscrizione">
     <result property="idIscrizione" 	column="ID_ISCRIZIONE"										/>

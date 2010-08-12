@@ -6,9 +6,9 @@
 
 <sqlMap namespace="TipoPrestazione">
 
-  <typeAlias alias="TipoPrestazione" type="org.sbelli.gecomp.orm.model.TipoPrestazione"/>
+  <typeAlias alias="TipoPrestazione" type="net.sb.gecomp.commons.model.TipoPrestazione"/>
 
-  <resultMap id="TipoPrestazioneResult" class="org.sbelli.gecomp.orm.model.TipoPrestazione">
+  <resultMap id="TipoPrestazioneResult" class="net.sb.gecomp.commons.model.TipoPrestazione">
     <result property="idTipoPrestazione" 	column="ID_TIPO_PRESTAZIONE"/>
     <result property="descrizione" 			column="DESCRIZIONE"/>
   </resultMap>
@@ -29,7 +29,7 @@
     select * from tipo_prestazione where ID_TIPO_PRESTAZIONE = #idTipoPrestazione# order by DESCRIZIONE
   </select>
    
-  <insert id="insert" parameterClass="org.sbelli.gecomp.orm.model.TipoPrestazione">
+  <insert id="insert" parameterClass="net.sb.gecomp.commons.model.TipoPrestazione">
     insert into tipo_prestazione (
       ID_TIPO_PRESTAZIONE,
       DESCRIZIONE )     
@@ -38,7 +38,7 @@
     )
   </insert>
 
-  <update id="update" parameterClass="org.sbelli.gecomp.orm.model.TipoPrestazione">
+  <update id="update" parameterClass="net.sb.gecomp.commons.model.TipoPrestazione">
     update tipo_prestazione set
       ID_TIPO_PRESTAZIONE = #idTipoPrestazione#,
       DESCRIZIONE = #descrizione#

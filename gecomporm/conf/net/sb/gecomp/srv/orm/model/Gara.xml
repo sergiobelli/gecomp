@@ -6,8 +6,8 @@
 
 <sqlMap namespace="Gara">
 
-  <typeAlias alias="Gara" 			type="org.sbelli.gecomp.orm.model.Gara"/>
-  <typeAlias alias="Competizione" 	type="org.sbelli.gecomp.orm.model.Competizione"/>
+  <typeAlias alias="Gara" 			type="net.sb.gecomp.commons.model.Gara"/>
+  <typeAlias alias="Competizione" 	type="net.sb.gecomp.commons.model.Competizione"/>
 
   <resultMap id="GaraResult" class="Gara">
     <result property="idGara"       column="ID_GARA"/>

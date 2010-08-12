@@ -6,9 +6,9 @@
 
 <sqlMap namespace="TipoMisura">
 
-  <typeAlias alias="TipoMisura" type="org.sbelli.gecomp.orm.model.TipoMisura"/>
+  <typeAlias alias="TipoMisura" type="net.sb.gecomp.commons.model.TipoMisura"/>
 
-  <resultMap id="TipoMisuraResult" class="org.sbelli.gecomp.orm.model.TipoMisura">
+  <resultMap id="TipoMisuraResult" class="net.sb.gecomp.commons.model.TipoMisura">
     <result property="idTipoMisura" 		column="ID_TIPO_MISURA"/>
     <result property="descrizione" 			column="DESCRIZIONE"/>
     <result property="unitaMisura" 			column="UNITA_MISURA"/>
@@ -34,7 +34,7 @@
     order by DESCRIZIONE, UNITA_MISURA, MODALITA_COMPARAZIONE
   </select>
    
-  <insert id="insert" parameterClass="org.sbelli.gecomp.orm.model.TipoMisura">
+  <insert id="insert" parameterClass="net.sb.gecomp.commons.model.TipoMisura">
     insert into tipo_misura (
       ID_TIPO_MISURA,
       DESCRIZIONE,
@@ -45,7 +45,7 @@
     )
   </insert>
 
-  <update id="update" parameterClass="org.sbelli.gecomp.orm.model.TipoMisura">
+  <update id="update" parameterClass="net.sb.gecomp.commons.model.TipoMisura">
     update tipo_misura set
       ID_TIPO_MISURA = #idTipoMisura#,
       DESCRIZIONE = #descrizione#,

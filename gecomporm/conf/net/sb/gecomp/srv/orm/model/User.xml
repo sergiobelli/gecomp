@@ -6,7 +6,7 @@
 
 <sqlMap namespace="User">
 
-  <typeAlias alias="User" type="org.sbelli.gecomp.orm.model.User"/>
+  <typeAlias alias="User" type="net.sb.gecomp.commons.model.User"/>
 
 
   <resultMap id="UserResult" class="User">

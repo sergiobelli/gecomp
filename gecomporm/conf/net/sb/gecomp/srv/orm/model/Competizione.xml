@@ -6,7 +6,7 @@
 
 <sqlMap namespace="Competizione">
 
-  <typeAlias alias="Competizione" type="org.sbelli.gecomp.orm.model.Competizione"/>
+  <typeAlias alias="Competizione" type="net.sb.gecomp.commons.model.Competizione"/>
 
   <resultMap id="CompetizioneResult" class="Competizione">
     <result property="idCompetizione"        column="ID_COMPETIZIONE"/>

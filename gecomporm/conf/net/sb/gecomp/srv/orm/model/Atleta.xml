@@ -6,9 +6,9 @@
 
 <sqlMap namespace="Atleta">
 
-  <typeAlias alias="Atleta" type="org.sbelli.gecomp.orm.model.Atleta"/>
+  <typeAlias alias="Atleta" type="net.sb.gecomp.commons.model.Atleta"/>
 
-  <resultMap id="AtletaResult" class="org.sbelli.gecomp.orm.model.Atleta">
+  <resultMap id="AtletaResult" class="net.sb.gecomp.commons.model.Atleta">
     <result property="idAtleta" column="ID_ATLETA"/>
     <result property="cognome" column="COGNOME"/>
     <result property="nome" column="NOME"/>
@@ -33,7 +33,7 @@
     select * from atleta where ID_ATLETA = #idAtleta# order by COGNOME, NOME, SESSO, ANNO_NASCITA
   </select>
    
-  <insert id="insertAtleta" parameterClass="org.sbelli.gecomp.orm.model.Atleta">
+  <insert id="insertAtleta" parameterClass="net.sb.gecomp.commons.model.Atleta">
     insert into atleta (
       ID_ATLETA,
       COGNOME,
@@ -46,7 +46,7 @@
     )
   </insert>
 
-  <update id="updateAtleta" parameterClass="org.sbelli.gecomp.orm.model.Atleta">
+  <update id="updateAtleta" parameterClass="net.sb.gecomp.commons.model.Atleta">
     update atleta set
       ID_ATLETA = #idAtleta#,
       COGNOME = #cognome#,

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+    <settings
+	  cacheModelsEnabled="true" 
+	  enhancementEnabled="true" 
+	  lazyLoadingEnabled="true" 
+	  maxRequests="90" 
+	  maxSessions="20" 
+	  maxTransactions="10" 
+	  useStatementNamespaces="true" />
+	
+  <!-- Tables -->
+  
+  <!--
+
+  -->
+  
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/Societa.xml"/>
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/Atleta.xml"/>
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/Categoria.xml"/>
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/Competizione.xml"/>
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/Gara.xml"/>
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/Iscrizione.xml"/>
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/Prestazione.xml"/>
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/TipoPrestazione.xml"/>
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/TipoMisura.xml"/>
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/Properties.xml"/>  
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/CategoriaGara.xml"/>
+  <sqlMap resource="net/sb/gecomp/srv/orm/model/User.xml"/>   
+  
+
+</sqlMapConfig>

@@ -6,7 +6,7 @@
 
 <sqlMap namespace="Categoria">
 
-  <typeAlias alias="Categoria" type="org.sbelli.gecomp.orm.model.Categoria"/>
+  <typeAlias alias="Categoria" type="net.sb.gecomp.commons.model.Categoria"/>
 
   <resultMap id="CategoriaResult" class="Categoria">
     <result property="idCategoria" column="ID_CATEGORIA"/>
