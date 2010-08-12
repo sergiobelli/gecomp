@@ -12,19 +12,19 @@
     <locale-config>
 		<default-locale>it</default-locale>
 	</locale-config>
-	<message-bundle>org.sbelli.gecomp.console.bundle.messages</message-bundle>
+	<message-bundle>net.sb.gecomp.web.bundle.messages</message-bundle>
     
   </application>
 
 <!-- 
 <validator>
 	<validator-id>ValoreMisuraValidator</validator-id>	
-	<validator-class>org.sbelli.gecomp.console.prestazioni.controllers.ValoreMisuraValidator</validator-class>
+	<validator-class>net.sb.gecomp.web.controllers.prestazioni.ValoreMisuraValidator</validator-class>
 </validator>
 -->
 <converter>
 	<converter-id>ValoreMisuraConverter</converter-id>
-	<converter-class>org.sbelli.gecomp.console.prestazioni.converters.ValoreMisuraConverter</converter-class>
+	<converter-class>net.sb.gecomp.web.converters.prestazioni.ValoreMisuraConverter</converter-class>
 </converter>
 
 
@@ -180,7 +180,7 @@
 
    <managed-bean> 
       <managed-bean-name>InserisciAtletaExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.atleti.executers.InserisciAtletaExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.atleti.InserisciAtletaExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
       <managed-property>
 		<property-name>delegate</property-name>
@@ -189,135 +189,135 @@
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ModificaAtletaExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.atleti.executers.ModificaAtletaExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.atleti.ModificaAtletaExecuter</managed-bean-class> 
       <managed-bean-scope>session</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ElencoAtletiExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.atleti.executers.ElencoAtletiExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.atleti.ElencoAtletiExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
 
    <managed-bean> 
       <managed-bean-name>InserisciCompetizioneExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.competizione.executers.InserisciCompetizioneExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.competizione.InserisciCompetizioneExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ModificaCompetizioneExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.competizione.executers.ModificaCompetizioneExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.competizione.ModificaCompetizioneExecuter</managed-bean-class> 
       <managed-bean-scope>session</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ListaCompetizioniExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.competizione.executers.ListaCompetizioniExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.competizione.ListaCompetizioniExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
       
    <managed-bean> 
       <managed-bean-name>InserisciGaraExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.gare.executers.InserisciGaraExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.gare.InserisciGaraExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ModificaGaraExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.gare.executers.ModificaGaraExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.gare.ModificaGaraExecuter</managed-bean-class> 
       <managed-bean-scope>session</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ListaGareExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.gare.executers.ListaGareExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.gare.ListaGareExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
 
    <managed-bean> 
       <managed-bean-name>InserisciIscrizioneExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.iscrizioni.executers.InserisciIscrizioneExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.iscrizioni.InserisciIscrizioneExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ModificaIscrizioneExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.iscrizioni.executers.ModificaIscrizioneExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.iscrizioni.ModificaIscrizioneExecuter</managed-bean-class> 
       <managed-bean-scope>session</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>EliminaIscrizioneExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.iscrizioni.executers.EliminaIscrizioneExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.iscrizioni.EliminaIscrizioneExecuter</managed-bean-class> 
       <managed-bean-scope>session</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ListaIscrizioniExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.iscrizioni.executers.ListaIscrizioniExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.iscrizioni.ListaIscrizioniExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
 	  
 	<managed-bean> 
 		<managed-bean-name>ListaPrestazioniExecuter</managed-bean-name>
-		<managed-bean-class>org.sbelli.gecomp.console.prestazioni.executers.ListaPrestazioniExecuter</managed-bean-class> 
+		<managed-bean-class>net.sb.gecomp.web.executers.prestazioni.ListaPrestazioniExecuter</managed-bean-class> 
 		<managed-bean-scope>request</managed-bean-scope> 
 	</managed-bean>
     <managed-bean> 
 		<managed-bean-name>InserisciPrestazioneExecuter</managed-bean-name>
-		<managed-bean-class>org.sbelli.gecomp.console.prestazioni.executers.InserisciPrestazioneExecuter</managed-bean-class> 
+		<managed-bean-class>net.sb.gecomp.web.executers.prestazioni.InserisciPrestazioneExecuter</managed-bean-class> 
 		<managed-bean-scope>request</managed-bean-scope> 
 	</managed-bean>
 	<managed-bean> 
 		<managed-bean-name>ModificaPrestazioneExecuter</managed-bean-name>
-		<managed-bean-class>org.sbelli.gecomp.console.prestazioni.executers.ModificaPrestazioneExecuter</managed-bean-class> 
+		<managed-bean-class>net.sb.gecomp.web.executers.prestazioni.ModificaPrestazioneExecuter</managed-bean-class> 
 		<managed-bean-scope>session</managed-bean-scope> 
 	</managed-bean>
 	
    <managed-bean> 
       <managed-bean-name>InserisciCategoriaExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.categorie.executers.InserisciCategoriaExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.categorie.InserisciCategoriaExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ModificaCategoriaExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.categorie.executers.ModificaCategoriaExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.categorie.ModificaCategoriaExecuter</managed-bean-class> 
       <managed-bean-scope>session</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ElencoCategorieExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.categorie.executers.ElencoCategorieExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.categorie.ElencoCategorieExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
      
    <managed-bean> 
       <managed-bean-name>ClassificaCompetizioneExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.classifiche.executers.ClassificaCompetizioneExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.classifiche.ClassificaCompetizioneExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ClassificaGaraExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.classifiche.executers.ClassificaGaraExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.classifiche.ClassificaGaraExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ClassificaSocietaGaraExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.classifiche.executers.ClassificaSocietaGaraExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.classifiche.ClassificaSocietaGaraExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    
    <managed-bean> 
       <managed-bean-name>InserisciSocietaExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.societa.executers.InserisciSocietaExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.societa.InserisciSocietaExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ModificaSocietaExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.societa.executers.ModificaSocietaExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.societa.ModificaSocietaExecuter</managed-bean-class> 
       <managed-bean-scope>session</managed-bean-scope> 
    </managed-bean>
    <managed-bean> 
       <managed-bean-name>ListaSocietaExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.societa.executers.ListaSocietaExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.societa.ListaSocietaExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
    
    <managed-bean> 
    	  <managed-bean-name>DoLoginExecuter</managed-bean-name>
-      <managed-bean-class>org.sbelli.gecomp.console.login.executers.DoLoginExecuter</managed-bean-class> 
+      <managed-bean-class>net.sb.gecomp.web.executers.login.DoLoginExecuter</managed-bean-class> 
       <managed-bean-scope>request</managed-bean-scope> 
    </managed-bean>
 
