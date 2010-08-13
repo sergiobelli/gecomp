@@ -50,7 +50,16 @@ public class UserDao extends DbManager implements IGeCompDao<User> {
 			return (List<User>) getDataBaseDao().queryForList(LIST_USER);
 		} catch (Exception e) {
 			GeCompExceptionManager.traceException(logger, e);
-			throw new GeCompOrmException(e.getMessage());
+			
+			//FS#80 - GUI Login : se ci sono eccezioni presentare un messaggio + leggibile
+			if (e instanceof org.springframework.jdbc.CannotGetJdbcConnectionException) {
+				throw new GeCompOrmException("net.sb.gecomp.srv.orm.dao.connection.exception");
+			}
+			//FS#80 - GUI Login : se ci sono eccezioni presentare un messaggio + leggibile
+			
+			else {
+				throw new GeCompOrmException(e.getMessage());
+			}
 		}
 	}
 
