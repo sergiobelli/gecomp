@@ -47,6 +47,10 @@ public class TipoMisura extends GecompModelObject {
 		}
 	}
 	
+	private Boolean valido;
+	public Boolean getValido() { return valido; }
+	public void setValido(Boolean valido) { this.valido = valido; }
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -74,6 +78,11 @@ public class TipoMisura extends GecompModelObject {
 			if (other.unitaMisura != null)
 				return false;
 		} else if (!unitaMisura.equals(other.unitaMisura))
+			return false;
+		if (valido == null) {
+			if (other.valido != null)
+				return false;
+		} else if (!valido.equals(other.valido))
 			return false;
 		return true;
 	}

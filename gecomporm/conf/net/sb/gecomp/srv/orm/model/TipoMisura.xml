@@ -13,6 +13,7 @@
     <result property="descrizione" 			column="DESCRIZIONE"/>
     <result property="unitaMisura" 			column="UNITA_MISURA"/>
     <result property="modalitaComparazione" column="MODALITA_COMPARAZIONE"/>
+    <result property="valido" 				column="FLG_VALIDITA"/>
   </resultMap>
 
   <cacheModel id="TipoMisuraCache" type="LRU" >
@@ -24,7 +25,10 @@
   </cacheModel>
   
   <select id="list" resultMap="TipoMisuraResult" cacheModel="TipoMisuraCache">  
-    select * from tipo_misura order by DESCRIZIONE, UNITA_MISURA, MODALITA_COMPARAZIONE
+    select 	* 
+    from 	tipo_misura
+    where	FLG_VALIDITA = 1 
+    order by DESCRIZIONE, UNITA_MISURA, MODALITA_COMPARAZIONE
   </select>
 
   <select id="select" parameterClass="long" resultMap="TipoMisuraResult" cacheModel="TipoMisuraCache">
@@ -39,9 +43,10 @@
       ID_TIPO_MISURA,
       DESCRIZIONE,
       UNITA_MISURA,
-      MODALITA_COMPARAZIONE )     
+      MODALITA_COMPARAZIONE,
+      FLG_VALIDITA )     
     values (
-      #idTipoMisura#, #descrizione#, #unitaMisura#, #modalitaComparazione#
+      #idTipoMisura#, #descrizione#, #unitaMisura#, #modalitaComparazione#, 1
     )
   </insert>
 
@@ -51,6 +56,7 @@
       DESCRIZIONE = #descrizione#,
       UNITA_MISURA = #unitaMisura#,
       MODALITA_COMPARAZIONE = #modalitaComparazione#
+      FLG_VALIDITA = #valido#
     where
       ID_TIPO_MISURA = #idTipoMisura#
   </update>
