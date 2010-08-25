@@ -13,7 +13,7 @@ public class IscrizioneView extends Iscrizione {
 	public IscrizioneView(Iscrizione iscrizione) {
 		ViewUtils.copyProperties(this, iscrizione);//FIXME:Il numero pettorale = null lo trasforma in numero pettorale = 0!!! Correggere!!!
 	}
-	@Override
+	
 	public String getNumeroPettorale() {
 		if (Eval.isNotNull(super.getNumeroPettorale())) {
 			return super.getNumeroPettorale();
@@ -21,6 +21,5 @@ public class IscrizioneView extends Iscrizione {
 			return "n.d.";
 		}
 	}
-	
 	
 }
