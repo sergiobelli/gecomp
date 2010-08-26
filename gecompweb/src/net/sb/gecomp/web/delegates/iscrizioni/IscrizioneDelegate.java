@@ -20,8 +20,8 @@ import net.sb.gecomp.web.delegates.prestazioni.PrestazioneDelegate;
 
 public class IscrizioneDelegate extends GenericDelegate {
 
-	private IscrizioneController controller = new IscrizioneController();
-	private IscrizioneBridge bridge = new IscrizioneBridge();
+	private IscrizioneController 	controller 	= new IscrizioneController();
+	private IscrizioneBridge 		bridge 		= new IscrizioneBridge();
 
 	public void delete(GecompModelObject element) throws GeCompException {
 		try {
@@ -32,9 +32,11 @@ public class IscrizioneDelegate extends GenericDelegate {
 			if (Eval.isNotNull(prestazioneAssociata)) {
 				logger.warn("Trovata una prestazione associata all'iscrizione " + prestazioneAssociata);
 				throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.delete.prestazione_associata");
-			} else { 
+			} else {
+				logger.info("Si procede nell'eliminazione dell'iscrizione...");
 				bridge.delete(iscrizione);			
 			}
+			logger.info("Eliminazione iscrizione eseguita con successo.");
 		} catch (GeCompException gce) {
 			logger.error("Errore gestito", gce);
 			throw gce;
