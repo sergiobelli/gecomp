@@ -21,9 +21,9 @@
         <property name="useTransactionAwareDataSource">
             <value>true</value>
         </property>
-        <property name="configLocation">
-            <value>${sqlMapConfig.url}</value>
-        </property>
+        <property 
+        	name="configLocation" 
+        	value="classpath:net/sb/gecomp/srv/orm/ibatis/SqlMapConfig.xml"/>
     </bean>
 	
     <bean id="dataBaseDao" class="net.sb.gecomp.srv.orm.ibatis.DataBaseDao">
