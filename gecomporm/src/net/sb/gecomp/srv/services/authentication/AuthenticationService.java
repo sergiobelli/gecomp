@@ -6,23 +6,24 @@ import net.sb.gecomp.commons.exceptions.GeCompSrvException;
 import net.sb.gecomp.commons.model.User;
 import net.sb.gecomp.commons.services.IAuthenticationService;
 import net.sb.gecomp.srv.orm.dao.UserDao;
-import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
 import org.apache.log4j.Logger;
 
-@WebService(endpointInterface = "net.sb.gecomp.commons.services.IAuthenticationService", serviceName = "aauthenticationService")
+@WebService(endpointInterface = "net.sb.gecomp.commons.services.IAuthenticationService", serviceName = "authenticationService")
 public class AuthenticationService implements IAuthenticationService {
 	
 	protected Logger logger = Logger.getLogger(this.getClass().getName());
 	
-	private UserDao dao = DbManagerFactory.getInstance().getUserDao();
-
+	private UserDao dao;
+	public UserDao getDao() {return dao;}
+	public void setDao(UserDao dao) {this.dao = dao;}
+	
 	public User login(String username, String password) throws GeCompSrvException {
 		logger.info("Start login operation for user " + username);
 
 		User result = null;
 		long before = System.currentTimeMillis();
-		result = dao.isAutheticated(username, password);
+		result = getDao().isAutheticated(username, password);
 		long after = System.currentTimeMillis();
 		
 		logger.info("Login operation for user "+username+"] took time : "+(after - before)+"ms");
