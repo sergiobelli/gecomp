@@ -9,8 +9,9 @@
 	</target>
 
 	<path id="classpath.id">
-    	<fileset dir="${lib.dir}" includes="**/*.jar" />
-    	<fileset dir="${common.lib.dir}" includes="**/*.jar"/>
+		<fileset dir="../gecomplib/common" includes="**/*.jar" />
+		<fileset dir="../gecomplib/web" includes="**/*.jar" />
+		<fileset dir="../gecomplib/dist" includes="**/*.jar" />
  	</path>
 
 	<target name="clean" description="Clean the project">
@@ -45,7 +46,9 @@
 			<fileset dir="web"><exclude name="WEB-INF/web.xml"/></fileset>
       		<classes dir="${conf.dir}" />
       		<classes dir="${classes.dir}" />
-        	<lib dir="${lib.dir}/"><exclude name="*/*.*"/></lib>
+			<lib dir="../gecomplib/common" />
+			<lib dir="../gecomplib/web" />
+			<lib dir="../gecomplib/dist" />
     		<manifest><attribute name="Application-Version" value="${version.num}_${init.timestamp}"/></manifest>
     	</war>
 	</target>
