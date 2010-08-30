@@ -1,9 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
-<beans>
-    
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+
+	<!-- CLIENTS -->
+	<jaxws:client id="authenticationService"
+	          serviceClass="net.sb.gecomp.commons.services.IAuthenticationService"
+	          address="http://localhost:8080/gecompsrv/AuthenticationService" />
+    <!-- CLIENTS -->
+                  
 	<!-- BRIDGES -->
-	<!--<bean id="atletaBridge" class="net.sb.gecomp.web.bridges.atleti.AtletaBridge" />-->
+	<bean id="authenticationBridge" class="net.sb.gecomp.web.bridges.authentication.AuthenticationBridge">
+		<property name="service"><ref bean="authenticationService" /></property>
+	</bean>
 	<!-- BRIDGES -->
 	
 	<!-- CONTROLLERS -->
@@ -12,18 +25,21 @@
 	
 	<!-- DELEGATES -->
 	<!--<bean id="atletaDelegate" class="net.sb.gecomp.web.delegates.atleti.AtletaDelegate">
-		<property name="bridge"><ref bean="atletaBridge" />
-		<property name="controller"><ref bean="atletaController" />
+		<property name="bridge"><ref bean="atletaBridge" /></property>
+		<property name="controller"><ref bean="atletaController" /></property>
 	</bean>-->
+	<bean id="loginDelegate" class="net.sb.gecomp.web.delegates.authentication.LoginDelegate">
+		<property name="bridge"><ref bean="authenticationBridge" /></property>
+	</bean>
 	<!-- DELEGATES -->
 	
 	<!-- EXECUTERS -->
 	<!--<bean id="atletaExecuter" class="net.sb.gecomp.web.executers.atleti.AtletaExecuter">
-		<property name="delegate"><ref bean="atletaDelegate" />
+		<property name="delegate"><ref bean="atletaDelegate" /></property>
 	</bean>
 	<bean id="InserisciAtletaExecuter" class="net.sb.gecomp.web.executers.atleti.InserisciAtletaExecuter">
-		<property name="delegate"><ref bean="atletaDelegate" />
+		<property name="delegate"><ref bean="atletaDelegate" /></property>
 	</bean>-->
 	<!-- EXECUTERS -->
-	
+
 </beans>
