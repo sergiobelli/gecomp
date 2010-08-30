@@ -41,7 +41,7 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 	</bean>
 	
 	<jaxws:endpoint id="authenticationService" 	implementor="#authenticationSrv" 	address="/AuthenticationService" />
-	<!--<jaxws:endpoint id="societaService" 		implementor="#societaSrv" 			address="/SocietaService" />-->
+	<jaxws:endpoint id="societaService" 		implementor="#societaSrv" 			address="/SocietaService" />
 		  
 </beans>
 <!-- END SNIPPET: beans -->
