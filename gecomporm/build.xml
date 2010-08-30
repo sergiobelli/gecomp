@@ -49,7 +49,7 @@
 	  </target>
 	  
 	  <target name="deploy" depends="dist">
-        <copy  file="${dist.dir}/${jar.file}" todir="${lib.dir}"/>
+        <copy  file="${dist.dir}/${jar.file}" todir="${deploy.dir}"/>
     </target>
 	  
 </project>
