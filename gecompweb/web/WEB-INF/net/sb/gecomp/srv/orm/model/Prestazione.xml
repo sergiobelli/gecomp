@@ -6,11 +6,11 @@
 
 <sqlMap namespace="Prestazione">
 
-  <typeAlias alias="Prestazione" 		type="org.sbelli.gecomp.orm.model.Prestazione"		/>
-  <typeAlias alias="Iscrizione"  		type="org.sbelli.gecomp.orm.model.Iscrizione"		/>
-  <typeAlias alias="TipoPrestazione"	type="org.sbelli.gecomp.orm.model.TipoPrestazione"	/>
-  <typeAlias alias="TipoMisura" 		type="org.sbelli.gecomp.orm.model.TipoMisura"		/>
-  <typeAlias alias="Gara" 				type="org.sbelli.gecomp.orm.model.Gara"				/>
+  <typeAlias alias="Prestazione" 		type="net.sb.gecomp.commons.model.Prestazione"		/>
+  <typeAlias alias="Iscrizione"  		type="net.sb.gecomp.commons.model.Iscrizione"		/>
+  <typeAlias alias="TipoPrestazione"	type="net.sb.gecomp.commons.model.TipoPrestazione"	/>
+  <typeAlias alias="TipoMisura" 		type="net.sb.gecomp.commons.model.TipoMisura"		/>
+  <typeAlias alias="Gara" 				type="net.sb.gecomp.commons.model.Gara"				/>
 
   <resultMap id="PrestazioneResult" class="Prestazione">
     <result property="idPrestazione" 	column="ID_PRESTAZIONE"		/>

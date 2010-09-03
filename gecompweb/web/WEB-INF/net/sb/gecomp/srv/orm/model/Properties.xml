@@ -6,7 +6,7 @@
 
 <sqlMap namespace="Properties">
 
-  <typeAlias alias="Properties" type="org.sbelli.gecomp.orm.model.Properties"/>
+  <typeAlias alias="Properties" type="net.sb.gecomp.commons.model.Properties"/>
 
   <resultMap id="PropertiesResult" class="Properties">
     <result property="id" column="ID"/>

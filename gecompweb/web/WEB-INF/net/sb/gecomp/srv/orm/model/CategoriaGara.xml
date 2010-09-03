@@ -6,10 +6,10 @@
 
 <sqlMap namespace="CategoriaGara">
 
-  <typeAlias alias="CategoriaGara" 	type="org.sbelli.gecomp.orm.model.CategoriaGara"/>
-  <typeAlias alias="Categoria" 		type="org.sbelli.gecomp.orm.model.Categoria"/>
-  <typeAlias alias="Competizione" 	type="org.sbelli.gecomp.orm.model.Competizione"/>
-  <typeAlias alias="Gara" 			type="org.sbelli.gecomp.orm.model.Gara"/>
+  <typeAlias alias="CategoriaGara" 	type="net.sb.gecomp.commons.model.CategoriaGara"/>
+  <typeAlias alias="Categoria" 		type="net.sb.gecomp.commons.model.Categoria"/>
+  <typeAlias alias="Competizione" 	type="net.sb.gecomp.commons.model.Competizione"/>
+  <typeAlias alias="Gara" 			type="net.sb.gecomp.commons.model.Gara"/>
   
   <resultMap id="CategoriaGaraResult" class="CategoriaGara">
     <result property="idCategoriaGara" column="ID_CATEGORIA_GARA"/>

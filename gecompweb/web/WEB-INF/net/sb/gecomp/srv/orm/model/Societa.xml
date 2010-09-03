@@ -6,7 +6,7 @@
 
 <sqlMap namespace="Societa">
 
-  <typeAlias alias="Societa" type="org.sbelli.gecomp.orm.model.Societa"/>
+  <typeAlias alias="Societa" type="net.sb.gecomp.commons.model.Societa"/>
 
   <resultMap id="SocietaResult" class="Societa">
     <result property="id" 				column="ID"/>
