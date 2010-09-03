@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GeComp-Srv" basedir="." default="deploy">
+
+	<path id="classpath.id">
+		<fileset dir="../gecomplib/common" includes="**/*.jar" />
+    	<fileset dir="../gecomplib/server" includes="**/*.jar" />
+		<fileset dir="../gecomplib/dist" includes="**/*.jar" />
+ 	</path>
+	
+	<target name="clean">
+    	<delete quiet="true" dir="build"/>
+		<delete quiet="true" dir="dist"/>
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="build"/>
+		<mkdir dir="dist"/>
+	</target>
+	
+	<target name="build" depends="init">
+    	<javac classpathref="classpath.id" 
+    		srcdir="src"
+			destdir="build" 
+    		debug="yes"/>
+		<copy todir="build">
+			<fileset dir="src">
+    			<include name="**/*.xml"/>
+  				<include name="**/*.properties"/>
+			</fileset>
+  		</copy>
+		<copy todir="build">
+			<fileset dir="conf">
+    			<include name="**/*.xml"/>
+  				<include name="**/*.properties"/>
+			</fileset>
+  		</copy>
+	</target>
+	
+	<target name="dist" depends="build">
+		<war destfile="dist/gecompsrv.war" webxml="webapp/WEB-INF/web.xml">
+			<fileset dir="webapp"><exclude name="WEB-INF/web.xml"/></fileset>
+	  		<classes dir="build" />
+	    	<lib dir="../gecomplib/common" />
+	    	<lib dir="../gecomplib/server" />
+			<lib dir="../gecomplib/dist" />
+		</war>
+	</target>
+	
+	<target name="deploy" depends="dist">
+    	<copy todir="D:\sergio\programmi\java\server\apache-tomcat-6.0.24\webapps">
+    		<fileset dir="dist/"><include name="gecompsrv.war" /></fileset>
+    	</copy>
+  	</target>
+
+</project>
