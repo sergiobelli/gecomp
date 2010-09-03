@@ -80,6 +80,7 @@ public class UserDao extends DbManager implements IGeCompDao<User> {
 		for (User user : list()) {
 			if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
 				result = user;
+				break;
 			}
 		}
 		long after = System.currentTimeMillis();
