@@ -60,7 +60,7 @@ public class DoLoginExecuter {
 		}
 		
 		logger.info("Login operation result = " + result);
-		return result;		
+		return result;
 	}
 
 }
