@@ -42,9 +42,13 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 	<bean id="competizioneSrv" class="net.sb.gecomp.srv.services.competizioni.CompetizioneService">
 		<property name="dao"><ref bean="CompetizioneDao" /></property>
 	</bean>
-	
+	<bean id="propertiesSrv" class="net.sb.gecomp.srv.services.properties.PropertiesService">
+		<property name="dao"><ref bean="PropertiesDao" /></property>
+	</bean>
+		
 	<jaxws:endpoint id="authenticationService" 	implementor="#authenticationSrv" 	address="/AuthenticationService" />
 	<jaxws:endpoint id="societaService" 		implementor="#societaSrv" 			address="/SocietaService" />
 	<jaxws:endpoint id="competizioneService" 	implementor="#competizioneSrv" 		address="/CompetizioneService" />
+	<jaxws:endpoint id="propertiesService" 		implementor="#propertiesSrv" 		address="/PropertiesService" />
 </beans>
 <!-- END SNIPPET: beans -->

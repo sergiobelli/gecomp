@@ -9,34 +9,35 @@ import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.view.CompetizioneView;
 import net.sb.gecomp.commons.services.ICompetizioneService;
 import net.sb.gecomp.commons.utils.Eval;
-import net.sb.gecomp.srv.services.competizioni.CompetizioneService;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class CompetizioneBridge extends GenericBridge {
 
-	private final ICompetizioneService service = new CompetizioneService();
+	private ICompetizioneService service;
+	public ICompetizioneService getService() { return service; }
+	public void setService(ICompetizioneService service) { this.service = service; }
 	
 	public void delete(GecompModelObject element) throws GeCompException {
 		Competizione competizione = (Competizione) element;
-		service.delete(competizione.getIdCompetizione());
+		getService().delete(competizione.getIdCompetizione());
 	}
 
 	public GecompModelObject insert(GecompModelObject element) throws GeCompException {
-		return service.save((Competizione) element);
+		return getService().save((Competizione) element);
 	}
 
 	public void update(GecompModelObject element) throws GeCompException {
-		service.save((Competizione) element);
+		getService().save((Competizione) element);
 	}
 
 	public CompetizioneView get(Long id) throws GeCompException {
-		return new CompetizioneView(service.get(id));
+		return new CompetizioneView(getService().get(id));
 	}
 	
 	public List<CompetizioneView> list() throws GeCompException {
 		List<CompetizioneView> result = new ArrayList<CompetizioneView>();
-		List<Competizione> competizioni = service.list();
+		List<Competizione> competizioni = getService().list();
 		if (Eval.isNotEmpty(competizioni)) {
 			for (Competizione competizione : competizioni) {
 				result.add(new CompetizioneView(competizione));

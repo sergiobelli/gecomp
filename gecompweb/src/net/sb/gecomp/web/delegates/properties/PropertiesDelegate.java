@@ -6,12 +6,19 @@ import net.sb.gecomp.commons.model.view.PropertiesView;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.properties.PropertiesBridge;
 import net.sb.gecomp.web.delegates.GenericDelegate;
+import net.sb.gecomp.web.utils.context.GecompContextFactory;
 
 
 public class PropertiesDelegate extends GenericDelegate {
 	
-	private PropertiesBridge bridge = new PropertiesBridge();
-
+	private PropertiesBridge bridge;
+	public PropertiesBridge getBridge() {
+		if (Eval.isNull(bridge)) {
+			setBridge((PropertiesBridge)GecompContextFactory.getContext().getBean("propertiesBridge"));
+		}
+		return bridge; }
+	public void setBridge(PropertiesBridge bridge) { this.bridge = bridge; }
+	
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
 		PropertiesView property = (PropertiesView)element;
 		return property;
@@ -22,21 +29,22 @@ public class PropertiesDelegate extends GenericDelegate {
 		retrieve(property);
 		logger.debug("Customized property = " + property);
 		if (Eval.isNull(property.getId())) {
-			bridge.insert(property);
+			getBridge().insert(property);
 		} else {
-			bridge.update(property);
+			getBridge().update(property);
 		}		
 	}
 
 	public void delete(GecompModelObject element) throws GeCompException {
 		PropertiesView property = (PropertiesView)element;
-		bridge.delete(property);		
+		getBridge().delete(property);		
 	}
 
 	public PropertiesView get(Long id) throws GeCompException {
-		return bridge.get(id);
+//		return getBridge().get(id);
+		throw new GeCompException("Not usable!");
 	}
 	public PropertiesView get(String code) throws GeCompException {
-		return bridge.get(code);
+		return getBridge().get(code);
 	}
 }

@@ -22,6 +22,12 @@
 	<jaxws:client id="societaService"
 	          serviceClass="net.sb.gecomp.commons.services.ISocietaService"
 	          address="http://localhost:8080/gecompsrv/SocietaService" />
+	<jaxws:client id="competizioneService"
+	          serviceClass="net.sb.gecomp.commons.services.ICompetizioneService"
+	          address="http://localhost:8080/gecompsrv/CompetizioneService" />
+	<jaxws:client id="propertiesService"
+	          serviceClass="net.sb.gecomp.commons.services.IPropertiesService"
+	          address="http://localhost:8080/gecompsrv/PropertiesService" />
 	<!-- CLIENTS -->
                   
 	<!-- BRIDGES -->
@@ -30,6 +36,12 @@
 	</bean>
 	<bean id="societaBridge" class="net.sb.gecomp.web.bridges.societa.SocietaBridge">
 		<property name="service"><ref bean="societaService" /></property>
+	</bean>
+	<bean id="competizioneBridge" class="net.sb.gecomp.web.bridges.competizione.CompetizioneBridge">
+		<property name="service"><ref bean="competizioneService" /></property>
+	</bean>
+	<bean id="propertiesBridge" class="net.sb.gecomp.web.bridges.properties.PropertiesBridge">
+		<property name="service"><ref bean="propertiesService" /></property>
 	</bean>
 	<!-- BRIDGES -->
 	
@@ -47,6 +59,12 @@
 	</bean>
 	<bean id="societaDelegate" class="net.sb.gecomp.web.delegates.societa.SocietaDelegate">
 		<property name="bridge"><ref bean="societaBridge" /></property>
+	</bean>
+	<bean id="competizioneDelegate" class="net.sb.gecomp.web.delegates.competizione.CompetizioneDelegate">
+		<property name="bridge"><ref bean="competizioneBridge" /></property>
+	</bean>
+	<bean id="propertiesDelegate" class="net.sb.gecomp.web.delegates.properties.PropertiesDelegate">
+		<property name="bridge"><ref bean="propertiesBridge" /></property>
 	</bean>
 	<!-- DELEGATES -->
 	

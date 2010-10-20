@@ -11,24 +11,39 @@ import net.sb.gecomp.web.bridges.competizione.CompetizioneBridge;
 import net.sb.gecomp.web.bridges.societa.SocietaBridge;
 import net.sb.gecomp.web.controllers.competizione.CompetizioneController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
+import net.sb.gecomp.web.utils.context.GecompContextFactory;
 
 
 public class CompetizioneDelegate extends GenericDelegate {
 
 	private CompetizioneController controller = new CompetizioneController();
 	
-	private CompetizioneBridge bridge = new CompetizioneBridge();
-	private SocietaBridge socBridge = new SocietaBridge();
+	private CompetizioneBridge bridge;
+	public CompetizioneBridge getBridge() {
+		if (Eval.isNull(bridge)) {
+			setBridge((CompetizioneBridge)GecompContextFactory.getContext().getBean("competizioneBridge"));
+		}
+		return bridge; }
+	public void setBridge(CompetizioneBridge bridge) { this.bridge = bridge; }
+	
+	private SocietaBridge societaBridge;
+	public SocietaBridge getSocietaBridge() {
+		if (Eval.isNull(societaBridge)) {
+			setSocietaBridge((SocietaBridge)GecompContextFactory.getContext().getBean("societaBridge"));
+		}
+		return societaBridge;
+	}
+	public void setSocietaBridge(SocietaBridge societaBridge) {this.societaBridge = societaBridge;}
 	
 	public void delete(GecompModelObject element) throws GeCompException {
 		Competizione competizione = (Competizione) element;
-		bridge.delete(competizione);
+		getBridge().delete(competizione);
 	}
 
 	public CompetizioneView retrieve(GecompModelObject element) throws GeCompException {
 		CompetizioneView competizione = (CompetizioneView) element;
 		controller.checks(competizione);
-		competizione.setSocietaOrganizzatrice(socBridge.get(competizione.getSocietaOrganizzatrice().getId()));
+		competizione.setSocietaOrganizzatrice(getSocietaBridge().get(competizione.getSocietaOrganizzatrice().getId()));
 		return competizione;
 	}
 
@@ -39,18 +54,18 @@ public class CompetizioneDelegate extends GenericDelegate {
 		logger.debug("Customized Competizione = " + competizione);
 
 		if (Eval.isNull(competizione.getIdCompetizione())) {
-			bridge.insert(competizione);
+			getBridge().insert(competizione);
 		} else {
-			bridge.update(competizione);
+			getBridge().update(competizione);
 		}
 	}
 
 	public CompetizioneView get(Long id) throws GeCompException {
-		return bridge.get(id);
+		return getBridge().get(id);
 	}
 	
 	public List<CompetizioneView> list() throws GeCompException {
-		return bridge.list();
+		return getBridge().list();
 	}
 
 }

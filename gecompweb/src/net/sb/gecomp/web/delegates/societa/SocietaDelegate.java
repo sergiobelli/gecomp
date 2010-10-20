@@ -18,16 +18,18 @@ public class SocietaDelegate extends GenericDelegate {
 	private SocietaController controller = new SocietaController();
 
 	private SocietaBridge bridge;
-	public SocietaBridge getBridge() { return bridge; }
+	public SocietaBridge getBridge() {
+		if (Eval.isNull(bridge)) {
+			setBridge((SocietaBridge)GecompContextFactory.getContext().getBean("societaBridge"));
+		}
+		return bridge; 
+	}
 	public void setBridge(SocietaBridge bridge) { this.bridge = bridge; }
 
 	public List<SocietaView> list() throws GeCompException {
 		List<SocietaView> lista = null;
 		try {
-			if (Eval.isNull(getBridge())) {
-				setBridge((SocietaBridge)GecompContextFactory.getContext().getBean("societaBridge"));
-			}
-			lista = bridge.list();
+			lista = getBridge().list();
 		} catch (GeCompException e) {
 			logger.error("errore in fase di reperimento della lista delle societa' ", e);
 			throw e;
@@ -46,9 +48,9 @@ public class SocietaDelegate extends GenericDelegate {
 		try {
 			societa = (SocietaView) retrieve(element);
 			if (Eval.isNull(societa.getId())) {
-				bridge.insert(societa);
+				getBridge().insert(societa);
 			} else {
-				bridge.update(societa);
+				getBridge().update(societa);
 			}
 		} catch (GeCompException e) {
 			logger.error("errore in fase di salvataggio della societa' "+societa+", ", e);
@@ -61,7 +63,7 @@ public class SocietaDelegate extends GenericDelegate {
 		try {
 			societa = (SocietaView) element;
 			logger.info("Deleting Societa " + societa);
-			bridge.delete(societa);
+			getBridge().delete(societa);
 			logger.info("Deleted Societa " + societa);
 		} catch (GeCompException ex) {
 			GeCompGuiExceptionManager.manageGUIException(logger, ex, "error.societa.eliminazione.ko");
@@ -70,7 +72,7 @@ public class SocietaDelegate extends GenericDelegate {
 	}
 
 	public SocietaView get(Long idSocieta) throws GeCompException {
-		return bridge.get(idSocieta);
+		return getBridge().get(idSocieta);
 	}
 	
 }
