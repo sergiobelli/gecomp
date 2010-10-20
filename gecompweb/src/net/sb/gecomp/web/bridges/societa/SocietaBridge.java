@@ -9,13 +9,14 @@ import net.sb.gecomp.commons.model.Societa;
 import net.sb.gecomp.commons.model.view.SocietaView;
 import net.sb.gecomp.commons.services.ISocietaService;
 import net.sb.gecomp.commons.utils.Eval;
-import net.sb.gecomp.srv.services.societa.SocietaService;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class SocietaBridge extends GenericBridge {
 
-	private ISocietaService service = new SocietaService();
+	private ISocietaService service;
+	public ISocietaService getService() { return service; }
+	public void setService(ISocietaService service) { this.service = service; }
 	
 	public void delete(GecompModelObject element) throws GeCompException {
 		service.delete(((SocietaView)element).getId());
