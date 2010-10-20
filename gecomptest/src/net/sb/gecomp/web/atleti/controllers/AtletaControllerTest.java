@@ -47,9 +47,21 @@ public class AtletaControllerTest extends TestCase {
 	}
 
 	public final void testChecksSocietaDiAppartenenza() {
-		fail("Not yet implemented"); // TODO
+		try {
+			atletaController.checks(atleta);
+		} catch (GeCompException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
 	}
-
+	public final void testChecksSocietaDiAppartenenzaKo4SocietaNull() {
+		try {
+			atleta.setSocietaAppartenenza(null);
+			atletaController.checks(atleta);
+			fail();
+		} catch (GeCompException e) {}
+	}
+	
 	public final void testChecksNome() {
 		fail("Not yet implemented"); // TODO
 	}
