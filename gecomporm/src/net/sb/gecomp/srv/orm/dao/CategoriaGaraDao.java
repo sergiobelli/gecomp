@@ -19,11 +19,12 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 	protected Logger logger = Logger.getLogger(this.getClass().getName());
 
 
-	private final String GET_CATEGORIA_GARA = "CategoriaGara.selectCategoriaGara";
-	private final String LIST_CATEGORIA_GARA = "CategoriaGara.listCategoriaGara";
-	private final String INSERT_CATEGORIA_GARA = "CategoriaGara.insertCategoriaGara";
-	private final String UPDATE_CATEGORIA_GARA = "CategoriaGara.updateCategoriaGara";
-	private final String DELETE_CATEGORIA_GARA = "CategoriaGara.deleteCategoriaGara";
+	private final String GET_CATEGORIA_GARA 		= "CategoriaGara.selectCategoriaGara";
+	private final String LIST_CATEGORIA_GARA 		= "CategoriaGara.listCategoriaGara";
+	private final String LIST_CATEGORIA_GARA_4_GARA = "CategoriaGara.listCategoriaGara4Gara";
+	private final String INSERT_CATEGORIA_GARA 		= "CategoriaGara.insertCategoriaGara";
+	private final String UPDATE_CATEGORIA_GARA 		= "CategoriaGara.updateCategoriaGara";
+	private final String DELETE_CATEGORIA_GARA 		= "CategoriaGara.deleteCategoriaGara";
 
 	public void delete (Long id) throws GeCompOrmException {
 		try {
@@ -63,7 +64,7 @@ public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaG
 	public List<CategoriaGara> list(Gara gara) throws GeCompOrmException {
 		List<CategoriaGara> categorieGara = null;
 		try {
-			categorieGara = (List<CategoriaGara>) getDataBaseDao().queryForList(LIST_CATEGORIA_GARA, gara);
+			categorieGara = (List<CategoriaGara>) getDataBaseDao().queryForList(LIST_CATEGORIA_GARA_4_GARA, gara);
 		} catch (Exception e) {
 			GeCompExceptionManager.traceException(logger, e);
 			throw new GeCompOrmException(e.getMessage());

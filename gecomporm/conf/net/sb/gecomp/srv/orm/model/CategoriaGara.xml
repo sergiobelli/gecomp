@@ -28,12 +28,21 @@
   <select 
   		id="listCategoriaGara" 
   		resultMap="CategoriaGaraResult" 
+  		cacheModel="CategoriaGaraCache">
+	select 	* 
+	from 	categoria_gara
+  </select>
+  
+  <select 
+  		id="listCategoriaGara4Gara" 
+  		resultMap="CategoriaGaraResult" 
   		parameterClass="Gara"
   		cacheModel="CategoriaGaraCache">
 	select 	* 
 	from 	categoria_gara
 	where	GARA = #idGara#
   </select>
+  
   <select 
   		id="selectCategoriaGara" 
   		resultMap="CategoriaGaraResult" 

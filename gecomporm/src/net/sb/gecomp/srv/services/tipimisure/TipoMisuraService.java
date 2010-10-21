@@ -2,36 +2,40 @@ package net.sb.gecomp.srv.services.tipimisure;
 
 import java.util.List;
 
+import javax.jws.WebService;
+
 import net.sb.gecomp.commons.exceptions.GeCompSrvException;
 import net.sb.gecomp.commons.model.TipoMisura;
 import net.sb.gecomp.commons.services.ITipoMisuraService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.TipoMisuraDao;
-import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
+@WebService(endpointInterface = "net.sb.gecomp.commons.services.ITipoMisuraService", serviceName = "tipoMisuraService")
 public class TipoMisuraService implements ITipoMisuraService {
 
-	private TipoMisuraDao dao = DbManagerFactory.getInstance().getTipoMisuraDao();
+	private TipoMisuraDao dao;
+	public TipoMisuraDao getDao() {return dao;}
+	public void setDao(TipoMisuraDao dao) {this.dao = dao;}
 	
 	public void delete(Long id) throws GeCompSrvException {
-		dao.delete(id);
+		getDao().delete(id);
 	}
 
 	public TipoMisura get(Long id) throws GeCompSrvException {
-		return dao.get(id);
+		return getDao().get(id);
 	}
 
 	public TipoMisura save(TipoMisura tipoMisura) throws GeCompSrvException {
 		if (Eval.isNotNull(tipoMisura.getIdTipoMisura())) {
-			dao.update(tipoMisura);
+			getDao().update(tipoMisura);
 			return tipoMisura;
 		} else {
-			return dao.insert(tipoMisura);			
+			return getDao().insert(tipoMisura);			
 		}
 	}
 
 	public List<TipoMisura> list() throws GeCompSrvException {
-		return dao.list();
+		return getDao().list();
 	}
 
 }

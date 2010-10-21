@@ -45,10 +45,45 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 	<bean id="propertiesSrv" class="net.sb.gecomp.srv.services.properties.PropertiesService">
 		<property name="dao"><ref bean="PropertiesDao" /></property>
 	</bean>
-		
+	<bean id="atletaSrv" class="net.sb.gecomp.srv.services.atleti.AtletaService">
+		<property name="dao"><ref bean="AtletaDao" /></property>
+	</bean>
+	<bean id="categoriaGaraSrv" class="net.sb.gecomp.srv.services.categorie.CategoriaGaraService">
+		<property name="dao"><ref bean="CategoriaGaraDao" /></property>
+	</bean>
+	<bean id="categoriaSrv" class="net.sb.gecomp.srv.services.categorie.CategoriaService">
+		<property name="dao"><ref bean="CategoriaDao" /></property>
+	</bean>
+	<bean id="garaSrv" class="net.sb.gecomp.srv.services.gara.GaraService">
+		<property name="dao"><ref bean="GaraDao" /></property>
+		<property name="categoriaGaraDao"><ref bean="CategoriaGaraDao" /></property>
+	</bean>
+	<bean id="iscrizioneSrv" class="net.sb.gecomp.srv.services.iscrizioni.IscrizioneService">
+		<property name="dao"><ref bean="IscrizioneDao" /></property>
+	</bean>
+	<bean id="prestazioneSrv" class="net.sb.gecomp.srv.services.prestazioni.PrestazioneService">
+		<property name="dao"><ref bean="PrestazioneDao" /></property>
+	</bean>
+	<bean id="tipoPrestazioneSrv" class="net.sb.gecomp.srv.services.tipiprestazione.TipoPrestazioneService">
+		<property name="dao"><ref bean="TipoPrestazioneDao" /></property>
+	</bean>
+	<bean id="tipoMisuraSrv" class="net.sb.gecomp.srv.services.tipimisure.TipoMisuraService">
+		<property name="dao"><ref bean="TipoMisuraDao" /></property>
+	</bean>
+
+							
 	<jaxws:endpoint id="authenticationService" 	implementor="#authenticationSrv" 	address="/AuthenticationService" />
 	<jaxws:endpoint id="societaService" 		implementor="#societaSrv" 			address="/SocietaService" />
 	<jaxws:endpoint id="competizioneService" 	implementor="#competizioneSrv" 		address="/CompetizioneService" />
 	<jaxws:endpoint id="propertiesService" 		implementor="#propertiesSrv" 		address="/PropertiesService" />
+	<jaxws:endpoint id="atletaService" 			implementor="#atletaSrv" 			address="/AtletaService" />
+	<jaxws:endpoint id="categoriaGaraService" 	implementor="#categoriaGaraSrv" 	address="/CategoriaGaraService" />
+	<jaxws:endpoint id="categoriaService" 		implementor="#categoriaSrv" 		address="/CategoriaService" />
+	<jaxws:endpoint id="garaService" 			implementor="#garaSrv" 				address="/GaraService" />
+	<jaxws:endpoint id="iscrizioneService" 		implementor="#iscrizioneSrv" 		address="/IscrizioneService" />
+	<jaxws:endpoint id="prestazioneService" 	implementor="#prestazioneSrv" 		address="/PrestazioneService" />
+	<jaxws:endpoint id="tipoPrestazioneService" implementor="#tipoPrestazioneSrv" 	address="/TipoPrestazioneService" />
+	<jaxws:endpoint id="tipoMisuraService" 		implementor="#tipoMisuraSrv" 		address="/TipoMiuraService" />
+	
 </beans>
 <!-- END SNIPPET: beans -->

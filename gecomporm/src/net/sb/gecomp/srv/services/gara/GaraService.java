@@ -2,7 +2,8 @@ package net.sb.gecomp.srv.services.gara;
 
 import java.util.List;
 
-import net.sb.gecomp.commons.exceptions.GeCompOrmException;
+import javax.jws.WebService;
+
 import net.sb.gecomp.commons.exceptions.GeCompSrvException;
 import net.sb.gecomp.commons.model.Categoria;
 import net.sb.gecomp.commons.model.Competizione;
@@ -11,42 +12,47 @@ import net.sb.gecomp.commons.services.IGaraService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.CategoriaGaraDao;
 import net.sb.gecomp.srv.orm.dao.GaraDao;
-import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
 /**
  * @author 71862
  * TODO : fare logging applicativo!!!!
  */
+@WebService(endpointInterface = "net.sb.gecomp.commons.services.IGaraService", serviceName = "garaService")
 public class GaraService implements IGaraService {
 
-	private final GaraDao 			garaDao 			= DbManagerFactory.getInstance().getGaraDao();
-	private final CategoriaGaraDao 	categoriaGaraDao 	= DbManagerFactory.getInstance().getCategoriaGaraDao();
+	private GaraDao dao;
+	public GaraDao getDao() {return dao;}
+	public void setDao(GaraDao dao) {this.dao = dao;}
+	
+	private CategoriaGaraDao categoriaGaraDao;
+	public CategoriaGaraDao getCategoriaGaraDao() {return categoriaGaraDao;}
+	public void setCategoriaGaraDao(CategoriaGaraDao categoriaGaraDao) {this.categoriaGaraDao = categoriaGaraDao;}
 	
 	public Gara save(Gara gara) throws GeCompSrvException {
 		if (Eval.isNotNull(gara.getIdGara())) {
-			garaDao.update(gara);
+			getDao().update(gara);
 			return gara;
 		} else {
-			return garaDao.insert(gara);			
+			return getDao().insert(gara);			
 		}
 	}
 
 	public void delete(Long id) throws GeCompSrvException {
-		garaDao.delete(id);
+		getDao().delete(id);
 	}
 
 	public Gara get(Long idGara) throws GeCompSrvException {
-		Gara gara = garaDao.get(idGara);
-		List<Categoria> categorie = categoriaGaraDao.listCategorie(gara);
+		Gara gara = getDao().get(idGara);
+		List<Categoria> categorie = getCategoriaGaraDao().listCategorie(gara);
 		gara.setCategorie(categorie);
 		return gara;
 	}
 	
 	public List<Gara> list () throws GeCompSrvException {
-		return garaDao.list();
+		return getDao().list();
 	}
 	
-	public List<Gara> list (Competizione competizione) throws GeCompOrmException {
-		return garaDao.list(competizione);
+	public List<Gara> list4Competizione (Competizione competizione) throws GeCompSrvException {
+		return getDao().list(competizione);
 	}
 }

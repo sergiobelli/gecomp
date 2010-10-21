@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="GeComp-Srv" basedir="." default="deploy">
 
+	<property file="build.srv.properties"/>
+	
 	<path id="classpath.id">
 		<fileset dir="../gecomplib/common" includes="**/*.jar" />
     	<fileset dir="../gecomplib/server" includes="**/*.jar" />
@@ -8,8 +10,10 @@
  	</path>
 	
 	<target name="clean">
-    	<delete quiet="true" dir="build"/>
-		<delete quiet="true" dir="dist"/>
+    	<delete quiet="true" dir="${build.dir}"/>
+		<delete quiet="true" dir="${dist.dir}"/>
+  		<delete quiet="true" file="${deploy.dir}/${application.name}"/>
+  		<delete quiet="true" dir="${deploy.dir}/gecompsrv"/>
 	</target>
 
 	<target name="init" depends="clean">

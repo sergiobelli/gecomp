@@ -1,4 +1,4 @@
-<project name="GeComp" basedir="." default="4.build.all">
+<project name="GeComp" basedir="." default="5.build.all">
 	<property file="build.properties"/>
 	
 	<!--************************************** -->
@@ -6,10 +6,11 @@
 	<!--       BUILD ALL PROJECTS              -->
 	<!--                                       -->
 	<!--************************************** -->
-	<target name="4.build.all">
+	<target name="5.build.all">
 		<antcall target="1.build.shared"/>
 		<antcall target="2.build.orm"/>
-		<antcall target="3.build.web"/>
+		<antcall target="3.build.srv"/>
+		<antcall target="4.build.web"/>
 	</target>
 	
 	<!--************************************** -->
@@ -24,14 +25,21 @@
 		<ant antfile="build.xml" dir="gecompshared" target="deploy"/>
 	</target>
 	
-	<target name="2.build.orm">
+	<target name="2.build.orm" depends="1.build.shared">
 		<echo message="**************************************"/>
 		<echo message="make distribution of project GeCompOrm"/>
 		<echo message="**************************************"/>
 		<ant antfile="build.xml" dir="gecomporm" target="deploy"/>
 	</target>
-	
-	<target name="3.build.web">
+
+	<target name="3.build.srv" depends="2.build.orm">
+		<echo message="******************************************"/>
+		<echo message="make distribution of project GeCompOrm-Srv"/>
+		<echo message="******************************************"/>
+		<ant antfile="build.srv.xml" dir="gecomporm" target="deploy"/>
+	</target>
+		
+	<target name="4.build.web" depends="2.build.orm">
 		<echo message="**************************************"/>
 		<echo message="make distribution of project GeCompWeb"/>
 		<echo message="**************************************"/>
