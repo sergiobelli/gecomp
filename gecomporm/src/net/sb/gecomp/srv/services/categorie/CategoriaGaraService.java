@@ -10,16 +10,15 @@ import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.services.ICategoriaGaraService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.CategoriaGaraDao;
+import net.sb.gecomp.srv.services.GenericService;
 
 @WebService(endpointInterface = "net.sb.gecomp.commons.services.ICategoriaGaraService", serviceName = "categoriaGaraService")
-public class CategoriaGaraService implements ICategoriaGaraService {
+public class CategoriaGaraService extends GenericService implements ICategoriaGaraService {
 
-	private CategoriaGaraDao dao;
-	public CategoriaGaraDao getDao() {return dao;}
-	public void setDao(CategoriaGaraDao dao) {this.dao = dao;}
+	public CategoriaGaraDao getDao() {return (CategoriaGaraDao) super.getDao();}
 	
 	public List<CategoriaGara> list4Gara(Gara gara) throws GeCompSrvException {
-		return getDao().list(gara);
+		return ((CategoriaGaraDao)getDao()).list(gara);
 	}
 
 	public void delete(Long id) throws GeCompSrvException {
@@ -27,7 +26,7 @@ public class CategoriaGaraService implements ICategoriaGaraService {
 	}
 
 	public CategoriaGara get(Long id) throws GeCompSrvException {
-		return getDao().get(id);
+		return (CategoriaGara) getDao().get(id);
 	}
 
 	public List<CategoriaGara> list() throws GeCompSrvException {
@@ -39,7 +38,7 @@ public class CategoriaGaraService implements ICategoriaGaraService {
 			getDao().update(object);
 			return object;
 		} else {
-			return getDao().insert(object);			
+			return (CategoriaGara) getDao().insert(object);			
 		}
 	}
 

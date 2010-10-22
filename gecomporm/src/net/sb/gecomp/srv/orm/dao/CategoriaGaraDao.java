@@ -9,22 +9,10 @@ import net.sb.gecomp.commons.model.CategoriaGara;
 import net.sb.gecomp.commons.model.Competizione;
 import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManager;
 import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
-import org.apache.log4j.Logger;
 
-
-public class CategoriaGaraDao extends DbManager implements IGeCompDao<CategoriaGara> {
-	protected Logger logger = Logger.getLogger(this.getClass().getName());
-
-
-	private final String GET_CATEGORIA_GARA 		= "CategoriaGara.selectCategoriaGara";
-	private final String LIST_CATEGORIA_GARA 		= "CategoriaGara.listCategoriaGara";
-	private final String LIST_CATEGORIA_GARA_4_GARA = "CategoriaGara.listCategoriaGara4Gara";
-	private final String INSERT_CATEGORIA_GARA 		= "CategoriaGara.insertCategoriaGara";
-	private final String UPDATE_CATEGORIA_GARA 		= "CategoriaGara.updateCategoriaGara";
-	private final String DELETE_CATEGORIA_GARA 		= "CategoriaGara.deleteCategoriaGara";
+public class CategoriaGaraDao extends GenericDao implements IGeCompDao<CategoriaGara> {
 
 	public void delete (Long id) throws GeCompOrmException {
 		try {

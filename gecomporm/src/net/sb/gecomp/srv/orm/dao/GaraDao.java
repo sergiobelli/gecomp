@@ -6,19 +6,9 @@ import net.sb.gecomp.commons.exceptions.GeCompOrmException;
 import net.sb.gecomp.commons.model.Competizione;
 import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManager;
-
-import org.apache.log4j.Logger;
 
 
-public class GaraDao extends DbManager implements IGeCompDao<Gara> {
-	
-	protected static final String GET_GARA = "Gara.selectGara";
-	protected static final String LIST_GARA = "Gara.listGara";
-	protected static final String LIST_GARA_COMPETIZIONE = "Gara.listGaraCompetizione";
-	protected static final String INSERT_GARA = "Gara.insertGara";
-	protected static final String UPDATE_GARA = "Gara.updateGara";
-	protected static final String DELETE_GARA = "Gara.deleteGara";
+public class GaraDao extends GenericDao implements IGeCompDao<Gara> {
 	
 	public void delete (Long id) throws GeCompOrmException {
 		try {
@@ -85,7 +75,5 @@ public class GaraDao extends DbManager implements IGeCompDao<Gara> {
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
-	
-	protected Logger logger = Logger.getLogger(this.getClass().getName());
-	
+		
 }

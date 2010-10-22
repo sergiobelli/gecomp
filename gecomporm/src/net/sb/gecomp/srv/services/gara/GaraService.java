@@ -12,17 +12,16 @@ import net.sb.gecomp.commons.services.IGaraService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.CategoriaGaraDao;
 import net.sb.gecomp.srv.orm.dao.GaraDao;
+import net.sb.gecomp.srv.services.GenericService;
 
 /**
  * @author 71862
  * TODO : fare logging applicativo!!!!
  */
 @WebService(endpointInterface = "net.sb.gecomp.commons.services.IGaraService", serviceName = "garaService")
-public class GaraService implements IGaraService {
+public class GaraService extends GenericService implements IGaraService {
 
-	private GaraDao dao;
-	public GaraDao getDao() {return dao;}
-	public void setDao(GaraDao dao) {this.dao = dao;}
+	public GaraDao getDao() {return (GaraDao) super.getDao();}
 	
 	private CategoriaGaraDao categoriaGaraDao;
 	public CategoriaGaraDao getCategoriaGaraDao() {return categoriaGaraDao;}
@@ -33,7 +32,7 @@ public class GaraService implements IGaraService {
 			getDao().update(gara);
 			return gara;
 		} else {
-			return getDao().insert(gara);			
+			return (Gara) getDao().insert(gara);			
 		}
 	}
 
@@ -42,7 +41,7 @@ public class GaraService implements IGaraService {
 	}
 
 	public Gara get(Long idGara) throws GeCompSrvException {
-		Gara gara = getDao().get(idGara);
+		Gara gara = (Gara) getDao().get(idGara);
 		List<Categoria> categorie = getCategoriaGaraDao().listCategorie(gara);
 		gara.setCategorie(categorie);
 		return gara;
@@ -53,6 +52,6 @@ public class GaraService implements IGaraService {
 	}
 	
 	public List<Gara> list4Competizione (Competizione competizione) throws GeCompSrvException {
-		return getDao().list(competizione);
+		return ((GaraDao)getDao()).list(competizione);
 	}
 }

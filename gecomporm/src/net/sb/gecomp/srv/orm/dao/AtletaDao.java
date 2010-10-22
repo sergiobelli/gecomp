@@ -8,22 +8,11 @@ import net.sb.gecomp.commons.model.Atleta;
 import net.sb.gecomp.commons.model.Competizione;
 import net.sb.gecomp.commons.model.Prestazione;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManager;
 import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
-import org.apache.log4j.Logger;
 
+public class AtletaDao extends GenericDao implements IGeCompDao<Atleta> {
 
-public class AtletaDao extends DbManager implements IGeCompDao<Atleta> {
-
-	private final String GET_ATLETA = "Atleta.selectAtleta";
-	private final String LIST_ATLETA = "Atleta.listAtleta";
-	private final String INSERT_ATLETA = "Atleta.insertAtleta";
-	private final String UPDATE_ATLETA = "Atleta.updateAtleta";
-	private final String DELETE_ATLETA = "Atleta.deleteAtleta";
-
-
-    
 	public void delete (Long id) throws GeCompOrmException {
 		try {
 			getDataBaseDao().delete(DELETE_ATLETA, id);
@@ -85,7 +74,5 @@ public class AtletaDao extends DbManager implements IGeCompDao<Atleta> {
 		
 		return atletiIscritti;
 	}
-	
-	protected Logger logger = Logger.getLogger(this.getClass().getName());
-	
+		
 }

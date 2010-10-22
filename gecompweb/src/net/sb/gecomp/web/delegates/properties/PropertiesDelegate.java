@@ -12,11 +12,7 @@ import net.sb.gecomp.web.utils.context.GecompContextFactory;
 public class PropertiesDelegate extends GenericDelegate {
 	
 	private PropertiesBridge bridge;
-	public PropertiesBridge getBridge() {
-		if (Eval.isNull(bridge)) {
-			setBridge((PropertiesBridge)GecompContextFactory.getContext().getBean("propertiesBridge"));
-		}
-		return bridge; }
+	public PropertiesBridge getBridge() {return (PropertiesBridge)super.getBridge(); }
 	public void setBridge(PropertiesBridge bridge) { this.bridge = bridge; }
 	
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {

@@ -10,33 +10,30 @@ import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.view.CategoriaGaraView;
 import net.sb.gecomp.commons.services.ICategoriaGaraService;
 import net.sb.gecomp.commons.utils.Eval;
-import net.sb.gecomp.srv.services.categorie.CategoriaGaraService;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class CategoriaGaraBridge extends GenericBridge {
 
-	private final ICategoriaGaraService service = new CategoriaGaraService();
-	
 	public void delete(GecompModelObject element) throws GeCompException {
-		service.delete(((CategoriaGara)element).getIdCategoriaGara());
+		getService().delete(((CategoriaGara)element).getIdCategoriaGara());
 	}
 
-	public GecompModelObject insert(GecompModelObject element) throws GeCompException {
-		return service.save((CategoriaGara)element);	
+	public CategoriaGaraView insert(GecompModelObject element) throws GeCompException {
+		return new CategoriaGaraView((CategoriaGara)getService().save((CategoriaGara)element));	
 	}
 
 	public void update(GecompModelObject element) throws GeCompException {
-		service.save((CategoriaGara)element);
+		getService().save((CategoriaGara)element);
 	}
 
 	public CategoriaGaraView get(Long id) throws GeCompException {
-		return new CategoriaGaraView(service.get(id));
+		return new CategoriaGaraView((CategoriaGara)getService().get(id));
 	}
 
 	public List<CategoriaGaraView> list(Gara gara) throws GeCompException {
 		List<CategoriaGaraView> result = null;
-		List<CategoriaGara> categorie = service.list(gara);
+		List<CategoriaGara> categorie = ((ICategoriaGaraService)getService()).list4Gara(gara);
 		if (Eval.isNotEmpty(categorie)) {
 			result = new ArrayList<CategoriaGaraView>();
 			for (CategoriaGara c : categorie) {
@@ -46,4 +43,9 @@ public class CategoriaGaraBridge extends GenericBridge {
 		}
 		return result;
 	}
+	
+	public List<CategoriaGaraView> list() throws GeCompException {
+		return getService().list();//FIXME:???
+	}
+
 }

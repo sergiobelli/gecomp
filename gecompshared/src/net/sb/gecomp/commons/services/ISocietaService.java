@@ -9,7 +9,7 @@ import net.sb.gecomp.commons.exceptions.GeCompSrvException;
 import net.sb.gecomp.commons.model.Societa;
 
 @WebService
-public interface ISocietaService /*extends IService<Societa>*/ {
+public interface ISocietaService extends IService<Societa> {
 
 	Societa save(@WebParam(name="societa") Societa societa) throws GeCompSrvException;
 

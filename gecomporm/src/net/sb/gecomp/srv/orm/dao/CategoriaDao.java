@@ -6,18 +6,9 @@ import net.sb.gecomp.commons.exceptions.GeCompOrmException;
 import net.sb.gecomp.commons.model.Categoria;
 import net.sb.gecomp.commons.model.Competizione;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManager;
-
-import org.apache.log4j.Logger;
 
 
-public class CategoriaDao extends DbManager implements IGeCompDao<Categoria> {
-	
-	protected static final String GET_CATEGORIA = "Categoria.selectCategoria";
-	protected static final String LIST_CATEGORIA = "Categoria.listCategoria";
-	protected static final String INSERT_CATEGORIA = "Categoria.insertCategoria";
-	protected static final String UPDATE_CATEGORIA = "Categoria.updateCategoria";
-	protected static final String DELETE_CATEGORIA = "Categoria.deleteCategoria";
+public class CategoriaDao extends GenericDao implements IGeCompDao<Categoria> {
 	
 	public void delete (Long id) throws GeCompOrmException {
 		try {
@@ -68,7 +59,5 @@ public class CategoriaDao extends DbManager implements IGeCompDao<Categoria> {
 		
 		return c;
 	}
-	
-	protected Logger logger = Logger.getLogger(this.getClass().getName());
 	
 }

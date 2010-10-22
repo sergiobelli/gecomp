@@ -5,18 +5,9 @@ import java.util.List;
 import net.sb.gecomp.commons.exceptions.GeCompOrmException;
 import net.sb.gecomp.commons.model.Competizione;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManager;
-
-import org.apache.log4j.Logger;
 
 
-public class CompetizioneDao extends DbManager implements IGeCompDao<Competizione> {
-	
-	private final String GET_COMPETIZIONE = "Competizione.selectCompetizione";
-	private final String LIST_COMPETIZIONE = "Competizione.listCompetizione";
-	private final String INSERT_COMPETIZIONE = "Competizione.insertCompetizione";
-	private final String UPDATE_COMPETIZIONE = "Competizione.updateCompetizione";
-	private final String DELETE_COMPETIZIONE = "Competizione.deleteCompetizione";
+public class CompetizioneDao extends GenericDao implements IGeCompDao<Competizione> {
 	
 	public void delete (Long id) throws GeCompOrmException {
 		try {
@@ -62,6 +53,4 @@ public class CompetizioneDao extends DbManager implements IGeCompDao<Competizion
 		}
 	}
 	
-	protected Logger logger = Logger.getLogger(this.getClass().getName());
-
 }

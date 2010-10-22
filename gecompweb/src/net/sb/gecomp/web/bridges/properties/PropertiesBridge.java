@@ -1,17 +1,18 @@
 package net.sb.gecomp.web.bridges.properties;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.commons.model.GecompModelObject;
+import net.sb.gecomp.commons.model.Properties;
 import net.sb.gecomp.commons.model.view.PropertiesView;
 import net.sb.gecomp.commons.services.IPropertiesService;
+import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class PropertiesBridge extends GenericBridge {
-
-	private IPropertiesService service;
-	public IPropertiesService getService() { return service; }
-	public void setService(IPropertiesService service) { this.service = service; }
 	
 	public GecompModelObject insert(GecompModelObject property) throws GeCompException {
 		return getService().save((PropertiesView)property);
@@ -26,11 +27,22 @@ public class PropertiesBridge extends GenericBridge {
 	}
 
 	public PropertiesView get(Long id) throws GeCompException {
-//		return new PropertiesView(getService().get(id));
 		throw new GeCompException("Not usable!");
 	}
 	
 	public PropertiesView get(String code) throws GeCompException {
-		return new PropertiesView(getService().get(code));
+		return new PropertiesView((Properties)((IPropertiesService)getService()).getByCode(code));
+	}
+	
+	public List<PropertiesView> list() throws GeCompException {
+		List<PropertiesView> result = new ArrayList<PropertiesView>();
+		List<Properties> properties = getService().list();
+		if (Eval.isNotEmpty(properties)) {
+			for (Properties property : properties) {
+				result.add(new PropertiesView(property));
+			}
+		}
+		return result;
+
 	}
 }

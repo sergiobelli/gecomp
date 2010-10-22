@@ -16,12 +16,17 @@ import net.sb.gecomp.web.delegates.GenericDelegate;
 
 public class CategoriaDelegate extends GenericDelegate {
 
-	private CategoriaController controller = new CategoriaController();
-	private CategoriaBridge bridge = new CategoriaBridge();
-	
+	private CategoriaBridge bridge;
+	public CategoriaBridge getBridge() {return (CategoriaBridge)super.getBridge();}
+	public void setBridge(CategoriaBridge bridge) {this.bridge = bridge;}
+
+	private CategoriaController controller;
+	public CategoriaController getController() {return controller;}
+	public void setController(CategoriaController controller) {this.controller = controller;}
+
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
 		CategoriaView categoria = (CategoriaView)element;
-		controller.checks(categoria);
+		getController().checks(categoria);
 		
 		if (Eval.isNotNull(categoria)) {
 			Calendar c = Calendar.getInstance();
@@ -45,9 +50,9 @@ public class CategoriaDelegate extends GenericDelegate {
 			logger.debug("Customized Categoria = " + categoria);
 					
 			if (Eval.isNull(categoria.getIdCategoria())) {
-				bridge.insert(categoria);	
+				getBridge().insert(categoria);	
 			} else {
-				bridge.update(categoria);
+				getBridge().update(categoria);
 			}
 			
 			logger.info("Saved/update Categoria...");
@@ -63,7 +68,7 @@ public class CategoriaDelegate extends GenericDelegate {
 	public void delete(GecompModelObject element) throws GeCompException {		
 		try {
 			CategoriaView categoria = (CategoriaView)element;
-			bridge.delete(categoria);
+			getBridge().delete(categoria);
 		} catch (GeCompException gce) {
 			logger.error("Errore gestito", gce);
 			throw gce;
@@ -74,7 +79,7 @@ public class CategoriaDelegate extends GenericDelegate {
 	}
 
 	public CategoriaView get(Long id) throws GeCompException {
-		return bridge.get(id);
+		return getBridge().get(id);
 	}
 
 	public List<CategoriaView> list() throws GeCompException {
@@ -82,7 +87,7 @@ public class CategoriaDelegate extends GenericDelegate {
 		
 		List<CategoriaView> result = new ArrayList<CategoriaView>();
 		try {
-			result = bridge.list();
+			result = getBridge().list();
 			logger.info("result = "+ result);
 			
 			logger.info("end");
@@ -98,7 +103,7 @@ public class CategoriaDelegate extends GenericDelegate {
 	
 	public List<CategoriaView> list(GaraView gara) throws GeCompException {
 		try {
-			return bridge.list(gara);
+			return getBridge().list(gara);
 		} catch (GeCompException gce) {
 			logger.error("Errore gestito", gce);
 			throw gce;

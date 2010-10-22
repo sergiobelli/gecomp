@@ -5,18 +5,9 @@ import java.util.List;
 import net.sb.gecomp.commons.exceptions.GeCompOrmException;
 import net.sb.gecomp.commons.model.User;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManager;
-
-import org.apache.log4j.Logger;
 
 
-public class UserDao extends DbManager implements IGeCompDao<User> {
-
-	protected static final String GET_USER = "User.selectUser";
-	protected static final String LIST_USER = "User.listUser";
-	protected static final String INSERT_USER = "User.insertUser";
-	protected static final String UPDATE_USER = "User.updateUser";
-	protected static final String DELETE_USER = "User.deleteUser";
+public class UserDao extends GenericDao implements IGeCompDao<User> {
 
 	public void delete(Long id) throws GeCompOrmException {
 		try {
@@ -88,7 +79,5 @@ public class UserDao extends DbManager implements IGeCompDao<User> {
 		logger.info("Login operation for user "+username+"] took time : "+(after - before)+"ms");
 		return result;
 	}
-
-	protected Logger logger = Logger.getLogger(this.getClass().getName());
 
 }

@@ -31,8 +31,6 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 	
 	<import resource="classpath:net/sb/gecomp/srv/orm/ibatis/gecomp_orm_context.xml" />
 	
-	
-
 	<bean id="authenticationSrv" class="net.sb.gecomp.srv.services.authentication.AuthenticationService">
 		<property name="dao"><ref bean="UserDao" /></property>
 	</bean>

@@ -9,13 +9,12 @@ import net.sb.gecomp.commons.model.Properties;
 import net.sb.gecomp.commons.services.IPropertiesService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.PropertiesDao;
+import net.sb.gecomp.srv.services.GenericService;
 
 @WebService(endpointInterface = "net.sb.gecomp.commons.services.IPropertiesService", serviceName = "propertiesService")
-public class PropertiesService implements IPropertiesService {
+public class PropertiesService extends GenericService implements IPropertiesService {
 
-	private PropertiesDao dao;
-	public PropertiesDao getDao() {return dao;}
-	public void setDao(PropertiesDao dao) {this.dao = dao;}
+	public PropertiesDao getDao() {return (PropertiesDao) super.getDao();}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);
@@ -25,7 +24,7 @@ public class PropertiesService implements IPropertiesService {
 		return getDao().get(id);
 	}
 
-	public Properties get(String code) throws GeCompSrvException {
+	public Properties getByCode(String code) throws GeCompSrvException {
 		return getDao().get(code);
 	}
 	

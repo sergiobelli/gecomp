@@ -13,33 +13,30 @@ import net.sb.gecomp.commons.model.view.CompetizioneView;
 import net.sb.gecomp.commons.model.view.PrestazioneView;
 import net.sb.gecomp.commons.services.IPrestazioneService;
 import net.sb.gecomp.commons.utils.Eval;
-import net.sb.gecomp.srv.services.prestazioni.PrestazioneService;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class PrestazioneBridge extends GenericBridge {
 
-	private final IPrestazioneService service = new PrestazioneService();
-	
 	public void delete(final GecompModelObject element) throws GeCompException {
-		service.delete(((Prestazione)element).getIdPrestazione());
+		getService().delete(((Prestazione)element).getIdPrestazione());
 	}
 
-	public GecompModelObject get(final Long id) throws GeCompException {
-		return service.get(id);
+	public PrestazioneView get(final Long id) throws GeCompException {
+		return new PrestazioneView((Prestazione)getService().get(id));
 	}
 
 	public GecompModelObject insert(final GecompModelObject element) throws GeCompException {
-		return service.save((Prestazione)element);	
+		return new PrestazioneView((Prestazione)getService().save((Prestazione)element));	
 	}
 
 	public void update(final GecompModelObject element) throws GeCompException {
-		service.save((Prestazione) element);
+		getService().save((Prestazione) element);
 	}
 
 	public List<PrestazioneView> list(Gara gara) throws GeCompException {
 		List<PrestazioneView> result = null;
-		List<Prestazione> prestazioni = service.list(gara);
+		List<Prestazione> prestazioni = ((IPrestazioneService)getService()).list4Gara(gara);
 //		List<Categoria> categorie = DbManagerFactory.getInstance().getCategoriaGaraDao().listCategorie(gara);//FIXME:male,risolvere con FS#63
 		if (Eval.isNotEmpty(prestazioni)) {
 			result = new ArrayList<PrestazioneView>();
@@ -57,7 +54,7 @@ public class PrestazioneBridge extends GenericBridge {
 
 	public List<PrestazioneView> list(CompetizioneView competizione) throws GeCompException {
 		List<PrestazioneView> result = null;
-		List<Prestazione> prestazioni = service.list(competizione);	
+		List<Prestazione> prestazioni = ((IPrestazioneService)getService()).list4Competizione(competizione);	
 		
 		if (Eval.isNotEmpty(prestazioni)) {
 			result = new ArrayList<PrestazioneView>();
@@ -72,7 +69,7 @@ public class PrestazioneBridge extends GenericBridge {
 	
 	public List<PrestazioneView> list(Gara gara, Categoria categoria, Boolean conAssoluti) throws GeCompException {
 		List<PrestazioneView> result = null;
-		List<Prestazione> prestazioni = service.list(gara, categoria, conAssoluti);	
+		List<Prestazione> prestazioni = ((IPrestazioneService)getService()).list4GaraCategoria(gara, categoria, conAssoluti);	
 		
 		if (Eval.isNotEmpty(prestazioni)) {
 			result = new ArrayList<PrestazioneView>();
@@ -89,13 +86,24 @@ public class PrestazioneBridge extends GenericBridge {
 		logger.info("Recupero prestazione associata all'iscrizione " + iscrizione);
 		PrestazioneView result = null;
 		
-		Prestazione prestazione = service.get(iscrizione.getIdIscrizione());
+		Prestazione prestazione = ((IPrestazioneService)getService()).get(iscrizione.getIdIscrizione());
 		logger.debug("prestazione associata all'iscrizione recuperata " + iscrizione);
 		if (Eval.isNotNull(prestazione)) {
 			result = new PrestazioneView(prestazione);
 		}
 		
 		logger.info("prestazione associata all'iscrizione recuperata " + iscrizione);
+		return result;
+	}
+	
+	public List<PrestazioneView> list() throws GeCompException {
+		List<PrestazioneView> result = new ArrayList<PrestazioneView>();
+		List<Prestazione> prestazioni = getService().list();
+		if (Eval.isNotEmpty(prestazioni)) {
+			for (Prestazione prestazione : prestazioni) {
+				result.add(new PrestazioneView(prestazione));
+			}
+		}
 		return result;
 	}
 

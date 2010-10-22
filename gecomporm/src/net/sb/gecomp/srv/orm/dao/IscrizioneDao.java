@@ -12,22 +12,11 @@ import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.model.Iscrizione;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManager;
 import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
-import org.apache.log4j.Logger;
 
+public class IscrizioneDao extends GenericDao implements IGeCompDao<Iscrizione> {
 
-public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
-
-	private final String GET_ISCRIZIONE = "Iscrizione.selectIscrizione";
-	private final String LIST_ISCRIZIONE = "Iscrizione.listIscrizione";
-	private final String LIST_ISCRIZIONE_GARA = "Iscrizione.listIscrizioneGara";
-	private final String LIST_ISCRIZIONE_COMPETIZIONE = "Iscrizione.listIscrizioneCompetizione";
-	private final String INSERT_ISCRIZIONE = "Iscrizione.insertIscrizione";
-	private final String UPDATE_ISCRIZIONE = "Iscrizione.updateIscrizione";
-	private final String DELETE_ISCRIZIONE = "Iscrizione.deleteIscrizione";
-	
 	public void delete(Long id) throws GeCompOrmException {
 		try {
 			getDataBaseDao().delete(DELETE_ISCRIZIONE, id);
@@ -138,7 +127,5 @@ public class IscrizioneDao extends DbManager implements IGeCompDao<Iscrizione> {
 			}
 		}
 	}
-
-	protected Logger logger = Logger.getLogger(this.getClass().getName());
 
 }

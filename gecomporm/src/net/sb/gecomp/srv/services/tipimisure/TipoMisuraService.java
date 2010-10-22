@@ -9,20 +9,19 @@ import net.sb.gecomp.commons.model.TipoMisura;
 import net.sb.gecomp.commons.services.ITipoMisuraService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.TipoMisuraDao;
+import net.sb.gecomp.srv.services.GenericService;
 
 @WebService(endpointInterface = "net.sb.gecomp.commons.services.ITipoMisuraService", serviceName = "tipoMisuraService")
-public class TipoMisuraService implements ITipoMisuraService {
+public class TipoMisuraService extends GenericService implements ITipoMisuraService {
 
-	private TipoMisuraDao dao;
-	public TipoMisuraDao getDao() {return dao;}
-	public void setDao(TipoMisuraDao dao) {this.dao = dao;}
+	public TipoMisuraDao getDao() {return (TipoMisuraDao) super.getDao();}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);
 	}
 
 	public TipoMisura get(Long id) throws GeCompSrvException {
-		return getDao().get(id);
+		return (TipoMisura) getDao().get(id);
 	}
 
 	public TipoMisura save(TipoMisura tipoMisura) throws GeCompSrvException {
@@ -30,7 +29,7 @@ public class TipoMisuraService implements ITipoMisuraService {
 			getDao().update(tipoMisura);
 			return tipoMisura;
 		} else {
-			return getDao().insert(tipoMisura);			
+			return (TipoMisura) getDao().insert(tipoMisura);			
 		}
 	}
 

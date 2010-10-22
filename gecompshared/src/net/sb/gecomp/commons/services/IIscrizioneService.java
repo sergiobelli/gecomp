@@ -11,7 +11,7 @@ import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.model.Iscrizione;
 
 @WebService
-public interface IIscrizioneService /*extends IService<Iscrizione>*/ {
+public interface IIscrizioneService extends IService<Iscrizione> {
 
 	Iscrizione save(@WebParam(name="iscrizione") Iscrizione iscrizione) throws GeCompSrvException;
 

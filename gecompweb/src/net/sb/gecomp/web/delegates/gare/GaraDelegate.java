@@ -19,19 +19,28 @@ import net.sb.gecomp.web.delegates.GenericDelegate;
 
 public class GaraDelegate extends GenericDelegate {
 	
-	private GaraController 		controller 			= new GaraController();
-	
-	private GaraBridge 			garaBridge 			= new GaraBridge();
-	private CategoriaBridge 	categoriaBridge 	= new CategoriaBridge();
-	private CategoriaGaraBridge categoriaGaraBridge = new CategoriaGaraBridge();
-	
+	public GaraBridge getBridge() {return (GaraBridge)super.getBridge();}
+	public void setBridge(GaraBridge bridge) {super.setBridge(bridge);}
+
+	private GaraController controller;
+	public GaraController getController() {return controller;}
+	public void setController(GaraController controller) {this.controller = controller;}
+
+	private CategoriaBridge categoriaBridge;
+	public CategoriaBridge getCategoriaBridge() {return categoriaBridge;}
+	public void setCategoriaBridge(CategoriaBridge categoriaBridge) {this.categoriaBridge = categoriaBridge;}
+
+	private CategoriaGaraBridge categoriaGaraBridge;
+	public CategoriaGaraBridge getCategoriaGaraBridge() {return categoriaGaraBridge;}
+	public void setCategoriaGaraBridge(CategoriaGaraBridge categoriaGaraBridge) {this.categoriaGaraBridge = categoriaGaraBridge;}
+
 	public void delete(GecompModelObject element) throws GeCompException {
-		garaBridge.delete((GaraView)element);
+		getBridge().delete((GaraView)element);
 	}
 
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
 		GaraView gara = (GaraView)element;
-		controller.checks(element);
+		getController().checks(element);
 		return gara;
 	}
 
@@ -39,9 +48,9 @@ public class GaraDelegate extends GenericDelegate {
 		GaraView gara = (GaraView) retrieve(element);
 		logger.debug("Customized Gara = " + gara);
 		if (Eval.isNull(gara.getIdGara())) {
-			gara = garaBridge.insert(gara);
+			gara = getBridge().insert(gara);
 		} else {
-			garaBridge.update(gara);
+			getBridge().update(gara);
 		}
 	}
 	
@@ -53,37 +62,37 @@ public class GaraDelegate extends GenericDelegate {
 		
 		List<Categoria> categorie = new ArrayList<Categoria>();
 		for (Long catId : categorieId) {
-			categorie.add(categoriaBridge.get(catId));
+			categorie.add(getCategoriaBridge().get(catId));
 		}
 		gara.setCategorie(categorie);
 		
 		if (Eval.isNull(gara.getIdGara())) {
-			gara = garaBridge.insert(gara);
+			gara = getBridge().insert(gara);
 			if (Eval.isNotEmpty(gara.getCategorie())) {
 				for (Categoria cat : gara.getCategorie()) {
 					CategoriaGaraView catGara = new CategoriaGaraView();
 					catGara.setCategoria(cat);
 					catGara.setGara(gara);
-					categoriaGaraBridge.insert(catGara);
+					getCategoriaGaraBridge().insert(catGara);
 				}
 			}
 		} else {
 			
 			//cancello le vecchie categorie associate alla gara
-			List<CategoriaGaraView> oldCategorieGara = categoriaGaraBridge.list(gara);
+			List<CategoriaGaraView> oldCategorieGara = getCategoriaGaraBridge().list(gara);
 			if (Eval.isNotEmpty(oldCategorieGara)) {
 				for (CategoriaGaraView oldCategoriaGara : oldCategorieGara) {
-					categoriaGaraBridge.delete(oldCategoriaGara);
+					getCategoriaGaraBridge().delete(oldCategoriaGara);
 				}
 			}
 			
-			garaBridge.update(gara);//update
+			getBridge().update(gara);//update
 			if (Eval.isNotEmpty(gara.getCategorie())) {//inserisco nuove categorie
 				for (Categoria cat : gara.getCategorie()) {
 					CategoriaGaraView catGara = new CategoriaGaraView();
 					catGara.setCategoria(cat);
 					catGara.setGara(gara);
-					categoriaGaraBridge.insert(catGara);
+					getCategoriaGaraBridge().insert(catGara);
 				}
 			}
 		}
@@ -91,14 +100,14 @@ public class GaraDelegate extends GenericDelegate {
 	//TODO: FS#78 - GaraDelegate : spostare codice salvataggio su lato server 
 	
 	public GaraView get(Long idGara) throws GeCompException {
-		return garaBridge.get(idGara);
+		return getBridge().get(idGara);
 	}
 	
 	public List<GaraView> list() throws GeCompException {
-		return garaBridge.list();
+		return getBridge().list();
 	}
 	
 	public List<GaraView> list(CompetizioneView competizione) throws GeCompException {
-		return garaBridge.list(competizione);
+		return getBridge().list(competizione);
 	}
 }

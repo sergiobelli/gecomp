@@ -9,38 +9,28 @@ import net.sb.gecomp.commons.model.Atleta;
 import net.sb.gecomp.commons.services.IAtletaService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.AtletaDao;
+import net.sb.gecomp.srv.services.GenericService;
 
 @WebService(endpointInterface = "net.sb.gecomp.commons.services.IAtletaService", serviceName = "atletaService")
-public class AtletaService implements IAtletaService {
+public class AtletaService extends GenericService implements IAtletaService {
 
-	private AtletaDao dao;
-	public AtletaDao getDao() {return dao;}
-	public void setDao(AtletaDao dao) {this.dao = dao;}
+	public AtletaDao getDao() {return (AtletaDao) super.getDao();}
 	
-	/* (non-Javadoc)
-	 * @see net.sb.gecomp.srv.services.atleti.IAtletaService#save(net.sb.gecomp.commons.model.Atleta)
-	 */
 	public Atleta save(Atleta atleta) throws GeCompSrvException {
 		if (Eval.isNotNull(atleta.getIdAtleta())) {
 			getDao().update(atleta);
 			return atleta;
 		} else {
-			return getDao().insert(atleta);
+			return (Atleta) getDao().insert(atleta);
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see net.sb.gecomp.srv.services.atleti.IAtletaService#delete(net.sb.gecomp.commons.model.Atleta)
-	 */
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.sb.gecomp.srv.services.atleti.IAtletaService#get(java.lang.Long)
-	 */
 	public Atleta get(Long id) throws GeCompSrvException {
-		return getDao().get(id);
+		return (Atleta)getDao().get(id);
 	}
 
 	public List<Atleta> list() throws GeCompSrvException {

@@ -5,30 +5,10 @@ import java.util.List;
 import net.sb.gecomp.commons.exceptions.GeCompOrmException;
 import net.sb.gecomp.commons.model.Societa;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManager;
-
-import org.apache.log4j.Logger;
 
 
-public class SocietaDao extends DbManager implements IGeCompDao<Societa> {
-
-//	private static SocietaDao instance;
-//	public static SocietaDao getInstance() {
-//		if (instance == null) {
-//			instance = new SocietaDao();
-//		}
-//		return instance;
-//	}
+public class SocietaDao extends GenericDao implements IGeCompDao<Societa> {
 	
-	protected static final String GET_SOCIETA = "Societa.selectSocieta";
-	
-	protected static final String LIST_SOCIETA = "Societa.listSocieta";
-	protected static final String INSERT_SOCIETA = "Societa.insertSocieta";
-	
-	protected static final String UPDATE_SOCIETA = "Societa.updateSocieta";
-	protected static final String DELETE_SOCIETA = "Societa.deleteSocieta";
-	
-//	private SocietaDao() {}
 	public void delete (Long id) throws GeCompOrmException {
 		try {
 			getDataBaseDao().delete(DELETE_SOCIETA, id);
@@ -82,6 +62,4 @@ public class SocietaDao extends DbManager implements IGeCompDao<Societa> {
 		}
 	}
 	
-	protected Logger logger = Logger.getLogger(this.getClass().getName());	
-
 }

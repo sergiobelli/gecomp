@@ -19,11 +19,7 @@ public class CompetizioneDelegate extends GenericDelegate {
 	private CompetizioneController controller = new CompetizioneController();
 	
 	private CompetizioneBridge bridge;
-	public CompetizioneBridge getBridge() {
-		if (Eval.isNull(bridge)) {
-			setBridge((CompetizioneBridge)GecompContextFactory.getContext().getBean("competizioneBridge"));
-		}
-		return bridge; }
+	public CompetizioneBridge getBridge() {return (CompetizioneBridge)super.getBridge();}
 	public void setBridge(CompetizioneBridge bridge) { this.bridge = bridge; }
 	
 	private SocietaBridge societaBridge;

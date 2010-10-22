@@ -11,33 +11,30 @@ import net.sb.gecomp.commons.model.view.GaraView;
 import net.sb.gecomp.commons.model.view.IscrizioneView;
 import net.sb.gecomp.commons.services.IIscrizioneService;
 import net.sb.gecomp.commons.utils.Eval;
-import net.sb.gecomp.srv.services.iscrizioni.IscrizioneService;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class IscrizioneBridge extends GenericBridge {
 
-	private final IIscrizioneService service = new IscrizioneService();
-	
 	public void delete(GecompModelObject iscrizione) throws GeCompException {
-		service.delete(((Iscrizione) iscrizione).getIdIscrizione());
+		getService().delete(((Iscrizione) iscrizione).getIdIscrizione());
 	}
 
 	public GecompModelObject insert(GecompModelObject iscrizione) throws GeCompException {
-		return service.save((Iscrizione) iscrizione);
+		return getService().save((Iscrizione) iscrizione);
 	}
 
 	public void update(GecompModelObject iscrizione) throws GeCompException {
-		service.save((Iscrizione) iscrizione);
+		getService().save((Iscrizione) iscrizione);
 	}
 
 	public IscrizioneView get(Long id) throws GeCompException {
-		return new IscrizioneView(service.get(id));
+		return new IscrizioneView((Iscrizione)getService().get(id));
 	}
 
 	public List<IscrizioneView> list(GaraView gara) throws GeCompException {
 		List<IscrizioneView> result = new ArrayList<IscrizioneView>();
-		List<Iscrizione> iscritti = service.list(gara);
+		List<Iscrizione> iscritti = ((IIscrizioneService)getService()).list4Gara(gara);
 		if (Eval.isNotEmpty(iscritti)) {
 			for (Iscrizione i : iscritti) {
 				result.add(new IscrizioneView(i));
@@ -48,7 +45,18 @@ public class IscrizioneBridge extends GenericBridge {
 	
 	public List<IscrizioneView> list(CompetizioneView competizione) throws GeCompException {
 		List<IscrizioneView> result = new ArrayList<IscrizioneView>();
-		List<Iscrizione> iscritti = service.list(competizione);
+		List<Iscrizione> iscritti = ((IIscrizioneService)getService()).list4Competizione(competizione);
+		if (Eval.isNotEmpty(iscritti)) {
+			for (Iscrizione i : iscritti) {
+				result.add(new IscrizioneView(i));
+			}
+		}
+		return result;
+	}
+	
+	public List<IscrizioneView> list() throws GeCompException {
+		List<IscrizioneView> result = new ArrayList<IscrizioneView>();
+		List<Iscrizione> iscritti = getService().list();
 		if (Eval.isNotEmpty(iscritti)) {
 			for (Iscrizione i : iscritti) {
 				result.add(new IscrizioneView(i));

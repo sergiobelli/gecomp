@@ -17,23 +17,12 @@ import net.sb.gecomp.commons.model.TipoMisuraSalto;
 import net.sb.gecomp.commons.model.TipoMisuraTempo;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManager;
 import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 
-import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
-public class PrestazioneDao extends DbManager implements IGeCompDao<Prestazione> {
+public class PrestazioneDao extends GenericDao implements IGeCompDao<Prestazione> {
 
-	protected Logger logger = Logger.getLogger(this.getClass().getName());
-	
-	private final String GET_PRESTAZIONE = "Prestazione.selectPrestazione";
-	private final String LIST_PRESTAZIONE = "Prestazione.listPrestazione";
-	private final String LIST_PRESTAZIONE_GARA = "Prestazione.listPrestazioneGara";
-	private final String INSERT_PRESTAZIONE = "Prestazione.insertPrestazione";
-	private final String UPDATE_PRESTAZIONE = "Prestazione.updatePrestazione";
-	private final String DELETE_PRESTAZIONE = "Prestazione.deletePrestazione";
-	
 	public void delete (Long id) throws GeCompOrmException {
 		try {
 			getDataBaseDao().delete(DELETE_PRESTAZIONE, id);

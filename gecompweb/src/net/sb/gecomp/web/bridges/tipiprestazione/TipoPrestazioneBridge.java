@@ -5,31 +5,27 @@ import java.util.List;
 import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.TipoPrestazione;
-import net.sb.gecomp.commons.services.ITipoPrestazioneService;
-import net.sb.gecomp.srv.services.tipiprestazione.TipoPrestazioneService;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 public class TipoPrestazioneBridge extends GenericBridge {
 
-	private final ITipoPrestazioneService service = new TipoPrestazioneService();
-
 	public void delete(GecompModelObject tipoPrestazione) throws GeCompException {
-		service.delete(((TipoPrestazione) tipoPrestazione).getIdTipoPrestazione());
+		getService().delete(((TipoPrestazione) tipoPrestazione).getIdTipoPrestazione());
 	}
 
 	public TipoPrestazione get(Long id) throws GeCompException {
-		return service.get(id);
+		return (TipoPrestazione)getService().get(id);
 	}
 
 	public TipoPrestazione insert(GecompModelObject tipoPrestazione) throws GeCompException {
-		return service.save((TipoPrestazione) tipoPrestazione);
+		return (TipoPrestazione) getService().save((TipoPrestazione) tipoPrestazione);
 	}
 
 	public void update(GecompModelObject tipoPrestazione) throws GeCompException {
-		service.save((TipoPrestazione) tipoPrestazione);
+		getService().save((TipoPrestazione) tipoPrestazione);
 	}
 	
 	public List<TipoPrestazione> list() throws GeCompException {
-		return service.list();
+		return getService().list();
 	}
 }

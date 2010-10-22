@@ -9,7 +9,7 @@ import net.sb.gecomp.commons.exceptions.GeCompSrvException;
 import net.sb.gecomp.commons.model.Competizione;
 
 @WebService
-public interface ICompetizioneService /*extends IService<Competizione>*/ {
+public interface ICompetizioneService extends IService<Competizione> {
 
 	Competizione save(@WebParam(name="competizione") Competizione competizione) throws GeCompSrvException;
 

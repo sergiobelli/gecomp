@@ -9,7 +9,7 @@ import net.sb.gecomp.commons.exceptions.GeCompSrvException;
 import net.sb.gecomp.commons.model.Categoria;
 
 @WebService
-public interface ICategoriaService /*extends IService<Categoria>*/ {
+public interface ICategoriaService extends IService<Categoria> {
 
 	void delete(@WebParam(name="id") Long id) throws GeCompSrvException;
 

@@ -10,34 +10,31 @@ import net.sb.gecomp.commons.model.view.CompetizioneView;
 import net.sb.gecomp.commons.model.view.GaraView;
 import net.sb.gecomp.commons.services.IGaraService;
 import net.sb.gecomp.commons.utils.Eval;
-import net.sb.gecomp.srv.services.gara.GaraService;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class GaraBridge extends GenericBridge {
-
-	private final IGaraService service = new GaraService();
 	
 	public void delete(GecompModelObject gara) throws GeCompException {
-		service.delete(((GaraView) gara).getIdGara());
+		getService().delete(((GaraView) gara).getIdGara());
 	}
 
 	public GaraView insert(GecompModelObject element) throws GeCompException {
-		return new GaraView(service.save((Gara) element));
+		return new GaraView((Gara)getService().save((Gara) element));
 	}
 
 	public void update(GecompModelObject element) throws GeCompException {
-		service.save((Gara) element);
+		getService().save((Gara) element);
 	}
 
 	public GaraView get(Long idGara) throws GeCompException {
-		GaraView gara = new GaraView(service.get(idGara));
+		GaraView gara = new GaraView((Gara)getService().get(idGara));
 		return gara;
 	}
 
 	public List<GaraView> list() throws GeCompException {
 		List<GaraView> result = new ArrayList<GaraView>();
-		List<Gara> gare = service.list();
+		List<Gara> gare = getService().list();
 		if (Eval.isNotEmpty(gare)) {
 			for (Gara gara : gare) {
 				result.add(new GaraView(gara));
@@ -48,7 +45,7 @@ public class GaraBridge extends GenericBridge {
 	
 	public List<GaraView> list(CompetizioneView competizione) throws GeCompException {
 		List<GaraView> result = new ArrayList<GaraView>();
-		List<Gara> gare = service.list(competizione);
+		List<Gara> gare = ((IGaraService)getService()).list4Competizione(competizione);
 		if (Eval.isNotEmpty(gare)) {
 			for (Gara gara : gare) {
 				result.add(new GaraView(gara));

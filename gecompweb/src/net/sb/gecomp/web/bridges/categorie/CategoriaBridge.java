@@ -10,39 +10,37 @@ import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.view.CategoriaView;
 import net.sb.gecomp.commons.services.ICategoriaGaraService;
-import net.sb.gecomp.commons.services.ICategoriaService;
 import net.sb.gecomp.commons.utils.Eval;
-import net.sb.gecomp.srv.services.categorie.CategoriaGaraService;
-import net.sb.gecomp.srv.services.categorie.CategoriaService;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class CategoriaBridge extends GenericBridge {
 
-	private final ICategoriaService service = new CategoriaService();
-	private final ICategoriaGaraService categoriaGaraService = new CategoriaGaraService();
+	private ICategoriaGaraService categoriaGaraService;
+	public ICategoriaGaraService getCategoriaGaraService() {return categoriaGaraService;}
+	public void setCategoriaGaraService(ICategoriaGaraService categoriaGaraService) {this.categoriaGaraService = categoriaGaraService;}
 	
 	public void delete(GecompModelObject element) throws GeCompException {
-		service.delete(((Categoria)element).getIdCategoria());
+		getService().delete(((Categoria)element).getIdCategoria());
 	}
 
 	public GecompModelObject insert(GecompModelObject element) throws GeCompException {
-		return service.save((Categoria)element);	
+		return getService().save((Categoria)element);	
 	}
 
 	public void update(GecompModelObject element) throws GeCompException {
-		service.save((Categoria)element);
+		getService().save((Categoria)element);
 	}
 
 	public CategoriaView get(Long id) throws GeCompException {
-		return new CategoriaView(service.get(id));
+		return new CategoriaView((Categoria)getService().get(id));
 	}
 
 	public List<CategoriaView> list() throws GeCompException {
 		logger.info("start...");
 		
 		List<CategoriaView> result = new ArrayList<CategoriaView>();
-		List<Categoria> categorie = service.list();
+		List<Categoria> categorie = getService().list();
 		logger.info("categorie = " + categorie);
 		
 		if (Eval.isNotEmpty(categorie)) {
@@ -59,7 +57,7 @@ public class CategoriaBridge extends GenericBridge {
 		logger.info("start...");
 		
 		List<CategoriaView> result = null;
-		List<CategoriaGara> categorie = categoriaGaraService.list(gara);
+		List<CategoriaGara> categorie = getCategoriaGaraService().list4Gara(gara);
 		logger.info("categorie = " + categorie);
 		
 		if (Eval.isNotEmpty(categorie)) {

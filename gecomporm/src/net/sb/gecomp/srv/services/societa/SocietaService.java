@@ -6,17 +6,15 @@ import javax.jws.WebService;
 
 import net.sb.gecomp.commons.exceptions.GeCompSrvException;
 import net.sb.gecomp.commons.model.Societa;
-import net.sb.gecomp.commons.model.view.SocietaView;
 import net.sb.gecomp.commons.services.ISocietaService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.SocietaDao;
+import net.sb.gecomp.srv.services.GenericService;
 
 @WebService(endpointInterface = "net.sb.gecomp.commons.services.ISocietaService", serviceName = "societaService")
-public class SocietaService implements ISocietaService {
+public class SocietaService extends GenericService implements ISocietaService {
 	
-	private SocietaDao dao;
-	public SocietaDao getDao() {return dao;}
-	public void setDao(SocietaDao dao) {this.dao = dao;}
+	public SocietaDao getDao() {return (SocietaDao) super.getDao();}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);
@@ -24,10 +22,10 @@ public class SocietaService implements ISocietaService {
 
 	public Societa save(Societa societa) throws GeCompSrvException {
 		if (Eval.isNotNull(societa.getId())) {
-			getDao().update(societa);
+			((SocietaDao)getDao()).update(societa);
 			return societa;
 		} else {
-			return getDao().insert(societa);			
+			return (Societa) getDao().insert(societa);			
 		}
 	}
 
@@ -36,7 +34,7 @@ public class SocietaService implements ISocietaService {
 		return result;
 	}
 
-	public SocietaView get(Long idSocieta) throws GeCompSrvException {
-		return new SocietaView(getDao().get(idSocieta));
+	public Societa get(Long idSocieta) throws GeCompSrvException {
+		return (Societa) getDao().get(idSocieta);
 	}
 }

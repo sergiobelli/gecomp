@@ -19,6 +19,9 @@
 	<jaxws:client id="authenticationService"
 	          serviceClass="net.sb.gecomp.commons.services.IAuthenticationService"
 	          address="http://localhost:8080/gecompsrv/AuthenticationService" />
+	<jaxws:client id="atletaService"
+	          serviceClass="net.sb.gecomp.commons.services.IAtletaService"
+	          address="http://localhost:8080/gecompsrv/AuthenticationService" />
 	<jaxws:client id="societaService"
 	          serviceClass="net.sb.gecomp.commons.services.ISocietaService"
 	          address="http://localhost:8080/gecompsrv/SocietaService" />
@@ -28,11 +31,35 @@
 	<jaxws:client id="propertiesService"
 	          serviceClass="net.sb.gecomp.commons.services.IPropertiesService"
 	          address="http://localhost:8080/gecompsrv/PropertiesService" />
+	<jaxws:client id="categoriaService"
+	          serviceClass="net.sb.gecomp.commons.services.ICategoriaService"
+	          address="http://localhost:8080/gecompsrv/CategoriaService" />
+	<jaxws:client id="categoriaGaraService"
+	          serviceClass="net.sb.gecomp.commons.services.ICategoriaGaraService"
+	          address="http://localhost:8080/gecompsrv/CategoriaGaraService" />
+	<jaxws:client id="garaService"
+	          serviceClass="net.sb.gecomp.commons.services.IGaraService"
+	          address="http://localhost:8080/gecompsrv/GaraService" />
+	<jaxws:client id="iscrizioneService"
+	          serviceClass="net.sb.gecomp.commons.services.IIscrizioneService"
+	          address="http://localhost:8080/gecompsrv/IscrizioneService" />
+	<jaxws:client id="prestazioneService"
+	          serviceClass="net.sb.gecomp.commons.services.IPrestazioneService"
+	          address="http://localhost:8080/gecompsrv/PrestazioneService" />
+	<jaxws:client id="tipoPrestazioneService"
+	          serviceClass="net.sb.gecomp.commons.services.ITipoPrestazioneService"
+	          address="http://localhost:8080/gecompsrv/TipoPrestazioneService" />
+	<jaxws:client id="tipoMisuraService"
+	          serviceClass="net.sb.gecomp.commons.services.ITipoMisuraService"
+	          address="http://localhost:8080/gecompsrv/TipoMisuraService" />
 	<!-- CLIENTS -->
                   
 	<!-- BRIDGES -->
 	<bean id="authenticationBridge" class="net.sb.gecomp.web.bridges.authentication.AuthenticationBridge">
 		<property name="service"><ref bean="authenticationService" /></property>
+	</bean>
+	<bean id="atletaBridge" class="net.sb.gecomp.web.bridges.atleti.AtletaBridge">
+		<property name="service"><ref bean="atletaService" /></property>
 	</bean>
 	<bean id="societaBridge" class="net.sb.gecomp.web.bridges.societa.SocietaBridge">
 		<property name="service"><ref bean="societaService" /></property>
@@ -43,17 +70,44 @@
 	<bean id="propertiesBridge" class="net.sb.gecomp.web.bridges.properties.PropertiesBridge">
 		<property name="service"><ref bean="propertiesService" /></property>
 	</bean>
+	<bean id="categoriaBridge" class="net.sb.gecomp.web.bridges.categorie.CategoriaBridge">
+		<property name="service"><ref bean="categoriaService" /></property>
+		<property name="categoriaGaraService"><ref bean="categoriaGaraService" /></property>
+	</bean>
+	<bean id="categoriaGaraBridge" class="net.sb.gecomp.web.bridges.categorie.CategoriaGaraBridge">
+		<property name="service"><ref bean="categoriaGaraService" /></property>
+	</bean>
+	<bean id="garaBridge" class="net.sb.gecomp.web.bridges.gare.GaraBridge">
+		<property name="service"><ref bean="garaService" /></property>
+	</bean>
+	<bean id="iscrizioneBridge" class="net.sb.gecomp.web.bridges.iscrizioni.IscrizioneBridge">
+		<property name="service"><ref bean="iscrizioneService" /></property>
+	</bean>
+	<bean id="prestazioneBridge" class="net.sb.gecomp.web.bridges.prestazioni.PrestazioneBridge">
+		<property name="service"><ref bean="prestazioneService" /></property>
+	</bean>
+	<bean id="tipoPrestazioneBridge" class="net.sb.gecomp.web.bridges.tipiprestazione.TipoPrestazioneBridge">
+		<property name="service"><ref bean="tipoPrestazioneService" /></property>
+	</bean>
+	<bean id="tipoMisuraBridge" class="net.sb.gecomp.web.bridges.tipimisure.TipoMisuraBridge">
+		<property name="service"><ref bean="tipoMisuraService" /></property>
+	</bean>
 	<!-- BRIDGES -->
 	
 	<!-- CONTROLLERS -->
-	<!--<bean id="atletaController" class="net.sb.gecomp.web.controllers.atleti.AtletaController" />-->
+	<bean id="atletaController" class="net.sb.gecomp.web.controllers.atleti.AtletaController" />
+	<bean id="categoriaController" class="net.sb.gecomp.web.controllers.categorie.CategoriaController" />
+	<bean id="garaController" class="net.sb.gecomp.web.controllers.gare.GaraController" />
+	<bean id="iscrizioneController" class="net.sb.gecomp.web.controllers.iscrizioni.IscrizioneController" />
+	<bean id="prestazioneController" class="net.sb.gecomp.web.controllers.prestazioni.PrestazioneController" />
 	<!-- CONTROLLERS -->
 	
 	<!-- DELEGATES -->
-	<!--<bean id="atletaDelegate" class="net.sb.gecomp.web.delegates.atleti.AtletaDelegate">
+	<bean id="atletaDelegate" class="net.sb.gecomp.web.delegates.atleti.AtletaDelegate">
 		<property name="bridge"><ref bean="atletaBridge" /></property>
+		<property name="societaBridge"><ref bean="societaBridge" /></property>
 		<property name="controller"><ref bean="atletaController" /></property>
-	</bean>-->
+	</bean>
 	<bean id="loginDelegate" class="net.sb.gecomp.web.delegates.authentication.LoginDelegate">
 		<property name="bridge"><ref bean="authenticationBridge" /></property>
 	</bean>
@@ -66,6 +120,28 @@
 	<bean id="propertiesDelegate" class="net.sb.gecomp.web.delegates.properties.PropertiesDelegate">
 		<property name="bridge"><ref bean="propertiesBridge" /></property>
 	</bean>
+	<bean id="categoriaDelegate" class="net.sb.gecomp.web.delegates.categorie.CategoriaDelegate">
+		<property name="bridge"><ref bean="categoriaBridge" /></property>
+		<property name="controller"><ref bean="categoriaController" /></property>
+	</bean>
+	<bean id="garaDelegate" class="net.sb.gecomp.web.delegates.gare.GaraDelegate">
+		<property name="bridge"><ref bean="garaBridge" /></property>
+		<property name="categoriaBridge"><ref bean="categoriaBridge" /></property>
+		<property name="categoriaGaraBridge"><ref bean="categoriaGaraBridge" /></property>
+		<property name="controller"><ref bean="garaController" /></property>
+	</bean>
+	<bean id="iscrizioneDelegate" class="net.sb.gecomp.web.delegates.iscrizioni.IscrizioneDelegate">
+		<property name="bridge"><ref bean="iscrizioneBridge" /></property>
+		<property name="controller"><ref bean="iscrizioneController" /></property>
+	</bean>
+	
+	<!--<bean id="prestazioneDelegate" class="net.sb.gecomp.web.delegates.properties.PropertiesDelegate">
+		<property name="bridge"><ref bean="propertiesBridge" /></property>
+		<property name="tpBridge"><ref bean="tipoPrestazioneBridge" /></property>
+		<property name="tmBridge"><ref bean="tipoMisuraBridge" /></property>
+		<property name="iscrBridge"><ref bean="iscrizioneBridge" /></property>
+		<property name="controller"><ref bean="prestazioneController" /></property>
+	</bean>-->
 	<!-- DELEGATES -->
 	
 	<!-- EXECUTERS -->

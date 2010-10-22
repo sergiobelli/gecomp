@@ -7,26 +7,30 @@ import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.view.AtletaView;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.atleti.AtletaBridge;
+import net.sb.gecomp.web.bridges.societa.SocietaBridge;
 import net.sb.gecomp.web.controllers.atleti.AtletaController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
-import net.sb.gecomp.web.delegates.societa.SocietaDelegate;
 
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
-public class AtletaDelegate extends GenericDelegate implements InitializingBean {
+public class AtletaDelegate extends GenericDelegate /*implements InitializingBean */{
 	
-	private AtletaController controller = new AtletaController();
+	private AtletaBridge bridge;
+	public AtletaBridge getBridge() {return bridge;}
+	public void setBridge(AtletaBridge bridge) {this.bridge = bridge;}
 
+	private AtletaController controller;
+	public AtletaController getController() {return controller;}
+	public void setController(AtletaController controller) {this.controller = controller;}
 
-	private AtletaBridge bridge = new AtletaBridge();
-
-	private SocietaDelegate societaDelegate = new SocietaDelegate();
+	private SocietaBridge societaBridge;
+	public SocietaBridge getSocietaBridge() {return societaBridge;}
+	public void setSocietaBridge(SocietaBridge societaBridge) {this.societaBridge = societaBridge;}
 	
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
 		AtletaView atleta = (AtletaView)element;
-		controller.checks(atleta);
-		atleta.setSocietaAppartenenza(societaDelegate.get(atleta.getSocietaAppartenenza().getId()));
+		getController().checks(atleta);
+		atleta.setSocietaAppartenenza(getSocietaBridge().get(atleta.getSocietaAppartenenza().getId()));
 		return atleta;
 	}
 
@@ -35,23 +39,23 @@ public class AtletaDelegate extends GenericDelegate implements InitializingBean 
 		retrieve(atleta);
 		logger.debug("Customized atleta = " + atleta);
 		if (Eval.isNull(atleta.getIdAtleta())) {
-			bridge.insert(atleta);
+			getBridge().insert(atleta);
 		} else {
-			bridge.update(atleta);
+			getBridge().update(atleta);
 		}		
 	}
 
 	public void delete(GecompModelObject element) throws GeCompException {
 		AtletaView atleta = (AtletaView)element;
-		bridge.delete(atleta);		
+		getBridge().delete(atleta);		
 	}
 
 	public AtletaView get(Long id) throws GeCompException {
-		return bridge.get(id);
+		return getBridge().get(id);
 	}
 	
 	public List<AtletaView> list() throws GeCompException {
-		return bridge.list();
+		return getBridge().list();
 	}
 	
 	public void afterPropertiesSet() throws Exception {

@@ -9,12 +9,12 @@ import net.sb.gecomp.commons.exceptions.GeCompSrvException;
 import net.sb.gecomp.commons.model.Properties;
 
 @WebService
-public interface IPropertiesService /*extends IService<Properties>*/ {
+public interface IPropertiesService extends IService<Properties> {
 
-//	Properties get(
-//			@WebParam(name="id") Long id) 						throws GeCompSrvException;
-	
 	Properties get(
+			@WebParam(name="id") Long id) 						throws GeCompSrvException;
+	
+	Properties getByCode(
 			@WebParam(name="code") String code) 				throws GeCompSrvException;
 	
 	List<Properties> list() 									throws GeCompSrvException;

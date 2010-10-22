@@ -9,7 +9,6 @@ import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.societa.SocietaBridge;
 import net.sb.gecomp.web.controllers.societa.SocietaController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
-import net.sb.gecomp.web.utils.context.GecompContextFactory;
 import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 
@@ -18,12 +17,7 @@ public class SocietaDelegate extends GenericDelegate {
 	private SocietaController controller = new SocietaController();
 
 	private SocietaBridge bridge;
-	public SocietaBridge getBridge() {
-		if (Eval.isNull(bridge)) {
-			setBridge((SocietaBridge)GecompContextFactory.getContext().getBean("societaBridge"));
-		}
-		return bridge; 
-	}
+	public SocietaBridge getBridge() {return (SocietaBridge)super.getBridge();}
 	public void setBridge(SocietaBridge bridge) { this.bridge = bridge; }
 
 	public List<SocietaView> list() throws GeCompException {

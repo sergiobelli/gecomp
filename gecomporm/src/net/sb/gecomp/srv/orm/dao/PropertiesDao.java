@@ -8,9 +8,6 @@ import java.util.List;
 import net.sb.gecomp.commons.exceptions.GeCompOrmException;
 import net.sb.gecomp.commons.model.Properties;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
-import net.sb.gecomp.srv.orm.ibatis.DbManager;
-
-import org.apache.log4j.Logger;
 
 
 /**
@@ -18,23 +15,8 @@ import org.apache.log4j.Logger;
  * @author S.BELLI
  *
  */
-public class PropertiesDao extends DbManager implements IGeCompDao<Properties> {
+public class PropertiesDao extends GenericDao implements IGeCompDao<Properties> {
 
-	protected static final String GET_PROPERTIES = "Properties.selectProperties";
-	protected static final String LIST_PROPERTIES = "Properties.listProperties";
-	protected static final String INSERT_PROPERTIES = "Properties.insertProperties";
-	protected static final String UPDATE_PROPERTIES = "Properties.updateProperties";
-	protected static final String DELETE_PROPERTIES = "Properties.deleteProperties";
-	
-//	private static PropertiesDao instance;
-//	private PropertiesDao() {}
-//	public static PropertiesDao getInstance() {
-//		if (instance == null) {
-//			instance = new PropertiesDao();
-//		}
-//		return instance;
-//	}
-	
 	/**
 	 * 
 	 */
@@ -109,7 +91,5 @@ public class PropertiesDao extends DbManager implements IGeCompDao<Properties> {
 			throw new GeCompOrmException(e.getMessage());
 		}
 	}
-
-	protected Logger logger = Logger.getLogger(this.getClass().getName());
 
 }

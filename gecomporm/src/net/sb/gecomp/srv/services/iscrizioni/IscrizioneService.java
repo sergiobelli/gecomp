@@ -10,14 +10,14 @@ import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.model.Iscrizione;
 import net.sb.gecomp.commons.services.IIscrizioneService;
 import net.sb.gecomp.commons.utils.Eval;
+import net.sb.gecomp.srv.orm.dao.GaraDao;
 import net.sb.gecomp.srv.orm.dao.IscrizioneDao;
+import net.sb.gecomp.srv.services.GenericService;
 
 @WebService(endpointInterface = "net.sb.gecomp.commons.services.IIscrizioneService", serviceName = "iscrizioneService")
-public class IscrizioneService implements IIscrizioneService {
+public class IscrizioneService extends GenericService implements IIscrizioneService {
 
-	private IscrizioneDao dao;
-	public IscrizioneDao getDao() {return dao;}
-	public void setDao(IscrizioneDao dao) {this.dao = dao;}
+	public IscrizioneDao getDao() {return (IscrizioneDao) super.getDao();}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);
@@ -28,12 +28,12 @@ public class IscrizioneService implements IIscrizioneService {
 			getDao().update(iscrizione);
 			return iscrizione;
 		} else {
-			return getDao().insert(iscrizione);
+			return (Iscrizione) getDao().insert(iscrizione);
 		}
 	}
 
 	public Iscrizione get(Long id) throws GeCompSrvException {
-		return getDao().get(id);
+		return (Iscrizione) getDao().get(id);
 	}
 
 	
@@ -42,12 +42,12 @@ public class IscrizioneService implements IIscrizioneService {
 	}
 
 	public List<Iscrizione> list4Gara(Gara gara) throws GeCompSrvException {
-		List<Iscrizione> result = getDao().list(gara);
+		List<Iscrizione> result = ((IscrizioneDao)getDao()).list(gara);
 		return result;
 	}
 	
 	public List<Iscrizione> list4Competizione(Competizione competizione) throws GeCompSrvException {
-		List<Iscrizione> result = getDao().list(competizione);
+		List<Iscrizione> result = ((IscrizioneDao)getDao()).list(competizione);
 		return result;
 	}
 	

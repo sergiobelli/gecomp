@@ -9,7 +9,7 @@ import net.sb.gecomp.commons.exceptions.GeCompSrvException;
 import net.sb.gecomp.commons.model.TipoPrestazione;
 
 @WebService
-public interface ITipoPrestazioneService /*extends IService<TipoPrestazione>*/ {
+public interface ITipoPrestazioneService extends IService<TipoPrestazione> {
 
 	void delete(@WebParam(name="id") Long id) throws GeCompSrvException;
 

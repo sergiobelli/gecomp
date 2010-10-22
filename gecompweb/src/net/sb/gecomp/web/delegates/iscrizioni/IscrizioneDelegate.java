@@ -20,9 +20,15 @@ import net.sb.gecomp.web.delegates.prestazioni.PrestazioneDelegate;
 
 public class IscrizioneDelegate extends GenericDelegate {
 
-	private IscrizioneController 	controller 	= new IscrizioneController();
-	private IscrizioneBridge 		bridge 		= new IscrizioneBridge();
+	private IscrizioneBridge bridge;
+	public IscrizioneBridge getBridge() {return (IscrizioneBridge)super.getBridge();}
+	public void setBridge(IscrizioneBridge bridge) {this.bridge = bridge;}
 
+	private IscrizioneController controller;
+	public IscrizioneController getController() {return controller;}
+	public void setController(IscrizioneController controller) {this.controller = controller;}
+
+	
 	public void delete(GecompModelObject element) throws GeCompException {
 		try {
 			Iscrizione iscrizione = (Iscrizione)element;
@@ -34,7 +40,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 				throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.delete.prestazione_associata");
 			} else {
 				logger.info("Si procede nell'eliminazione dell'iscrizione...");
-				bridge.delete(iscrizione);			
+				getBridge().delete(iscrizione);			
 			}
 			logger.info("Eliminazione iscrizione eseguita con successo.");
 		} catch (GeCompException gce) {
@@ -48,7 +54,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
 		Iscrizione iscrizione = (Iscrizione)element;
-		controller.checks(element);
+		getController().checks(element);
 		
 		iscrizione.setAtleta(new AtletaDelegate().get(iscrizione.getAtleta().getIdAtleta()));//recupero l'oggettone AtletaView
 		iscrizione.setGara(new GaraDelegate().get(iscrizione.getGara().getIdGara()));//recupero l'oggettone GaraView
@@ -61,9 +67,9 @@ public class IscrizioneDelegate extends GenericDelegate {
 			Iscrizione iscrizione = (Iscrizione) retrieve(element);
 			logger.debug("Customized Iscrizione = " + iscrizione);
 			if (Eval.isNull(iscrizione.getIdIscrizione())) {
-				iscrizione = (Iscrizione)bridge.insert(iscrizione);
+				iscrizione = (Iscrizione)getBridge().insert(iscrizione);
 			} else {
-				bridge.update(iscrizione);
+				getBridge().update(iscrizione);
 			}
 		} catch (GeCompException gce) {
 			logger.error("Errore gestito", gce);
@@ -75,12 +81,12 @@ public class IscrizioneDelegate extends GenericDelegate {
 	}
 
 	public IscrizioneView get(Long id) throws GeCompException {
-		return bridge.get(id);
+		return getBridge().get(id);
 	}
 
 	public List<IscrizioneView> list(GaraView gara) throws GeCompException {
 		try {
-			return bridge.list(gara);
+			return getBridge().list(gara);
 		} catch (GeCompException ex) {
 			logger.error("net.sb.gecomp.console.iscrizioni.delegates.generic_error " + gara, ex);
 			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.generic_error");
@@ -89,7 +95,7 @@ public class IscrizioneDelegate extends GenericDelegate {
 	
 	public List<IscrizioneView> list(CompetizioneView competizione) throws GeCompException {
 		try {
-			return bridge.list(competizione);
+			return getBridge().list(competizione);
 		} catch (GeCompException ex) {
 			logger.error("net.sb.gecomp.console.iscrizioni.delegates.generic_error " + competizione, ex);
 			throw new GeCompException("net.sb.gecomp.console.iscrizioni.delegates.generic_error");

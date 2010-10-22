@@ -13,7 +13,7 @@ import net.sb.gecomp.commons.model.Iscrizione;
 import net.sb.gecomp.commons.model.Prestazione;
 
 @WebService
-public interface IPrestazioneService /*extends IService<Prestazione>*/ {
+public interface IPrestazioneService extends IService<Prestazione> {
 
 	List<Prestazione> list4Gara(@WebParam(name="gara") Gara gara) throws GeCompSrvException;
 	

@@ -10,7 +10,7 @@ import net.sb.gecomp.commons.model.Competizione;
 import net.sb.gecomp.commons.model.Gara;
 
 @WebService
-public interface IGaraService /*extends IService<Gara>*/ {
+public interface IGaraService extends IService<Gara> {
 	
 	List<Gara> list4Competizione (@WebParam(name="competizione") Competizione competizione) throws GeCompSrvException;
 	

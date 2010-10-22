@@ -13,24 +13,19 @@ import net.sb.gecomp.commons.model.Prestazione;
 import net.sb.gecomp.commons.services.IPrestazioneService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.PrestazioneDao;
-
-import org.apache.log4j.Logger;
+import net.sb.gecomp.srv.services.GenericService;
 
 @WebService(endpointInterface = "net.sb.gecomp.commons.services.IPrestazioneService", serviceName = "prestazioneService")
-public class PrestazioneService implements IPrestazioneService {
+public class PrestazioneService extends GenericService implements IPrestazioneService {
 
-	protected Logger logger = Logger.getLogger(this.getClass().getName());
-	
-	private PrestazioneDao dao;
-	public PrestazioneDao getDao() {return dao;}
-	public void setDao(PrestazioneDao dao) {this.dao = dao;}
+	public PrestazioneDao getDao() {return (PrestazioneDao) super.getDao();}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		throw new GeCompSrvException("NON IMPLEMENTATO!!!!");
 	}
 
 	public Prestazione get(Long id) throws GeCompSrvException {
-		return getDao().get(id);
+		return (Prestazione) getDao().get(id);
 	}
 
 	public Prestazione save(Prestazione prestazione) throws GeCompSrvException {
@@ -38,33 +33,33 @@ public class PrestazioneService implements IPrestazioneService {
 			getDao().update(prestazione);
 			return prestazione;
 		} else {
-			return getDao().insert(prestazione);			
+			return (Prestazione) getDao().insert(prestazione);			
 		}
 	}
 
 	public List<Prestazione> list4Gara(Gara gara) throws GeCompSrvException {
-		List<Prestazione> result = getDao().list(gara);
+		List<Prestazione> result = ((PrestazioneDao) getDao()).list(gara);
 		return result;
 	}
 
 	public List<Prestazione> list4Competizione(Competizione competizione) throws GeCompSrvException {
-		List<Prestazione> result = getDao().list(competizione);
+		List<Prestazione> result = ((PrestazioneDao) getDao()).list(competizione);
 		return result;
 	}
 	
 	public List<Prestazione> list4GaraCategoria(Gara gara, Categoria categoria, Boolean conAssoluti) throws GeCompSrvException {
 		List<Prestazione> result = null;
 		if (conAssoluti) {
-			result = getDao().list(gara, categoria);	
+			result = ((PrestazioneDao) getDao()).list(gara, categoria);	
 		} else {
-			result = getDao().listSenzaAssoluti(gara, categoria);	
+			result = ((PrestazioneDao) getDao()).listSenzaAssoluti(gara, categoria);	
 		}
 		return result;
 	}
 
 	public Prestazione get4Iscrizione(Iscrizione iscrizione) throws GeCompSrvException {
 		logger.info("Recupero prestazione associata all'iscrizione " + iscrizione);
-		Prestazione result = getDao().get(iscrizione.getIdIscrizione());
+		Prestazione result = ((PrestazioneDao) getDao()).get(iscrizione.getIdIscrizione());
 		logger.info("prestazione associata all'iscrizione recuperata " + iscrizione);
 		return result;
 	}

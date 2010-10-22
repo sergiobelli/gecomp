@@ -9,23 +9,33 @@ import net.sb.gecomp.commons.model.TipoPrestazione;
 import net.sb.gecomp.commons.services.ITipoPrestazioneService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.TipoPrestazioneDao;
+import net.sb.gecomp.srv.services.GenericService;
 
 @WebService(endpointInterface = "net.sb.gecomp.commons.services.ITipoPrestazioneService", serviceName = "tipoPrestazioneService")
-public class TipoPrestazioneService implements ITipoPrestazioneService {
+public class TipoPrestazioneService extends GenericService implements ITipoPrestazioneService {
 
-	private TipoPrestazioneDao dao;
-	public TipoPrestazioneDao getDao() {return dao;}
-	public void setDao(TipoPrestazioneDao dao) {this.dao = dao;}
+	public TipoPrestazioneDao getDao() {return (TipoPrestazioneDao) super.getDao();}
 	
 	public void delete(Long id) throws GeCompSrvException {
+		logger.info("Richiesta cancellazione TipoPrestazione, id = " + id);
 		getDao().delete(id);
+		logger.info("Cancellazione TipoPrestazione, id = " + id + " effettuata.");
 	}
 
 	public TipoPrestazione get(Long id) throws GeCompSrvException {
-		return getDao().get(id);
+		return (TipoPrestazione) getDao().get(id);
 	}
 
 	public List<TipoPrestazione> list() throws GeCompSrvException {
+//		List<TipoPrestazione> result = null;
+//		List<GecompModelObject> lista = getDao().list();
+//		if (Eval.isNotEmpty(lista)) {
+//			result = new ArrayList<TipoPrestazione>(); 
+//			for (GecompModelObject gmo : lista) {
+//				result.add((TipoPrestazione)gmo);
+//			}
+//		}
+//		return result;
 		return getDao().list();
 	}
 
@@ -34,7 +44,7 @@ public class TipoPrestazioneService implements ITipoPrestazioneService {
 			getDao().update(tipoPrestazione);
 			return tipoPrestazione;
 		} else {
-			return getDao().insert(tipoPrestazione);			
+			return (TipoPrestazione) getDao().insert(tipoPrestazione);			
 		}
 	}
 

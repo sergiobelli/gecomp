@@ -10,7 +10,7 @@ import net.sb.gecomp.commons.model.CategoriaGara;
 import net.sb.gecomp.commons.model.Gara;
 
 @WebService
-public interface ICategoriaGaraService /*extends IService<CategoriaGara>*/ {
+public interface ICategoriaGaraService extends IService<CategoriaGara> {
 
 	List<CategoriaGara> list4Gara(@WebParam(name="gara") Gara gara) throws GeCompSrvException;;
 

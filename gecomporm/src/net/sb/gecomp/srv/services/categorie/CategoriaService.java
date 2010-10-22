@@ -9,20 +9,19 @@ import net.sb.gecomp.commons.model.Categoria;
 import net.sb.gecomp.commons.services.ICategoriaService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.srv.orm.dao.CategoriaDao;
+import net.sb.gecomp.srv.services.GenericService;
 
 @WebService(endpointInterface = "net.sb.gecomp.commons.services.ICategoriaService", serviceName = "categoriaService")
-public class CategoriaService implements ICategoriaService {
-
-	private CategoriaDao dao;
-	public CategoriaDao getDao() {return dao;}
-	public void setDao(CategoriaDao dao) {this.dao = dao;}
+public class CategoriaService extends GenericService implements ICategoriaService {
+	
+	public CategoriaDao getDao() {return (CategoriaDao) super.getDao();}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);
 	}
 
 	public Categoria get(Long id) throws GeCompSrvException {
-		return getDao().get(id);
+		return (Categoria) getDao().get(id);
 	}
 
 	public List<Categoria> list() throws GeCompSrvException {
@@ -34,7 +33,7 @@ public class CategoriaService implements ICategoriaService {
 			getDao().update(object);
 			return object;
 		} else {
-			return getDao().insert(object);			
+			return (Categoria) getDao().insert(object);			
 		}
 	}
 
