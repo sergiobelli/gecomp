@@ -19,6 +19,8 @@ import net.sb.gecomp.commons.model.view.CompetizioneView;
 import net.sb.gecomp.commons.model.view.GaraView;
 import net.sb.gecomp.commons.model.view.IscrizioneView;
 import net.sb.gecomp.commons.model.view.SocietaView;
+import net.sb.gecomp.commons.model.view.TipoMisuraView;
+import net.sb.gecomp.commons.model.view.TipoPrestazioneView;
 import net.sb.gecomp.commons.utils.exceptions.GeCompExceptionManager;
 import net.sb.gecomp.web.delegates.atleti.AtletaDelegate;
 import net.sb.gecomp.web.delegates.categorie.CategoriaDelegate;
@@ -168,18 +170,18 @@ public class ExecuterHelper {
 		}
 	}
 	
-	public List<TipoPrestazione> getListaTipiPrestazione() {
+	public List<TipoPrestazioneView> getListaTipiPrestazione() {
 		try {
 			return new TipoPrestazioneDelegate().list();
 		} catch (GeCompException e) {
 			GeCompExceptionManager.traceException(logger, e);
-			return new ArrayList<TipoPrestazione>();
+			return new ArrayList<TipoPrestazioneView>();
 		}
 	}	
 	public SelectItem[] getListaTipiPrestazioneItem () {
 		SelectItem[] listaTipiPrestazione = new SelectItem[0];
 		try {
-			List<TipoPrestazione> tipiPrestazione = getListaTipiPrestazione();
+			List<TipoPrestazioneView> tipiPrestazione = getListaTipiPrestazione();
 
 			int pos = 0;
 			listaTipiPrestazione = new SelectItem[tipiPrestazione.size()];
@@ -222,18 +224,18 @@ public class ExecuterHelper {
 	}
 	
 	
-	public List<TipoMisura> getListaTipiMisure() {
+	public List<TipoMisuraView> getListaTipiMisure() {
 		try {
 			return new TipoMisuraDelegate().list();
 		} catch (GeCompException e) {
 			GeCompExceptionManager.traceException(logger, e);
-			return new ArrayList<TipoMisura>();
+			return new ArrayList<TipoMisuraView>();
 		}
 	}
 	public SelectItem[] getListaTipiMisureItem() {
 		SelectItem[] listaIscritti = new SelectItem[0];
 		try {
-			List<TipoMisura> tipiPrestazione = getListaTipiMisure();
+			List<TipoMisuraView> tipiPrestazione = getListaTipiMisure();
 			int pos = 0;
 			listaIscritti = new SelectItem[tipiPrestazione.size()];
 			for (TipoMisura a : tipiPrestazione) {
