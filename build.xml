@@ -25,21 +25,21 @@
 		<ant antfile="build.xml" dir="gecompshared" target="deploy"/>
 	</target>
 	
-	<target name="2.build.orm" depends="1.build.shared">
+	<target name="2.build.orm">
 		<echo message="**************************************"/>
 		<echo message="make distribution of project GeCompOrm"/>
 		<echo message="**************************************"/>
 		<ant antfile="build.xml" dir="gecomporm" target="deploy"/>
 	</target>
 
-	<target name="3.build.srv" depends="2.build.orm">
+	<target name="3.build.srv">
 		<echo message="******************************************"/>
 		<echo message="make distribution of project GeCompOrm-Srv"/>
 		<echo message="******************************************"/>
 		<ant antfile="build.srv.xml" dir="gecomporm" target="deploy"/>
 	</target>
 		
-	<target name="4.build.web" depends="2.build.orm">
+	<target name="4.build.web">
 		<echo message="**************************************"/>
 		<echo message="make distribution of project GeCompWeb"/>
 		<echo message="**************************************"/>

@@ -10,7 +10,6 @@ import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.model.Iscrizione;
 import net.sb.gecomp.commons.services.IIscrizioneService;
 import net.sb.gecomp.commons.utils.Eval;
-import net.sb.gecomp.srv.orm.dao.GaraDao;
 import net.sb.gecomp.srv.orm.dao.IscrizioneDao;
 import net.sb.gecomp.srv.services.GenericService;
 
@@ -18,6 +17,7 @@ import net.sb.gecomp.srv.services.GenericService;
 public class IscrizioneService extends GenericService implements IIscrizioneService {
 
 	public IscrizioneDao getDao() {return (IscrizioneDao) super.getDao();}
+	public void setDao(IscrizioneDao dao) {super.setDao(dao);}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);

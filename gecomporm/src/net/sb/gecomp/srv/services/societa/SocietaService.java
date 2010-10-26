@@ -15,6 +15,7 @@ import net.sb.gecomp.srv.services.GenericService;
 public class SocietaService extends GenericService implements ISocietaService {
 	
 	public SocietaDao getDao() {return (SocietaDao) super.getDao();}
+	public void setDao(SocietaDao dao) {super.setDao(dao);}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);
@@ -22,7 +23,7 @@ public class SocietaService extends GenericService implements ISocietaService {
 
 	public Societa save(Societa societa) throws GeCompSrvException {
 		if (Eval.isNotNull(societa.getId())) {
-			((SocietaDao)getDao()).update(societa);
+			getDao().update(societa);
 			return societa;
 		} else {
 			return (Societa) getDao().insert(societa);			

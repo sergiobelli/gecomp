@@ -15,6 +15,7 @@ import net.sb.gecomp.srv.services.GenericService;
 public class TipoMisuraService extends GenericService implements ITipoMisuraService {
 
 	public TipoMisuraDao getDao() {return (TipoMisuraDao) super.getDao();}
+	public void setDao(TipoMisuraDao dao) {super.setDao(dao);}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);

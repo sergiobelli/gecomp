@@ -22,6 +22,7 @@ import net.sb.gecomp.srv.services.GenericService;
 public class GaraService extends GenericService implements IGaraService {
 
 	public GaraDao getDao() {return (GaraDao) super.getDao();}
+	public void setDao(GaraDao dao) {super.setDao(dao);}
 	
 	private CategoriaGaraDao categoriaGaraDao;
 	public CategoriaGaraDao getCategoriaGaraDao() {return categoriaGaraDao;}

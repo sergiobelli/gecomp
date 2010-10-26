@@ -15,6 +15,7 @@ import net.sb.gecomp.srv.services.GenericService;
 public class PropertiesService extends GenericService implements IPropertiesService {
 
 	public PropertiesDao getDao() {return (PropertiesDao) super.getDao();}
+	public void setDao(PropertiesDao dao) {super.setDao(dao);}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);

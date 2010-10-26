@@ -15,7 +15,8 @@ import net.sb.gecomp.srv.services.GenericService;
 public class AtletaService extends GenericService implements IAtletaService {
 
 	public AtletaDao getDao() {return (AtletaDao) super.getDao();}
-	
+	public void setDao(AtletaDao dao) {super.setDao(dao);}
+
 	public Atleta save(Atleta atleta) throws GeCompSrvException {
 		if (Eval.isNotNull(atleta.getIdAtleta())) {
 			getDao().update(atleta);

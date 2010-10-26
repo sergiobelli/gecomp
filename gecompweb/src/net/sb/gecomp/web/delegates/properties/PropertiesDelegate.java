@@ -6,7 +6,6 @@ import net.sb.gecomp.commons.model.view.PropertiesView;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.properties.PropertiesBridge;
 import net.sb.gecomp.web.delegates.GenericDelegate;
-import net.sb.gecomp.web.utils.context.GecompContextFactory;
 
 
 public class PropertiesDelegate extends GenericDelegate {

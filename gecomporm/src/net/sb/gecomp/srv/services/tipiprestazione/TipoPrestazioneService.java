@@ -15,6 +15,7 @@ import net.sb.gecomp.srv.services.GenericService;
 public class TipoPrestazioneService extends GenericService implements ITipoPrestazioneService {
 
 	public TipoPrestazioneDao getDao() {return (TipoPrestazioneDao) super.getDao();}
+	public void setDao(TipoPrestazioneDao dao) {super.setDao(dao);}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		logger.info("Richiesta cancellazione TipoPrestazione, id = " + id);

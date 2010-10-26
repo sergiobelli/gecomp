@@ -16,9 +16,10 @@ import net.sb.gecomp.srv.services.GenericService;
 public class CategoriaGaraService extends GenericService implements ICategoriaGaraService {
 
 	public CategoriaGaraDao getDao() {return (CategoriaGaraDao) super.getDao();}
+	public void setDao(CategoriaGaraDao dao) {super.setDao(dao);}
 	
 	public List<CategoriaGara> list4Gara(Gara gara) throws GeCompSrvException {
-		return ((CategoriaGaraDao)getDao()).list(gara);
+		return getDao().list(gara);
 	}
 
 	public void delete(Long id) throws GeCompSrvException {

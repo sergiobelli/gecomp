@@ -15,6 +15,7 @@ import net.sb.gecomp.srv.services.GenericService;
 public class CompetizioneService extends GenericService implements ICompetizioneService {
 
 	public CompetizioneDao getDao() {return (CompetizioneDao) super.getDao();}
+	public void setDao(CompetizioneDao dao) {super.setDao(dao);}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		getDao().delete(id);

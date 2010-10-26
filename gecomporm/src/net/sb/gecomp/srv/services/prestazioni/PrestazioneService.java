@@ -19,6 +19,7 @@ import net.sb.gecomp.srv.services.GenericService;
 public class PrestazioneService extends GenericService implements IPrestazioneService {
 
 	public PrestazioneDao getDao() {return (PrestazioneDao) super.getDao();}
+	public void setDao(PrestazioneDao dao) {super.setDao(dao);}
 	
 	public void delete(Long id) throws GeCompSrvException {
 		throw new GeCompSrvException("NON IMPLEMENTATO!!!!");
