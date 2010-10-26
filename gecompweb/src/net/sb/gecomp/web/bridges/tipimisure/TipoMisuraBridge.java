@@ -5,10 +5,14 @@ import java.util.List;
 import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.TipoMisura;
+import net.sb.gecomp.commons.services.ITipoMisuraService;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 public class TipoMisuraBridge extends GenericBridge {
 
+	public ITipoMisuraService getService() { return (ITipoMisuraService) super.getService(); }
+	public void setService(ITipoMisuraService service) { super.setService(service); }
+	
 	public void delete(GecompModelObject tipoMisura) throws GeCompException {
 		getService().delete(((TipoMisura) tipoMisura).getIdTipoMisura());
 	}

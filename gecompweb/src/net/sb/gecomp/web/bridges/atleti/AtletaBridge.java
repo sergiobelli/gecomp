@@ -7,11 +7,15 @@ import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.commons.model.Atleta;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.view.AtletaView;
+import net.sb.gecomp.commons.services.IAtletaService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class AtletaBridge extends GenericBridge  {
+
+	public IAtletaService getService() { return (IAtletaService) super.getService(); }
+	public void setService(IAtletaService service) { super.setService(service); }
 
 	public AtletaView insert(GecompModelObject atleta) throws GeCompException {
 		return new AtletaView((Atleta)getService().save((Atleta)atleta));

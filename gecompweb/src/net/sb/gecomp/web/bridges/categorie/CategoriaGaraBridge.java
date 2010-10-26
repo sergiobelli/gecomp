@@ -15,6 +15,9 @@ import net.sb.gecomp.web.bridges.GenericBridge;
 
 public class CategoriaGaraBridge extends GenericBridge {
 
+	public ICategoriaGaraService getService() { return (ICategoriaGaraService) super.getService(); }
+	public void setService(ICategoriaGaraService service) { super.setService(service); }
+	
 	public void delete(GecompModelObject element) throws GeCompException {
 		getService().delete(((CategoriaGara)element).getIdCategoriaGara());
 	}
@@ -45,7 +48,15 @@ public class CategoriaGaraBridge extends GenericBridge {
 	}
 	
 	public List<CategoriaGaraView> list() throws GeCompException {
-		return getService().list();//FIXME:???
+		List<CategoriaGaraView> result = null;
+		List<CategoriaGara> lista = getService().list();
+		if (Eval.isNotEmpty(lista)) {
+			result = new ArrayList<CategoriaGaraView>();
+			for (CategoriaGara categoriaGara : lista) {
+				result.add(new CategoriaGaraView(categoriaGara));
+			}
+		}
+		return result;
 	}
 
 }

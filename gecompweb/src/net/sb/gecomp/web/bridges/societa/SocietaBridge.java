@@ -7,11 +7,16 @@ import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.Societa;
 import net.sb.gecomp.commons.model.view.SocietaView;
+import net.sb.gecomp.commons.services.IIscrizioneService;
+import net.sb.gecomp.commons.services.ISocietaService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class SocietaBridge extends GenericBridge {
+	
+	public ISocietaService getService() { return (ISocietaService) super.getService(); }
+	public void setService(ISocietaService service) { super.setService(service); }
 	
 	public void delete(GecompModelObject element) throws GeCompException {
 		getService().delete(((SocietaView)element).getId());

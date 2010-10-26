@@ -14,7 +14,7 @@ public interface IGenericBridge<T extends GecompModelObject> {
 	
 	void delete(T element) throws GeCompException;
 	
-	T get(Long id) throws GeCompException;
+	//T get(Long id) throws GeCompException;
 	
 	List<T> list() throws GeCompException;
 }

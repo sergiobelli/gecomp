@@ -6,6 +6,7 @@ import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.TipoPrestazione;
 import net.sb.gecomp.web.delegates.GenericDelegate;
+import net.sb.gecomp.web.delegates.IGenericDaoDelegate;
 
 public class TipoPrestazioneDelegate extends GenericDelegate {
 
@@ -13,7 +14,7 @@ public class TipoPrestazioneDelegate extends GenericDelegate {
 		getBridge().delete((TipoPrestazione)element);
 	}
 
-	public GecompModelObject get(Long id) throws GeCompException {
+	public TipoPrestazione get(Long id) throws GeCompException {
 		return getBridge().get(id);
 	}
 

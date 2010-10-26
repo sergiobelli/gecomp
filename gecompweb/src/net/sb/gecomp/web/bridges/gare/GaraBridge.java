@@ -15,6 +15,9 @@ import net.sb.gecomp.web.bridges.GenericBridge;
 
 public class GaraBridge extends GenericBridge {
 	
+	public IGaraService getService() { return (IGaraService) super.getService(); }
+	public void setService(IGaraService service) { super.setService(service); }
+	
 	public void delete(GecompModelObject gara) throws GeCompException {
 		getService().delete(((GaraView) gara).getIdGara());
 	}

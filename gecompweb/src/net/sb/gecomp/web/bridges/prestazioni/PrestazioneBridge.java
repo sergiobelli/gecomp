@@ -18,6 +18,10 @@ import net.sb.gecomp.web.bridges.GenericBridge;
 
 public class PrestazioneBridge extends GenericBridge {
 
+	public IPrestazioneService getService() { return (IPrestazioneService) super.getService(); }
+	public void setService(IPrestazioneService service) { super.setService(service); }
+
+	
 	public void delete(final GecompModelObject element) throws GeCompException {
 		getService().delete(((Prestazione)element).getIdPrestazione());
 	}

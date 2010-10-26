@@ -10,12 +10,16 @@ import net.sb.gecomp.commons.model.Gara;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.view.CategoriaView;
 import net.sb.gecomp.commons.services.ICategoriaGaraService;
+import net.sb.gecomp.commons.services.ICategoriaService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class CategoriaBridge extends GenericBridge {
 
+	public ICategoriaService getService() { return (ICategoriaService) super.getService(); }
+	public void setService(ICategoriaService service) { super.setService(service); }
+	
 	private ICategoriaGaraService categoriaGaraService;
 	public ICategoriaGaraService getCategoriaGaraService() {return categoriaGaraService;}
 	public void setCategoriaGaraService(ICategoriaGaraService categoriaGaraService) {this.categoriaGaraService = categoriaGaraService;}

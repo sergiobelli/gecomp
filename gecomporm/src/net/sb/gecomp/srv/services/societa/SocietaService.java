@@ -18,24 +18,38 @@ public class SocietaService extends GenericService implements ISocietaService {
 	public void setDao(SocietaDao dao) {super.setDao(dao);}
 	
 	public void delete(Long id) throws GeCompSrvException {
+		logger.info("Richiesta cancellazione della societa avente id " + id);
 		getDao().delete(id);
+		logger.info("Cancellazione della societa avente id " + id + " avvenuta con successo.");
 	}
 
 	public Societa save(Societa societa) throws GeCompSrvException {
+		logger.info("Richiesto salvataggio della societa " + societa);
+		Societa result = null;
 		if (Eval.isNotNull(societa.getId())) {
+			logger.debug("Si tratta di una modifica...");
 			getDao().update(societa);
-			return societa;
+			result = societa;
 		} else {
-			return (Societa) getDao().insert(societa);			
+			logger.debug("Si tratta di un nuovo inserimento...");
+			result = getDao().insert(societa);			
 		}
-	}
-
-	public List<Societa> list() throws GeCompSrvException {
-		List<Societa> result = getDao().list();
+		logger.info("Richiesto salvataggio della societa " + result + " effettuato con successo.");
 		return result;
 	}
 
-	public Societa get(Long idSocieta) throws GeCompSrvException {
-		return (Societa) getDao().get(idSocieta);
+	public List<Societa> list() throws GeCompSrvException {
+		logger.info("Richiesto elenco delle societa.");
+		List<Societa> result = getDao().list();
+		logger.info("Elenco delle societa reperito avente cardinalita' " + (Eval.isNotEmpty(result) ? result.size() : "0"));
+		return result;
+	}
+
+	public Societa get(Long id) throws GeCompSrvException {		
+		logger.info("Richiesta societa avente id " + id);
+		Societa result = null;
+		result = getDao().get(id);
+		logger.info("Societa reperita " + result);
+		return result;
 	}
 }

@@ -16,6 +16,9 @@ import net.sb.gecomp.web.bridges.GenericBridge;
 
 public class IscrizioneBridge extends GenericBridge {
 
+	public IIscrizioneService getService() { return (IIscrizioneService) super.getService(); }
+	public void setService(IIscrizioneService service) { super.setService(service); }
+	
 	public void delete(GecompModelObject iscrizione) throws GeCompException {
 		getService().delete(((Iscrizione) iscrizione).getIdIscrizione());
 	}

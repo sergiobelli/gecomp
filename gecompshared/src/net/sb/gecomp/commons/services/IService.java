@@ -9,7 +9,7 @@ public interface IService<T extends GecompModelObject> {
 	
 	T save(T object) throws GeCompSrvException;
 
-	T get(Long id) throws GeCompSrvException;
+	//T get(Long id) throws GeCompSrvException;
 	
 	void delete(Long id) throws GeCompSrvException;
 	

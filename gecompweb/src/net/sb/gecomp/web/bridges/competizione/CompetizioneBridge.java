@@ -7,12 +7,16 @@ import net.sb.gecomp.commons.exceptions.GeCompException;
 import net.sb.gecomp.commons.model.Competizione;
 import net.sb.gecomp.commons.model.GecompModelObject;
 import net.sb.gecomp.commons.model.view.CompetizioneView;
+import net.sb.gecomp.commons.services.ICompetizioneService;
 import net.sb.gecomp.commons.utils.Eval;
 import net.sb.gecomp.web.bridges.GenericBridge;
 
 
 public class CompetizioneBridge extends GenericBridge {
 
+	public ICompetizioneService getService() { return (ICompetizioneService) super.getService(); }
+	public void setService(ICompetizioneService service) { super.setService(service); }
+	
 	public void delete(GecompModelObject element) throws GeCompException {
 		Competizione competizione = (Competizione) element;
 		getService().delete(competizione.getIdCompetizione());
