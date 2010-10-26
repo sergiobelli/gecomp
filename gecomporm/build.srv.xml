@@ -51,7 +51,7 @@
 	</target>
 	
 	<target name="deploy" depends="dist">
-    	<copy todir="D:\sergio\programmi\java\server\apache-tomcat-6.0.24\webapps">
+    	<copy todir="${deploy.dir}">
     		<fileset dir="dist/"><include name="gecompsrv.war" /></fileset>
     	</copy>
   	</target>
