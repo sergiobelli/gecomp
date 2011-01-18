@@ -9,7 +9,11 @@ import net.sb.gecomp.srv.orm.dao.ClassificaCompetizioneManager;
 import net.sb.gecomp.srv.orm.ibatis.DbManagerFactory;
 import net.sb.gecomp.srv.orm.presentation.classifiche.ClassificaGeneraleGara;
 
-
+/**
+ * 
+ * @author 71862
+ *
+ */
 public class TestClassificaGeneraleGara {
 	public static void main(String[] args) {
 		try {
