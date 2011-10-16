@@ -39,16 +39,13 @@ public class GeCompUserSessionHandler {
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			if (Eval.isNotNull(facesContext)) {
 				
-//				HttpSession httpSession = ((HttpServletRequest)facesContext.getExternalContext().getRequest()).getSession();
 				Map httpSession = facesContext.getExternalContext().getSessionMap();
 				
-//				geCompUserSession = (GeCompUserHttpSession) httpSession.getAttribute(GECOMP_USER_HTTP_SESSION_NAME);
 				geCompUserSession = (GeCompUserHttpSession) httpSession.get(GECOMP_USER_HTTP_SESSION_NAME);
 				
 				if (Eval.isNull(geCompUserSession)) {
 					geCompUserSession = new GeCompUserHttpSession();
 					
-//					httpSession.setAttribute(GECOMP_USER_HTTP_SESSION_NAME, geCompUserSession);
 					httpSession.put(GECOMP_USER_HTTP_SESSION_NAME, geCompUserSession);
 					
 				}
@@ -60,66 +57,3 @@ public class GeCompUserSessionHandler {
 	}
 	
 }
-
-//class UserSessionHandler {
-//    protected Logger womLogger = Logger.getLogger(this.getClass().getName());
-//    private static UserSessionHandler instance;
-//    private UserSessionHandler() {}
-//    public static UserSessionHandler getInstance() {
-//        return (Assert.isNull(instance)) ? new UserSessionHandler() : instance;
-//    }
-//
-//    /**
-//     * Method that returns the session of the logged user.
-//     * @return user session Map
-//     */
-//    public Map getUserSession () { return createUserSessionMap(); }
-//
-//    /**
-//     * Method that permits to set the user session.
-//     * @param session
-//     */
-//    public void setUserSession (Map session) { setUserSessionMap(session); }
-//
-//    /**
-//     * Method that permits to clear the logged user session.
-//     */
-//    public void clearUserSession() { setUserSession(null); }
-//
-//    /**
-//     * Creates a new user session instance or returns the existing ones.
-//     * @return
-//     */
-//    private Map createUserSessionMap () {
-//        Map session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-//        //womLogger.debug("<createUserSessionMap>session="+session);
-//        String user = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-//        womLogger.debug("<createUserSessionMap>user="+user);
-//
-//        Map userSession = null;
-//        if (!session.containsKey(user)) {
-//            userSession = new HashMap();
-//            session.put(user, userSession);
-//        } else {
-//            userSession = (Map) session.get(user);
-//        }
-//        //womLogger.debug("<createUserSessionMap>userSession="+userSession);
-//        return userSession;
-//    }
-//    private void setUserSessionMap(Map userSession) {
-//        if (Assert.isNotNull(userSession)) {
-//            Map facesSession = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-//            //womLogger.debug("<setUserSessionMap>facesSession=" + facesSession);
-//            String user = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-//            womLogger.debug("<setUserSessionMap>user=" + user);
-//
-//            facesSession.put(user, userSession);
-//            //womLogger.debug("<setUserSessionMap>userSession=" + userSession);
-//        } else {
-//            womLogger.debug("<setUserSessionMap>removing");
-//            Map facesSession = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-//            String user = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-//            facesSession.remove(user);
-//        }
-//    }
-//}

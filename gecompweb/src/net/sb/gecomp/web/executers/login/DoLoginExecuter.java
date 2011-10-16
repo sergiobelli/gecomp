@@ -19,8 +19,11 @@ public class DoLoginExecuter {
 
 	protected Logger logger = Logger.getLogger(this.getClass().getName());
 	
-	private LoginDelegate delegate = new LoginDelegate();
-	
+	private LoginDelegate loginDelegate;
+	public void setLoginDelegate(LoginDelegate loginDelegate) {
+		this.loginDelegate = loginDelegate;
+	}
+
 	private String username;
 	public String getUsername() { return username; }
 	public void setUsername(String username) { this.username = username; }
@@ -37,7 +40,7 @@ public class DoLoginExecuter {
 		String result = LOGIN_FAILED;
 		try {
 
-			UserView loggedUser = delegate.login(getUsername(), getPassword());
+			UserView loggedUser = loginDelegate.login(getUsername(), getPassword());
 			if (Eval.isNotNull(loggedUser)) {
 				logger.info("Utente loggato = "  + loggedUser);	
 				result = LOGIN_DONE;
@@ -47,7 +50,7 @@ public class DoLoginExecuter {
 				Calendar actualTime = Calendar.getInstance();
 				actualTime.add(
 						Calendar.MINUTE, 
-						Integer.valueOf(delegate.getRefreshSessionOffset()));
+						Integer.valueOf(loginDelegate.getRefreshSessionOffset()));
 				GeCompUserSessionHandler.getGeCompUserHttpSession().setLoggedUser(loggedUser);
 				GeCompUserSessionHandler.getGeCompUserHttpSession().setExpireDate(actualTime.getTime());
 				

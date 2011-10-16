@@ -13,7 +13,8 @@
           http://cxf.apache.org/transports/http/configuration   http://cxf.apache.org/schemas/configuration/http-conf.xsd 
           http://cxf.apache.org/configuration/security          http://cxf.apache.org/schemas/configuration/security.xsd 
           http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd 
-          http://cxf.apache.org/policy http://cxf.apache.org/schemas/policy.xsd">
+          http://cxf.apache.org/policy http://cxf.apache.org/schemas/policy.xsd"
+       default-autowire="autodetect">
 
 	<!-- CLIENTS -->
 	<jaxws:client id="authenticationService"
@@ -135,22 +136,31 @@
 		<property name="controller"><ref bean="iscrizioneController" /></property>
 	</bean>
 	
-	<!--<bean id="prestazioneDelegate" class="net.sb.gecomp.web.delegates.properties.PropertiesDelegate">
-		<property name="bridge"><ref bean="propertiesBridge" /></property>
-		<property name="tpBridge"><ref bean="tipoPrestazioneBridge" /></property>
-		<property name="tmBridge"><ref bean="tipoMisuraBridge" /></property>
-		<property name="iscrBridge"><ref bean="iscrizioneBridge" /></property>
-		<property name="controller"><ref bean="prestazioneController" /></property>
-	</bean>-->
+	<bean id="prestazioneDelegate" class="net.sb.gecomp.web.delegates.prestazioni.PrestazioneDelegate">
+		<property name="prestazioneBridge"><ref bean="prestazioneBridge" /></property>
+		<property name="tipoPrestazioneBridge"><ref bean="tipoPrestazioneBridge" /></property>
+		<property name="tipoMisuraBridge"><ref bean="tipoMisuraBridge" /></property>
+		<property name="iscrizioneBridge"><ref bean="iscrizioneBridge" /></property>
+		<property name="prestazioneController"><ref bean="prestazioneController" /></property>
+	</bean>
 	<!-- DELEGATES -->
 	
-	<!-- EXECUTERS -->
+	<!-- EXECUTERS START -->
+	<bean id="doLoginExecuter" class="net.sb.gecomp.web.executers.login.DoLoginExecuter">
+		<property name="loginDelegate"><ref bean="loginDelegate" /></property>
+	</bean>
+	
+	<bean id="classificaGaraExecuter" class="net.sb.gecomp.web.executers.classifiche.ClassificaGaraExecuter">
+		<property name="prestazioneDelegate"><ref bean="prestazioneDelegate" /></property>
+		<property name="categoriaDelegate"><ref bean="categoriaDelegate" /></property>
+		<property name="classificaGaraDelegate"><ref bean="classificaGaraDelegate" /></property>
+	</bean>	
 	<!--<bean id="atletaExecuter" class="net.sb.gecomp.web.executers.atleti.AtletaExecuter">
 		<property name="delegate"><ref bean="atletaDelegate" /></property>
 	</bean>
 	<bean id="InserisciAtletaExecuter" class="net.sb.gecomp.web.executers.atleti.InserisciAtletaExecuter">
 		<property name="delegate"><ref bean="atletaDelegate" /></property>
 	</bean>-->
-	<!-- EXECUTERS -->
+	<!-- EXECUTERS END -->
 
 </beans>
