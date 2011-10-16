@@ -23,10 +23,22 @@ import net.sb.gecomp.web.utils.exceptions.GeCompGuiExceptionManager;
 
 public class ClassificaGaraExecuter extends GenericExecuter {
 
-	private PrestazioneDelegate prestazioneDelegate = new PrestazioneDelegate();
-	private CategoriaDelegate 	categoriaDelegate 	= new CategoriaDelegate();
-	private ClassificaGaraDelegate classificaGaraDelegate = new ClassificaGaraDelegate();
-	
+	private PrestazioneDelegate prestazioneDelegate;
+	public void setPrestazioneDelegate(PrestazioneDelegate prestazioneDelegate) {
+		this.prestazioneDelegate = prestazioneDelegate;
+	}
+
+	private CategoriaDelegate 	categoriaDelegate;
+	public void setCategoriaDelegate(CategoriaDelegate categoriaDelegate) {
+		this.categoriaDelegate = categoriaDelegate;
+	}
+
+	private ClassificaGaraDelegate classificaGaraDelegate;
+	public void setClassificaGaraDelegate(
+			ClassificaGaraDelegate classificaGaraDelegate) {
+		this.classificaGaraDelegate = classificaGaraDelegate;
+	}
+
 	private List<PrestazioneView> prestazioni;
 	public List<PrestazioneView> getPrestazioni() {return prestazioni;}
 	public void setPrestazioni(List<PrestazioneView> prestazioni) {this.prestazioni = prestazioni;}
@@ -70,7 +82,7 @@ public class ClassificaGaraExecuter extends GenericExecuter {
 	public String ricaricaClassifica() {
 		try {
 			CategoriaView categoria = categoriaDelegate.get(idCategoria);
-			setPrestazioni(prestazioneDelegate.list(getSelectedGara(),categoria, false));
+			setPrestazioni(prestazioneDelegate.list(getSelectedGara(),categoria, Boolean.FALSE));
 		} catch (Exception e) {
 			GeCompGuiExceptionManager.manageGUIException(logger, e, "error.classifica.rigenerazione.ko");
 		}

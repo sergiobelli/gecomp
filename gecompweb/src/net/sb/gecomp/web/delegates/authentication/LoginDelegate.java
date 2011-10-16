@@ -17,14 +17,13 @@ public class LoginDelegate implements IGenericDelegate {
 	protected Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	private AuthenticationBridge bridge;
-	public AuthenticationBridge getBridge() { return bridge; }
 	public void setBridge(AuthenticationBridge bridge) { this.bridge = bridge; }
 
 	public final UserView login(String username, String password) throws GeCompException {
-		if (Eval.isNull(getBridge())) {
+		if (Eval.isNull(bridge)) {
 			setBridge((AuthenticationBridge)GecompContextFactory.getContext().getBean("authenticationBridge"));
 		}
-		return new UserView(getBridge().login(username, password));
+		return new UserView(bridge.login(username, password));
 	}
 
 	public String getRefreshSessionOffset() throws GeCompException {

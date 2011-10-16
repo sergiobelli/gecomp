@@ -17,53 +17,32 @@ import net.sb.gecomp.web.bridges.tipimisure.TipoMisuraBridge;
 import net.sb.gecomp.web.bridges.tipiprestazione.TipoPrestazioneBridge;
 import net.sb.gecomp.web.controllers.prestazioni.PrestazioneController;
 import net.sb.gecomp.web.delegates.GenericDelegate;
-import net.sb.gecomp.web.utils.context.GecompContextFactory;
 
 
 public class PrestazioneDelegate extends GenericDelegate {
 
-	private PrestazioneController controller;
-	public PrestazioneController getController() {return controller;}
-	public void setController(PrestazioneController controller) {this.controller = controller;}
+	private PrestazioneController prestazioneController;
+	public void setPrestazioneController(PrestazioneController controller) {this.prestazioneController = controller;}
 
-	private PrestazioneBridge bridge;
-	public PrestazioneBridge getBridge() {return (PrestazioneBridge)super.getBridge();}
-	public void setBridge(PrestazioneBridge bridge) {this.bridge = bridge;}
+	private PrestazioneBridge prestazioneBridge;
+	public void setPrestazioneBridge(PrestazioneBridge bridge) {this.prestazioneBridge = bridge;}
 
-	private IscrizioneBridge iscrBridge;
-	public IscrizioneBridge getIscrBridge() {
-		if (Eval.isNull(iscrBridge)) {
-			setIscrBridge((IscrizioneBridge)GecompContextFactory.getContext().getBean("iscrizioneBridge"));
-		}
-		return iscrBridge;
-	}
-	public void setIscrBridge(IscrizioneBridge iscrizioneBridge) {this.iscrBridge = iscrizioneBridge;}
+	private IscrizioneBridge iscrizioneBridge;
+	public void setIscrizioneBridge(IscrizioneBridge iscrizioneBridge) {this.iscrizioneBridge = iscrizioneBridge;}
 
-	private TipoMisuraBridge tmBridge;
-	public TipoMisuraBridge getTmBridge() {
-		if (Eval.isNull(tmBridge)) {
-			setTmBridge((TipoMisuraBridge)GecompContextFactory.getContext().getBean("tipoMisuraBridge"));
-		}
-		return tmBridge;
-	}
-	public void setTmBridge(TipoMisuraBridge tipoMisuraBridge) {this.tmBridge = tipoMisuraBridge;}
+	private TipoMisuraBridge tipoMisuraBridge;
+	public void setTipoMisuraBridge(TipoMisuraBridge tipoMisuraBridge) {this.tipoMisuraBridge = tipoMisuraBridge;}
 
-	private TipoPrestazioneBridge tpBridge;
-	public TipoPrestazioneBridge getTpBridge() {
-		if (Eval.isNull(tpBridge)) {
-			setTpBridge((TipoPrestazioneBridge)GecompContextFactory.getContext().getBean("tipoPrestazioneBridge"));
-		}
-		return tpBridge;
-	}
-	public void setTpBridge(TipoPrestazioneBridge tipoPrestazioneBridge) {this.tpBridge = tipoPrestazioneBridge;}
+	private TipoPrestazioneBridge tipoPrestazioneBridge;
+	public void setTipoPrestazione(TipoPrestazioneBridge tipoPrestazioneBridge) {this.tipoPrestazioneBridge = tipoPrestazioneBridge;}
 
 	public GecompModelObject retrieve(GecompModelObject element) throws GeCompException {
 		Prestazione prestazione = (Prestazione) element;
-		getController().checks(prestazione);
+		prestazioneController.checks(prestazione);
 		
-		prestazione.setIscrizione(getIscrBridge().get(prestazione.getIscrizione().getIdIscrizione()));
-		prestazione.setTipoPrestazione(getTpBridge().get(prestazione.getTipoPrestazione().getIdTipoPrestazione()));
-		prestazione.setTipoMisura(getTmBridge().get(prestazione.getTipoMisura().getIdTipoMisura()));
+		prestazione.setIscrizione(iscrizioneBridge.get(prestazione.getIscrizione().getIdIscrizione()));
+		prestazione.setTipoPrestazione(tipoPrestazioneBridge.get(prestazione.getTipoPrestazione().getIdTipoPrestazione()));
+		prestazione.setTipoMisura(tipoMisuraBridge.get(prestazione.getTipoMisura().getIdTipoMisura()));
 		return prestazione;
 	}
 	
@@ -72,9 +51,9 @@ public class PrestazioneDelegate extends GenericDelegate {
 		retrieve(prestazione);
 		logger.debug("Customized Prestazione = " + prestazione);
 		if (Eval.isNull(prestazione.getIdPrestazione())) {
-			getBridge().insert(prestazione);
+			prestazioneBridge.insert(prestazione);
 		} else {
-			getBridge().update(prestazione);
+			prestazioneBridge.update(prestazione);
 		}
 	}
 
@@ -83,12 +62,12 @@ public class PrestazioneDelegate extends GenericDelegate {
 	}
 
 	public Prestazione get(Long id) throws GeCompException {
-		return (Prestazione) getBridge().get(id);
+		return (Prestazione) prestazioneBridge.get(id);
 	}
 
 	public List<PrestazioneView> list(CompetizioneView competizione) throws GeCompException {
 		try {
-			return getBridge().list(competizione);
+			return prestazioneBridge.list(competizione);
 		} catch (GeCompException ex) {
 			logger.error("Non ci sono prestazioni per la competizione specificata " + competizione, ex);
 			throw new GeCompException("net.sb.gecomp.web.delegates.prestazioni.x.x.x.x.x.x.x.x.x");
@@ -97,7 +76,7 @@ public class PrestazioneDelegate extends GenericDelegate {
 
 	public List<PrestazioneView> list(Gara gara, Categoria categoria) throws GeCompException {
 		try {
-			return getBridge().list(gara, categoria, true);
+			return prestazioneBridge.list(gara, categoria, true);
 		} catch (GeCompException ex) {
 			logger.error("Non ci sono prestazioni per la gara specificata " + gara, ex);
 			throw new GeCompException("net.sb.gecomp.web.delegates.prestazioni.x.x.x.x.x.x.x.x.x");
@@ -106,7 +85,7 @@ public class PrestazioneDelegate extends GenericDelegate {
 	
 	public List<PrestazioneView> list(Gara gara, Categoria categoria, Boolean conAssoluti) throws GeCompException {
 		try {
-			return getBridge().list(gara, categoria, conAssoluti);
+			return prestazioneBridge.list(gara, categoria, conAssoluti);
 		} catch (GeCompException ex) {
 			logger.error("Non ci sono prestazioni per la gara specificata " + gara, ex);
 			throw new GeCompException("net.sb.gecomp.web.delegates.prestazioni.x.x.x.x.x.x.x.x.x");
@@ -115,7 +94,7 @@ public class PrestazioneDelegate extends GenericDelegate {
 
 	public List<PrestazioneView> list(Gara gara) throws GeCompException {
 		try {
-			return getBridge().list(gara);
+			return prestazioneBridge.list(gara);
 		} catch (GeCompException ex) {
 			logger.error("Non ci sono prestazioni per la gara specificata " + gara, ex);
 			throw new GeCompException("net.sb.gecomp.web.delegates.prestazioni.x.x.x.x.x.x.x.x.x");
@@ -124,7 +103,7 @@ public class PrestazioneDelegate extends GenericDelegate {
 	
 	public PrestazioneView get(Iscrizione iscrizione) throws GeCompException {
 		try {
-			return getBridge().get(iscrizione);
+			return prestazioneBridge.get(iscrizione);
 		} catch (GeCompException ex) {
 			logger.error("Non ci sono prestazioni per l'iscrizione specificata " + iscrizione, ex);
 			throw new GeCompException("net.sb.gecomp.web.delegates.prestazioni.x.x.x.x.x.x.x.x.x");
