@@ -43,7 +43,7 @@ public class Eval {
 	}
 	
 	public static final boolean isEmpty(Collection collection) {
-		return (isNull(collection) || collection.size() == 0) ? true : false;
+		return (isNull(collection) || collection.isEmpty()) ? true : false;
 	}
 	public static final boolean isNotEmpty(Collection collection) {
 		return !isEmpty(collection);

@@ -27,8 +27,8 @@ public class PrestazioneView extends Prestazione {
 		setPosizione(posizione);
 		setPunteggio(punteggio);
 	}
-	//getter/setter
 	
+	//getter/setter
 	public Integer getPosizione() {return posizione;}
 	public void setPosizione(Integer posizione) {this.posizione = posizione;}
 	

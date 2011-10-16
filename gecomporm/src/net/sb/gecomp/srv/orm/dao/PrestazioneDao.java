@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import net.sb.gecomp.commons.exceptions.GeCompOrmException;
+import net.sb.gecomp.commons.model.Atleta;
 import net.sb.gecomp.commons.model.Categoria;
 import net.sb.gecomp.commons.model.Competizione;
 import net.sb.gecomp.commons.model.Gara;
@@ -85,8 +86,9 @@ public class PrestazioneDao extends GenericDao implements IGeCompDao<Prestazione
 		if (Eval.isNotEmpty(listaPrestazioniConAssoluti)) {
 			int posizione = 1;
 			for (Prestazione prestazione : listaPrestazioniConAssoluti) {
-				if (prestazione.getIscrizione().getAtleta().getSesso().equals(categoria.getSesso())
-						&& categoria.getAnniAppartenenza().contains(Integer.valueOf(prestazione.getIscrizione().getAtleta().getAnnoNascita()))
+				Atleta atleta = prestazione.getIscrizione().getAtleta();
+				if (atleta.getSesso().equals(categoria.getSesso())
+						&& categoria.getAnniAppartenenza().contains(Integer.valueOf(atleta.getAnnoNascita()))
 						&& posizione > gara.getNumeroAssoluti(categoria)) {
 					listaPrestazioniSenzaAssoluti.add(prestazione);
 				}
