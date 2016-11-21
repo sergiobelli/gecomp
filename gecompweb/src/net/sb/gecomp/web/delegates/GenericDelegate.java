@@ -30,6 +30,8 @@ public abstract class GenericDelegate implements IGenericDaoDelegate {
 	
 	protected Logger logger = Logger.getLogger(this.getClass().getName());
 	
+	
+	
 	private GenericBridge bridge;
 	public GenericBridge getBridge() {
 		if (Eval.isNull(bridge)) {
